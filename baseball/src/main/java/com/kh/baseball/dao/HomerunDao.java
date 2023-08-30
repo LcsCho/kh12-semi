@@ -1,5 +1,5 @@
 package com.kh.baseball.dao;
 
-public class HomerunDto {
+public class HomerunDao {
    private int number;
 }
