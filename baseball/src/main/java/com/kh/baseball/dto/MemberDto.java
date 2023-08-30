@@ -7,5 +7,5 @@ public class MemberDto {
 
 	private String memberId;
 	private int memberNumber;
-
+//주석달기
 }
