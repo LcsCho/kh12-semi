@@ -1,5 +1,9 @@
 package com.kh.baseball.dto;
 
-public class SeatAreaDto {
+import lombok.Data;
 
+@Data
+public class SeatAreaDto {
+	private int seatAreaNo;
+	private String stadiumId;
 }
