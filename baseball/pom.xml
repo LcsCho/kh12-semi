@@ -52,6 +52,25 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+		
+		<!-- 클래스 자동화 도구(구문 생성) -->
+		<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.28</version>
+    <scope>provided</scope>
+</dependency>
+
 		
 				<dependency>
 			<groupId>javax.servlet</groupId>
@@ -69,6 +88,7 @@
 			<scope>provided</scope>
 		</dependency>
 		
+
 	</dependencies>
 
 	<build>
