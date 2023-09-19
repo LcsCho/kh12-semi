@@ -24,11 +24,20 @@ public class StadiumController {
 	}
 	@PostMapping("/insert")
 	public String insert(@ModelAttribute StadiumDto stadiumDto) {
-		int stadiumNo = stadiumDao.sequence();
-		stadiumDto.setStadiumNo(stadiumNo);
-		stadiumDao.insertStadium(stadiumDto);
-		return "redirect:insertFinish";
-		
+	    // 1. 데이터베이스 시퀀스 값을 가져오기
+	    int stadiumNo = stadiumDao.sequence();
+	    
+	    // 2. 가져온 시퀀스 값을 스타디움 DTO에 설정
+	    stadiumDto.setStadiumNo(stadiumNo);
+	    
+	    // 3. 스타디움 정보를 데이터베이스에 삽입
+	    stadiumDao.insert(stadiumDto);
+	    
+	    // 4. 삽입 완료 페이지로 리다이렉트
+	    return "redirect:insertFinish";
 	}
-
+	   @RequestMapping("/insertFinish")
+	   public String insertFinish() {
+	      return "/WEB-INF/views/stadium/insertFinish.jsp";
+	   }
 }
