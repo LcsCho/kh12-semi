@@ -184,7 +184,7 @@
                     class="form-input w-100">
             <div class="fail-feedback">전화번호 형식이 올바르지 않습니다</div>
         </div>
-        
+         
         <div class="row right">
             <button type="button" class="btn btn-prev">
                 <i class="fa-solid fa-arrow-left"></i>
