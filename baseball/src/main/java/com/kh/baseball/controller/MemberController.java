@@ -72,12 +72,12 @@ public class MemberController {
 			session.setAttribute("level", findDto.getMemberLevel());
 			
 			//로그인시간 갱신
-			memberDao.updateMemberLogin(inputDto.getMemberId());
+			//memberDao.updateMemberLogin(inputDto.getMemberId());
 			
 			//메인페이지로 이동
 			return "redirect:/"; 
 		}
-		
+		 
 		//[4] 비밀번호가 일치하지 않으면 로그인페이지로 이동
 		else {
 			return "redirect:login?error";
