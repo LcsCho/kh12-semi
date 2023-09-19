@@ -1,11 +1,16 @@
 package com.kh.baseball.dao;
 
+import java.util.List;
+
 import com.kh.baseball.dto.StadiumDto;
 
 public interface StadiumDao {
 	
-	void insertStadium(StadiumDto stadiumDto);
+	void insert(StadiumDto stadiumDto);
 
 	int sequence();
-
+	
+	List<StadiumDto> list();
+	
+	
 }
