@@ -28,7 +28,6 @@ public class TeamDaoImpl implements TeamDao{
 				+ "values(?, ?)";
 		Object[] data = {teamDto.getTeamName(), teamDto.getTeamRegion()};
 		jdbcTemplate.update(sql, data);
-		
 	}
 
 	@Override
