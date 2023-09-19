@@ -40,7 +40,7 @@
             <th>등급</th>
             <td>${memberDto.memberLevel}</td>
          </tr>
-    
+
          <tr>
             <th>가입일</th>
       <%--       <td>${memberDto.memberJoin}</td> --%>
