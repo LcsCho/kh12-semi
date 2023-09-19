@@ -150,7 +150,7 @@
         </div>
         <div class="row left">
             <label>닉네임</label>
-            <input type="text" name="memberNickname" 
+            <input type="text" name="memberNick" 
                 placeholder="한글 또는 숫자 2~10자" class="form-input w-100">
             <div class="success-feedback">멋진 닉네임입니다!</div>
             <div class="fail-feedback">닉네임 형식이 올바르지 않습니다</div>
@@ -180,11 +180,11 @@
         </div>
         <div class="row left">
             <label>연락처</label>
-            <input type="tel" name="memberContact" placeholder="010XXXXXXXX (- 없이)"
+            <input type="tel" name="memberTel" placeholder="010XXXXXXXX (- 없이)"
                     class="form-input w-100">
             <div class="fail-feedback">전화번호 형식이 올바르지 않습니다</div>
         </div>
-        
+         
         <div class="row right">
             <button type="button" class="btn btn-prev">
                 <i class="fa-solid fa-arrow-left"></i>
