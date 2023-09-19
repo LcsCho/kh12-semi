@@ -24,7 +24,7 @@
             <hr>          
    </div>
            <div class="row">
-            <a href="findPw" class="link">비밀번호를 잊으셨나요?</a>
+            <a href="password" class="link">비밀번호를 잊으셨나요?</a>
         </div>
 
 </form>
