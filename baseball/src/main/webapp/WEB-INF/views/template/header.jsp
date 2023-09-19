@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -7,12 +7,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>홈런볼</title>
+    
     <!-- 외부에 만들어진 css파일을 불러오는 코드 -->
-
-    <link rel="stylesheet" type="text/css" href="./css/reset.css">
-    <link rel="stylesheet" type="text/css" href="./css/4.css">
-    <link rel="stylesheet" type="text/css" href="./css/test.css">
-    <link rel="stylesheet" type="text/css" href="./css/semi-layout.css">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/4.css">
+    <link rel="stylesheet" type="text/css" href="/css/test.css">
+    <link rel="stylesheet" type="text/css" href="/css/semi-layout.css">
 
 
     <!-- 아이콘 사용을 위한 font awesomedmf 불러오기 위한  -->
@@ -30,6 +30,7 @@
             border: 0px solid;
         }
     </style>
+    
     <!-- js작성공간 -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
@@ -38,7 +39,7 @@
     <main>
         <header>
             <div class="logo">
-                <img src="./image/logo.jpg" width="200" alt="">
+                <a href="/"><img src="/images/logo.jpg" width="200" alt=""></a>
             </div>
             <div class="title">
                 <input class="form-input" type="text" placeholder="검색어를 입력하세요">
@@ -46,7 +47,7 @@
             </div>
 
             <div class="etc left">
-                <a href="">로그아웃/로그인 </a>|
+                <a href="/member/join">로그아웃/로그인 </a>|
                 <a href="">예매 확인 </a>|
                 <a href="">회원아이디</a>
 
