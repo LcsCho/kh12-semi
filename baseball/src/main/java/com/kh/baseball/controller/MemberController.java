@@ -100,7 +100,7 @@ public class MemberController {
 		model.addAttribute("memberDto",memberDto);
 		
 		return "/WEB-INF/views/member/mypage.jsp";
-	}
+	} 
 		
 	//비밀번호 변경
 	@GetMapping("/password")
@@ -176,7 +176,7 @@ public class MemberController {
 			//회원 탈퇴 처리
 			memberDao.delete(memberId);
 			//로그아웃 처리
-			session.removeAttribute("name"); //세션에서 name 값 삭제
+			session.removeAttribute("name"); //세션에서 id 값 삭제
 			return "redirect:exitFinish";
 		}
 		else {//비밀번호 불일치

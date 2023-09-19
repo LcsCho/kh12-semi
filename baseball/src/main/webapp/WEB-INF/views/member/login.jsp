@@ -9,6 +9,9 @@
 		<div class="container w-400 mt-50">
 			<div class="row mb-30">
 
+
+	<input type ="text" name = "memberId" placeholder="아이디" required> <br><br>
+
 				<img id="logo" src="/images/logo.jpg" width="200">
 
 			</div>
@@ -28,11 +31,10 @@
 		<div class="row">
 			<a href="findPw" class="link">비밀번호를 잊으셨나요?</a>
 		</div>
-		<!-- <input type ="text" name = "memberId" placeholder="아이디" required> <br><br>
-	<input type ="password" name = "memberPw" placeholder="비밀번호" required> <br><br>
-	<button>로그인</button> -->
+	
 	</form>
 </div>
+
 
 <%--
 	EL은 출력을 쉽게 하기 위한 언어이므로 여러 데이터를 쉽게 접근할 수 있다.
@@ -42,6 +44,7 @@
 <c:if test="${param.error != null}">
 	<h3 style="color: red">아이디 또는 비밀번호가 일치하지 않습니다.</h3>
 </c:if>
+
 
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
