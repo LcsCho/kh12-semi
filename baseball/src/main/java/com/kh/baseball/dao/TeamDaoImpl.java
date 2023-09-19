@@ -42,6 +42,4 @@ public class TeamDaoImpl implements TeamDao{
 		String sql = "select * from team order by team_win desc";
 		return jdbcTemplate.query(sql, teamListMapper);
 	}
-
-	
 }

@@ -7,6 +7,7 @@
 		<h1>팀 등록 완료!</h1>
 	</div>
 	<div class="row">
+		<h3><a href="list">목록으로</a></h3>
 		<h3><a href="/">홈으로</a></h3>
 	</div>
 </div>
