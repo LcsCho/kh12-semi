@@ -10,7 +10,7 @@
     <title>홈런볼</title>
     <link rel="stylesheet" type="text/css" href="/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/css/4.css">
-    <link rel="stylesheet" type="text/css" href="/css/test.css">
+<!--     <link rel="stylesheet" type="text/css" href="/css/test.css"> -->
     <link rel="stylesheet" type="text/css" href="/css/semi-layout.css">
 
 
@@ -46,7 +46,7 @@
 
             <div class="etc left">
 
-                <a href="/member/join">로그아웃/로그인 </a>|
+                <a href="/member/login">로그인 </a>|
                 <a href="">예매 확인 </a>|
                 <a href="/member/join">회원가입</a>
 
