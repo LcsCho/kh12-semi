@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<script src="/js/join.js"></script>
+<script src="/js/multipage.js"></script>
 
 <!-- daum 우편 API cdn -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -182,7 +184,7 @@
                     class="form-input w-100">
             <div class="fail-feedback">전화번호 형식이 올바르지 않습니다</div>
         </div>
-        
+         
         <div class="row right">
             <button type="button" class="btn btn-prev">
                 <i class="fa-solid fa-arrow-left"></i>

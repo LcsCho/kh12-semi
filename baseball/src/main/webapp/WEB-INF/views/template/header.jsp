@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,9 +45,10 @@
             </div>
 
             <div class="etc left">
+
                 <a href="/member/join">로그아웃/로그인 </a>|
                 <a href="">예매 확인 </a>|
-                <a href="">회원아이디</a>
+                <a href="/member/join">회원가입</a>
 
             </div>
         </header>
