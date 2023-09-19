@@ -8,9 +8,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>홈런볼</title>
-
-    <!-- 외부에 만들어진 css파일을 불러오는 코드 -->
-
     <link rel="stylesheet" type="text/css" href="/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/css/4.css">
     <link rel="stylesheet" type="text/css" href="/css/test.css">
@@ -32,7 +29,6 @@
             border: 0px solid;
         }
     </style>
-
     <!-- js작성공간 -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
@@ -50,7 +46,7 @@
 
             <div class="etc left">
 
-                <a href="/member/login">로그아웃/로그인 </a>|
+                <a href="/member/join">로그아웃/로그인 </a>|
                 <a href="">예매 확인 </a>|
                 <a href="/member/join">회원가입</a>
 

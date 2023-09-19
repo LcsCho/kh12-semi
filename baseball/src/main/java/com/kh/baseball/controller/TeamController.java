@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,10 +25,10 @@ public class TeamController {
 	private TeamDao teamDao;
 	
 	@RequestMapping("/list")
-	public String list(@ModelAttribute Model model) {
+	public String list(@ModelAttribute TeamDto teamDto, Model model) {
 		
-		List<TeamDto> list = teamDao.selectList();
-		model.addAttribute("list", list);
+		 List<TeamDto> list = teamDao.selectList();
+		 model.addAttribute("list", list);
 		
 		return "/WEB-INF/views/team/list.jsp";
 	}
@@ -37,5 +39,21 @@ public class TeamController {
 		TeamDto teamDto = teamDao.selectOne(teamName);
 		model.addAttribute("teamDto", teamDto);
 		return "/WEB-INF/views/team/detail.jsp";
+	}
+	
+	@GetMapping("/register")
+	public String register() {
+		return "/WEB-INF/views/team/register.jsp";
+	}
+	
+	@PostMapping("/register")
+	public String register(@ModelAttribute TeamDto teamDto) {
+		teamDao.insert(teamDto);
+		return "redirect:registerFinish";
+	}
+	
+	@RequestMapping("/registerFinish")
+	public String registerFinish() {
+		return "/WEB-INF/views/team/registerFinish.jsp";
 	}
 }
