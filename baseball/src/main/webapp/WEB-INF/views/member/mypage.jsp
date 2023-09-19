@@ -14,7 +14,7 @@
       <table class="table table-border table-stripe">
          <tr>
             <th width="25%">닉네임</th>
-            <td>${memberDto.memberNickname}</td>
+            <td>${memberDto.memberNick}</td>
          </tr>
          <tr>
             <th>이메일</th>
@@ -22,7 +22,7 @@
          </tr>
          <tr>
             <th>연락처</th>
-            <td>${memberDto.memberContact}</td>
+            <td>${memberDto.memberTel}</td>
          </tr>
          <tr>
             <th>생년월일</th>
