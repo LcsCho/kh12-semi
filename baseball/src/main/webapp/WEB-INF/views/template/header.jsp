@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,10 +10,10 @@
     <title>홈런볼</title>
     <!-- 외부에 만들어진 css파일을 불러오는 코드 -->
 
-    <link rel="stylesheet" type="text/css" href="./css/reset.css">
-    <link rel="stylesheet" type="text/css" href="./css/4.css">
-    <link rel="stylesheet" type="text/css" href="./css/test.css">
-    <link rel="stylesheet" type="text/css" href="./css/semi-layout.css">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/4.css">
+    <link rel="stylesheet" type="text/css" href="/css/test.css">
+    <link rel="stylesheet" type="text/css" href="/css/semi-layout.css">
 
 
     <!-- 아이콘 사용을 위한 font awesomedmf 불러오기 위한  -->
