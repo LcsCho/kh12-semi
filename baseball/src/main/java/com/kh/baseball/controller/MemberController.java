@@ -174,7 +174,7 @@ public class MemberController {
 		
 		if(memberDto.getMemberPw().equals(memberPw)) {//비밀번호 일치
 			//회원 탈퇴 처리
-			memberDao.deleteMember(memberId);
+			memberDao.delete(memberId);
 			//로그아웃 처리
 			session.removeAttribute("id"); //세션에서 id 값 삭제
 			return "redirect:exitFinish";
