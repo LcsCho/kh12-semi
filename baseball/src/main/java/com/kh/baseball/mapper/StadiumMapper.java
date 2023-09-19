@@ -14,7 +14,9 @@ public class StadiumMapper implements RowMapper<StadiumDto>{
 	@Override
 	public StadiumDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 		StadiumDto stadiumDto = new StadiumDto();
-		stadiumDto.setStadiumNo(rs.getInt(""));
+		stadiumDto.setStadiumNo(rs.getInt("stadium_no"));
+		stadiumDto.setStadiumName(rs.getString("stadium_name"));
+
 		return stadiumDto;
 	}
 
