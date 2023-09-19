@@ -1,0 +1,58 @@
+/* 사이드바있는 레이아웃 */
+@charset "UTF-8";
+main {
+    width: 1100px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+header {
+    display: flex;
+    flex-wrap: nowrap;
+    min-height: 80px;
+
+}
+
+header>.logo {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header>.title {
+    flex-grow: 1;
+
+}
+
+header>.etc {
+    width: 25%;
+}
+
+header>.logo,
+header>.title,
+header>.etc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav {
+    position: relative;
+
+}
+
+section {
+    min-height: 400px;
+    display: flex;
+}
+
+section>aside {
+    width: 200px;
+
+}
+
+section>article {
+    flex-grow: 1;
+
+}
