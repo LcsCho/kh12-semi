@@ -14,7 +14,7 @@
       <table class="table table-border table-stripe">
          <tr>
             <th width="25%">닉네임</th>
-            <td>${memberDto.memberNickname}</td>
+            <td>${memberDto.memberNick}</td>
          </tr>
          <tr>
             <th>이메일</th>
@@ -22,7 +22,7 @@
          </tr>
          <tr>
             <th>연락처</th>
-            <td>${memberDto.memberContact}</td>
+            <td>${memberDto.memberTel}</td>
          </tr>
          <tr>
             <th>생년월일</th>
@@ -40,14 +40,7 @@
             <th>등급</th>
             <td>${memberDto.memberLevel}</td>
          </tr>
-         <tr>
-            <th>포인트</th>
-      <%--       <td>${memberDto.memberPoint} pt</td> --%>
-            <td>
-               <fmt:formatNumber value="${memberDto.memberPoint}" 
-                           pattern="#,##0"></fmt:formatNumber> pt
-            </td>
-         </tr>
+    
          <tr>
             <th>가입일</th>
       <%--       <td>${memberDto.memberJoin}</td> --%>
@@ -59,39 +52,21 @@
          <tr>
             <th>마지막로그인</th>
             <td>
-               <fmt:formatDate value="${memberDto.memberLogin}" 
+               <fmt:formatDate value="${memberDto.memberLastLogin}" 
                            pattern="y년 M월 d일 E a h시 m분 s초"/>
             </td>
          </tr>
          <tr>
             <th>마지막변경일</th>
             <td>
-               <fmt:formatDate value="${memberDto.memberChange}" 
+               <fmt:formatDate value="${memberDto.memberLastUpdate}" 
                            pattern="y년 M월 d일 E a h시 m분 s초"/>
             </td>
          </tr>
       </table>
    </div>
    
-   <div class="row mt-40">
-      <h2>내가 좋아요 한 게시글</h2>
-   </div>
-   
-   <div class="row">
-      <table class="table table-border table-stripe">
-         <c:forEach var="boardDto" items="${boardLikeList}">
-         <tr>
-            <td class="w-75">
-               <a href="/board/detail?boardNo=${boardDto.boardNo}"
-               class="link">
-                  ${boardDto.boardTitle}
-               </a>
-            </td>
-            <td class="w-25">${boardDto.boardWriter}</td>
-         </tr>
-         </c:forEach>
-      </table>
-   </div>
+  
    
    <div class="row mt-40">
       <a class="btn w-100" href="password">
