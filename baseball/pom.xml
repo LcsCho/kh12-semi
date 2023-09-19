@@ -54,16 +54,6 @@
          <scope>test</scope>
       </dependency>
 
-<<<<<<< HEAD
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-		</dependency>
-=======
       <dependency>
          <groupId>javax.servlet</groupId>
          <artifactId>jstl</artifactId>
@@ -72,39 +62,7 @@
          <groupId>org.apache.tomcat.embed</groupId>
          <artifactId>tomcat-embed-jasper</artifactId>
       </dependency>
->>>>>>> refs/remotes/origin/main
 
-<<<<<<< HEAD
-=======
-      <dependency>
-         <groupId>javax.servlet</groupId>
-         <artifactId>jstl</artifactId>
-      </dependency>
->>>>>>> refs/remotes/origin/main
-
-<<<<<<< HEAD
-		<!-- 파일 자동화 도구 -->
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.13.0</version>
-		</dependency>
-		<!--클래스의 자동화 도구(구문생성)-->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-mail</artifactId>
-		</dependency>
-=======
-      <dependency>
-         <groupId>org.apache.tomcat.embed</groupId>
-         <artifactId>tomcat-embed-jasper</artifactId>
-      </dependency>
       <!-- 파일 자동화 도구 -->
       <dependency>
          <groupId>commons-io</groupId>
@@ -128,19 +86,8 @@
          <artifactId>spring-boot-configuration-processor</artifactId>
          <optional>true</optional>
       </dependency>
->>>>>>> refs/remotes/origin/main
 
-<<<<<<< HEAD
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
-		</dependency>
-
-	</dependencies>
-=======
    </dependencies>
->>>>>>> refs/remotes/origin/main
 
    <build>
       <plugins>
