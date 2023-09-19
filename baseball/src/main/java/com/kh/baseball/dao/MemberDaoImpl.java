@@ -72,7 +72,7 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public boolean updateMemberLogin(String memberId) {
 		String sql = "update member "
-						+ "set member_login=sysdate "
+						+ "set member_last_login=sysdate "
 						+ "where member_id = ?";
 		Object[] data = {memberId};
 		return jdbcTemplate.update(sql, data) > 0;
@@ -88,4 +88,3 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 }
-

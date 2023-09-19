@@ -19,10 +19,10 @@
                     placeholder="비밀번호">
             </div>
             <div class="row mt-30 mb-20">
-                <button class="btn btn-positive w-100">로그인</button>
+                <button class="btn btn-positive w-100" type="submit">로그인</button>
             </div>            
             <hr>          
-   </div>
+   
            <div class="row">
             <a href="findPw" class="link">비밀번호를 잊으셨나요?</a>
         </div>
@@ -30,7 +30,7 @@
 	<!-- <input type ="text" name = "memberId" placeholder="아이디" required> <br><br>
 	<input type ="password" name = "memberPw" placeholder="비밀번호" required> <br><br>
 	<button>로그인</button> -->
-</form>
+
 
 <%--
 	EL은 출력을 쉽게 하기 위한 언어이므로 여러 데이터를 쉽게 접근할 수 있다.
@@ -40,6 +40,7 @@
 <c:if test="${param.error != null}">
 	<h3 style="color:red">아이디 또는 비밀번호가 일치하지 않습니다.</h3>
 </c:if>
+</form>
 
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

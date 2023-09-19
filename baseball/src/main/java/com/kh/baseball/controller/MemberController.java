@@ -63,7 +63,7 @@ public class MemberController {
 		if(isCorrectPw) {
 
 			//세션에 아이디+등급 저장
-			session.setAttribute("name", findDto.getMemberId());
+			session.setAttribute("id", findDto.getMemberId());
 			session.setAttribute("level", findDto.getMemberLevel());
 			
 			//로그인시간 갱신
@@ -93,7 +93,7 @@ public class MemberController {
 	@RequestMapping("/mypage")
 	public String mypage(HttpSession session, Model model) {
 		//[1] 세션에서 사용자의 아이디를 꺼낸다
-		String memberId = (String) session.getAttribute("name");
+		String memberId = (String) session.getAttribute("id");
 		//[2] 가져온 아이디로 회원정보를 조회한다
 		MemberDto memberDto = memberDao.selectOne(memberId);
 		//[3] 조회한 정보를 모델에 첨부한다
@@ -112,7 +112,7 @@ public class MemberController {
 	public String password(HttpSession session, 
 								@RequestParam String originPw,
 								@RequestParam String changePw) {
-		String memberId = (String) session.getAttribute("name");
+		String memberId = (String) session.getAttribute("id");
 		MemberDto memberDto = memberDao.selectOne(memberId);
 
 		//[1] 기존 비밀번호가 일치하는지 판정
@@ -136,7 +136,7 @@ public class MemberController {
 	@GetMapping("/change")
 	public String change(HttpSession session, Model model) {
 		//세션에서 사용자 아이디를 꺼낸다
-		String memberId = (String) session.getAttribute("name");
+		String memberId = (String) session.getAttribute("id");
 		//가져온 아이디로 회원 정보를 조회한다
 		MemberDto memberDto = memberDao.selectOne(memberId);
 		//조회한 정보를 모델에 첨부한다
@@ -147,7 +147,7 @@ public class MemberController {
 	@PostMapping("/change")
 	public String change(@ModelAttribute MemberDto inputDto,
 						HttpSession session){
-		String memberId = (String) session.getAttribute("name");
+		String memberId = (String) session.getAttribute("id");
 		//비밀번호 검사 후 변경 처리 요청
 		MemberDto findDto = memberDao.selectOne(memberId);
 		
@@ -169,14 +169,14 @@ public class MemberController {
 	
 	@PostMapping("/exit")
 	public String exit(HttpSession session, @RequestParam String memberPw) {		
-		String memberId = (String) session.getAttribute("name");
+		String memberId = (String) session.getAttribute("id");
 		MemberDto memberDto = memberDao.selectOne(memberId);
 		
 		if(memberDto.getMemberPw().equals(memberPw)) {//비밀번호 일치
 			//회원 탈퇴 처리
 			memberDao.delete(memberId);
 			//로그아웃 처리
-			session.removeAttribute("name"); //세션에서 name 값 삭제
+			session.removeAttribute("id"); //세션에서 id 값 삭제
 			return "redirect:exitFinish";
 		}
 		else {//비밀번호 불일치
