@@ -9,6 +9,15 @@
 		${teamDto.teamDraw}
 		${teamDto.teamLose}
 	</div>
+	<div class="row">
+		<a href="list">
+			목록으로
+		</a>
+		<br>
+		<a href="/">
+			홈으로
+		</a>
+	</div>
 </div>
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
     
