@@ -1,0 +1,56 @@
+/* 홈페이지 레이아웃 */
+@charset "UTF-8";
+
+main {
+    width: 1000px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+header {
+    display: flex;
+    flex-wrap: nowrap;
+    min-height: 80px;
+
+}
+
+header>.logo {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header>.title {
+    flex-grow: 1;
+
+}
+
+header>.etc {
+    width: 30%;
+}
+
+header>.logo,
+header>.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header>.etc{
+    display: flex;
+    align-items: flex-start;
+    justify-content: right;
+
+}
+
+
+nav {
+    position: relative;
+
+}
+
+section {
+    min-height: 400px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
