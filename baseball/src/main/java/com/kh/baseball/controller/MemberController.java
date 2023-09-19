@@ -100,7 +100,7 @@ public class MemberController {
 		model.addAttribute("memberDto",memberDto);
 		
 		return "/WEB-INF/views/member/mypage.jsp";
-	}
+	} 
 		
 	//비밀번호 변경
 	@GetMapping("/password")
