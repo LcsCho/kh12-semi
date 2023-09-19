@@ -12,7 +12,6 @@ import com.kh.baseball.mapper.TeamListMapper;
 
 @Repository
 public class TeamDaoImpl implements TeamDao{
-	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
@@ -45,4 +44,5 @@ public class TeamDaoImpl implements TeamDao{
 		return jdbcTemplate.query(sql, teamListMapper);
 	}
 
+	
 }
