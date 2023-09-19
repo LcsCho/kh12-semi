@@ -1,21 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>È¨·±º¼</title>
-    <!-- ¿ÜºÎ¿¡ ¸¸µé¾îÁø cssÆÄÀÏÀ» ºÒ·¯¿À´Â ÄÚµå -->
+    <title>í™ˆëŸ°ë³¼</title>
+    <!-- ì™¸ë¶€ì— ë§Œë“¤ì–´ì§„ cssíŒŒì¼ì„ ë¶ˆëŸ¬ì˜¤ëŠ” ì½”ë“œ -->
 
-    <link rel="stylesheet" type="text/css" href="./css/reset.css">
-    <link rel="stylesheet" type="text/css" href="./css/4.css">
-    <link rel="stylesheet" type="text/css" href="./css/test.css">
-    <link rel="stylesheet" type="text/css" href="./css/semi-layout.css">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/4.css">
+    <link rel="stylesheet" type="text/css" href="/css/test.css">
+    <link rel="stylesheet" type="text/css" href="/css/semi-layout.css">
 
 
-    <!-- ¾ÆÀÌÄÜ »ç¿ëÀ» À§ÇÑ font awesomedmf ºÒ·¯¿À±â À§ÇÑ  -->
+    <!-- ì•„ì´ì½˜ ì‚¬ìš©ì„ ìœ„í•œ font awesomedmf ë¶ˆëŸ¬ì˜¤ê¸° ìœ„í•œ  -->
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
@@ -30,7 +30,7 @@
             border: 0px solid;
         }
     </style>
-    <!-- jsÀÛ¼º°ø°£ -->
+    <!-- jsìž‘ì„±ê³µê°„ -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
@@ -41,39 +41,39 @@
                 <img src="./image/logo.jpg" width="200" alt="">
             </div>
             <div class="title">
-                <input class="form-input" type="text" placeholder="°Ë»ö¾î¸¦ ÀÔ·ÂÇÏ¼¼¿ä">
+                <input class="form-input" type="text" placeholder="ê²€ìƒ‰ì–´ë¥¼ ìž…ë ¥í•˜ì„¸ìš”">
                 <button id="delete-border" class="btn"><i class="fa-solid fa-magnifying-glass fa-2x"></i></button>
             </div>
 
             <div class="etc left">
-                <a href="">·Î±×¾Æ¿ô/·Î±×ÀÎ </a>|
-                <a href="">¿¹¸Å È®ÀÎ </a>|
-                <a href="">È¸¿ø¾ÆÀÌµð</a>
+                <a href="">ë¡œê·¸ì•„ì›ƒ/ë¡œê·¸ì¸ </a>|
+                <a href="">ì˜ˆë§¤ í™•ì¸ </a>|
+                <a href="">íšŒì›ì•„ì´ë””</a>
 
             </div>
         </header>
         <nav>
             <ul class="menu center">
-                <li><a href="#"><i class="fa-solid fa-calendar-days fa-2x"></i>°æ±âÀÏÁ¤</a></li>
-                <li><a href="#"><i class="fa-solid fa-ticket fa-2x"></i>¿¹¸ÅÇÏ±â</a></li>
-                <li><a href="#"><i class="fa-solid fa-chair fa-2x"></i>ÁÂ¼®Á¤º¸</a>
+                <li><a href="#"><i class="fa-solid fa-calendar-days fa-2x"></i>ê²½ê¸°ì¼ì •</a></li>
+                <li><a href="#"><i class="fa-solid fa-ticket fa-2x"></i>ì˜ˆë§¤í•˜ê¸°</a></li>
+                <li><a href="#"><i class="fa-solid fa-chair fa-2x"></i>ì¢Œì„ì •ë³´</a>
                     <ul>
-                        <li><a href="/pocketmon/insert">µî·Ï</a></li>
+                        <li><a href="/pocketmon/insert">ë“±ë¡</a></li>
                     </ul>
                 </li>
                 <li class="menu-right">
-                    <a href="#"><i class="fa-solid fa-ranking-star fa-2x"></i>±â·Ï/¼øÀ§</a>
+                    <a href="#"><i class="fa-solid fa-ranking-star fa-2x"></i>ê¸°ë¡/ìˆœìœ„</a>
                     <ul>
-                        <li><a href="/member/logout">·Î±×¾Æ¿ô</a></li>
-                        <li><a href="/admin/home">°ü¸®ÀÚ¸Þ´º</a></li>
+                        <li><a href="/member/logout">ë¡œê·¸ì•„ì›ƒ</a></li>
+                        <li><a href="/admin/home">ê´€ë¦¬ìžë©”ë‰´</a></li>
                     </ul>
                 </li>
-                <li><a href="#"><i class="fa-solid fa-baseball-bat-ball fa-2x"></i>±¸´ÜÁ¤º¸</a></li>
-                <li><a href="/board/list"><i class="fa-solid fa-check fa-2x"></i>°øÁö»çÇ×</a></li>
+                <li><a href="#"><i class="fa-solid fa-baseball-bat-ball fa-2x"></i>êµ¬ë‹¨ì •ë³´</a></li>
+                <li><a href="/board/list"><i class="fa-solid fa-check fa-2x"></i>ê³µì§€ì‚¬í•­</a></li>
                 <li class="menu-right">
                     <a href="/member/login"><i class="fa-solid fa-question fa-2x"></i>???</a>
                     <ul>
-                        <li><a href="/member/join">È¸¿ø°¡ÀÔ</a></li>
+                        <li><a href="/member/join">íšŒì›ê°€ìž…</a></li>
                     </ul>
                 </li>
             </ul>
