@@ -52,8 +52,8 @@
 			</c:when>
 		
 			<c:otherwise>
-          	<a href="/member/join" >회원가입</a>|
-			<a href="/member/login">로그인</a>
+			<a href="/member/login">로그인</a>|
+          	<a href="/member/join" >회원가입</a>
             </c:otherwise>
                
 			</c:choose>

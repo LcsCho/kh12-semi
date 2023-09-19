@@ -3,7 +3,9 @@ package com.kh.baseball.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +26,9 @@ public class MemberController {
 
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Autowired
+	private JavaMailSender sender;
 	
 	//회원가입
 	@GetMapping("/join")
@@ -203,12 +208,12 @@ public class MemberController {
 		boolean isValid = findDto != null //아이디가 있으며
 				&& findDto.getMemberEmail().equals(memberDto.getMemberEmail()); //이메일까지 일치하는지
 		if(isValid) {//이메일이 같다면
-//			//이메일 발송 코드
-//			SimpleMailMessage message = new SimpleMailMessage();
-//			message.setTo(findDto.getMemberEmail());
-//			message.setSubject("비밀번호 찾기 결과");
-//			message.setText(findDto.getMemberPw());
-//			sender.send(message);
+			//이메일 발송 코드
+			SimpleMailMessage message = new SimpleMailMessage();
+			message.setTo(findDto.getMemberEmail());
+			message.setSubject("비밀번호 찾기 결과");
+			message.setText(findDto.getMemberPw());
+			sender.send(message);
 			
 			return "redirect:findPwFinish";
 		}
