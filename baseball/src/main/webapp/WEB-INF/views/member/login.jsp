@@ -26,10 +26,7 @@
            <div class="row">
             <a href="findPw" class="link">비밀번호를 잊으셨나요?</a>
         </div>
-	</div>
-	<!-- <input type ="text" name = "memberId" placeholder="아이디" required> <br><br>
-	<input type ="password" name = "memberPw" placeholder="비밀번호" required> <br><br>
-	<button>로그인</button> -->
+
 </form>
 
 <%--
