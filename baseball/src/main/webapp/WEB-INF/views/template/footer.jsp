@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+<<<<<<< HEAD
+    pageEncoding="UTF-8"%>
+=======
     pageEncoding="EUC-KR"%>
+>>>>>>> refs/remotes/origin/main
 </section>
 <hr>
 <footer>
     <div class="row flex-container auto-width">
         <div class="left">
-            <a href="#" class="link">ÀÌ¿ë¾à°ü</a> |
-            <a href="#" class="link">°³ÀÎÁ¤º¸Ãë±Þ¹æÄ§</a> |
-            <a href="#" class="link">´ëÇ¥¹øÈ£ : 010</a> |
+            <a href="#" class="link">ì´ìš©ì•½ê´€</a> |
+            <a href="#" class="link">ê°œì¸ì •ë³´ì·¨ê¸‰ë°©ì¹¨</a> |
+            <a href="#" class="link">ëŒ€í‘œë²ˆí˜¸ : 010</a> |
         </div>
         <div class="right">
             <i class="fa-brands fa-google me-10"></i>
@@ -17,10 +21,10 @@
         </div>
     </div>
     <div class="row left mv-30">
-        <pre>Å·°«Á¦³Ê·²4Á¶ £ü »ç¾÷ÀÚµî·ÏÇÏ°í½Í¾î¿ä £ü c¹Ý2ºÐ´Ü 2¿­ºÎÅÍ3¿­ £ü ´ëÇ¥ÀÌ»ç : ÃÖÊ«¹®±Ç £ü Ã¥ÀÓÀÚ : Á¶Ê«ÁØÈñ £ü  Ãë¾÷¸¶·Æ´Ù
+        <pre>í‚¹ê°“ì œë„ˆëŸ´4ì¡° ï½œ ì‚¬ì—…ìžë“±ë¡í•˜ê³ ì‹¶ì–´ìš” ï½œ cë°˜2ë¶„ë‹¨ 2ì—´ë¶€í„°3ì—´ ï½œ ëŒ€í‘œì´ì‚¬ : ìµœå®¶ë¬¸ê¶Œ ï½œ ì±…ìž„ìž : ì¡°å®¶ì¤€í¬ ï½œ  ì·¨ì—…ë§ˆë µë‹¤
 
-À§Ä¡ : ¼­¿ïÆ¯º°½Ã ¿µµîÆ÷±¸ ¼±À¯µ¿2·Î 57 ÀÌ·¹ºôµù(±¸°ü) 19F c ¹Ý 2 ºÐ´Ü 2¿­ ºÎÅÍ 3¿­
-Copyright ¨Ï È¨·±º¼
+ìœ„ì¹˜ : ì„œìš¸íŠ¹ë³„ì‹œ ì˜ë“±í¬êµ¬ ì„ ìœ ë™2ë¡œ 57 ì´ë ˆë¹Œë”©(êµ¬ê´€) 19F c ë°˜ 2 ë¶„ë‹¨ 2ì—´ ë¶€í„° 3ì—´
+Copyright â“’ í™ˆëŸ°ë³¼
     </div>
 </footer>
 </main>
