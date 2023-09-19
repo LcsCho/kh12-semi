@@ -8,7 +8,7 @@
 <form action="login" method="post"  autocomplete="off">
 	<div class="container w-400 mt-50">
             <div class="row mb-30">
-                <img id="logo" src="/images/pubaowithflower.PNG" width="200">
+                <!-- <img id="logo" src="/images/pubaowithflower.PNG" width="200"> -->
             </div>
             <div class="row">
                 <input id="id-input" type="text" name="memberId" class="form-input form-underline w-100"

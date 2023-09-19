@@ -85,7 +85,7 @@ public class MemberController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session){
 		//아이디+등급 삭제
-		session.removeAttribute("id");
+		session.removeAttribute("name");
 		session.removeAttribute("level");
 		return "redirect:/";
 	}
