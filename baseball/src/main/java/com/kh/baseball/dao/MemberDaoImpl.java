@@ -28,11 +28,11 @@ public class MemberDaoImpl implements MemberDao{
 			+ ") "
 			+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		Object[] data = {
-		memberDto.getMemberId(), memberDto.getMemberPw(),
-		memberDto.getMemberNick(), memberDto.getMemberTel(),
-		memberDto.getMemberBirth(), memberDto.getMemberEmail(),
-		memberDto.getMemberPost(), memberDto.getMemberAddr1(), 
-		memberDto.getMemberAddr2()
+			memberDto.getMemberId(), memberDto.getMemberPw(),
+			memberDto.getMemberNick(), memberDto.getMemberTel(),
+			memberDto.getMemberBirth(), memberDto.getMemberEmail(),
+			memberDto.getMemberPost(), memberDto.getMemberAddr1(), 
+			memberDto.getMemberAddr2()
 		};
 		jdbcTemplate.update(sql, data);
 		
@@ -49,10 +49,10 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public boolean updateMemberInfo(MemberDto memberDto) {
 		String sql = "update member set "
-				+ "member_nick=?, member_tel=?,"
-				+ "member_birth=?, member_email,"
-				+ "member_post=?, member_addr1=?, member_addr2=? "
-				+ "where member_id=?";
+				+ "member_nick = ?, member_tel = ?, "
+				+ "member_birth = ?, member_email = ?, "
+				+ "member_post = ?, member_addr1 = ?, member_addr2 = ? "
+				+ "where member_id = ?";
 		Object[] data = {
 			memberDto.getMemberNick(), memberDto.getMemberTel(),
 			memberDto.getMemberBirth(), memberDto.getMemberEmail(), 
@@ -88,4 +88,3 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 }
-
