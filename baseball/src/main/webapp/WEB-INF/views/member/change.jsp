@@ -7,9 +7,9 @@
 
 <form action = "change" method="post">
 	비밀번호<input type="password" name="memberPw" required> <br><br>
-	닉네임<input type="text" name="memberNickname" required> <br><br>
+	닉네임<input type="text" name="memberNick" required> <br><br>
 	이메일<input type="email" name="memberEmail"> <br><br>
-	연락처<input type="tel" name="memberContact"> <br><br>
+	연락처<input type="tel" name="memberTel"> <br><br>
 	생년월일<input type="date" name="memberBirth"> <br><br>
 		주소<br>
 			 <input type = "text" name="memberPost" placeholder="우편번호" size="6" maxlength="6"> <br><br>
