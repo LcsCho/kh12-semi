@@ -5,14 +5,14 @@ $(function(){
         memberId:false,
         memberPw:false,
         memberPwCheck:false,
-        memberNickName:false,
+        memberNick:false,
         memberEmail:false,
-        memberContact:false,
+        memberTel:false,
         memberBirth:false,
         memberAddress:false,
         ok:function(){
             return this.memberId && this.memberPw && this.memberPwCheck
-            && this.memberNickName && this.memberEmail && this.memberContact 
+            && this.memberNick && this.memberEmail && this.memberTel 
             && this.memberBirth && this.memberAddress;
         }
     };
@@ -88,7 +88,7 @@ $(function(){
         }
     });
 
-    $("[name=memberNickname]").blur(function(e){
+    $("[name=memberNick]").blur(function(e){
 
         var regex = /^[ㄱ-ㅎㅏ-ㅣ-가-힣0-9]{2,10}$/;
         var isValid = regex.test($(e.target).val());
@@ -99,17 +99,17 @@ $(function(){
             $.ajax({
                 url:"http://localhost:8080/rest/member/nicknameCheck",
                 method:"post",
-                data:{ memberNickname : $(e.target).val() },
+                data:{ memberNick : $(e.target).val() },
 
                 success: function(response){
                     $(e.target).removeClass("success fail fail2");
                     if(response == "Y"){ //사용가능
                         $(e.target).addClass("success");
-                        status.memberNickName = true;
+                        status.memberNick = true;
                     }
                     else { //사용불가(중복)
                         $(e.target).addClass("fail2");
-                        status.memberNickName = false;
+                        status.memberNick = false;
                     }
                 },
                 error: function(){
@@ -120,7 +120,7 @@ $(function(){
         else { //형식오류
             $(e.target).removeClass("success fail fail2");
             $(e.target).addClass("fail");
-            status.memberNickName = false;
+            status.memberNick = false;
         }
     });
 
@@ -136,7 +136,7 @@ $(function(){
         status.memberEmail = isValid;
     });
 
-    $("[name=memberContact]").blur(function(){
+    $("[name=memberTel]").blur(function(){
 
         var regex = /^010[1-9][0-9]{7}$/;
         var contact = $(this).val();
@@ -145,7 +145,7 @@ $(function(){
         $(this).removeClass("success fail")
         $(this).addClass(isValid ? "success" : "fail");
 
-        status.memberContact = isValid;
+        status.memberTel = isValid;
 
     });
 
