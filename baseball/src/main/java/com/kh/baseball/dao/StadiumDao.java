@@ -8,7 +8,7 @@ public interface StadiumDao {
 	
 	void insert(StadiumDto stadiumDto);
 
-	int sequence();
+	int sequenceStadium();
 	
 	List<StadiumDto> list();
 	
