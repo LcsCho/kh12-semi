@@ -3,7 +3,6 @@ package com.kh.baseball.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.batch.BatchProperties.Jdbc;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -34,7 +33,7 @@ public class MatchDaoImpl implements MatchDao{
 				+ "match_date, match_home_score, "
 				+ "match_away_score) "
 				+ "values(?,?,?,?,?,?,?)";
-		Object[] data = {matchDto.getMatchNo(), matchDto.getTeamHome(),matchDto.getTeamAway(),matchDto.getStadiumNo(),matchDto.getMatchHomeScore(),matchDto.getMatchAwayScore()};
+		Object[] data = {matchDto.getMatchNo(), matchDto.getHomeTeam(),matchDto.getAwayTeam(),matchDto.getStadiumNo(),matchDto.getMatchHomeScore(),matchDto.getMatchAwayScore()};
 		jdbcTemplate.update(sql,data);
 	}
 
@@ -62,7 +61,7 @@ public class MatchDaoImpl implements MatchDao{
 
 	@Override
 	public List<MatchDto> selectList() {
-		String sql ="select * from match";
+		String sql ="select * from match ";
 		return jdbcTemplate.query(sql, matchMapper);
 	}
 
