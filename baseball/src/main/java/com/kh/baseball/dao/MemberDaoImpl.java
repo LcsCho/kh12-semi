@@ -88,9 +88,9 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public MemberDto selectOneByMemberNickname(String memberNickname) {
+	public MemberDto selectOneByMemberNickname(String memberNick) {
 		String sql = "select * from member where member_nickname = ?";
-		Object[] data = {memberNickname};
+		Object[] data = {memberNick};
 		List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}
