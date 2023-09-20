@@ -33,9 +33,9 @@ public class TeamController {
 	}
 	
 	@RequestMapping("/detail")
-	public String detail(@RequestParam String teamName,
+	public String detail(@RequestParam int teamNo,
 			Model model) {
-		TeamDto teamDto = teamDao.selectOne(teamName);
+		TeamDto teamDto = teamDao.selectOne(teamNo);
 		model.addAttribute("teamDto", teamDto);
 		return "/WEB-INF/views/team/detail.jsp";
 	}
@@ -57,4 +57,27 @@ public class TeamController {
 	public String registerFinish() {
 		return "/WEB-INF/views/team/registerFinish.jsp";
 	}
+	
+	@GetMapping("/update")
+	public String update(@RequestParam int teamNo, Model model) {
+		TeamDto teamDto = teamDao.selectOne(teamNo);
+		model.addAttribute("teamDto", teamDto);
+		return "/WEB-INF/views/team/update.jsp";
+	}
+	
+	@PostMapping("update")
+	public String change(@ModelAttribute TeamDto teamDto) {
+		boolean result = teamDao.update(teamDto);
+		if (result) return "redirect:detail?teamNo=" + teamDto.getTeamNo();
+		else return "redirect:update?error";
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(@RequestParam int teamNo) {
+		boolean result = teamDao.delete(teamNo);
+		if (result) return "redirect:list";
+		else return "redirect:detail?error";
+	}
+	
+	
 }
