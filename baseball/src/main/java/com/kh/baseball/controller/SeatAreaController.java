@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.baseball.dao.SeatAreaDao;
+import com.kh.baseball.dao.StadiumDao;
 import com.kh.baseball.dto.SeatAreaDto;
 import com.kh.baseball.dto.StadiumDto;
 
@@ -19,19 +20,19 @@ public class SeatAreaController {
 	@Autowired
 	private SeatAreaDao seatAreaDao;
 	
+	@Autowired
+	private StadiumDao stadiumDao;
+	
 	@GetMapping("/insert")
 	public String insert() {
 		return "/WEB-INF/views/seatArea/insert.jsp";
 	}
 	
 	@PostMapping("/insert")
-	public String insert(@ModelAttribute SeatAreaDto seatAreaDto, 
+	public String insert(@ModelAttribute SeatAreaDto seatAreaDto,
 			StadiumDto stadiumDto,
 			Model model) {
-		
 		seatAreaDao.insert(seatAreaDto, stadiumDto);
-		model.addAttribute("stadiumDto", stadiumDto);
-		model.addAttribute("seatAreaDto", seatAreaDto);
 		return "redirect:insertFinish";
 	}
 	
