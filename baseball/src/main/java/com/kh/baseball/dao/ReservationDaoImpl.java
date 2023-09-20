@@ -28,15 +28,14 @@ public class ReservationDaoImpl implements ReservationDao{
 	 @Override
 	public void insert(ReservationDto reservationDto) {
 		String sql = "insert into reservation(reservation_no, match_no, seat_no, home_team, "
-				+ "seat_area_no, member_id, away_team, reservation_date) "
+				+ "away_team, member_id, reservation_date) "
 				+ "values(?,?,?,?,?,?,?,?)";
 		Object[] data = {reservationDto.getReservationNo(), 
 								reservationDto.getMatchNo(), 
 								reservationDto.getSeatNo(), 
 								reservationDto.getHomeTeam(),
-								reservationDto.getSeatAreaNo(), 
-								reservationDto.getMemberId(), 
 								reservationDto.getAwayTeam(), 
+								reservationDto.getMemberId(), 
 								reservationDto.getReservationDate()
 				};
 		jdbcTemplate.update(sql, data);
