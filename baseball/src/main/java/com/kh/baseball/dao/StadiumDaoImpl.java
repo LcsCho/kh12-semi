@@ -37,4 +37,10 @@ public class StadiumDaoImpl implements StadiumDao {
 		return jdbcTemplate.query(sql, stadiumMapper);
 	}
 
+	@Override
+	public List<StadiumDto> list() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
