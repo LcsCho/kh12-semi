@@ -22,7 +22,7 @@ public class MemberMapper implements RowMapper<MemberDto>{
 		memberDto.setMemberEmail(rs.getString("member_email"));
 		memberDto.setMemberJoin(rs.getDate("member_join"));
 		memberDto.setMemberLastLogin(rs.getDate("member_last_login"));
-		memberDto.setMemberLastUpdate(rs.getDate("member_lastupdate"));
+		memberDto.setMemberLastUpdate(rs.getDate("member_last_update"));
 		memberDto.setMemberLevel(rs.getString("member_level"));
 		memberDto.setMemberPost(rs.getString("member_post"));
 		memberDto.setMemberAddr1(rs.getString("member_addr1"));
