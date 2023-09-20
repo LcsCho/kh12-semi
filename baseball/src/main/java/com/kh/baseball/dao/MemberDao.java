@@ -1,6 +1,5 @@
 package com.kh.baseball.dao;
 
-import java.util.List;
 
 import com.kh.baseball.dto.MemberDto;
 
@@ -11,4 +10,5 @@ public interface MemberDao {
 	boolean updateMemberPw(String memberId, String changePw);
 	boolean updateMemberInfo(MemberDto memberDto);
 	boolean delete(String memberId);
+	MemberDto selectOneByMemberNickname(String memberNickname);
 }
