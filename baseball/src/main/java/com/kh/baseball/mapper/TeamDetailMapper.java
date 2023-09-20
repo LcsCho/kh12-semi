@@ -14,6 +14,7 @@ public class TeamDetailMapper implements RowMapper<TeamDto>{
 	@Override
 	public TeamDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 		TeamDto teamDetailDto = new TeamDto();
+		teamDetailDto.setTeamNo(rs.getInt("team_no"));
 		teamDetailDto.setTeamName(rs.getString("team_name"));
 		teamDetailDto.setTeamRegion(rs.getString("team_region"));
 		teamDetailDto.setTeamLogo(rs.getString("team_logo"));

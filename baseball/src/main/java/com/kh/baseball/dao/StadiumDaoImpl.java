@@ -16,15 +16,18 @@ public class StadiumDaoImpl implements StadiumDao {
 	@Autowired
 	private StadiumMapper stadiumMapper;
 	@Override
-	public int sequence() {
+	public int sequenceStadium() {
 		String sql = "select stadium_seq.nextval from dual";
 		return jdbcTemplate.queryForObject(sql, int.class);
 	}
 
 	@Override
 	public void insert(StadiumDto stadiumDto) {
-		String sql = "insert into stadium(stadium_no,stadium_name) values(?,?)";
-		Object[] data = {stadiumDto.getStadiumNo(),stadiumDto.getStadiumName()};
+		String sql = "insert into stadium(stadium_no, stadium_name, stadium_zone, stadium_zone_price) values(?, ?, ?, ?)";
+		Object[] data = {
+				stadiumDto.getStadiumNo(), stadiumDto.getStadiumName(), 
+				stadiumDto.getStadiumZone(), stadiumDto.getStadiumZonePrice()
+		};
 		jdbcTemplate.update(sql,data);
 
 	}

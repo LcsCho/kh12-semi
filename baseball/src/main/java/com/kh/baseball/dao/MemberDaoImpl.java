@@ -111,6 +111,7 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
+<<<<<<< HEAD
 	public List<MemberDto> selectListByPage(PaginationVO vo) {
 		if(vo.isSearch()) {
 			String sql = "select * from ("
@@ -219,5 +220,14 @@ public class MemberDaoImpl implements MemberDao{
 		return list.isEmpty() ? null : list.get(0);
 	}
 	
+=======
+	public MemberDto selectOneByMemberNickname(String memberNick) {
+		String sql = "select * from member where member_nickname = ?";
+		Object[] data = {memberNick};
+		List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
+		return list.isEmpty() ? null : list.get(0);
+	}
+
+>>>>>>> refs/remotes/origin/main
 }
 

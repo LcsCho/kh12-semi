@@ -20,19 +20,25 @@ public class TeamDaoImpl implements TeamDao{
 	
 	@Autowired
 	private TeamListMapper teamListMapper;
+	
+	@Override
+	public int sequenceTeam() {
+		String sql = "select team_seq.nextval from dual";
+		return jdbcTemplate.queryForObject(sql, int.class);
+	}
 
 	@Override
 	public void insert(TeamDto teamDto) {
-		String sql = "insert into team(team_name, team_region) "
-				+ "values(?, ?)";
-		Object[] data = {teamDto.getTeamName(), teamDto.getTeamRegion()};
+		String sql = "insert into team(team_no, team_name, team_region) "
+				+ "values(?, ?, ?)";
+		Object[] data = {teamDto.getTeamNo(), teamDto.getTeamName(), teamDto.getTeamRegion()};
 		jdbcTemplate.update(sql, data);
 	}
 
 	@Override
-	public TeamDto selectOne(String teamName) {
-		String sql = "select * from team where team_name = ?";
-		Object[] data = {teamName};
+	public TeamDto selectOne(int teamNo) {
+		String sql = "select * from team where team_no = ?";
+		Object[] data = {teamNo};
 		List<TeamDto> list = jdbcTemplate.query(sql, teamDetailMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}
@@ -42,4 +48,24 @@ public class TeamDaoImpl implements TeamDao{
 		String sql = "select * from team order by team_win desc";
 		return jdbcTemplate.query(sql, teamListMapper);
 	}
+
+	@Override
+	public boolean update(TeamDto teamDto) {
+		String sql = "update team set "
+				+ "team_name = ?, team_region = ? "
+				+ "where team_no = ?";
+		Object[] data = {
+			teamDto.getTeamName(), teamDto.getTeamRegion()
+		};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+	@Override
+	public boolean delete(int teamNo) {
+		String sql = "delete from team where team_no = ?";
+		Object[] data = {teamNo};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+
 }
