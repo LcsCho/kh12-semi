@@ -36,9 +36,9 @@ public class TeamDaoImpl implements TeamDao{
 	}
 
 	@Override
-	public TeamDto selectOne(String teamName) {
-		String sql = "select * from team where team_name = ?";
-		Object[] data = {teamName};
+	public TeamDto selectOne(int teamNo) {
+		String sql = "select * from team where team_no = ?";
+		Object[] data = {teamNo};
 		List<TeamDto> list = jdbcTemplate.query(sql, teamDetailMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}
@@ -47,6 +47,24 @@ public class TeamDaoImpl implements TeamDao{
 	public List<TeamDto> selectList() {
 		String sql = "select * from team order by team_win desc";
 		return jdbcTemplate.query(sql, teamListMapper);
+	}
+
+	@Override
+	public boolean update(TeamDto teamDto) {
+		String sql = "update team set "
+				+ "team_name = ?, team_region = ? "
+				+ "where team_no = ?";
+		Object[] data = {
+			teamDto.getTeamName(), teamDto.getTeamRegion()
+		};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+	@Override
+	public boolean delete(int teamNo) {
+		String sql = "delete from team where team_no = ?";
+		Object[] data = {teamNo};
+		return jdbcTemplate.update(sql, data) > 0;
 	}
 
 

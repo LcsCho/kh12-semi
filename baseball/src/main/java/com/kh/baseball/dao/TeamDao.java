@@ -8,6 +8,8 @@ import com.kh.baseball.dto.TeamDto;
 public interface TeamDao {
 	int sequenceTeam();
 	void insert(TeamDto teamDto);
-	TeamDto selectOne(String teamName);
+	TeamDto selectOne(int teamNo);
 	List<TeamDto> selectList();
+	boolean update(TeamDto teamDto);
+	boolean delete(int teamNo);
 }
