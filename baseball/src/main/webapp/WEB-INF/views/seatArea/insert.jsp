@@ -7,40 +7,28 @@
 
 <form action="insert" method="post">
 	<div class="container w-300">
-		<table class="w-100">
-			<thead>
-				<tr>
-					<th>경기장 이름</th>
-				</tr>
-			</thead>
-			<tbody align="center">
-				<c:forEach var="stadiumDto" items="${list}">
-					<tr>
-						<td>
-							<select name="stadiumNo" class="w-100">
-								<option value="${stadiumDto.stadiumNo}">${stadiumDto.StadiumName}</option>
-							</select>
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
 		<div class="row left">
+			경기장: <select name="stadiumNo" class="w-100">
+				<option value="1">창원NC파크</option>
+				<option value="2">대구삼성라이온즈파크</option>
+				<option value="3">고척스카이돔</option>
+				<option value="4">광주기아챔피언스필드</option>
+				<option value="5">인천SSG랜더스필드</option>
+				<option value="6">수원KT위즈파크</option>
+				<option value="7">사직야구장</option>
+				<option value="8">서울종합운동장 야구장</option>
+				<option value="9">대전한화생명이글스파크</option>
+				</select>
 			구역: <select name="seatAreaZone" class="w-100">
 				<option value="A">A</option>
 				<option value="B">B</option>
 				<option value="C">C</option>
-			</select>
-
-
-			<div class="row left">
-				좌석가격: <input type="number" name="seatAreaPrice"
-					value="${seatAreaDto.seatAreaPrice}" class="w-100"> <br>
-				<br>
-			</div>
-			<div class="row w-100">
-				<button type="submit" class="btn btn-positive w-100">등록</button>
-			</div>
+			</select> 좌석가격: <input type="number" name="seatAreaPrice"
+				value="${seatAreaDto.seatAreaPrice}" class="w-100"> <br>
+			<br>
+		</div>
+		<div class="row w-100">
+			<button type="submit" class="btn btn-positive w-100">등록</button>
 		</div>
 	</div>
 </form>
