@@ -6,6 +6,4 @@ import lombok.Data;
 public class StadiumDto {
 	private int stadiumNo;
 	private String stadiumName;
-	private String stadiumZone;
-	private int stadiumZonePrice;
 }
