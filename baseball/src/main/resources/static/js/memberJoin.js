@@ -95,33 +95,33 @@ $(function(){
 
         $(e.target).removeClass("success fail fail2")
 
-        if(isValid) { //형식 통과
-            $.ajax({
-                url:"http://localhost:8080/rest/member/nicknameCheck",
-                method:"post",
-                data:{ memberNick : $(e.target).val() },
-
-                success: function(response){
-                    $(e.target).removeClass("success fail fail2");
-                    if(response == "Y"){ //사용가능
-                        $(e.target).addClass("success");
-                        status.memberNick = true;
-                    }
-                    else { //사용불가(중복)
-                        $(e.target).addClass("fail2");
-                        status.memberNick = false;
-                    }
-                },
-                error: function(){
-                    alert("서버와 통신이 원활하지 않습니다");
-                },
-            });
-        }
-        else { //형식오류
-            $(e.target).removeClass("success fail fail2");
-            $(e.target).addClass("fail");
-            status.memberNick = false;
-        }
+ //       if(isValid) { //형식 통과
+ //           $.ajax({
+  //              url:"http://localhost:8080/rest/member/nicknameCheck",
+   //             method:"post",
+ //               data:{ memberNick : $(e.target).val() },
+//
+ //               success: function(response){
+ //                   $(e.target).removeClass("success fail fail2");
+ //                   if(response == "Y"){ //사용가능
+ //                       $(e.target).addClass("success");
+ //                       status.memberNick = true;
+ //                   }
+ //                   else { //사용불가(중복)
+  //                      $(e.target).addClass("fail2");
+ //                       status.memberNick = false;
+  //                  }
+  //              },
+  //              error: function(){
+   //                 alert("서버와 통신이 원활하지 않습니다");
+  //              },
+   //         });
+  //      }
+  //      else { //형식오류
+   //         $(e.target).removeClass("success fail fail2");
+   //         $(e.target).addClass("fail");
+   //         status.memberNick = false;
+   //     }
     });
 
     $("[name=memberEmail]").blur(function(){
