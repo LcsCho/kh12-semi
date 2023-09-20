@@ -7,9 +7,20 @@
 
 <form action="insert" method="post">
 	<div class="container w-300">
-
-		<div class="row left">경기장: ${stadiumDto.stadiumName}</div>
-
+		<table class="w-100">
+			<thead>
+				<tr>
+					<th>경기장 이름</th>
+				</tr>
+			</thead>
+			<tbody align="center">
+				<c:forEach var="stadiumDto" items="${list}">
+					<tr>
+						<td><option value="${stadiumDto.stadiumNo}">${stadiumDto.StadiumName}</option></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 		<div class="row left">
 			구역: <select name="seatAreaZone" class="w-100">
 				<option value="A">A</option>
