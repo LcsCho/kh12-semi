@@ -25,9 +25,7 @@ public class SeatAreaController {
 	
 	@PostMapping("/insert")
 	public String insert(@ModelAttribute SeatAreaDto seatAreaDto, StadiumDto stadiumDto) {
-		int seatAreaNo = seatAreaDao.sequenceSeatArea();
 		
-		seatAreaDto.setSeatAreaNo(seatAreaNo);
 		seatAreaDao.insert(seatAreaDto, stadiumDto);
 		return "redirect:insertFinish";
 	}

@@ -5,5 +5,4 @@ import com.kh.baseball.dto.StadiumDto;
 
 public interface SeatAreaDao {
 	void insert(SeatAreaDto seatAreaDto, StadiumDto stadiumDto);
-	int sequenceSeatArea();
 }
