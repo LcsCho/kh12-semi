@@ -1,13 +1,13 @@
 package com.kh.baseball.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.baseball.dto.SeatAreaDto;
-import com.kh.baseball.dto.StadiumDto;
 import com.kh.baseball.mapper.SeatAreaMapper;
-import com.kh.baseball.mapper.StadiumMapper;
 
 @Repository
 public class SeatAreaDaoImpl implements SeatAreaDao{
@@ -17,9 +17,6 @@ public class SeatAreaDaoImpl implements SeatAreaDao{
 	
 	@Autowired
 	private SeatAreaMapper seatAreaMapper;
-	
-	@Autowired
-	private StadiumMapper stadiumMapper;
 	
 	@Override
 	public void insert(SeatAreaDto seatAreaDto) {
@@ -31,5 +28,6 @@ public class SeatAreaDaoImpl implements SeatAreaDao{
 
 		jdbcTemplate.update(sql, data);
 	}
+	
 
 }

@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import com.kh.baseball.dto.SeatAreaDto;
-import com.kh.baseball.dto.StadiumDto;
 
 @Component
 public class SeatAreaMapper implements RowMapper<SeatAreaDto>{
