@@ -1,10 +1,12 @@
 package com.kh.baseball.dao;
 
 
+import java.util.List;
+
+import com.kh.baseball.dto.MemberBlockDto;
 import com.kh.baseball.dto.MemberDto;
 import com.kh.baseball.dto.MemberListDto;
 import com.kh.baseball.vo.PaginationVO;
-import com.kh.baseball.dto.MemberBlockDto;
 
 public interface MemberDao {
 	void insert(MemberDto memberDto);
@@ -13,7 +15,6 @@ public interface MemberDao {
 	boolean updateMemberPw(String memberId, String changePw);
 	boolean updateMemberInfo(MemberDto memberDto);
 	boolean delete(String memberId);
-<<<<<<< HEAD
 	
 	boolean updateMemberInfoByAdmin(MemberDto memberDto);
 	
@@ -27,7 +28,6 @@ public interface MemberDao {
 	
 	List<MemberBlockDto> selectBlockList();
 	MemberBlockDto selectBlockOne(String memberId);
-=======
-	MemberDto selectOneByMemberNickname(String memberNick);
->>>>>>> refs/remotes/origin/main
+
+
 }
