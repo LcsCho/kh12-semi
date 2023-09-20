@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 
-<form action="edit" method="post" enctype="multipart/form-data" autocomplete="off">
+<form action="change" method="post" enctype="multipart/form-data" autocomplete="off">
 	<div class="container w-400">
 	<div class="row">
 	<h2>예매 수정</h2>
