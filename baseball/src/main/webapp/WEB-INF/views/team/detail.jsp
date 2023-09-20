@@ -5,17 +5,23 @@
 <div class="container w-100">
 	<div class="row">
 		${teamDto.teamName}
-		${teamDto.teamWin}
-		${teamDto.teamDraw}
-		${teamDto.teamLose}
+		${teamDto.teamRegion}
+		${teamDto.teamLogo}
 	</div>
 	<div class="row">
 		<a href="list">
 			목록으로
 		</a>
+		<a href="update?teamNo=${teamDto.teamNo}">
+			수정
+		</a>
 		<br>
 		<a href="/">
 			홈으로
+		</a>
+		<a href="delete?teamNo=${teamDto.teamNo}">
+			<i class="fa-solid fa-trash"></i>
+			삭제
 		</a>
 	</div>
 </div>
