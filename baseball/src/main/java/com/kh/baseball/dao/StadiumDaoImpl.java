@@ -38,11 +38,6 @@ public class StadiumDaoImpl implements StadiumDao {
 	}
 
 	@Override
-
-	public List<StadiumDto> list() {
-		// TODO Auto-generated method stub
-		return null;
-
 	public StadiumDto selectOne(int stadiumNo) {
 		String sql = "select * from stadium where stadium_no =?";
 		Object[] data = {stadiumNo};

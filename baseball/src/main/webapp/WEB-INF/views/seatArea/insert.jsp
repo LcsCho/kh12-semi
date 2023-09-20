@@ -16,7 +16,11 @@
 			<tbody align="center">
 				<c:forEach var="stadiumDto" items="${list}">
 					<tr>
-						<td><option value="${stadiumDto.stadiumNo}">${stadiumDto.StadiumName}</option></td>
+						<td>
+							<select name="stadiumNo" class="w-100">
+								<option value="${stadiumDto.stadiumNo}">${stadiumDto.StadiumName}</option>
+							</select>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
