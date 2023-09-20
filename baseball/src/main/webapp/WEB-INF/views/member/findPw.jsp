@@ -6,23 +6,26 @@
 
 <div class="center">
 <h1>비밀번호 찾기</h1>
+</dv>
+
 <form action="findPw" method="post" autocomplete="off">
-	<div class="container w-400 mt-50">
-		<div class="row">
+<div class="container w-500">
+
+	<div class="row left">
 			<input type="text" name="memberId" 
-			class="form-input w-100" placeholder="아이디 입력" required> <br><br>
-		</div>
-		<div class="row">
-			<input type="email" name="memberEmail" 
-			 class="form-input w-100" placeholder="이메일 입력" required> <br><br>
-		</div>
-		<div class="row">
-			<button type="submit" class="btn btn-positive w-100">비밀번호 찾기</button>
+			class="form-input w-100" placeholder="아이디 입력" required>
 		</div>
 		
-	</div>
-</form>
+		<div class="row">
+			<input type="email" name="memberEmail" class="form-input w-100" 
+			placeholder="이메일 입력" required>
+		</div>
+		<div class="row">
+		 	<button type="submit" class="btn btn-positive w-100">비밀번호 찾기</button>
+		</div>
+			
 </div>
+</form>
 
 
 

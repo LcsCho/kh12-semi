@@ -5,7 +5,7 @@ import java.sql.Date;
 import lombok.Data;
 
 @Data
-public class MemberDto {
+public class MemberListDto {
 	private String memberId;
 	private String memberPw;
 	private String memberNick;
@@ -19,5 +19,6 @@ public class MemberDto {
 	private String memberPost;
 	private String memberAddr1;
 	private String memberAddr2;
-
+	
+	private String block; //차단 여부
 }
