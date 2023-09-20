@@ -26,9 +26,8 @@ public class TeamController {
 	
 	@RequestMapping("/list")
 	public String list(@ModelAttribute TeamDto teamDto, Model model) {
-		
-		 List<TeamDto> list = teamDao.selectList();
-		 model.addAttribute("list", list);
+		List<TeamDto> list = teamDao.selectList();
+		model.addAttribute("list", list);
 		
 		return "/WEB-INF/views/team/list.jsp";
 	}
@@ -48,6 +47,8 @@ public class TeamController {
 	
 	@PostMapping("/register")
 	public String register(@ModelAttribute TeamDto teamDto) {
+		int teamNo = teamDao.sequenceTeam();
+		teamDto.setTeamNo(teamNo);
 		teamDao.insert(teamDto);
 		return "redirect:registerFinish";
 	}

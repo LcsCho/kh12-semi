@@ -23,15 +23,15 @@ public class TeamDaoImpl implements TeamDao{
 	
 	@Override
 	public int sequenceTeam() {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "select team_seq.nextval from dual";
+		return jdbcTemplate.queryForObject(sql, int.class);
 	}
 
 	@Override
 	public void insert(TeamDto teamDto) {
-		String sql = "insert into team(team_name, team_region) "
-				+ "values(?, ?)";
-		Object[] data = {teamDto.getTeamName(), teamDto.getTeamRegion()};
+		String sql = "insert into team(team_no, team_name, team_region) "
+				+ "values(?, ?, ?)";
+		Object[] data = {teamDto.getTeamNo(), teamDto.getTeamName(), teamDto.getTeamRegion()};
 		jdbcTemplate.update(sql, data);
 	}
 
