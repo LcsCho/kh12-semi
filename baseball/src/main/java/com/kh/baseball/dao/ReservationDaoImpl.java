@@ -61,12 +61,11 @@ public class ReservationDaoImpl implements ReservationDao{
 	 @Override
 	public boolean update(ReservationDto reservationDto) {
 		 String sql = "update reservation set match_no=?, seat_no=?, home_team=?, "
-		 		+ "seat_area_no=?, member_id=?, away_team=?, reservation_date=? "
+		 		+ "member_id=?, away_team=?, reservation_date=? "
 		 		+ "where reservation_no=?";
 		 Object[] data = { reservationDto.getMatchNo(), 
 								reservationDto.getSeatNo(), 
 								reservationDto.getHomeTeam(),
-								reservationDto.getSeatAreaNo(),
 								reservationDto.getMemberId(), 
 								reservationDto.getAwayTeam(), 
 								reservationDto.getReservationDate(), 
