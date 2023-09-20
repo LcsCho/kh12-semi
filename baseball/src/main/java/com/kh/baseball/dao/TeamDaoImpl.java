@@ -55,7 +55,8 @@ public class TeamDaoImpl implements TeamDao{
 				+ "team_name = ?, team_region = ? "
 				+ "where team_no = ?";
 		Object[] data = {
-			teamDto.getTeamName(), teamDto.getTeamRegion()
+			teamDto.getTeamName(), teamDto.getTeamRegion(),
+			teamDto.getTeamNo()
 		};
 		return jdbcTemplate.update(sql, data) > 0;
 	}
