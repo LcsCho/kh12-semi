@@ -15,9 +15,9 @@ public class MatchMapper implements RowMapper<MatchDto>{
 	public MatchDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 		MatchDto matchDto = new MatchDto();
 		matchDto.setMatchNo(rs.getInt("match_no"));
-		matchDto.setTeamHome(rs.getString("team_home"));
+		matchDto.setHomeTeam(rs.getString("home_team"));
 		matchDto.setStadiumNo(rs.getInt("stadium_no"));
-		matchDto.setTeamAway(rs.getString("team_away"));
+		matchDto.setAwayTeam(rs.getString("away_team"));
 		matchDto.setMatchDate(rs.getDate("match_date"));
 		matchDto.setMatchHomeScore(rs.getInt("match_home_score"));
 		matchDto.setMatchAwayScore(rs.getInt("match_away_score"));

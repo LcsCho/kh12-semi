@@ -9,7 +9,7 @@ public class ReservationDto {
 	private int reservationNo;
 	private int matchNo;
 	private int seatNo;
-	private String teamHome, teamAway;
+	private String homeTeam, awayTeam;
 	private int seatAreaNo;
 	private String memberId;
 	private Date reservationDate;

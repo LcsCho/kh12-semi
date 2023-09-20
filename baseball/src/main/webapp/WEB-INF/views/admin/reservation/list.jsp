@@ -28,4 +28,6 @@
 					<td>${reservationDto.seatAreaPrice}</td>
 					</tr>
 					</c:forEach>
+					</table>
+					</div>
 <jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>

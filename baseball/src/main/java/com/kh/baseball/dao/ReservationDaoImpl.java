@@ -27,18 +27,17 @@ public class ReservationDaoImpl implements ReservationDao{
 	//등록
 	 @Override
 	public void insert(ReservationDto reservationDto) {
-		String sql = "insert into reservation(reservation_no, match_no, seat_no, team_home, "
-				+ "seat_area_no, member_id, team_away, reservation_date, sear_area_price) "
-				+ "values(?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into reservation(reservation_no, match_no, seat_no, home_team, "
+				+ "seat_area_no, member_id, away_team, reservation_date) "
+				+ "values(?,?,?,?,?,?,?,?)";
 		Object[] data = {reservationDto.getReservationNo(), 
 								reservationDto.getMatchNo(), 
 								reservationDto.getSeatNo(), 
-								reservationDto.getTeamHome(), 
+								reservationDto.getHomeTeam(),
 								reservationDto.getSeatAreaNo(), 
 								reservationDto.getMemberId(), 
-								reservationDto.getTeamAway(), 
-								reservationDto.getReservationDate(), 
-								reservationDto.getSeatAreaPrice()
+								reservationDto.getAwayTeam(), 
+								reservationDto.getReservationDate()
 				};
 		jdbcTemplate.update(sql, data);
 	}
@@ -62,17 +61,16 @@ public class ReservationDaoImpl implements ReservationDao{
 	 //수정
 	 @Override
 	public boolean update(ReservationDto reservationDto) {
-		 String sql = "update reservation set match_no=?, seat_no=?, team_home=?, "
-		 		+ "seat_area_no=?, member_id=?, team_away=?, reservation_date=?, sear_area_price=? "
+		 String sql = "update reservation set match_no=?, seat_no=?, home_team=?, "
+		 		+ "seat_area_no=?, member_id=?, away_team=?, reservation_date=? "
 		 		+ "where reservation_no=?";
 		 Object[] data = { reservationDto.getMatchNo(), 
 								reservationDto.getSeatNo(), 
-								reservationDto.getTeamHome(),
+								reservationDto.getHomeTeam(),
 								reservationDto.getSeatAreaNo(),
 								reservationDto.getMemberId(), 
-								reservationDto.getTeamAway(), 
+								reservationDto.getAwayTeam(), 
 								reservationDto.getReservationDate(), 
-								reservationDto.getSeatAreaPrice(),
 								reservationDto.getReservationNo()
 		 		};
 		return jdbcTemplate.update(sql, data) > 0;

@@ -17,12 +17,12 @@ public class ReservationMapper implements RowMapper<ReservationDto>{
 		reservationDto.setReservationNo(rs.getInt("reservation_no"));
 		reservationDto.setMatchNo(rs.getInt("match_no"));
 		reservationDto.setSeatNo(rs.getInt("seat_no"));
-		reservationDto.setTeamHome(rs.getString("team_home"));
+		reservationDto.setHomeTeam(rs.getString("home_team"));
 		reservationDto.setSeatAreaNo(rs.getInt("seat_area_no"));
 		reservationDto.setMemberId(rs.getString("member_id"));
-		reservationDto.setTeamAway(rs.getString("team_away"));
+		reservationDto.setAwayTeam(rs.getString("away_team"));
 		reservationDto.setReservationDate(rs.getDate("reservation_date"));
-		reservationDto.setSeatAreaPrice(rs.getInt("seat_area_price"));
+//		reservationDto.setSeatAreaPrice(rs.getInt("seat_area_price"));
 		return reservationDto;
 	}
 }

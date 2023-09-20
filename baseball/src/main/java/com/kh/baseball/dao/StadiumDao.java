@@ -8,5 +8,9 @@ public interface StadiumDao {
 	
 	void insert(StadiumDto stadiumDto);
 	int sequenceStadium();
+
 	List<StadiumDto> list();
+	
+	List<StadiumDto> selectList();
+
 }
