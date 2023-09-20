@@ -1,7 +1,10 @@
 package com.kh.baseball.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.baseball.dao.StadiumDao;
 import com.kh.baseball.dto.StadiumDto;
+
 
 @Controller
 @RequestMapping("/stadium")
@@ -42,5 +46,13 @@ public class StadiumController {
 	   @RequestMapping("/insertFinish")
 	   public String insertFinish() {
 	      return "/WEB-INF/views/stadium/insertFinish.jsp";
+	   }
+	   
+	   @RequestMapping("/list")
+	   public String list(@ModelAttribute StadiumDto stadiumDto, Model model) {
+		   List<StadiumDto> list = stadiumDao.selectList();
+		   model.addAttribute("list", list);
+		   
+		   return "/WEB-INF/views/stadium/list.jsp";
 	   }
 }

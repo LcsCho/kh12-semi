@@ -16,8 +16,6 @@ public class StadiumMapper implements RowMapper<StadiumDto>{
 		StadiumDto stadiumDto = new StadiumDto();
 		stadiumDto.setStadiumNo(rs.getInt("stadium_no"));
 		stadiumDto.setStadiumName(rs.getString("stadium_name"));
-		stadiumDto.setStadiumZone(rs.getString("stadium_zone"));
-		stadiumDto.setStadiumZonePrice(rs.getInt("stadium_zone_price"));
 
 		return stadiumDto;
 	}
