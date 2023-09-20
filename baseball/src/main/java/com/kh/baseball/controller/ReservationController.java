@@ -30,7 +30,7 @@ public class ReservationController {
 	// 등록
 	@GetMapping("/insert")
 	public String insert() {
-		return "/WEB-INF/views/reservation/insert.jsp";
+		return "/WEB-INF/views/admin/reservation/insert.jsp";
 	}
 
 	@PostMapping("/insert")
@@ -43,23 +43,29 @@ public class ReservationController {
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int reservationNo, Model model) {
 		ReservationDto reservationDto = reservationDao.selectOne(reservationNo);
-		return "/WEB-INF/views/reservation/detail.jsp";
+		return "/WEB-INF/views/admin/reservation/detail.jsp";
 	}
 	
+	//수정
 	@GetMapping("/change")
-	public String change(HttpSession session, Model model) {
-		int reservationNo = (int) session.getAttribute("no");
+	public String change(Model model, int reservationNo) {
+//		int reservationNo = (int) session.getAttribute("no");
 		ReservationDto reservationDto = reservationDao.selectOne(reservationNo);
 		model.addAttribute("reservationDto", reservationDto);
-		return "/WEB-INF/views/reservation/change.jsp";
+		return "/WEB-INF/views/admin/reservation/change.jsp";
 	}
 	
 	
 	@PostMapping("/change")
-	public String change(@ModelAttribute ReservationDto inputDto, HttpSession session) {
-		int reservationNo = (int) session.getAttribute("no");
-		reservationDao.update(inputDto);
-		return "redirect:detail";
+	public String change(@ModelAttribute ReservationDto inputDto) {
+//		int reservationNo = (int) session.getAttribute("no");
+		boolean result = reservationDao.update(inputDto);
+		if(result) {
+			return "redirect:detail?resetvationNo="+inputDto.getReservationNo();
+		}
+		else {
+			return "redirect:error";
+		}
 	}
 	//목록
 	@RequestMapping("/list")
@@ -70,12 +76,10 @@ public class ReservationController {
 	}
 
 
-
-
 //취소
 	@GetMapping("/cancel")
 	public String cancel() {
-		return "/WEB-INF/views/reservation/list.jsp";
+		return "/WEB-INF/views/admin/reservation/list.jsp";
 	}
 
 	@PostMapping("/cancel")
@@ -87,6 +91,6 @@ public class ReservationController {
 
 	@RequestMapping("/cancelFinish")
 	public String exitFinish() {
-		return "/WEB-INF/views/reservation/cancelFinish.jsp";
+		return "/WEB-INF/views/admin/reservation/cancelFinish.jsp";
 	}
 }
