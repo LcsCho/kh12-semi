@@ -7,12 +7,13 @@
 		${teamDto.teamName}
 		${teamDto.teamRegion}
 		${teamDto.teamLogo}
-		${teamDto.teamDraw}
-		${teamDto.teamLose}
 	</div>
 	<div class="row">
 		<a href="list">
 			목록으로
+		</a>
+		<a href="update?teamNo=${teamDto.teamNo}">
+			수정
 		</a>
 		<br>
 		<a href="/">
