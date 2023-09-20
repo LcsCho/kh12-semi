@@ -207,12 +207,16 @@ public class MemberController {
 		//[2] 이메일이 일치하는지 확인
 		boolean isValid = findDto != null //아이디가 있으며
 				&& findDto.getMemberEmail().equals(memberDto.getMemberEmail()); //이메일까지 일치하는지
+				
+		
 		if(isValid) {//이메일이 같다면
 			//이메일 발송 코드
 			SimpleMailMessage message = new SimpleMailMessage();
 			message.setTo(findDto.getMemberEmail());
 			message.setSubject("비밀번호 찾기 결과");
-			message.setText(findDto.getMemberPw());
+			message.setText(
+					findDto.getMemberId()+"님의 비밀번호는 "+
+					findDto.getMemberPw()+" 입니다");
 			sender.send(message);
 			
 			return "redirect:findPwFinish";
