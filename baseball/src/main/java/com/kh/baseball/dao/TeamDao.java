@@ -6,6 +6,7 @@ import java.util.List;
 import com.kh.baseball.dto.TeamDto;
 
 public interface TeamDao {
+	int sequenceTeam();
 	void insert(TeamDto teamDto);
 	TeamDto selectOne(String teamName);
 	List<TeamDto> selectList();

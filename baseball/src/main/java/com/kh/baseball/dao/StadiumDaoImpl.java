@@ -16,7 +16,7 @@ public class StadiumDaoImpl implements StadiumDao {
 	@Autowired
 	private StadiumMapper stadiumMapper;
 	@Override
-	public int sequence() {
+	public int sequenceStadium() {
 		String sql = "select stadium_seq.nextval from dual";
 		return jdbcTemplate.queryForObject(sql, int.class);
 	}

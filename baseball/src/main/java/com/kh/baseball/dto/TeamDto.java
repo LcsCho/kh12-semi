@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class TeamDto {
+	private int teamNo;
 	private String teamName; 
 	private String teamRegion;
 	private String teamLogo;

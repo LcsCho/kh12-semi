@@ -20,6 +20,12 @@ public class TeamDaoImpl implements TeamDao{
 	
 	@Autowired
 	private TeamListMapper teamListMapper;
+	
+	@Override
+	public int sequenceTeam() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	@Override
 	public void insert(TeamDto teamDto) {
@@ -42,4 +48,6 @@ public class TeamDaoImpl implements TeamDao{
 		String sql = "select * from team order by team_win desc";
 		return jdbcTemplate.query(sql, teamListMapper);
 	}
+
+
 }

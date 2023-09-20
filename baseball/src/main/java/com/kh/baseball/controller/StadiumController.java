@@ -25,7 +25,7 @@ public class StadiumController {
 	@PostMapping("/insert")
 	public String insert(@ModelAttribute StadiumDto stadiumDto) {
 	    // 1. 데이터베이스 시퀀스 값을 가져오기
-	    int stadiumNo = stadiumDao.sequence();
+	    int stadiumNo = stadiumDao.sequenceStadium();
 	    
 	    // 2. 가져온 시퀀스 값을 스타디움 DTO에 설정
 	    stadiumDto.setStadiumNo(stadiumNo);
