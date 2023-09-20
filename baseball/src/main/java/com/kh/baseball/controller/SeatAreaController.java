@@ -2,6 +2,7 @@ package com.kh.baseball.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,9 +25,13 @@ public class SeatAreaController {
 	}
 	
 	@PostMapping("/insert")
-	public String insert(@ModelAttribute SeatAreaDto seatAreaDto, StadiumDto stadiumDto) {
+	public String insert(@ModelAttribute SeatAreaDto seatAreaDto, 
+			StadiumDto stadiumDto,
+			Model model) {
 		
 		seatAreaDao.insert(seatAreaDto, stadiumDto);
+		model.addAttribute("stadiumDto", stadiumDto);
+		model.addAttribute("seatAreaDto", seatAreaDto);
 		return "redirect:insertFinish";
 	}
 	
