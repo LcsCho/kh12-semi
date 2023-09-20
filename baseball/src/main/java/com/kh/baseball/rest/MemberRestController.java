@@ -29,13 +29,5 @@ public class MemberRestController {
 			return "N";
 		}
 	}
-	@PostMapping("/nicknameCheck")
-	public String nicknameCheck(@RequestParam String memberNick) {
-		MemberDto memberDto = memberDao.selectOneByMemberNickname(memberNick);
-		if (memberDto == null) {
-			return "Y";
-		} else {
-			return "N";
-		}
-	}
+
 }

@@ -10,5 +10,5 @@ public interface MemberDao {
 	boolean updateMemberPw(String memberId, String changePw);
 	boolean updateMemberInfo(MemberDto memberDto);
 	boolean delete(String memberId);
-	MemberDto selectOneByMemberNickname(String memberNick);
+	
 }

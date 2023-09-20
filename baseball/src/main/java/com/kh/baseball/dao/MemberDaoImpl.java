@@ -87,12 +87,5 @@ public class MemberDaoImpl implements MemberDao{
 		return jdbcTemplate.update(sql, data) > 0;
 	}
 
-	@Override
-	public MemberDto selectOneByMemberNickname(String memberNick) {
-		String sql = "select * from member where member_nickname = ?";
-		Object[] data = {memberNick};
-		List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
-		return list.isEmpty() ? null : list.get(0);
-	}
 
 }
