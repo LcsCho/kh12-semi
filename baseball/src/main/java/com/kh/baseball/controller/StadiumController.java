@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.baseball.dao.StadiumDao;
 import com.kh.baseball.dto.StadiumDto;
@@ -54,5 +55,12 @@ public class StadiumController {
 		   model.addAttribute("list", list);
 		   
 		   return "/WEB-INF/views/stadium/list.jsp";
+	   }
+	   
+	   @RequestMapping("/detail")
+	   public String detail(@RequestParam int stadiumNo, Model model) {
+		   StadiumDto stadiumDto = stadiumDao.selectOne(stadiumNo);
+		   model.addAttribute("stadiumDto", stadiumDto);
+		   return "/WEB-INF/views/stadium/detail.jsp";
 	   }
 }
