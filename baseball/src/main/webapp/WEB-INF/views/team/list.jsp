@@ -17,7 +17,7 @@
 	<tbody align="center">
 		<c:forEach var="teamDto" items="${list}">
 		<tr>
-			<td><a href="detail?teamName=${teamDto.teamName}">${teamDto.teamName}</a></td>
+			<td><a href="detail?teamNo=${teamDto.teamNo}">${teamDto.teamName}</a></td>
 			<td>${teamDto.teamWin}</td>
 			<td>${teamDto.teamDraw}</td>
 			<td>${teamDto.teamLose}</td>

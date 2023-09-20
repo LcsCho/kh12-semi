@@ -5,7 +5,8 @@
 <div class="container w-100">
 	<div class="row">
 		${teamDto.teamName}
-		${teamDto.teamWin}
+		${teamDto.teamRegion}
+		${teamDto.teamLogo}
 		${teamDto.teamDraw}
 		${teamDto.teamLose}
 	</div>
@@ -16,6 +17,10 @@
 		<br>
 		<a href="/">
 			홈으로
+		</a>
+		<a href="delete?teamNo=${teamDto.teamNo}">
+			<i class="fa-solid fa-trash"></i>
+			삭제
 		</a>
 	</div>
 </div>
