@@ -10,7 +10,7 @@ public interface StadiumDao {
 
 	int sequenceStadium();
 	
-	List<StadiumDto> list();
+	List<StadiumDto> selectList();
 	
 	
 }
