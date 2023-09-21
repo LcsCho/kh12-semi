@@ -12,23 +12,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.baseball.dao.MatchDao;
+import com.kh.baseball.dao.StadiumDao;
+import com.kh.baseball.dao.TeamDao;
 import com.kh.baseball.dto.MatchDto;
+import com.kh.baseball.dto.StadiumDto;
+import com.kh.baseball.dto.TeamDto;
 @Repository
 @RequestMapping("/match")
 public class MatchController {
 	@Autowired 
 	private MatchDao matchDao;
 	
+	@Autowired
+	private TeamDao teamDao;
+	
+	@Autowired
+	private StadiumDao stadiumDao;
+	
 	
 	@GetMapping("/insert")
-	public String insert() {
+	public String insert(@ModelAttribute TeamDto teamDto, StadiumDto stadiumDto, Model model) {
+		List<TeamDto> teamList = teamDao.selectList();
+		List<StadiumDto> stadiumList = stadiumDao.selectList();
+		model.addAttribute("teamList", teamList);
+		model.addAttribute("stadiumList", stadiumList);
+		
 		return "/WEB-INF/views/match/insert.jsp";
 	}
 	@PostMapping("/insert")
 	public String insert(@ModelAttribute MatchDto matchDto) {
 		int matchNo = matchDao.sequence();
 		matchDto.setMatchNo(matchNo);
-		
 		matchDao.insert(matchDto);
 		return "redirect:list";
 	}
