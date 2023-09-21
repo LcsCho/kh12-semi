@@ -27,7 +27,7 @@ public class SeatController {
 	
 	@RequestMapping("/list")
 	public String insert(@ModelAttribute SeatDto seatDto, Model model) {
-		List<SeatAreaDto> list = seatAreaDao.selectList();
+		List<SeatDto> list = seatDao.selectList();
 		model.addAttribute("list", list);
 		return "/WEB-INF/views/seat/list.jsp";
 	}
@@ -45,4 +45,5 @@ public class SeatController {
 		seatDao.insert(seatDto);
 		 return "/WEB-INF/views/seat/list.jsp";
 	}
+	
 }

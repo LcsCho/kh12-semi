@@ -18,7 +18,7 @@
                         </div>
                         <!-- 좌석 구역 -->
                         <div class="row">
-                            좌석구역: <select name="seatAreaNo" class="w-100" id="seatAreaNo">
+                            좌석구역: <select class="form-input w-100" name="seatAreaNo" class="w-100" id="seatAreaNo">
                                 <c:forEach var="seatDto" items="${list}">
                                     <option value="${seatAreaDto.seatAreaNo}">${seatAreaDto.seatAreaNo}</option>
                                 </c:forEach>
@@ -34,7 +34,7 @@
                             좌석수열: <input name="seatCol" class="form-input w-100" type="number">
                         </div>
                         <div class="row">
-                            예매상태 <select name="seatStatus">
+                            예매상태 <select class="form-input w-100" name="seatStatus">
                                 <option value="Y">가능</option>
                                 <option value="N">불가능</option>
                                 <option value="R">예매중</option>
