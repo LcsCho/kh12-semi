@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.baseball.dao.SeatAreaDao;
 import com.kh.baseball.dao.StadiumDao;
 import com.kh.baseball.dto.SeatAreaDto;
 import com.kh.baseball.dto.StadiumDto;
+import com.kh.baseball.dto.TeamDto;
 
 @Controller
 @RequestMapping("/seatArea")
@@ -45,6 +47,40 @@ public class SeatAreaController {
 		return "/WEB-INF/views/seatArea/insertFinish.jsp";
 	}
 	
+	@RequestMapping("/list")
+	public String list(@ModelAttribute SeatAreaDto seatAreaDto, Model model) {
+		List<SeatAreaDto> list = seatAreaDao.selectList();
+		model.addAttribute("list", list);
+		
+		return "/WEB-INF/views/seatArea/list.jsp";
+	}
 	
+	@RequestMapping("/detail")
+	public String detail(@RequestParam int seatAreaNo,
+			Model model) {
+		SeatAreaDto seatAreaDto = seatAreaDao.selectOne(seatAreaNo);
+		model.addAttribute("seatAreaDto", seatAreaDto);
+		return "/WEB-INF/views/seatArea/detail.jsp";
+	}
 	
+	@GetMapping("/update")
+	public String update(@RequestParam int seatAreaNo, Model model) {
+		SeatAreaDto seatAreaDto = seatAreaDao.selectOne(seatAreaNo);
+		model.addAttribute("seatAreaDto", seatAreaDto);
+		return "/WEB-INF/views/seatArea/update.jsp";
+	}
+	
+	@PostMapping("/update")
+	public String change(@ModelAttribute SeatAreaDto seatAreaDto) {
+		boolean result = seatAreaDao.update(seatAreaDto);
+		if (result) return "redirect:detail?teamNo=" + seatAreaDto.getSeatAreaNo();
+		else return "redirect:update?error";
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(@RequestParam int seatAreaNo) {
+		boolean result = seatAreaDao.delete(seatAreaNo);
+		if (result) return "redirect:list";
+		else return "redirect:detail?error";
+	}
 }
