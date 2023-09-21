@@ -12,5 +12,4 @@ public interface SeatDao {
 	boolean delete(int seatNo);
 	
 	
-	int findSeatAreaNo(int seatAreaNo);
 }

@@ -26,6 +26,9 @@ public class SeatDaoImpl implements SeatDao {
 		Object[] data = { seatDto.getSeatNo(), seatDto.getSeatAreaNo(), seatDto.getSeatRow(), seatDto.getSeatCol(),
 				seatDto.getSeatStatus() };
 
+		
+	
+		
 		jdbcTemplate.update(sql, data);
 	}
 
@@ -35,12 +38,6 @@ public class SeatDaoImpl implements SeatDao {
 		return jdbcTemplate.queryForObject(sql, int.class);
 	}
 
-	@Override
-	public int findSeatAreaNo(int seatAreaNo) {
-		String sql = "select seat_area_no from seat_area where seat_area_no=?";
-
-		return 0;
-	}
 
 	@Override
 	public SeatDto selectOne(int seatNo) {
@@ -63,5 +60,7 @@ public class SeatDaoImpl implements SeatDao {
 		Object[] data = { seatNo };
 		return jdbcTemplate.update(sql, data) > 0;
 	}
+	
+	
 
 }
