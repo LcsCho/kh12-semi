@@ -11,15 +11,10 @@
                 <div class="container w-300">
                     <div class="row left">
 
-
-                        좌석번호
-                        <div class="row">
-                            <input class="form-input w-100" type="number" name="seatId">
-                        </div>
                         <!-- 좌석 구역 -->
                         <div class="row">
                             좌석구역: <select class="form-input w-100" name="seatAreaNo" class="w-100" id="seatAreaNo">
-                                <c:forEach var="seatDto" items="${list}">
+                                <c:forEach var="seatAreaDto" items="${list}">
                                     <option value="${seatAreaDto.seatAreaNo}">${seatAreaDto.seatAreaNo}</option>
                                 </c:forEach>
                             </select>

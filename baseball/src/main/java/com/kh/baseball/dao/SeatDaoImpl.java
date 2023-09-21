@@ -20,8 +20,13 @@ public class SeatDaoImpl implements SeatDao{
 
 	@Override
 	public void insert(SeatDto seatDto) {
+		
 		String sql = "insert into seat(seat_Id,seat_area_no,seat_row,seat_col,seat_status) values(?,?,?,?,?)";
-		Object[] data = {seatDto.getSeatId(),seatDto.getSeatAreaNo(),seatDto.getSeatRow(),seatDto.getSeatCol(),seatDto.getSeatStatus()};
+		Object[] data = {seatDto.getSeatId(),
+				seatDto.getSeatAreaNo(),
+				seatDto.getSeatRow(),
+				seatDto.getSeatCol(),
+				seatDto.getSeatStatus()};
 		
 		jdbcTemplate.update(sql, data);
 		
@@ -60,6 +65,8 @@ public class SeatDaoImpl implements SeatDao{
 		Object[] data = {seatId};
 		return jdbcTemplate.update(sql,data)>0;
 	}
+	
+	
 
 
 	}
