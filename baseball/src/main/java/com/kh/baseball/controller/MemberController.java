@@ -73,9 +73,13 @@ public class MemberController {
 			
 			//로그인시간 갱신
 			//memberDao.updateMemberLogin(inputDto.getMemberId());
-			
+			if("관리자".equals(findDto.getMemberLevel())) {
 			//메인페이지로 이동
-			return "redirect:/"; 
+			return "redirect:/admin/home"; 
+		}
+			else {
+				return "redirect:/"; 
+			}
 		}
 		 
 		//[4] 비밀번호가 일치하지 않으면 로그인페이지로 이동
