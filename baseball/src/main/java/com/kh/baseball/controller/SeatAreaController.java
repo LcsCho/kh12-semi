@@ -1,5 +1,7 @@
 package com.kh.baseball.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +26,9 @@ public class SeatAreaController {
 	private StadiumDao stadiumDao;
 	
 	@GetMapping("/insert")
-	public String insert() {
+	public String insert(@ModelAttribute StadiumDto stadiumDto, Model model) {
+	 	List<StadiumDto> list = stadiumDao.selectList();
+		 model.addAttribute("list", list);
 		return "/WEB-INF/views/seatArea/insert.jsp";
 	}
 	
