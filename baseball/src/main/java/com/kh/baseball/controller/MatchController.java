@@ -45,7 +45,7 @@ public class MatchController {
 		matchDto.setMatchNo(matchNo);
 		matchDao.insert(matchDto);
 		
-		return "redirect:/list";
+		return "redirect:detail?matchNo="+matchNo;
 	}
 	
 	@RequestMapping("/list")
