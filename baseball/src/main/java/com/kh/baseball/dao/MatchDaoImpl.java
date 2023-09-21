@@ -33,7 +33,7 @@ public class MatchDaoImpl implements MatchDao{
 				+ "match_date, match_home_score, "
 				+ "match_away_score) "
 				+ "values(?,?,?,?,?,?,?)";
-		Object[] data = {matchDto.getMatchNo(), matchDto.getHomeTeam(),matchDto.getAwayTeam(),matchDto.getStadiumNo(),matchDto.getMatchHomeScore(),matchDto.getMatchAwayScore()};
+		Object[] data = {matchDto.getMatchNo(), matchDto.getHomeTeam(),matchDto.getAwayTeam(),matchDto.getStadiumNo(),matchDto.getMatchDate(),matchDto.getMatchHomeScore(),matchDto.getMatchAwayScore()};
 		jdbcTemplate.update(sql,data);
 	}
 
@@ -61,9 +61,16 @@ public class MatchDaoImpl implements MatchDao{
 
 	@Override
 	public List<MatchDto> selectList() {
-		String sql ="select * from match ";
+		String sql ="select * from match order by match_no desc";
 		return jdbcTemplate.query(sql, matchMapper);
 	}
+
+	@Override
+	public MatchDto selectStadiumNo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }
