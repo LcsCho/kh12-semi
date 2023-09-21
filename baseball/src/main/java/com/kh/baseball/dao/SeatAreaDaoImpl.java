@@ -28,6 +28,12 @@ public class SeatAreaDaoImpl implements SeatAreaDao{
 
 		jdbcTemplate.update(sql, data);
 	}
+
+	@Override
+	public List<SeatAreaDto> selectList() {
+		String sql = "select * from seat_area order by seat_area_zone asc";
+		return jdbcTemplate.query(sql, seatAreaMapper);
+	}
 	
 
 }

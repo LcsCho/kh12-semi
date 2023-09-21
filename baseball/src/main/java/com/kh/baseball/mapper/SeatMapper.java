@@ -15,7 +15,7 @@ public class SeatMapper implements RowMapper<SeatDto>{
 	public SeatDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 		SeatDto seatDto = new SeatDto();
 		seatDto.setSeatNo(rs.getInt("seat_no"));
-		seatDto.setSeatAreaNo(rs.getInt("seat_area_no"));
+		seatDto.setSeatAreaZone(rs.getString("seat_area_zone"));
 		return seatDto;
 	}
 }

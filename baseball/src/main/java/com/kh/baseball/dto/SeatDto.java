@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class SeatDto {
 	private int seatNo;
-	private int seatAreaNo;
+	private String seatAreaZone;
 }
