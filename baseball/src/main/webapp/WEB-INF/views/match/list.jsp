@@ -8,10 +8,10 @@
 		<thead>
 			<tr>
 				<th>매치번호</th>
+				<th>경기일</th>
 				<th>경기장번호</th>
 				<th>홈팀</th>
 				<th>어웨이팀</th>
-				<th>경기일</th>
 				<th>홈팀스코어</th>
 				<th>어웨이스코어</th>
 			</tr>
@@ -19,15 +19,16 @@
 		<tbody align="center">
 			<c:forEach var="matchDto" items="${list}">
 				<tr>
-					<td>${matchDto.matchNo}</td>
-					<td>${matchDto.stadiumNo}</td>
-					<td>${matchDto.teamHome}</td>
-					<td>${matchDto.teamAway}</td>
+					<td><a href="detail?matchNo=${matchDto.matchNo}">${matchDto.matchNo}</a></td>
 					<td>${matchDto.matchDate}</td>
+					<td>${matchDto.stadiumNo}</td>
+					<td>${matchDto.homeTeam}</td>
+					<td>${matchDto.awayTeam}</td>
 					<td>${matchDto.matchHomeScore}</td>
 					<td>${matchDto.matchAwayScore}</td>
 				</tr>
 			</c:forEach>
-			</tbody>
-			</table>
-			<jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>
+		</tbody>
+	</table>
+</div>
+<jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>
