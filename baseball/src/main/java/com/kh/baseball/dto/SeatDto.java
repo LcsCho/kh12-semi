@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class SeatDto {
-	private int seatNo;
-	private String seatAreaZone;
+	int seatId , seatAreaNo, seatRow, seatCol;
+	String seatStatus;
 }
