@@ -60,7 +60,6 @@
 			<i class="fa-solid fa-list"></i>
 			목록
 		</a>
-		
 		<button type="submit" class="btn btn-positive">
 			<i class="fa-solid fa-edit"></i>
 			수정하기
