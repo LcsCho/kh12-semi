@@ -24,9 +24,9 @@
 			<br>
 			
 			경기장이름 
-			<select name="stadiumNo" class="w-100" id="stadiumNo">
+			<select name="stadiumName" class="w-100" id="stadiumName">
 				<c:forEach var="stadiumDto" items="${stadiumList}">
-					<option value="${stadiumDto.stadiumNo}">${stadiumDto.stadiumName}</option>
+					<option value="${stadiumDto.stadiumName}">${stadiumDto.stadiumName}</option>
 				</c:forEach>
 			</select> 
 			경기일 
