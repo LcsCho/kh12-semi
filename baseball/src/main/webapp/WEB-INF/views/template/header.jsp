@@ -129,4 +129,35 @@
             </c:choose>
             </div>
         </header>
+
+        <section>
+
+        <nav>
+            <ul class="menu center">
+       
+                <li><a href="/match/list"><i class="fa-solid fa-calendar-days fa-2x"></i>경기일정</a></li>
+                <li><a href="#"><i class="fa-solid fa-ticket fa-2x"></i>예매하기</a></li>
+                <li><a href="#"><i class="fa-solid fa-chair fa-2x"></i>좌석정보</a>
+                    <ul>
+                        <li><a href="/pocketmon/insert">등록</a></li>
+                    </ul>
+                </li>
+                <li class="menu-right">
+                    <a href="/team/list"><i class="fa-solid fa-ranking-star fa-2x"></i>기록/순위</a>
+                    <ul>
+                        <li><a href="/member/logout">로그아웃</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="fa-solid fa-baseball-bat-ball fa-2x"></i>구단정보</a></li>
+                <li><a href="/board/list"><i class="fa-solid fa-check fa-2x"></i>공지사항</a></li>
+                
+
+                <li class="menu-right">
+                    <a href="/member/login"><i class="fa-solid fa-question fa-2x"></i>관리자메뉴</a>
+                    <ul>
+                        <li><a href="/admin/home">관리자메뉴</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
         <section>
