@@ -20,33 +20,57 @@
 
 
     <style>
-         nav ul.menu li a i {
-            display: block;
-        }
 
-        #delete-border.btn {
-            border: 10px solid;
-        }
-
-        ul.menu li {
-            padding-top: 1.3em;
-            color: #360a01;
-            background-color: #ffff;
-            line-height: 2.5em;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .fa-solid{
-            font-size: 40px;
-            color: #360a01;
-        }
-        
     </style>
     <!-- js작성공간 -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
+<div class="right">
+        <div class="etc">
+                
+               <c:choose>
+			<c:when test="${sessionScope.name != null}">
+			
+                <div class="row">
+                    <a href="/member/logout">로그아웃</a>
+                </div>              
+                &nbsp;
+                <div class="row">
+                    |
+                </div>
+                 &nbsp;                
+                <div class="row">
+                    <a href="/member/logout"> 예매확인</a>
+                </div>
+                &nbsp;
+                <div class="row">
+                    |
+                </div>
+                &nbsp;
+                <div class="row">
+                    <a href="/member/mypage">마이페이지</a>	              
+                </div>        
+            </c:when>
+            
+            <c:otherwise>
+            	 <div class="row">
+                    <a href="/member/login">로그인</a>
+                </div>
+                &nbsp;
+                <div class="row">
+                    |
+                </div>
+                &nbsp;
+                <div class="row">
+                    <a href="/member/join">회원가입</a>                    
+                </div>        
+            </c:otherwise>
+            </c:choose>
+            </div>
+    </div>
+    
     <main>
         <header>
             <div class="logo">
@@ -88,46 +112,7 @@
 
                     </ul>
                 </nav>
-                
-                <div class="etc">
-                
-               <c:choose>
-			<c:when test="${sessionScope.name != null}">
-                <div class="row">
-                    <a href="/member/logout">로그아웃 </a>
-                </div>
-                &nbsp;
-                <div class="row">
-                    |
-                </div>
-                <div class="row">
-                    <a href="/member/logout">예매확인 </a>
-                </div>
-                &nbsp;
-                <div class="row">
-                    |
-                </div>
-                &nbsp;
-                <div class="row">
-                    <a href="/member/mypage">마이페이지</a>	              
-                </div>        
-            </c:when>
-            
-            <c:otherwise>
-            	 <div class="row">
-                    <a href="/member/login">로그인</a>
-                </div>
-                &nbsp;
-                <div class="row">
-                    |
-                </div>
-                &nbsp;
-                <div class="row">
-                    <a href="/member/join">회원가입</a>                    
-                </div>        
-            </c:otherwise>
-            </c:choose>
-            </div>
+
         </header>
         <nav>
         <section>
