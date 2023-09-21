@@ -39,29 +39,29 @@ public class MatchDaoImpl implements MatchDao{
 
 	@Override
 	public boolean delete(int matchNo) {
-		String sql = "delete match where match_no=?";
+		String sql = "delete match where match_no = ?";
 		Object[] data = {matchNo} ;
 		return jdbcTemplate.update(sql, data)>0;
 	}
 
 	@Override
 	public boolean update(MatchDto matchDto) {
-		String sql ="update match set() where match_no=?";
-		Object[] data = {} ;
-		return jdbcTemplate.update(sql,data)>0;
+		String sql ="update match set match_home_score = ?, match_away_score = ? where match_no = ?";
+		Object[] data = {matchDto.getMatchHomeScore(), matchDto.getMatchAwayScore()} ;
+		return jdbcTemplate.update(sql,data) > 0;
 	}
 
 	@Override
 	public MatchDto selectOne(int matchNo) {
-		String sql = "select * from match where match_no=?";
+		String sql = "select * from match where match_no = ?";
 		Object[] data = {matchNo} ; 
 		List<MatchDto> list = jdbcTemplate.query(sql, matchMapper, data);
-		return list.isEmpty()?null:list.get(0);
+		return list.isEmpty() ? null : list.get(0);
 	}
 
 	@Override
 	public List<MatchDto> selectList() {
-		String sql ="select * from match order by match_no desc";
+		String sql ="select * from match order by match_date desc";
 		return jdbcTemplate.query(sql, matchMapper);
 	}
 

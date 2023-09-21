@@ -11,11 +11,11 @@
 <form action="insert" method="post">
 	<div class="container w-300">
 		<div class="row left">
-			경기장: <select name="stadiumNo" class="w-100" id="stadiumNo">
-				<c:forEach var="stadiumDto" items="${list}">
-					<option value="${stadiumDto.stadiumNo}">${stadiumDto.stadiumName}</option>
+			좌석구역: <select name="seatAreaZone" class="w-100" id="seatAreaZone">
+				<c:forEach var="seatAreaDto" items="${list}">
+					<option value="${seatAreaDto.seatAreaZone}">${seatAreaDto.seatAreaZone}</option>
 				</c:forEach>
-			</select> 구역: <select name="seatAreaZone" class="w-100">
+			</select> 좌석수: <select name="seatAreaZone" class="w-100">
 				<option value="A">A</option>
 				<option value="B">B</option>
 				<option value="C">C</option>

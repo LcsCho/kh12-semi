@@ -43,11 +43,12 @@ public class MatchController {
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int matchNo, Model model) {
 		MatchDto matchDto = matchDao.selectOne(matchNo);
+		model.addAttribute("matchDto", matchDto);
 		return "/WEB-INF/views/match/detail.jsp";
 	}
 	
 	@GetMapping("/change")
-	public String change(Model model, int matchNo) {
+	public String change(Model model, @RequestParam int matchNo) {
 		MatchDto matchDto = matchDao.selectOne(matchNo);
 		model.addAttribute("matchDto", matchDto);
 		return "/WEB-INF/views/match/change.jsp";
