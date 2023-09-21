@@ -34,6 +34,8 @@ public class SeatAreaController {
 	
 	@PostMapping("/insert")
 	public String insert(@ModelAttribute SeatAreaDto seatAreaDto) {
+		int seatAreaNo = seatAreaDao.sequenceSeatArea();
+		seatAreaDto.setSeatAreaNo(seatAreaNo);
 		seatAreaDao.insert(seatAreaDto);
 		return "redirect:insertFinish";
 	}
@@ -42,6 +44,7 @@ public class SeatAreaController {
 	public String insertFinish() {
 		return "/WEB-INF/views/seatArea/insertFinish.jsp";
 	}
+	
 	
 	
 }
