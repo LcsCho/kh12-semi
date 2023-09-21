@@ -84,6 +84,8 @@
                     <a href="/member/login"><i class="fa-solid fa-question fa-2x"></i>관리자메뉴</a>
                     <ul>
                         <li><a href="/admin/home">관리자메뉴</a></li>
+                        <li><a href="/stadium/insert">경기장등록</a></li>
+                        <li><a href="/seatArea/insert">구역별가격등록</a></li>
                     </ul>
                 </li>
             </ul>
