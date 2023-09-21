@@ -34,7 +34,7 @@ public class SeatDaoImpl implements SeatDao {
 
 	@Override
 	public int sequenceSeat() {
-		String sql = "select seat_seq.nextval from dual";
+		String sql = "select seat_no_seq.nextval from dual";
 		return jdbcTemplate.queryForObject(sql, int.class);
 	}
 
@@ -60,6 +60,7 @@ public class SeatDaoImpl implements SeatDao {
 		Object[] data = { seatNo };
 		return jdbcTemplate.update(sql, data) > 0;
 	}
+	
 	
 	
 

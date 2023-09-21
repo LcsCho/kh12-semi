@@ -11,10 +11,7 @@
 <form action="insert" method="post">
 	<div class="container w-300">
 		<div class="row left">
-			좌석번호
-			<div class="row">
-				<input class="form-input w-100" type="number" name="seatNo">
-			</div>
+			
 			<!-- 좌석 구역 -->
 			<div class="row">
 				좌석구역: <select name="seatAreaNo" class="w-100" id="seatAreaNo">
