@@ -1,5 +1,7 @@
 package com.kh.baseball.dao;
 
-public interface SeatDao {
+import com.kh.baseball.dto.SeatDto;
 
+public interface SeatDao {
+	void insert(SeatDto seatDto);
 }
