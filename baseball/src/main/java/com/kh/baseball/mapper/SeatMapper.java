@@ -14,7 +14,7 @@ public class SeatMapper implements RowMapper<SeatDto>{
 	@Override
 	public SeatDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 		SeatDto seatDto = new SeatDto();
-		seatDto.setSeatId(rs.getInt("seat_id"));
+		seatDto.setSeatNo(rs.getInt("seat_no"));
 		seatDto.setSeatAreaNo(rs.getInt("seat_area_no"));
 		seatDto.setSeatRow(rs.getInt("seat_row"));
 		seatDto.setSeatCol(rs.getInt("seat_col"));
