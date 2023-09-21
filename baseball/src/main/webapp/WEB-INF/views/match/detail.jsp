@@ -19,8 +19,8 @@
 				<td>${matchDto.matchDate}</td>
 			</tr>
 			<tr>
-				<th>경기장번호</th>
-				<td>${matchDto.stadiumNo}</td>
+				<th>경기장</th>
+				<td>${matchDto.stadiumName}</td>
 			</tr>
 			<tr>
 				<th>홈팀</th>

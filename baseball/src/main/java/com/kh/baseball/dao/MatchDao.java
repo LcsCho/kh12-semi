@@ -12,7 +12,4 @@ public interface MatchDao {
 	boolean update(MatchDto matchDto);
 	MatchDto selectOne(int matchNo);
 	List<MatchDto> selectList();
-	
-	MatchDto selectStadiumNo();
-
 }

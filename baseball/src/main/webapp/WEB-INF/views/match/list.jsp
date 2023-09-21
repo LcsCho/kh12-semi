@@ -11,7 +11,7 @@
 			<tr>
 				<th>매치번호</th>
 				<th>경기일</th>
-				<th>경기장번호</th>
+				<th>경기장</th>
 				<th>홈팀</th>
 				<th>어웨이팀</th>
 				<th>홈팀스코어</th>
@@ -23,7 +23,7 @@
 				<tr>
 					<td><a href="detail?matchNo=${matchDto.matchNo}">${matchDto.matchNo}</a></td>
 					<td>${matchDto.matchDate}</td>
-					<td>${matchDto.stadiumNo}</td>
+					<td>${matchDto.stadiumName}</td>
 					<td>${matchDto.homeTeam}</td>
 					<td>${matchDto.awayTeam}</td>
 					<td>${matchDto.matchHomeScore}</td>
