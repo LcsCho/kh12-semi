@@ -11,14 +11,14 @@
 			홈팀 선택
 			<select name="homeTeam" class="w-100" id="homeTeam">
 				<c:forEach var="teamDto" items="${teamList}">
-					<option value="${teamDto.teamNo}">${teamDto.teamName}</option>
+					<option value="${teamDto.teamName}">${teamDto.teamName}</option>
 				</c:forEach>
 			</select>
 
 			어웨이팀 선택
 			<select name="awayTeam" class="w-100" id="awayTeam">
 				<c:forEach var="teamDto" items="${teamList}">
-					<option value="${teamDto.teamNo}">${teamDto.teamName}</option>
+					<option value="${teamDto.teamName}">${teamDto.teamName}</option>
 				</c:forEach>
 			</select>
 			<br>

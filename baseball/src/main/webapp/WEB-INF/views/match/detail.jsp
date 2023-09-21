@@ -5,7 +5,7 @@
 <h2>상세페이지</h2>
 <div class="container w-500">
 	<div class="row">
-		<h1>${matchDto.matchNo} 상세 정보</h1>
+		<h1>경기결과</h1>
 	</div>
 	
 	<div class="row">
