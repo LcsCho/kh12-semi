@@ -222,8 +222,8 @@ textarea.form-input.fixed {
     - 부정버튼 - 페이지의 목적을 달성할 수 없도록 하는 버튼
 */
 .btn.btn-positive {
-    border-color: #0984e3;
-    background-color: #0984e3;
+    border-color: #360A01;
+    background-color: #360A01;
     color: white;
 }
 
@@ -974,6 +974,10 @@ nav ul.menu li a i {
         font-size: 18px;
         font-weight: bold;
     }
+    
+	  .col-5{
+      padding-top: 1.5em;
+        }
     
     /*메뉴 아이콘 사이즈 및 색상*/
     .fa-solid{
