@@ -97,6 +97,9 @@
 .w-1200 {
     width: 1200px;
 }
+.w-1400 {
+    width: 1400px;
+}
 
 /*
     컨테이너에 배치할 태그의 자리를 row라고 부른다
@@ -639,8 +642,8 @@ ul.menu>li {
 /* 색상 변경 및 크기 설정 */
 ul.menu,
 ul.menu ul {
-    font-size: 24px;
-    background-color: #ebeded;
+    font-size: 20px;
+    background-color: #ffff;
 }
 
 ul.menu li {
@@ -650,9 +653,9 @@ ul.menu li {
 }
 
 /* 메뉴에 마우스가 올라가면 하이라이트 효과 */
-ul.menu li:hover {
+/* ul.menu li:hover {
     background-color: #ebeded;
-}
+} */
 
 /* 
     1차메뉴의 아래쪽에 2차메뉴가 위치하도록 position 변경
