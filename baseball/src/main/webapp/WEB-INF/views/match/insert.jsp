@@ -4,8 +4,6 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 <h2>등록</h2>
-
-<<<<<<< HEAD
 <form action="insert" method="post" autocomplete="off">
 	<div class="container w-600">
 		<div class="row">
@@ -28,7 +26,6 @@
 		</div>
 	</div>
 
-=======
 <form class="join-form" action="" method="post" autocomplete="off">
 	<div class="container w-600">
 		<div class="row">
@@ -49,7 +46,6 @@
 			<button type="submit" class="btn btn-positive">등록하기</button>
 		</div>
 	</div>
->>>>>>> refs/remotes/origin/main
 </form>
 
 
