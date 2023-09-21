@@ -29,8 +29,8 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public void insert(BoardDto boardDto) {
 		String sql = "insert into board("
-				+ "board_no, board_writer, board_title, board_content"
-				+ "values(?, ?, ?, ?, ?, ?, ?)";
+				+ "board_no, board_writer, board_title, board_content) "
+				+ "values(?, ?, ?, ?)";
 		Object[] data = {boardDto.getBoardNo(),
 								boardDto.getBoardWriter(),
 								boardDto.getBoardTitle(), 
