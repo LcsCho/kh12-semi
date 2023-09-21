@@ -26,6 +26,9 @@ public class MatchController {
 	}
 	@PostMapping("/insert")
 	public String insert(@ModelAttribute MatchDto matchDto) {
+		int matchNo = matchDao.sequence();
+		matchDto.setMatchNo(matchNo);
+		
 		matchDao.insert(matchDto);
 		return "redirect:list";
 	}
