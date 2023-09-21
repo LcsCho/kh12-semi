@@ -32,7 +32,7 @@ public class StadiumDaoImpl implements StadiumDao {
 	}
 
 	@Override
-	public List<StadiumDto>  selectList() {
+	public List<StadiumDto> selectList() {
 		String sql = "select * from stadium order by stadium_no asc";
 		return jdbcTemplate.query(sql, stadiumMapper);
 	}

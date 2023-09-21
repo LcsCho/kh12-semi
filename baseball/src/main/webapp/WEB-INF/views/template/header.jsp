@@ -63,7 +63,7 @@
         <nav>
             <ul class="menu center">
        
-                <li><a href="#"><i class="fa-solid fa-calendar-days fa-2x"></i>경기일정</a></li>
+                <li><a href="/match/list"><i class="fa-solid fa-calendar-days fa-2x"></i>경기일정</a></li>
                 <li><a href="#"><i class="fa-solid fa-ticket fa-2x"></i>예매하기</a></li>
                 <li><a href="#"><i class="fa-solid fa-chair fa-2x"></i>좌석정보</a>
                     <ul>
@@ -71,7 +71,7 @@
                     </ul>
                 </li>
                 <li class="menu-right">
-                    <a href="#"><i class="fa-solid fa-ranking-star fa-2x"></i>기록/순위</a>
+                    <a href="/team/list"><i class="fa-solid fa-ranking-star fa-2x"></i>기록/순위</a>
                     <ul>
                         <li><a href="/member/logout">로그아웃</a></li>
                     </ul>

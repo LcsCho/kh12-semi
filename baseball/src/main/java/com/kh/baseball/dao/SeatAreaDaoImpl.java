@@ -69,6 +69,5 @@ public class SeatAreaDaoImpl implements SeatAreaDao{
 		return jdbcTemplate.update(sql, data) > 0;
 	}
 
-	
 
 }

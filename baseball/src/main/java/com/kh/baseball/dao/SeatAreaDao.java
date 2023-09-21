@@ -12,4 +12,5 @@ public interface SeatAreaDao {
 	List<SeatAreaDto> selectList();
 	boolean update(SeatAreaDto seatAreaDto);
 	boolean delete(int seatAreaNo);
+
 }
