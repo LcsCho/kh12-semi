@@ -7,19 +7,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.baseball.dto.TeamDto;
-import com.kh.baseball.mapper.TeamDetailMapper;
-import com.kh.baseball.mapper.TeamListMapper;
+import com.kh.baseball.mapper.TeamMapper;
 
 @Repository
 public class TeamDaoImpl implements TeamDao{
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	private TeamDetailMapper teamDetailMapper;
-	
-	@Autowired
-	private TeamListMapper teamListMapper;
+	private TeamMapper teamMapper;
 	
 	@Override
 	public int sequenceTeam() {
@@ -39,14 +36,14 @@ public class TeamDaoImpl implements TeamDao{
 	public TeamDto selectOne(int teamNo) {
 		String sql = "select * from team where team_no = ?";
 		Object[] data = {teamNo};
-		List<TeamDto> list = jdbcTemplate.query(sql, teamDetailMapper, data);
+		List<TeamDto> list = jdbcTemplate.query(sql, teamMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}
 
 	@Override
 	public List<TeamDto> selectList() {
-		String sql = "select * from team order by team_win desc";
-		return jdbcTemplate.query(sql, teamListMapper);
+		String sql = "select * from team order by team_game_gap, team_win_rate desc";
+		return jdbcTemplate.query(sql, teamMapper);
 	}
 
 	@Override

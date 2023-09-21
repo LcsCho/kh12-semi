@@ -20,12 +20,12 @@
 		<tr>
 			<td>순위</td>
 			<td><a href="detail?teamNo=${teamDto.teamNo}">${teamDto.teamName}</a></td>
-			<td>경기</td>
+			<td>${teamDto.teamMatch}</td>
 			<td>${teamDto.teamWin}</td>
 			<td>${teamDto.teamDraw}</td>
 			<td>${teamDto.teamLose}</td>
-			<td>승률</td>
-			<td>게임차</td>
+			<td>${teamDto.teamWinRate}</td>
+			<td>${teamDto.teamGameGap}</td>
 		</tr>
 		</c:forEach>
 	</tbody>
