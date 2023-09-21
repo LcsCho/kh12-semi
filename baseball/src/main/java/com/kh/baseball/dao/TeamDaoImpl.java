@@ -65,5 +65,75 @@ public class TeamDaoImpl implements TeamDao{
 		return jdbcTemplate.update(sql, data) > 0;
 	}
 
+	@Override
+	public boolean updateWin(int teamNo) {
+		String sql = "update team set team_win + 1, team_match = team_match + 1 "
+				+ "where team_no = ?";
+		Object[]data = {teamNo};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+	@Override
+	public boolean updateLose(int teamNo) {
+		String sql = "update team set team_lose + 1, team_match = team_match + 1 "
+				+ "where team_no = ?";
+		Object[]data = {teamNo};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+	@Override
+	public boolean updateDraw(int teamNo) {
+		String sql = "update team set team_draw + 1, team_match = team_match + 1 "
+				+ "where team_no = ?";
+		Object[]data = {teamNo};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+	@Override
+	public boolean updateWinRate(int teamNo) {
+		String sql = "update team set team_win_rate = "
+						+ "case "
+						+ "when (team_match - team_draw) = 0 then 0 "
+						+ "else round(team_win / (team_match - team_draw), 3) "
+						+ "end "
+						+ "where team_no = ?";
+		Object[]data = {teamNo};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+	@Override
+	public boolean updateHomeTeamGameGap(int teamNo) {
+		String sql = "update team "
+				+ "set team_game_gap = "
+				+ "case "
+				+ "when (team_win - (select team_win from team where team_no = ?)) >= 0 then"
+				+ "(team_win - (select team_win from team where team_no = ?)) * 0.5 + "
+				+ "(team_lose - (SELECT team_lose FROM team WHERE team_no = ?)) * 0.5 "
+				+ "else "
+				+ "(team_lose - (SELECT team_lose FROM team WHERE team_no = ?)) * 0.5 + "
+				+ "(team_win - (SELECT team_win FROM team WHERE team_no = ?)) * 0.5 "
+				+ "end"
+				+ "where team_no = ?";
+		Object[]data = {teamNo};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+	
+	@Override
+	public boolean updateAwayTeamGameGap(int teamNo) {
+		String sql = "update team "
+				+ "set team_game_gap = "
+				+ "case "
+				+ "when (team_win - (select team_win from team where team_no = ?)) >= 0 then"
+				+ "(team_win - (select team_win from team where team_no = ?)) * 0.5 + "
+				+ "(team_lose - (SELECT team_lose FROM team WHERE team_no = ?)) * 0.5 "
+				+ "else "
+				+ "(team_lose - (SELECT team_lose FROM team WHERE team_no = ?)) * 0.5 + "
+				+ "(team_win - (SELECT team_win FROM team WHERE team_no = ?)) * 0.5 "
+				+ "end"
+				+ "where team_no = ?";
+		Object[]data = {teamNo};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+
 
 }

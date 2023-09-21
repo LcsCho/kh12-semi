@@ -33,7 +33,12 @@ public class MatchDaoImpl implements MatchDao{
 				+ "match_date, match_home_score, "
 				+ "match_away_score) "
 				+ "values(?,?,?,?,?,?,?)";
-		Object[] data = {matchDto.getMatchNo(), matchDto.getHomeTeam(),matchDto.getAwayTeam(),matchDto.getStadiumNo(),matchDto.getMatchDate(),matchDto.getMatchHomeScore(),matchDto.getMatchAwayScore()};
+		Object[] data = {
+				matchDto.getMatchNo(), matchDto.getHomeTeam(),
+				matchDto.getAwayTeam(),matchDto.getStadiumNo(),
+				matchDto.getMatchDate(),matchDto.getMatchHomeScore(),
+				matchDto.getMatchAwayScore()
+			};
 		jdbcTemplate.update(sql,data);
 	}
 

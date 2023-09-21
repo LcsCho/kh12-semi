@@ -12,4 +12,10 @@ public interface TeamDao {
 	List<TeamDto> selectList();
 	boolean update(TeamDto teamDto);
 	boolean delete(int teamNo);
+	boolean updateWin(int teamNo);
+	boolean updateLose(int teamNo);
+	boolean updateDraw(int teamNo);
+	boolean updateWinRate(int teamNo);
+	boolean updateHomeTeamGameGap(int teamNo);
+	boolean updateAwayTeamGameGap(int teamNo);
 }
