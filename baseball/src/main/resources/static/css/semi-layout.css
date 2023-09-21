@@ -23,11 +23,10 @@ header>.logo {
 
 header>.title {
     flex-grow: 1;
-
 }
 
 header>.etc {
-    width: 30%;
+    width: 20%;
 }
 
 header>.logo,
