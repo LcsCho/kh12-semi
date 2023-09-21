@@ -33,15 +33,15 @@ public class SeatController {
 	}
 	
 	@GetMapping("/insert")
-	public String insert(@ModelAttribute SeatAreaDto seatAreaDto, Model model) {
+	public String insert(@ModelAttribute SeatAreaDto seatAreaDto ,Model model) {
 		List<SeatAreaDto> list = seatAreaDao.selectList();
-		model.addAttribute("list", list);
-		
+		model.addAttribute("list",list);
 		return "/WEB-INF/views/seat/insert.jsp";
 	}
 	@PostMapping("/insert")
 	public String insert(SeatDto seatDto) {
 		// int seatNo = seatDao.sequenceSeat();
+		int seatNo = seatDao.sequenceSeat();
 		//seatAreaNo 를 가져오려면 selectOne 으로 값을 가져온다
 		//seatdto 에 저장을 해야하는데 
 		//seatDto.setSeatAreaNo(seatNo);
@@ -49,4 +49,10 @@ public class SeatController {
 		seatDao.insert(seatDto);
 		return "/WEB-INF/views/seat/insertFinish.jsp";
 	}
+//	
+//	@RequestMapping("/list")
+//	public String list(@RequestParam int seatId) {
+//		
+//	}
+	
 }
