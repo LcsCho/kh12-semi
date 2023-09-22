@@ -16,7 +16,7 @@ import com.kh.baseball.dto.FindStadiumNameDto;
 import com.kh.baseball.dto.SeatDto;
 
 @Controller
-@RequestMapping("/seat")
+@RequestMapping("/admin/seat")
 public class SeatController {
 	
 	@Autowired
