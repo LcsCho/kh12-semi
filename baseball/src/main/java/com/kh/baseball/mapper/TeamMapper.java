@@ -17,7 +17,6 @@ public class TeamMapper implements RowMapper<TeamDto>{
 		teamDto.setTeamNo(rs.getInt("team_no"));
 		teamDto.setTeamName(rs.getString("team_name"));
 		teamDto.setTeamRegion(rs.getString("team_region"));
-		teamDto.setTeamLogo(rs.getString("team_logo"));
 		teamDto.setTeamWin(rs.getInt("team_win"));
 		teamDto.setTeamLose(rs.getInt("team_lose"));
 		teamDto.setTeamDraw(rs.getInt("team_draw"));
