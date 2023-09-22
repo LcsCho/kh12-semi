@@ -65,10 +65,13 @@ public class TeamDaoImpl implements TeamDao{
 		Object[] data = {teamNo};
 		return jdbcTemplate.update(sql, data) > 0;
 	}
+	
+	
+	// 팀 결과 메서드
 
 	@Override
 	public boolean updateWin(String teamName) {
-		String sql = "update team set team_win + 1, team_match = team_match + 1 "
+		String sql = "update team set team_win = team_win + 1, team_match = team_match + 1 "
 				+ "where team_name = ?";
 		Object[]data = {teamName};
 		return jdbcTemplate.update(sql, data) > 0;
@@ -76,7 +79,7 @@ public class TeamDaoImpl implements TeamDao{
 
 	@Override
 	public boolean updateLose(String teamName) {
-		String sql = "update team set team_lose + 1, team_match = team_match + 1 "
+		String sql = "update team set team_lose = team_lose + 1, team_match = team_match + 1 "
 				+ "where team_name = ?";
 		Object[]data = {teamName};
 		return jdbcTemplate.update(sql, data) > 0;
@@ -84,7 +87,7 @@ public class TeamDaoImpl implements TeamDao{
 
 	@Override
 	public boolean updateDraw(String teamName) {
-		String sql = "update team set team_draw + 1, team_match = team_match + 1 "
+		String sql = "update team set team_draw = team_draw + 1, team_match = team_match + 1 "
 				+ "where team_name = ?";
 		Object[]data = {teamName};
 		return jdbcTemplate.update(sql, data) > 0;

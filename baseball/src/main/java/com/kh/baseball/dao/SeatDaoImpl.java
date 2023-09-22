@@ -20,18 +20,22 @@ public class SeatDaoImpl implements SeatDao {
 
 	@Override
 	public void insert(SeatDto seatDto) {
+		//2중 for문으로 행열의 곱으로 좌석을 생성한다
 		String sql = "insert into seat(seat_no, seat_area_no, "
 				+ "seat_row, seat_col, seat_status) "
 				+ "values(?, ?, ?, ?, ?)";
 		Object[] data = { seatDto.getSeatNo(), seatDto.getSeatAreaNo(), seatDto.getSeatRow(), seatDto.getSeatCol(),
 				seatDto.getSeatStatus() };
-
-		
-		
-	
 		
 		jdbcTemplate.update(sql, data);
 	}
+	
+//	for(int i=0;i<3;i++){
+//		for(int j=0;j<4;j++){
+//			System.out.print("*");
+//		}
+//		System.out.println("");
+//	}
 
 	@Override
 	public int sequenceSeat() {
@@ -61,6 +65,15 @@ public class SeatDaoImpl implements SeatDao {
 		Object[] data = { seatNo };
 		return jdbcTemplate.update(sql, data) > 0;
 	}
+	@Override
+	public void insertSeats(SeatDto seatDto) {
+        String sql = "INSERT INTO seat(seat_no,seat_area_no, seat_row, seat_col, seat_status) VALUES (seat_no_seq.nextval,?, ?, ?, ?)";
+        for (int row = 1; row <=  seatDto.getSeatRow(); row++) {
+            for (int col = 1; col <= seatDto.getSeatCol(); col++) {
+                jdbcTemplate.update(sql, seatDto.getSeatAreaNo(), row, col, seatDto.getSeatStatus());
+            }
+        }
+    }
 	
 	
 	

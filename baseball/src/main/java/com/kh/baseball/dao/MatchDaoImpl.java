@@ -63,10 +63,13 @@ public class MatchDaoImpl implements MatchDao{
 		List<MatchDto> list = jdbcTemplate.query(sql, matchMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}
+	
+	
 
 	@Override
 	public List<MatchDto> selectList() {
 		String sql ="select * from match order by match_date desc";
 		return jdbcTemplate.query(sql, matchMapper);
 	}
+
 }
