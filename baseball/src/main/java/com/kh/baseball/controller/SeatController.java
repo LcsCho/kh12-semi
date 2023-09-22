@@ -59,28 +59,18 @@ public class SeatController {
 	}
 	@PostMapping("/insert")
 	public String insert(SeatDto seatDto) {
-<<<<<<< HEAD
 		// int seatNo = seatDao.sequenceSeat();
 		int seatNo = seatDao.sequenceSeat();
 		//seatAreaNo 를 가져오려면 selectOne 으로 값을 가져온다
 		//seatdto 에 저장을 해야하는데 
 		seatDto.setSeatNo(seatNo);
 		
-		seatDao.insert(seatDto);
-		return "/WEB-INF/views/admin/seat/insertFinish.jsp";
-=======
 //	    int seatNo = seatDao.sequenceSeat();
 //	    seatDto.setSeatNo(seatNo);
-//	    
+   
 	    seatDao.insertSeats(seatDto);
 	    return "/WEB-INF/views/seat/insertFinish.jsp";
->>>>>>> refs/remotes/origin/main
 	}
-
-
-
-
-
 
 //	
 	

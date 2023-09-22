@@ -16,7 +16,7 @@ import com.kh.baseball.dto.StadiumDto;
 
 
 @Controller
-@RequestMapping("/stadium")
+@RequestMapping("/admin/stadium")
 public class StadiumController {
 	
 	
@@ -25,7 +25,7 @@ public class StadiumController {
 	
 	@GetMapping("/insert")
 	public String insert() {
-		return "/WEB-INF/views/stadium/insert.jsp";
+		return "/WEB-INF/views/admin/stadium/insert.jsp";
 	}
 	@PostMapping("/insert")
 	public String insert(@ModelAttribute StadiumDto stadiumDto) {
@@ -46,7 +46,7 @@ public class StadiumController {
 	}
 	   @RequestMapping("/insertFinish")
 	   public String insertFinish() {
-	      return "/WEB-INF/views/stadium/insertFinish.jsp";
+	      return "/WEB-INF/views/admin/stadium/insertFinish.jsp";
 	   }
 	   
 	   @RequestMapping("/list")
@@ -54,13 +54,13 @@ public class StadiumController {
 		   List<StadiumDto> list = stadiumDao.selectList();
 		   model.addAttribute("list", list);
 		   
-		   return "/WEB-INF/views/stadium/list.jsp";
+		   return "/WEB-INF/views/admin/stadium/list.jsp";
 	   }
 	   
 	   @RequestMapping("/detail")
 	   public String detail(@RequestParam int stadiumNo, Model model) {
 		   StadiumDto stadiumDto = stadiumDao.selectOne(stadiumNo);
 		   model.addAttribute("stadiumDto", stadiumDto);
-		   return "/WEB-INF/views/stadium/detail.jsp";
+		   return "/WEB-INF/views/admin/stadium/detail.jsp";
 	   }
 }

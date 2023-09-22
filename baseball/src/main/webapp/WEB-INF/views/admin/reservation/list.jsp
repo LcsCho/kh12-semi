@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/teamSidebar.jsp"></jsp:include>
 <div class="row">
 		<table class="table table-hover table-border">
 			<thead>
