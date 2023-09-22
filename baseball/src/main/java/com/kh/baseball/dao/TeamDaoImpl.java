@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.baseball.dto.AttachDto;
 import com.kh.baseball.dto.TeamDto;
+import com.kh.baseball.mapper.AttachMapper;
 import com.kh.baseball.mapper.TeamMapper;
 
 @Repository
@@ -17,6 +19,9 @@ public class TeamDaoImpl implements TeamDao{
 	
 	@Autowired
 	private TeamMapper teamMapper;
+	
+	@Autowired
+	private AttachMapper attachMapper;
 	
 	@Override
 	public int sequenceTeam() {
@@ -42,7 +47,7 @@ public class TeamDaoImpl implements TeamDao{
 
 	@Override
 	public List<TeamDto> selectList() {
-		String sql = "select * from team order by team_game_gap, team_win_rate desc";
+		String sql = "select * from teamn order by team_win_rate desc, team_game_gap";
 		return jdbcTemplate.query(sql, teamMapper);
 	}
 
@@ -106,37 +111,54 @@ public class TeamDaoImpl implements TeamDao{
 	}
 
 	@Override
-	public boolean updateHomeTeamGameGap(String teamName) {
+	public boolean updateHomeTeamGameGap(String homeTeam, String awayTeam) {
 		String sql = "update team "
 				+ "set team_game_gap = "
 				+ "case "
-				+ "when (team_win - (select team_win from team where team_name = ?)) >= 0 then"
+				+ "when (team_win - (select team_win from team where team_name = ?)) >= 0 then "
 				+ "(team_win - (select team_win from team where team_name = ?)) * 0.5 + "
 				+ "(team_lose - (SELECT team_lose FROM team WHERE team_name = ?)) * 0.5 "
 				+ "else "
 				+ "(team_lose - (SELECT team_lose FROM team WHERE team_name = ?)) * 0.5 + "
 				+ "(team_win - (SELECT team_win FROM team WHERE team_name = ?)) * 0.5 "
-				+ "end"
+				+ "end "
 				+ "where team_name = ?";
-		Object[]data = {teamName, teamName, teamName, teamName, teamName, teamName};
+		Object[]data = {awayTeam, awayTeam, awayTeam, awayTeam, awayTeam, homeTeam};
 		return jdbcTemplate.update(sql, data) > 0;
 	}
 	
 	@Override
-	public boolean updateAwayTeamGameGap(String teamName) {
+	public boolean updateAwayTeamGameGap(String homeTeam, String awayTeam) {
 		String sql = "update team "
 				+ "set team_game_gap = "
 				+ "case "
-				+ "when (team_win - (select team_win from team where team_name = ?)) >= 0 then"
+				+ "when (team_win - (select team_win from team where team_name = ?)) >= 0 then "
 				+ "(team_win - (select team_win from team where team_name = ?)) * 0.5 + "
 				+ "(team_lose - (SELECT team_lose FROM team WHERE team_name = ?)) * 0.5 "
 				+ "else "
 				+ "(team_lose - (SELECT team_lose FROM team WHERE team_name = ?)) * 0.5 + "
 				+ "(team_win - (SELECT team_win FROM team WHERE team_name = ?)) * 0.5 "
-				+ "end"
+				+ "end "
 				+ "where team_name = ?";
-		Object[]data = {teamName, teamName, teamName, teamName, teamName, teamName};
+		Object[]data = {homeTeam, homeTeam, homeTeam, homeTeam, homeTeam, awayTeam};
 		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+	@Override
+	public void connect(int teamNo, int attachNo) {
+		String sql = "insert into team_image values(?, ?)";
+		Object[] data = {teamNo, attachNo};
+		jdbcTemplate.update(sql, data);
+	}
+
+	@Override
+	public AttachDto findImage(int teamNo) {
+		String sql = "select * from attach "
+				+ "where attach_no = (select attach_no from team_image "
+				+ "where team_no =?)";
+		Object[] data = {teamNo};
+		List<AttachDto> list = jdbcTemplate.query(sql, attachMapper, data);
+		return list.isEmpty() ? null : list.get(0);
 	}
 
 

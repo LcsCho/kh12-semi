@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.baseball.dao.SeatAreaDao;
 import com.kh.baseball.dao.SeatDao;
+import com.kh.baseball.dao.StadiumDao;
+import com.kh.baseball.dto.FindStadiumNameDto;
 import com.kh.baseball.dto.SeatAreaDto;
 import com.kh.baseball.dto.SeatDto;
+import com.kh.baseball.dto.StadiumDto;
 
 @Controller
 @RequestMapping("/admin/seat")
@@ -24,6 +27,7 @@ public class SeatController {
 	
 	@Autowired
 	private SeatAreaDao seatAreaDao;
+	
 	
 	@RequestMapping("/list")
 	public String insert(@ModelAttribute SeatDto seatDto, Model model) {
@@ -51,25 +55,29 @@ public class SeatController {
 //	}
 	
 	
+//	@GetMapping("/insert")
+//	public String insert(@ModelAttribute SeatAreaDto seatAreaDto,Model model) {
+//		List<SeatAreaDto> list = seatAreaDao.selectStadiumName();
+//		//List<StadiumDto> list2 = StadiumDao.sel
+//		model.addAttribute("list",list);
+//		return "/WEB-INF/views/seat/insert.jsp";
+//	}
 	@GetMapping("/insert")
-	public String insert(@ModelAttribute SeatAreaDto seatAreaDto ,Model model) {
-		List<SeatAreaDto> list = seatAreaDao.selectList();
+	public String insert(@ModelAttribute FindStadiumNameDto nameDto,Model model) {
+		List<FindStadiumNameDto> list = seatAreaDao.selectStadiumName();
+		//List<StadiumDto> list2 = StadiumDao.sel
 		model.addAttribute("list",list);
 		return "/WEB-INF/views/admin/seat/insert.jsp";
 	}
 	@PostMapping("/insert")
 	public String insert(SeatDto seatDto) {
+
 		// int seatNo = seatDao.sequenceSeat();
 		int seatNo = seatDao.sequenceSeat();
 		//seatAreaNo 를 가져오려면 selectOne 으로 값을 가져온다
 		//seatdto 에 저장을 해야하는데 
 		seatDto.setSeatNo(seatNo);
-		
-//	    int seatNo = seatDao.sequenceSeat();
-//	    seatDto.setSeatNo(seatNo);
-   
-	    seatDao.insertSeats(seatDto);
-	    return "/WEB-INF/views/seat/insertFinish.jsp";
+	
 	}
 
 //	

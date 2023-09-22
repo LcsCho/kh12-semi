@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.baseball.controller.FindStadiumNameMapper;
+import com.kh.baseball.dto.FindStadiumNameDto;
 import com.kh.baseball.dto.SeatAreaDto;
-import com.kh.baseball.dto.TeamDto;
 import com.kh.baseball.mapper.SeatAreaMapper;
 
 @Repository
@@ -18,6 +19,8 @@ public class SeatAreaDaoImpl implements SeatAreaDao{
 	
 	@Autowired
 	private SeatAreaMapper seatAreaMapper;
+	@Autowired
+	private FindStadiumNameMapper nameMapper;
 	
 	@Override
 	public int sequenceSeatArea() {
@@ -68,6 +71,14 @@ public class SeatAreaDaoImpl implements SeatAreaDao{
 		Object[] data = {seatAreaNo};
 		return jdbcTemplate.update(sql, data) > 0;
 	}
+	
+	@Override
+	public List<FindStadiumNameDto> selectStadiumName() {
+        String sql = "SELECT sa.seat_area_no, sa.seat_area_zone, sa.seat_area_price, s.stadium_name, s.stadium_no " +
+                     "FROM seat_area sa " +
+                     "INNER JOIN stadium s ON sa.stadium_no = s.stadium_no ORDER BY s.stadium_no ASC, sa.seat_area_zone ASC";
 
+        return jdbcTemplate.query(sql, nameMapper);
+    }
 
 }
