@@ -20,7 +20,7 @@ import com.kh.baseball.dto.MemberDto;
 import com.kh.baseball.vo.PaginationVO;
 
 @Controller
-@RequestMapping("/board")
+@RequestMapping("/admin/board")
 public class BoardController {
 
 	@Autowired
@@ -32,7 +32,7 @@ public class BoardController {
 	// 등록
 	@GetMapping("/write")
 	public String write() {
-		return "/WEB-INF/views/board/write.jsp";
+		return "/WEB-INF/views/admin/board/write.jsp";
 	}
 
 	@PostMapping("/write")
@@ -52,7 +52,7 @@ public class BoardController {
 		List<BoardDto> list = boardDao.selectListByPage(vo);
 		model.addAttribute("list", list);
 
-		return "/WEB-INF/views/board/list2.jsp";
+		return "/WEB-INF/views/admin/board/list.jsp";
 	}
 
 	// 상세
@@ -66,7 +66,7 @@ public class BoardController {
 			MemberDto memberDto = memberDao.selectOne(boardWriter);
 			model.addAttribute("writerDto", memberDto);
 		}
-		return "/WEB-INF/views/board/detail.jsp";
+		return "/WEB-INF/views/admin/board/detail.jsp";
 	}
 
 	// 삭제
@@ -86,7 +86,7 @@ public class BoardController {
 	public String edit(@RequestParam int boardNo, Model model) {
 		BoardDto boardDto = boardDao.selectOne(boardNo);
 		model.addAttribute("boardDto", boardDto);
-		return "/WEB-INF/views/board/edit.jsp";
+		return "/WEB-INF/views/admin/board/edit.jsp";
 	}
 
 	@PostMapping("/edit")

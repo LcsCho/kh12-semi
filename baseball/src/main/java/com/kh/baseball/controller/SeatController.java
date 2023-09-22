@@ -16,7 +16,7 @@ import com.kh.baseball.dto.SeatAreaDto;
 import com.kh.baseball.dto.SeatDto;
 
 @Controller
-@RequestMapping("/seat")
+@RequestMapping("/admin/seat")
 public class SeatController {
 	
 	@Autowired
@@ -29,14 +29,14 @@ public class SeatController {
 	public String insert(@ModelAttribute SeatDto seatDto, Model model) {
 		List<SeatDto> list = seatDao.selectList();
 		model.addAttribute("list", list);
-		return "/WEB-INF/views/seat/list.jsp";
+		return "/WEB-INF/views/admin/seat/list.jsp";
 	}
 	
 	@GetMapping("/insert")
 	public String insert(@ModelAttribute SeatAreaDto seatAreaDto ,Model model) {
 		List<SeatAreaDto> list = seatAreaDao.selectList();
 		model.addAttribute("list",list);
-		return "/WEB-INF/views/seat/insert.jsp";
+		return "/WEB-INF/views/admin/seat/insert.jsp";
 	}
 	@PostMapping("/insert")
 	public String insert(SeatDto seatDto) {
@@ -47,7 +47,7 @@ public class SeatController {
 		seatDto.setSeatNo(seatNo);
 		
 		seatDao.insert(seatDto);
-		return "/WEB-INF/views/seat/insertFinish.jsp";
+		return "/WEB-INF/views/admin/seat/insertFinish.jsp";
 	}
 //	
 	
