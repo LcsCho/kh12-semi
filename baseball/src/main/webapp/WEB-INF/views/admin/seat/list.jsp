@@ -22,7 +22,7 @@
 		<c:forEach var="seatSeletDto" items="${list}">
 			<tr>
 				<td>${seatSeletDto.seatNo}</td>
-				<td>${seatSeletDto.seatAreaNo}</td>
+				<td>${seatSeletDto.seatAreaZone}</td>
 				<td>${seatSeletDto.stadiumName}</td>
 				<td>${seatSeletDto.seatRow}</td>
 				<td>${seatSeletDto.seatCol}</td>
