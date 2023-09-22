@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 
-<h2>상세페이지</h2>
 <div class="container w-500">
 	<div class="row">
-		<h1>${matchDto.matchNo} 상세 정보</h1>
+		<h1>경기결과</h1>
 	</div>
 	
 	<div class="row">
@@ -19,8 +18,8 @@
 				<td>${matchDto.matchDate}</td>
 			</tr>
 			<tr>
-				<th>경기장번호</th>
-				<td>${matchDto.stadiumNo}</td>
+				<th>경기장</th>
+				<td>${matchDto.stadiumName}</td>
 			</tr>
 			<tr>
 				<th>홈팀</th>
@@ -56,4 +55,4 @@
 </div>
 
 
-<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>

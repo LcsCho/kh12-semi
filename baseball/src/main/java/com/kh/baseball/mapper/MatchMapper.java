@@ -16,8 +16,8 @@ public class MatchMapper implements RowMapper<MatchDto>{
 		MatchDto matchDto = new MatchDto();
 		matchDto.setMatchNo(rs.getInt("match_no"));
 		matchDto.setHomeTeam(rs.getString("home_team"));
-		matchDto.setStadiumNo(rs.getInt("stadium_no"));
 		matchDto.setAwayTeam(rs.getString("away_team"));
+		matchDto.setStadiumName(rs.getString("stadium_name"));
 		matchDto.setMatchDate(rs.getDate("match_date"));
 		matchDto.setMatchHomeScore(rs.getInt("match_home_score"));
 		matchDto.setMatchAwayScore(rs.getInt("match_away_score"));

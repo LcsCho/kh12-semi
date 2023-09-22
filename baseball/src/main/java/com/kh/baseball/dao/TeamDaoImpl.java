@@ -47,7 +47,7 @@ public class TeamDaoImpl implements TeamDao{
 
 	@Override
 	public List<TeamDto> selectList() {
-		String sql = "select * from team order by team_game_gap, team_win_rate desc";
+		String sql = "select * from teamn order by team_win_rate desc, team_game_gap";
 		return jdbcTemplate.query(sql, teamMapper);
 	}
 
@@ -62,11 +62,85 @@ public class TeamDaoImpl implements TeamDao{
 		};
 		return jdbcTemplate.update(sql, data) > 0;
 	}
+	
 
 	@Override
 	public boolean delete(int teamNo) {
 		String sql = "delete from team where team_no = ?";
 		Object[] data = {teamNo};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+	
+	
+	// 팀 결과 메서드
+
+	@Override
+	public boolean updateWin(String teamName) {
+		String sql = "update team set team_win = team_win + 1, team_match = team_match + 1 "
+				+ "where team_name = ?";
+		Object[]data = {teamName};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+	@Override
+	public boolean updateLose(String teamName) {
+		String sql = "update team set team_lose = team_lose + 1, team_match = team_match + 1 "
+				+ "where team_name = ?";
+		Object[]data = {teamName};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+	@Override
+	public boolean updateDraw(String teamName) {
+		String sql = "update team set team_draw = team_draw + 1, team_match = team_match + 1 "
+				+ "where team_name = ?";
+		Object[]data = {teamName};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+	@Override
+	public boolean updateWinRate(String teamName) {
+		String sql = "update team set team_win_rate = "
+						+ "case "
+						+ "when (team_match - team_draw) = 0 then 0 "
+						+ "else round(team_win / (team_match - team_draw), 3) "
+						+ "end "
+						+ "where team_name = ?";
+		Object[]data = {teamName};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+	@Override
+	public boolean updateHomeTeamGameGap(String homeTeam, String awayTeam) {
+		String sql = "update team "
+				+ "set team_game_gap = "
+				+ "case "
+				+ "when (team_win - (select team_win from team where team_name = ?)) >= 0 then "
+				+ "(team_win - (select team_win from team where team_name = ?)) * 0.5 + "
+				+ "(team_lose - (SELECT team_lose FROM team WHERE team_name = ?)) * 0.5 "
+				+ "else "
+				+ "(team_lose - (SELECT team_lose FROM team WHERE team_name = ?)) * 0.5 + "
+				+ "(team_win - (SELECT team_win FROM team WHERE team_name = ?)) * 0.5 "
+				+ "end "
+				+ "where team_name = ?";
+		Object[]data = {awayTeam, awayTeam, awayTeam, awayTeam, awayTeam, homeTeam};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+	
+	@Override
+	public boolean updateAwayTeamGameGap(String homeTeam, String awayTeam) {
+		String sql = "update team "
+				+ "set team_game_gap = "
+				+ "case "
+				+ "when (team_win - (select team_win from team where team_name = ?)) >= 0 then "
+				+ "(team_win - (select team_win from team where team_name = ?)) * 0.5 + "
+				+ "(team_lose - (SELECT team_lose FROM team WHERE team_name = ?)) * 0.5 "
+				+ "else "
+				+ "(team_lose - (SELECT team_lose FROM team WHERE team_name = ?)) * 0.5 + "
+				+ "(team_win - (SELECT team_win FROM team WHERE team_name = ?)) * 0.5 "
+				+ "end "
+				+ "where team_name = ?";
+		Object[]data = {homeTeam, homeTeam, homeTeam, homeTeam, homeTeam, awayTeam};
 		return jdbcTemplate.update(sql, data) > 0;
 	}
 

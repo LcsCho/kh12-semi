@@ -8,21 +8,22 @@
 	
 </script>
 
-<form action="insert" method="post">
-	<div class="container w-300">
-		<div class="row left">
-			경기장: <select class="form-input w-100" name="stadiumNo" class="w-100" id="stadiumNo">
-				<c:forEach var="stadiumDto" items="${list}">
-					<option value="${stadiumDto.stadiumNo}">${stadiumDto.stadiumName}</option>
-				</c:forEach>
-			</select> 구역: <select name="seatAreaZone" class="w-100">
+<form action="sta" method="post">
+
+	<div class="w-100">
+경기장 번호: <input type="text" name="stadiumNo" value="${stadiumDto.stadiumNo}">
+	</div>
+		<div class="w-100">
+경기장 이름: <input type="text" name="stadiumName" value="${stadiumDto.stadiumName}">
+	</div>
+	
+		구역: <select name="seatAreaZone" class="w-100">
 				<option value="A">A</option>
 				<option value="B">B</option>
 				<option value="C">C</option>
 			</select> 좌석가격: <input type="number" name="seatAreaPrice"
 				value="${seatAreaDto.seatAreaPrice}" class="w-100"> <br>
-			<br>
-		</div>
+		
 		<div class="row w-100">
 			<button type="submit" class="btn btn-positive w-100">등록</button>
 		</div>

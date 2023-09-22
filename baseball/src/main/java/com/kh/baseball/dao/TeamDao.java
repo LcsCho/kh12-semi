@@ -15,4 +15,12 @@ public interface TeamDao {
 	boolean delete(int teamNo);
 	void connect(int teamNo, int attachNo);
 	AttachDto findImage(int teamNo);
+	
+	boolean updateWin(String teamName);
+	boolean updateLose(String teamName);
+	boolean updateDraw(String teamName);
+	boolean updateWinRate(String teamName);
+	boolean updateHomeTeamGameGap(String homeTeam, String awayTeam);
+	boolean updateAwayTeamGameGap(String homeTeam, String awayTeam);
+
 }

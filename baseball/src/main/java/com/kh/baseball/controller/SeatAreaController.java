@@ -15,7 +15,6 @@ import com.kh.baseball.dao.SeatAreaDao;
 import com.kh.baseball.dao.StadiumDao;
 import com.kh.baseball.dto.SeatAreaDto;
 import com.kh.baseball.dto.StadiumDto;
-import com.kh.baseball.dto.TeamDto;
 
 @Controller
 @RequestMapping("/seatArea")

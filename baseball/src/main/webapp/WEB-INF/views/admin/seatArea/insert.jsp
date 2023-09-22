@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 <script>
 	
 </script>
@@ -11,7 +11,7 @@
 <form action="insert" method="post">
 	<div class="container w-300">
 		<div class="row left">
-			경기장: <select class="form-input w-100" name="stadiumNo" class="w-100" id="stadiumNo">
+			경기장: <select name="stadiumNo" class="w-100" id="stadiumNo">
 				<c:forEach var="stadiumDto" items="${list}">
 					<option value="${stadiumDto.stadiumNo}">${stadiumDto.stadiumName}</option>
 				</c:forEach>

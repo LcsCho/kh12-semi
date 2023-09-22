@@ -29,11 +29,16 @@ public class MatchDaoImpl implements MatchDao{
 	public void insert(MatchDto matchDto) {
 		String sql = "insert into match"
 				+ "(match_no, home_team, "
-				+ "away_team, stadium_no, "
+				+ "away_team, stadium_name, "
 				+ "match_date, match_home_score, "
 				+ "match_away_score) "
 				+ "values(?,?,?,?,?,?,?)";
-		Object[] data = {matchDto.getMatchNo(), matchDto.getHomeTeam(),matchDto.getAwayTeam(),matchDto.getStadiumNo(),matchDto.getMatchDate(),matchDto.getMatchHomeScore(),matchDto.getMatchAwayScore()};
+		Object[] data = {
+				matchDto.getMatchNo(), matchDto.getHomeTeam(),
+				matchDto.getAwayTeam(),matchDto.getStadiumName(),
+				matchDto.getMatchDate(),matchDto.getMatchHomeScore(),
+				matchDto.getMatchAwayScore()
+			};
 		jdbcTemplate.update(sql,data);
 	}
 
@@ -58,19 +63,13 @@ public class MatchDaoImpl implements MatchDao{
 		List<MatchDto> list = jdbcTemplate.query(sql, matchMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}
+	
+	
 
 	@Override
 	public List<MatchDto> selectList() {
 		String sql ="select * from match order by match_date desc";
 		return jdbcTemplate.query(sql, matchMapper);
 	}
-
-	@Override
-	public MatchDto selectStadiumNo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
 
 }

@@ -5,12 +5,14 @@ import java.util.List;
 import com.kh.baseball.dto.SeatDto;
 
 public interface SeatDao {
-	int sequence();
+	int sequenceSeat();
 	void insert(SeatDto seatDto);
-	SeatDto selectOne(int seatId);
+	SeatDto selectOne(int seatNo);
 	List<SeatDto> selectList();
-	boolean delete(int seatId);
+	boolean delete(int seatNo);
+	
+	//int bulkInsert(SeatDto seatDto, int col, int row);
+	void insertSeats(SeatDto seatDto);
 	
 	
-	int findSeatAreaNo(int seatAreaNo);
 }
