@@ -14,6 +14,7 @@ import com.kh.baseball.dao.SeatAreaDao;
 import com.kh.baseball.dao.SeatDao;
 import com.kh.baseball.dto.FindStadiumNameDto;
 import com.kh.baseball.dto.SeatDto;
+import com.kh.baseball.dto.SeatListDto;
 
 @Controller
 @RequestMapping("/admin/seat")
@@ -28,9 +29,9 @@ public class SeatController {
 	
 	@RequestMapping("/list")
 	public String insert(@ModelAttribute SeatDto seatDto, Model model) {
-		List<SeatDto> list = seatDao.selectList();
+		List<SeatListDto> list = seatDao.seatSeletList();
 		model.addAttribute("list", list);
-		return "/WEB-INF/views/seat/list.jsp";
+		return "/WEB-INF/views/admin/seat/list.jsp";
 	}
 	
 //	@GetMapping("/insert")

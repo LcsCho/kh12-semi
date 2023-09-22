@@ -3,6 +3,7 @@ package com.kh.baseball.dao;
 import java.util.List;
 
 import com.kh.baseball.dto.SeatDto;
+import com.kh.baseball.dto.SeatListDto;
 
 public interface SeatDao {
 	int sequenceSeat();
@@ -13,6 +14,7 @@ public interface SeatDao {
 	
 	//int bulkInsert(SeatDto seatDto, int col, int row);
 	void insertSeats(SeatDto seatDto);
+	List<SeatListDto> seatSeletList();
 	
 	
 	
