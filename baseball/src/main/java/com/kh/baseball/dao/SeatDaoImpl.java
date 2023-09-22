@@ -85,11 +85,12 @@ public class SeatDaoImpl implements SeatDao {
 		        + "s.seat_no, "
 		        + "sa.seat_area_no, "
 		        + "st.stadium_name, "
-		        + "sa.seat_area_price, " // 추가
+		        + "sa.seat_area_price,"
+		        + "sa.seat_area_zone, " 
 		        + "s.seat_col, "
 		        + "s.seat_row, "
 		        + "s.seat_status, "
-		        + "st.stadium_no " // 추가
+		        + "st.stadium_no " 
 		        + "FROM "
 		        + "seat s "
 		        + "INNER JOIN "

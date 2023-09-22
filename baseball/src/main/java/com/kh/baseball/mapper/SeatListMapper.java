@@ -19,6 +19,7 @@ public class SeatListMapper implements RowMapper<SeatListDto>{
 		seatListDto.setSeatRow(rs.getInt("seat_row"));
 		seatListDto.setSeatCol(rs.getInt("seat_col"));
 		seatListDto.setStadiumNo(rs.getInt("stadium_no"));
+		seatListDto.setSeatAreaZone(rs.getString("seat_area_zone"));
 		seatListDto.setStadiumName(rs.getString("stadium_name"));
 		seatListDto.setSeatStatus(rs.getString("seat_status"));
 		return seatListDto;

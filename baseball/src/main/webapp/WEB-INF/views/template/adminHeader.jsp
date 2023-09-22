@@ -49,7 +49,7 @@
             }
     
             .i-font {
-                margin-top: -10px;
+                margin-top: -5px;
                 font-size: 15px;
                 color: #360a01;
                 font-weight: bold;
