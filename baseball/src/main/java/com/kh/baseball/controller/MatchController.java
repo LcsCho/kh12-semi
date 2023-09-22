@@ -45,6 +45,29 @@ public class MatchController {
 		matchDto.setMatchNo(matchNo);
 		matchDao.insert(matchDto);
 		
+		matchDto = matchDao.selectOne(matchNo);
+		String homeTeam = matchDto.getHomeTeam();
+		String awayTeam = matchDto.getAwayTeam();
+		int matchHomeScore = matchDto.getMatchHomeScore();
+		int matchAwayScore = matchDto.getMatchAwayScore();
+		
+		if (matchHomeScore > matchAwayScore) {
+			teamDao.updateWin(homeTeam);
+			teamDao.updateLose(awayTeam);
+		}
+		else if (matchHomeScore < matchAwayScore) {
+			teamDao.updateWin(awayTeam);
+			teamDao.updateLose(homeTeam);
+		}
+		else {
+			teamDao.updateDraw(homeTeam);
+			teamDao.updateDraw(awayTeam);
+		}
+		teamDao.updateWinRate(homeTeam);
+		teamDao.updateWinRate(awayTeam);
+		
+		
+		
 		return "redirect:detail?matchNo="+matchNo;
 	}
 	
