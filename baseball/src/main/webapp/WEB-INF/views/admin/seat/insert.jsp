@@ -36,7 +36,7 @@
                <c:forEach var="FindStadiumNameDto" items="${list}">
                   <option value="${FindStadiumNameDto.seatAreaNo}">
                      ${FindStadiumNameDto.stadiumName}  |
-                     ${FindStadiumNameDto.seatAreaZone} |a
+                     ${FindStadiumNameDto.seatAreaZone} |
                      ${FindStadiumNameDto.seatAreaPrice} 원</option>
                </c:forEach>
             </select>
