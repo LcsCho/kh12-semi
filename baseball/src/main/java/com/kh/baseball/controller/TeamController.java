@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("/team")
+@RequestMapping("/admin/team")
 public class TeamController {
 	
 	@Autowired
@@ -44,7 +44,7 @@ public class TeamController {
 		List<TeamDto> list = teamDao.selectList();
 		model.addAttribute("list", list);
 		
-		return "/WEB-INF/views/team/list.jsp";
+		return "/WEB-INF/views/admin/team/list.jsp";
 	}
 	
 	@RequestMapping("/detail")
@@ -52,12 +52,12 @@ public class TeamController {
 			Model model) {
 		TeamDto teamDto = teamDao.selectOne(teamNo);
 		model.addAttribute("teamDto", teamDto);
-		return "/WEB-INF/views/team/detail.jsp";
+		return "/WEB-INF/views/admin/team/detail.jsp";
 	}
 	
 	@GetMapping("/register")
 	public String register() {
-		return "/WEB-INF/views/team/register.jsp";
+		return "/WEB-INF/views/admin/team/register.jsp";
 	}
 	
 	@PostMapping("/register")
@@ -119,14 +119,14 @@ public class TeamController {
 	
 	@RequestMapping("/registerFinish")
 	public String registerFinish() {
-		return "/WEB-INF/views/team/registerFinish.jsp";
+		return "/WEB-INF/views/admin/team/registerFinish.jsp";
 	}
 	
 	@GetMapping("/update")
 	public String update(@RequestParam int teamNo, Model model) {
 		TeamDto teamDto = teamDao.selectOne(teamNo);
 		model.addAttribute("teamDto", teamDto);
-		return "/WEB-INF/views/team/update.jsp";
+		return "/WEB-INF/views/admin/team/update.jsp";
 	}
 	
 	@PostMapping("update")

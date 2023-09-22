@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/matchSidebar.jsp"></jsp:include>
 
 <form action="change" method="post" enctype="multipart/form-data" autocomplete="off">
 	<div class="container w-400">

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/views/template/seatSidebar.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,3 +20,4 @@
 </div>
 </body>
 </html>
+<jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>

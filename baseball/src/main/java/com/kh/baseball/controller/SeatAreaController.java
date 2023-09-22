@@ -17,7 +17,7 @@ import com.kh.baseball.dto.SeatAreaDto;
 import com.kh.baseball.dto.StadiumDto;
 
 @Controller
-@RequestMapping("/seatArea")
+@RequestMapping("/admin/seatArea")
 public class SeatAreaController {
 	
 	@Autowired
@@ -30,7 +30,7 @@ public class SeatAreaController {
 	public String insert(@ModelAttribute StadiumDto stadiumDto, Model model) {
 	 	List<StadiumDto> list = stadiumDao.selectList();
 		 model.addAttribute("list", list);
-		return "/WEB-INF/views/seatArea/insert.jsp";
+		return "/WEB-INF/views/admin/seatArea/insert.jsp";
 	}
 	
 	@PostMapping("/insert")
@@ -43,7 +43,7 @@ public class SeatAreaController {
 	
 	@RequestMapping("/insertFinish")
 	public String insertFinish() {
-		return "/WEB-INF/views/seatArea/insertFinish.jsp";
+		return "/WEB-INF/views/admin/seatArea/insertFinish.jsp";
 	}
 	
 	@RequestMapping("/list")
@@ -51,7 +51,7 @@ public class SeatAreaController {
 		List<SeatAreaDto> list = seatAreaDao.selectList();
 		model.addAttribute("list", list);
 		
-		return "/WEB-INF/views/seatArea/list.jsp";
+		return "/WEB-INF/views/admin/seatArea/list.jsp";
 	}
 	
 	@RequestMapping("/detail")
@@ -59,14 +59,14 @@ public class SeatAreaController {
 			Model model) {
 		SeatAreaDto seatAreaDto = seatAreaDao.selectOne(seatAreaNo);
 		model.addAttribute("seatAreaDto", seatAreaDto);
-		return "/WEB-INF/views/seatArea/detail.jsp";
+		return "/WEB-INF/views/admin/seatArea/detail.jsp";
 	}
 	
 	@GetMapping("/update")
 	public String update(@RequestParam int seatAreaNo, Model model) {
 		SeatAreaDto seatAreaDto = seatAreaDao.selectOne(seatAreaNo);
 		model.addAttribute("seatAreaDto", seatAreaDto);
-		return "/WEB-INF/views/seatArea/update.jsp";
+		return "/WEB-INF/views/admin/seatArea/update.jsp";
 	}
 	
 	@PostMapping("/update")

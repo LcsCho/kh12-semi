@@ -20,7 +20,8 @@
 
 
     <style>
-       nav ul.menu li a i {
+        <style>
+            nav ul.menu li a i {
                 display: block;
             }
     
@@ -44,11 +45,11 @@
             }
     
             .col-5 {
-                width: 16%;
+                width: 14%;
             }
     
             .i-font {
-                margin-top: -5px;
+                margin-top: -10px;
                 font-size: 15px;
                 color: #360a01;
                 font-weight: bold;
@@ -62,6 +63,15 @@
     
             .logo{
                 margin-top: -20px;
+            }
+
+            header> .logo {
+            width: 25%;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            margin-left: 0em;
+        }
             }
     </style>
     <!-- js작성공간 -->
@@ -117,7 +127,7 @@
             <header>
     		
                 <div class="logo">
-                    <a href="/"><img src="/images/logo.jpg" width="200" alt=""></a>
+                    <a href="/admin/home"><img src="/images/logo.jpg" width="200" alt=""></a>
                 </div>
     			
                 <nav>
@@ -127,29 +137,21 @@
     
                             <div class="row col-5">
                                 <div class="row">
-                                    <li><a href="#">
-                                            <i class="fa-solid fa-calendar-days"></i></a></li>
-                                </div>
-                                <div class="row i-font">
-                                    경기관리
-                                </div>
+                                    <li><a href="/admin/team/list">
+                                        <i class="fa-solid fa-people-group"></i></a>
+                                
+                                    </li>
+                                    </div>
+                                    <div class="row i-font">
+                                        팀관리
+                                    </div>
                             </div>
     
     
                             <div class="row col-5">
                                 <div class="row">
-                                    <li><a href="#">
-                                            <i class="fa-solid fa-ticket"></i></a></li>
-                                </div>
-                                <div class="row i-font">
-                                    예매관리
-                                </div>
-                            </div>
-    
-                            <div class="row col-5">
-                                <div class="row">
-                                    <li><a href="#">
-                                            <i class="fa-solid fa-chair"></i></a></li>
+                                    <li><a href="/admin/stadium/list">
+                                        <i class="fa-solid fa-landmark-dome"></i></a></li>
                                 </div>
                                 <div class="row i-font">
                                     경기장관리
@@ -158,17 +160,38 @@
     
                             <div class="row col-5">
                                 <div class="row">
-                                    <li><a href="#">
-                                            <i class="fa-solid fa-ranking-star"></i></a></li>
+                                    <li><a href="/admin/match/list">
+                                            <i class="fa-solid fa-baseball-bat-ball"></i></a></li>
                                 </div>
                                 <div class="row i-font">
-                                    전적관리
+                                    경기관리
                                 </div>
                             </div>
     
                             <div class="row col-5">
                                 <div class="row">
-                                    <li><a href="admin/member/list">
+                                    <li><a href="/admin/seat/list">
+                                            <i class="fa-solid fa-chair"></i></a></li>
+                                </div>
+                                <div class="row i-font">
+                                    좌석관리
+                                </div>
+                            </div>
+    
+                            <div class="row col-5">
+                                <div class="row">
+                                    <li><a href="/admin/reservation/list">
+                                            <i class="fa-solid fa-ticket"></i></a></li>
+    
+                                </div>
+                                <div class="row i-font">
+                                    예매관리
+                                </div>
+                            </div>
+                            
+                            <div class="row col-5">
+                                <div class="row">
+                                    <li><a href="/admin/member/list">
                                             <i class="fa-solid fa-user"></i></a></li>
     
                                 </div>
@@ -176,10 +199,10 @@
                                     회원관리
                                 </div>
                             </div>
-                            
+
                             <div class="row col-5">
                                 <div class="row">
-                                    <li><a href="/board/list">
+                                    <li><a href="/admin/board/list">
                                             <i class="fa-solid fa-check"></i></a></li>
     
                                 </div>

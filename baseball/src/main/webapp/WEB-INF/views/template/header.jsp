@@ -148,7 +148,7 @@
                             <div class="row col-5">
                                 <div class="row">
                                     <li><a href="#">
-                                            <i class="fa-solid fa-chair"></i></a></li>
+                                            <i class="fa-solid fa-baseball-bat-ball"></i></a></li>
                                 </div>
                                 <div class="row i-font">
                                     팀정보
