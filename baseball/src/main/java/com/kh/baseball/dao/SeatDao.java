@@ -14,4 +14,5 @@ public interface SeatDao {
 	//int bulkInsert(SeatDto seatDto, int col, int row);
 	void insertSeats(SeatDto seatDto);
 	
+	
 }
