@@ -16,7 +16,7 @@ public interface TeamDao {
 	void connect(int teamNo, int attachNo);
 	AttachDto findImage(int teamNo);
 	
-	boolean selectTeamOne();
+	TeamDto selectTeamOne();
 	boolean updateWin(String teamName);
 	boolean updateLose(String teamName);
 	boolean updateDraw(String teamName);

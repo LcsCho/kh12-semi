@@ -74,10 +74,11 @@ public class TeamDaoImpl implements TeamDao{
 	
 	// 팀 결과 메서드
 	@Override
-	public boolean selectTeamOne() {
-		String sql = "select team_name from team where rownum = 1 "
+	public TeamDto selectTeamOne() {
+		String sql = "select * from team where rownum = 1 "
 				+ "order by team_win_rate desc";
-		return jdbcTemplate.(sql);
+		List<TeamDto> list = jdbcTemplate.query(sql, teamMapper);
+		return list.isEmpty() ? null : list.get(0);
 	}
 	
 	@Override
@@ -116,6 +117,14 @@ public class TeamDaoImpl implements TeamDao{
 		return jdbcTemplate.update(sql, data) > 0;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public boolean updateHomeTeamGameGap(String homeTeam, String awayTeam) {
 		String sql = "update team "
@@ -166,6 +175,7 @@ public class TeamDaoImpl implements TeamDao{
 		List<AttachDto> list = jdbcTemplate.query(sql, attachMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}
+
 
 
 }
