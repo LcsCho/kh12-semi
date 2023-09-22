@@ -11,6 +11,7 @@ public interface SeatDao {
 	List<SeatDto> selectList();
 	boolean delete(int seatNo);
 	
-	
+	//int bulkInsert(SeatDto seatDto, int col, int row);
+	void insertSeats(SeatDto seatDto);
 	
 }
