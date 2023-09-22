@@ -13,6 +13,7 @@ public interface TeamDao {
 	boolean update(TeamDto teamDto);
 	boolean delete(int teamNo);
 	
+	boolean selectTeamOne();
 	boolean updateWin(String teamName);
 	boolean updateLose(String teamName);
 	boolean updateDraw(String teamName);

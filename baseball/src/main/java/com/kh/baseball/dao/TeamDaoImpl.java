@@ -42,7 +42,7 @@ public class TeamDaoImpl implements TeamDao{
 
 	@Override
 	public List<TeamDto> selectList() {
-		String sql = "select * from teamn order by team_win_rate desc, team_game_gap";
+		String sql = "select * from team order by team_win_rate desc, team_game_gap";
 		return jdbcTemplate.query(sql, teamMapper);
 	}
 
@@ -68,7 +68,13 @@ public class TeamDaoImpl implements TeamDao{
 	
 	
 	// 팀 결과 메서드
-
+	@Override
+	public boolean selectTeamOne() {
+		String sql = "select team_name from team where rownum = 1 "
+				+ "order by team_win_rate desc";
+		return jdbcTemplate.(sql);
+	}
+	
 	@Override
 	public boolean updateWin(String teamName) {
 		String sql = "update team set team_win = team_win + 1, team_match = team_match + 1 "
