@@ -66,6 +66,8 @@ public class MatchController {
 		teamDao.updateWinRate(homeTeam);
 		teamDao.updateWinRate(awayTeam);
 		
+		teamDao.updateHomeTeamGameGap(homeTeam, awayTeam);
+		teamDao.updateAwayTeamGameGap(homeTeam, awayTeam);
 		
 		
 		return "redirect:detail?matchNo="+matchNo;
