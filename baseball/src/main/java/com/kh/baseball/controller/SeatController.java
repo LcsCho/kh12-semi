@@ -77,8 +77,24 @@ public class SeatController {
 		//seatAreaNo 를 가져오려면 selectOne 으로 값을 가져온다
 		//seatdto 에 저장을 해야하는데 
 		seatDto.setSeatNo(seatNo);
-	
+		
+		seatDao.insert(seatDto);
+		return "redirect:insertFinish";
+
+//	    int seatNo = seatDao.sequenceSeat();
+//	    seatDto.setSeatNo(seatNo);
+//	    
 	}
+	
+	@RequestMapping("/insertFinish")
+	public String insertFinish() {
+		return "/WEB-INF/views/admin/seat/insertFinish.jsp";
+	}
+
+
+
+
+
 
 //	
 	
