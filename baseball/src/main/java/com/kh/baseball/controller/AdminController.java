@@ -49,7 +49,7 @@ public class AdminController {
 		
 		int count = memberDao.countList(vo); //상황에 맞는 게시글 수
 		vo.setCount(count);		
-		model.addAttribute("vo",vo); //ModelAttribute(name = "vo")와 같음
+		model.addAttribute("vo",vo);
 
 		List<MemberListDto> list = memberDao.selectListByPage2(vo);
 		model.addAttribute("list",list);
