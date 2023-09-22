@@ -10,40 +10,35 @@ main {
 header {
     display: flex;
     flex-wrap: nowrap;
-    min-height: 80px;
+    min-height: 40px;
+margin-top: 1.2em;
 
 }
 
-header>.logo {
+header> .logo {
     width: 25%;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
+    margin-left: 5em;
 }
 
-header>.title {
+header> .title {
+    width: 75%;
     flex-grow: 1;
-}
-
-header>.etc {
-    width: 26%;
-     font-size: 12px;
-}
-
-header>.logo,
-header>.title{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .etc{
     display: flex;
     align-items: flex-start;
     justify-content: right;
     padding-right: 3em;
     position: fixed;
-    height: 100px;
     width: 100%;
+    height: 100%;
 }
 
 
@@ -53,7 +48,7 @@ nav {
 }
 
 section {
-    min-height: 400px;
+    min-height: 500px;
     padding-top: 40px;
     padding-bottom: 40px;
 }
