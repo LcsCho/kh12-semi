@@ -52,7 +52,7 @@ public class BoardController {
 		List<BoardDto> list = boardDao.selectListByPage(vo);
 		model.addAttribute("list", list);
 
-		return "/WEB-INF/views/board/list.jsp";
+		return "/WEB-INF/views/board/list2.jsp";
 	}
 
 	// 상세
