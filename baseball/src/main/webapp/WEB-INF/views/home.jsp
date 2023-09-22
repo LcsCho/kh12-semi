@@ -2,10 +2,16 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<style>
+.main-image{
+            box-shadow: 0px 0px 0px 1px #360a01;
+        }
+</style>
+
             <div class="container w-1000">
 
             <div class="row mb-30">
-            <img src="./images/main.jpg" width="1000">
+            <img src="./images/main.jpg" width="1000" class="main-image">
             </div>
 
             <div class="row left mb-20">
