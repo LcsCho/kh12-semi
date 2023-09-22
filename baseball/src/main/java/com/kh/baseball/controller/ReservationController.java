@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("/reservation")
+@RequestMapping("/admin/reservation")
 public class ReservationController {
 
 	@Autowired
