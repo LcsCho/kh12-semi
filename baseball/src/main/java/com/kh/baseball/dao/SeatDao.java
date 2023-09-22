@@ -15,4 +15,5 @@ public interface SeatDao {
 	void insertSeats(SeatDto seatDto);
 	
 	
+	
 }

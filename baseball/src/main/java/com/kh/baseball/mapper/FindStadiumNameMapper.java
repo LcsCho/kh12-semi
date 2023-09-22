@@ -1,4 +1,4 @@
-package com.kh.baseball.controller;
+package com.kh.baseball.mapper;
 
 
 import java.sql.ResultSet;

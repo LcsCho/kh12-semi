@@ -12,14 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.baseball.dao.SeatAreaDao;
 import com.kh.baseball.dao.SeatDao;
-import com.kh.baseball.dao.StadiumDao;
 import com.kh.baseball.dto.FindStadiumNameDto;
-import com.kh.baseball.dto.SeatAreaDto;
 import com.kh.baseball.dto.SeatDto;
-import com.kh.baseball.dto.StadiumDto;
 
 @Controller
-@RequestMapping("/admin/seat")
+@RequestMapping("/seat")
 public class SeatController {
 	
 	@Autowired
@@ -33,7 +30,7 @@ public class SeatController {
 	public String insert(@ModelAttribute SeatDto seatDto, Model model) {
 		List<SeatDto> list = seatDao.selectList();
 		model.addAttribute("list", list);
-		return "/WEB-INF/views/admin/seat/list.jsp";
+		return "/WEB-INF/views/seat/list.jsp";
 	}
 	
 //	@GetMapping("/insert")
@@ -78,7 +75,7 @@ public class SeatController {
 		//seatdto 에 저장을 해야하는데 
 		seatDto.setSeatNo(seatNo);
 		
-		seatDao.insert(seatDto);
+		seatDao.insertSeats(seatDto);
 		return "redirect:insertFinish";
 
 //	    int seatNo = seatDao.sequenceSeat();
