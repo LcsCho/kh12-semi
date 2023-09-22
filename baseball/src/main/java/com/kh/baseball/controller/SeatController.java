@@ -59,7 +59,7 @@ public class SeatController {
 	}
 	@PostMapping("/insert")
 	public String insert(SeatDto seatDto) {
-<<<<<<< HEAD
+
 		// int seatNo = seatDao.sequenceSeat();
 		int seatNo = seatDao.sequenceSeat();
 		//seatAreaNo 를 가져오려면 selectOne 으로 값을 가져온다
@@ -67,14 +67,16 @@ public class SeatController {
 		seatDto.setSeatNo(seatNo);
 		
 		seatDao.insert(seatDto);
-		return "/WEB-INF/views/admin/seat/insertFinish.jsp";
-=======
+		return "redirect:insertFinish";
+
 //	    int seatNo = seatDao.sequenceSeat();
 //	    seatDto.setSeatNo(seatNo);
 //	    
-	    seatDao.insertSeats(seatDto);
-	    return "/WEB-INF/views/seat/insertFinish.jsp";
->>>>>>> refs/remotes/origin/main
+	}
+	
+	@RequestMapping("/insertFinish")
+	public String insertFinish() {
+		return "/WEB-INF/views/admin/seat/insertFinish.jsp";
 	}
 
 
