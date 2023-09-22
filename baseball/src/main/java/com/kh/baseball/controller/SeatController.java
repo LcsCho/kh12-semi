@@ -44,12 +44,13 @@ public class SeatController {
 		int seatNo = seatDao.sequenceSeat();
 		//seatAreaNo 를 가져오려면 selectOne 으로 값을 가져온다
 		//seatdto 에 저장을 해야하는데 
-		//seatDto.setSeatAreaNo(seatNo);
+		seatDto.setSeatNo(seatNo);
 		
 		seatDao.insert(seatDto);
 		return "/WEB-INF/views/seat/insertFinish.jsp";
 	}
 //	
+	
 //	@RequestMapping("/list")
 //	public String list(@RequestParam int seatId) {
 //		

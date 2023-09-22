@@ -11,10 +11,7 @@
 <form action="insert" method="post">
 	<div class="container w-300">
 		<div class="row left">
-			좌석번호
-			<div class="row">
-				<input class="form-input w-100" type="number" name="seatNo">
-			</div>
+			
 			<!-- 좌석 구역 -->
 			<div class="row">
 				좌석구역: <select name="seatAreaNo" class="w-100" id="seatAreaNo">
@@ -58,6 +55,7 @@
                                     <option value="${seatAreaDto.seatAreaNo}">${seatAreaDto.seatAreaNo}</option>
                                 </c:forEach>
                             </select>
+                            
                             <!-- 일단 이렇게 하고  -->
                             <!-- 나중에 경기장을 선택하면 자동으로 value에 숫자 값을 넣을 수 있게 만드는게 목표 -->
                         </div>
