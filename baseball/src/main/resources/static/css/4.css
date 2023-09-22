@@ -25,6 +25,10 @@
     - 최소 300px, 최대 1200px까지 100px 단위로 설정
     - 100부터는 비율(%)로 설정
 */
+.w-14,
+.col-7{
+    width: 14.2222%;
+}
 .w-16,
 .col-6 {
     width: 16.66666%;
@@ -775,7 +779,8 @@ a.link:hover {
 .float-container>.col-3,
 .float-container>.col-4,
 .float-container>.col-5,
-.float-container>.col-6 {
+.float-container>.col-6,
+.float-container>.col-7 {
     float: left;
 }
 

@@ -65,20 +65,8 @@ public class MatchController {
 		}
 		teamDao.updateWinRate(homeTeam);
 		teamDao.updateWinRate(awayTeam);
-		
-//		teamDao.updateHomeTeamGameGap(homeTeam, awayTeam);
-//		teamDao.updateAwayTeamGameGap(homeTeam, awayTeam);
-		
-		TeamDto teamDto = teamDao.selectTeamOne();
-		int teamNo = teamDto.getTeamNo();
-		int teamWin = teamDto.getTeamWin();
-		int teamLose = teamDto.getTeamLose();
-		
-		for (int i = 0; i < 10; i++) {
-			team
-		}
-		
-		
+		teamDao.updateGameGap();
+
 		return "redirect:detail?matchNo="+matchNo;
 	}
 	
@@ -113,4 +101,5 @@ public class MatchController {
 			return "redirecr:error";
 		}
 	}
+	
 }
