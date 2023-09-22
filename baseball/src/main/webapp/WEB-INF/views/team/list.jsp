@@ -17,9 +17,9 @@
 		</tr>
 	</thead>
 	<tbody align="center">
-		<c:forEach var="teamDto" items="${list}">
+		<c:forEach var="teamDto" items="${list}" varStatus="loop">
 		<tr>
-			<td>순위</td>
+			<td>${loop.index + 1}</td>
 			<td><a href="detail?teamNo=${teamDto.teamNo}">${teamDto.teamName}</a></td>
 			<td>${teamDto.teamMatch}</td>
 			<td>${teamDto.teamWin}</td>
