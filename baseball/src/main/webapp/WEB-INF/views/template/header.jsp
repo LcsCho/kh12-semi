@@ -126,7 +126,7 @@
     
                             <div class="row col-5">
                                 <div class="row">
-                                    <li><a href="#">
+                                    <li><a href="/schedule">
                                             <i class="fa-solid fa-calendar-days"></i></a></li>
                                 </div>
                                 <div class="row i-font">
