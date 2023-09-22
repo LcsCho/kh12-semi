@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.kh.baseball.controller.FindStadiumNameMapper;
 import com.kh.baseball.dto.FindStadiumNameDto;
 import com.kh.baseball.dto.SeatAreaDto;
+import com.kh.baseball.mapper.FindStadiumNameMapper;
 import com.kh.baseball.mapper.SeatAreaMapper;
 
 @Repository
@@ -80,5 +80,6 @@ public class SeatAreaDaoImpl implements SeatAreaDao{
 
         return jdbcTemplate.query(sql, nameMapper);
     }
+	
 
 }
