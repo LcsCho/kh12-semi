@@ -16,7 +16,7 @@ import com.kh.baseball.dto.SeatAreaDto;
 import com.kh.baseball.dto.SeatDto;
 
 @Controller
-@RequestMapping("/seat")
+@RequestMapping("/admin/seat")
 public class SeatController {
 	
 	@Autowired
@@ -29,7 +29,7 @@ public class SeatController {
 	public String insert(@ModelAttribute SeatDto seatDto, Model model) {
 		List<SeatDto> list = seatDao.selectList();
 		model.addAttribute("list", list);
-		return "/WEB-INF/views/seat/list.jsp";
+		return "/WEB-INF/views/admin/seat/list.jsp";
 	}
 	
 //	@GetMapping("/insert")
@@ -55,15 +55,26 @@ public class SeatController {
 	public String insert(@ModelAttribute SeatAreaDto seatAreaDto ,Model model) {
 		List<SeatAreaDto> list = seatAreaDao.selectList();
 		model.addAttribute("list",list);
-		return "/WEB-INF/views/seat/insert.jsp";
+		return "/WEB-INF/views/admin/seat/insert.jsp";
 	}
 	@PostMapping("/insert")
 	public String insert(SeatDto seatDto) {
+<<<<<<< HEAD
+		// int seatNo = seatDao.sequenceSeat();
+		int seatNo = seatDao.sequenceSeat();
+		//seatAreaNo 를 가져오려면 selectOne 으로 값을 가져온다
+		//seatdto 에 저장을 해야하는데 
+		seatDto.setSeatNo(seatNo);
+		
+		seatDao.insert(seatDto);
+		return "/WEB-INF/views/admin/seat/insertFinish.jsp";
+=======
 //	    int seatNo = seatDao.sequenceSeat();
 //	    seatDto.setSeatNo(seatNo);
 //	    
 	    seatDao.insertSeats(seatDto);
 	    return "/WEB-INF/views/seat/insertFinish.jsp";
+>>>>>>> refs/remotes/origin/main
 	}
 
 

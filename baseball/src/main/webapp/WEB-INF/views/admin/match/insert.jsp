@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 <h2>등록</h2>
 <form action="insert" method="post" autocomplete="off">
 	<div class="container w-600">
@@ -45,4 +45,4 @@
 		</div>
 	</div>
 </form>
-<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>

@@ -1,15 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:choose>
-    <c:when test="${sessionScope.level == '관리자'}">
-        <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
-    </c:when>
-    <c:otherwise>
-        <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
-    </c:otherwise>
-</c:choose>
-
+<jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 
 <style>
 .custom-checkbox {
@@ -33,6 +25,7 @@
 }
 
 .custom-checkbox>[type=checkbox]:checked+span {
+	
 	background-image: url("/images/checkbox-check.png");
 }
 </style>
@@ -89,7 +82,7 @@
 
 <div class="container w-800">
 	<div class="row">
-		<h1>자유 게시판</h1>
+		<h1>공지사항</h1>
 	</div>
 
 	<!-- 폼 시작 -->

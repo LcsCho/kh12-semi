@@ -19,7 +19,7 @@
 						<option value="member_birth">생년월일</option>
 					</select>
 				</c:when>
-				<c:when test="${vo.type == 'member_contact'}">
+				<c:when test="${vo.type == 'member_tel'}">
 					<select name="type" class="form-input">
 						<option value="member_id">아이디</option>
 						<option value="member_nick">닉네임</option>
