@@ -69,11 +69,14 @@ public class MatchController {
 //		teamDao.updateHomeTeamGameGap(homeTeam, awayTeam);
 //		teamDao.updateAwayTeamGameGap(homeTeam, awayTeam);
 		
-		String teamOne = selectTeamOne();
+		TeamDto teamDto = teamDao.selectTeamOne();
+		int teamNo = teamDto.getTeamNo();
+		int teamWin = teamDto.getTeamWin();
+		int teamLose = teamDto.getTeamLose();
 		
-//		for (int i = 0; i < 10; i++) {
-//			String teamOther = team
-//		}
+		for (int i = 0; i < 10; i++) {
+			team
+		}
 		
 		
 		return "redirect:detail?matchNo="+matchNo;
