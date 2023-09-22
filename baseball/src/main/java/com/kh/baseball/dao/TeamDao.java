@@ -17,6 +17,6 @@ public interface TeamDao {
 	boolean updateLose(String teamName);
 	boolean updateDraw(String teamName);
 	boolean updateWinRate(String teamName);
-	boolean updateHomeTeamGameGap(String teamName);
-	boolean updateAwayTeamGameGap(String teamName);
+	boolean updateHomeTeamGameGap(String homeTeam, String awayTeam);
+	boolean updateAwayTeamGameGap(String homeTeam, String awayTeam);
 }
