@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.baseball.dto.AttachDto;
 import com.kh.baseball.dto.TeamDto;
+import com.kh.baseball.mapper.AttachMapper;
 import com.kh.baseball.mapper.TeamMapper;
 
 @Repository
@@ -17,6 +19,9 @@ public class TeamDaoImpl implements TeamDao{
 	
 	@Autowired
 	private TeamMapper teamMapper;
+	
+	@Autowired
+	private AttachMapper attachMapper;
 	
 	@Override
 	public int sequenceTeam() {
@@ -137,6 +142,23 @@ public class TeamDaoImpl implements TeamDao{
 				+ "where team_name = ?";
 		Object[]data = {homeTeam, homeTeam, homeTeam, homeTeam, homeTeam, awayTeam};
 		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+	@Override
+	public void connect(int teamNo, int attachNo) {
+		String sql = "insert into team_image values(?, ?)";
+		Object[] data = {teamNo, attachNo};
+		jdbcTemplate.update(sql, data);
+	}
+
+	@Override
+	public AttachDto findImage(int teamNo) {
+		String sql = "select * from attach "
+				+ "where attach_no = (select attach_no from team_image "
+				+ "where team_no =?)";
+		Object[] data = {teamNo};
+		List<AttachDto> list = jdbcTemplate.query(sql, attachMapper, data);
+		return list.isEmpty() ? null : list.get(0);
 	}
 
 
