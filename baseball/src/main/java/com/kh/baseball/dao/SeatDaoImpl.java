@@ -27,6 +27,7 @@ public class SeatDaoImpl implements SeatDao {
 				seatDto.getSeatStatus() };
 
 		
+		
 	
 		
 		jdbcTemplate.update(sql, data);

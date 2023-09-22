@@ -55,6 +55,7 @@
                                     <option value="${seatAreaDto.seatAreaNo}">${seatAreaDto.seatAreaNo}</option>
                                 </c:forEach>
                             </select>
+                            
                             <!-- 일단 이렇게 하고  -->
                             <!-- 나중에 경기장을 선택하면 자동으로 value에 숫자 값을 넣을 수 있게 만드는게 목표 -->
                         </div>

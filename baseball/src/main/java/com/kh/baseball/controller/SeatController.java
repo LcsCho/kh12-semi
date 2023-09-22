@@ -50,6 +50,7 @@ public class SeatController {
 		return "/WEB-INF/views/seat/insertFinish.jsp";
 	}
 //	
+	
 //	@RequestMapping("/list")
 //	public String list(@RequestParam int seatId) {
 //		

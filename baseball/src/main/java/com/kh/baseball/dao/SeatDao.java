@@ -12,4 +12,5 @@ public interface SeatDao {
 	boolean delete(int seatNo);
 	
 	
+	
 }
