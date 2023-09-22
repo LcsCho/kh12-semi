@@ -33,7 +33,7 @@
     .btn:hover{ /* 마우스가 버튼에 올라가면 배경을 조금 더 어둡게 처리 */
         filter: brightness(95%);
     }
-
+	
 </style>
 
 <div class="center">
