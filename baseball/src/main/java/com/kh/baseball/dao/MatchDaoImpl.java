@@ -26,18 +26,16 @@ public class MatchDaoImpl implements MatchDao{
 	}
 	
 	@Override
-	public void insert(MatchDto matchDto) {
+	public void insertMatch(MatchDto matchDto) {
 		String sql = "insert into match"
 				+ "(match_no, home_team, "
 				+ "away_team, stadium_name, "
-				+ "match_date, match_home_score, "
-				+ "match_away_score) "
-				+ "values(?,?,?,?,?,?,?)";
+				+ "match_date) "
+				+ "values(?, ?, ?, ?, ?)";
 		Object[] data = {
 				matchDto.getMatchNo(), matchDto.getHomeTeam(),
 				matchDto.getAwayTeam(),matchDto.getStadiumName(),
-				matchDto.getMatchDate(),matchDto.getMatchHomeScore(),
-				matchDto.getMatchAwayScore()
+				matchDto.getMatchDate()
 			};
 		jdbcTemplate.update(sql,data);
 	}
@@ -52,7 +50,14 @@ public class MatchDaoImpl implements MatchDao{
 	@Override
 	public boolean update(MatchDto matchDto) {
 		String sql ="update match set match_home_score = ?, match_away_score = ? where match_no = ?";
-		Object[] data = {matchDto.getMatchHomeScore(), matchDto.getMatchAwayScore()} ;
+		Object[] data = {matchDto.getMatchHomeScore(), matchDto.getMatchAwayScore(), matchDto.getMatchNo()} ;
+		return jdbcTemplate.update(sql,data) > 0;
+	}
+	
+	@Override
+	public boolean updateDate(MatchDto matchDto) {
+		String sql ="update match set match_date = ? where match_no = ?";
+		Object[] data = {matchDto.getMatchDate(), matchDto.getMatchNo()} ;
 		return jdbcTemplate.update(sql,data) > 0;
 	}
 
