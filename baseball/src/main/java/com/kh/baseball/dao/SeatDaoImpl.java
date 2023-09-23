@@ -152,10 +152,6 @@ public class SeatDaoImpl implements SeatDao {
 //		return list.isEmpty()? null:list.get(0);
 //	}
 
-	@Override
-	public SeatListDto selectForSeatUpdate(int seatCol, int seatRow, String seatAreaZone, String stadiumName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }
