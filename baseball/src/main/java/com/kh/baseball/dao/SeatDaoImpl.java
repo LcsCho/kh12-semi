@@ -101,4 +101,43 @@ public class SeatDaoImpl implements SeatDao {
 		return jdbcTemplate.query(sql,seatListMapper);	
 		}
 
+	@Override
+	public boolean seatStatusUpsate(SeatListDto seatListDto) {
+		//경기장의 구역을 지정하여 열과 행을 입력하면 좌석의 상태를 수정할 수 있는 구문 생성
+		String sql = "UPDATE seat s "
+				+ "SET s.seat_status = ? "
+				+ "WHERE s.seat_col = ? AND s.seat_row = ? AND "
+				+ "EXISTS ("
+				+ "SELECT 1 FROM seat_area sa "
+				+ "INNER JOIN stadium st ON sa.stadium_no = st.stadium_no "
+				+ "WHERE sa.seat_area_no = s.seat_area_no AND st.stadium_name = ? AND sa.seat_area_zone = ?)";
+		Object[] data = {seatListDto.getSeatStatus(),
+				seatListDto.getSeatCol(),
+				seatListDto.getSeatRow(),
+				seatListDto.getStadiumName(),
+				seatListDto.getSeatAreaZone()};
+				
+		return jdbcTemplate.update(sql,data)>0;
+	}
+
+	@Override
+	public SeatListDto selectForSeatUpdate(int seatCol, int seatRow, String seatAreaZone,String stadiumName) {
+		//update 문을 실행하기 위한 좌석구역과 경기장 이름 ,열 행으로 상태를 좌석을 찾아 상태를 찾는 sql 만들어야함
+		String sql = "select "
+						+ "s.seat_status,"
+						+ "s.seat_col,"
+						+ "s.seat_row,"
+						+ "sa.seat_area_zone,"
+						+ "st.stadium_name"
+					+ "from"
+						+ "seat s "
+						+ "inner join seat_area sa on s.seat_area_no = sa.seat_area_no "
+						+ "inner join stadium st on sa.stadium_no = st.stadium_no"
+						+ "where seat_area_zone=? and seat_col=? and seat_row=? and stadium_name=?";
+		
+		Object[] data = {seatAreaZone, seatCol, seatRow, stadiumName};
+		List<SeatListDto> list = jdbcTemplate.query(sql, seatListMapper, data);
+		return list.isEmpty()? null:list.get(0);
+	}
+
 }

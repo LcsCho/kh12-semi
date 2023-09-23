@@ -15,6 +15,8 @@ public interface SeatDao {
 	//int bulkInsert(SeatDto seatDto, int col, int row);
 	void insertSeats(SeatDto seatDto);
 	List<SeatListDto> seatSeletList();
+	SeatListDto selectForSeatUpdate(int seatCol, int seatRow, String seatAreaZone, String stadiumName);
+	boolean seatStatusUpsate(SeatListDto seatListDto);
 	
 	
 	
