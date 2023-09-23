@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.baseball.dao.SeatAreaDao;
 import com.kh.baseball.dao.SeatDao;
@@ -91,14 +92,28 @@ public class SeatController {
 
 
 
-
-
-
-//	
 	
-//	@RequestMapping("/list")
-//	public String list(@RequestParam int seatId) {
-//		
-//	}
+
+	@GetMapping("/update")
+	public String updateSeat(@RequestParam String seatAreaZone, @RequestParam int seatCol,
+
+			@RequestParam int seatRow, @RequestParam String stadiumName, Model model) {
+		SeatListDto seatListDto = seatDao.selectForSeatUpdate(seatAreaZone, seatCol, seatRow, stadiumName);
+		model.addAttribute("seatListDto", seatListDto);
+
+		return "/WEB-INF/views/admin/seat/update.jsp";
+		
+	}
+
+	@PostMapping("/update")
+	public String updateSeat(@ModelAttribute SeatListDto seatListDto) {
+		boolean result = seatDao.seatStatusUpsate(seatListDto);
+		if (result)
+			return "redirect:list";
+		else
+			return "redirect:update?error";
+	}
+
+
 	
 }
