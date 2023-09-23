@@ -17,6 +17,7 @@ public interface SeatDao {
 	List<SeatListDto> seatSeletList();
 	boolean seatStatusUpsate(SeatListDto seatListDto);
 	SeatListDto selectForSeatUpdate(String seatAreaZone, int seatCol, int seatRow, String stadiumName);
+	//SeatListDto selectForSeatUpdate2(int seatNo);
 	
 	
 	

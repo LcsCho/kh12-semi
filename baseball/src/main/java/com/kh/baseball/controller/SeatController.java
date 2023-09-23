@@ -96,7 +96,6 @@ public class SeatController {
 
 	@GetMapping("/update")
 	public String updateSeat(@RequestParam String seatAreaZone, @RequestParam int seatCol,
-
 			@RequestParam int seatRow, @RequestParam String stadiumName, Model model) {
 		SeatListDto seatListDto = seatDao.selectForSeatUpdate(seatAreaZone, seatCol, seatRow, stadiumName);
 		model.addAttribute("seatListDto", seatListDto);
@@ -104,6 +103,14 @@ public class SeatController {
 		return "/WEB-INF/views/admin/seat/update.jsp";
 		
 	}
+//	@GetMapping("/update")
+//	public String updateSeat(@RequestParam int seatNo, Model model) {
+//		SeatListDto seatListDto = seatDao.selectForSeatUpdate2(seatNo);
+//		model.addAttribute("seatListDto", seatListDto);
+//
+//		return "/WEB-INF/views/admin/seat/update.jsp";
+//		
+//	}
 
 	@PostMapping("/update")
 	public String updateSeat(@ModelAttribute SeatListDto seatListDto) {

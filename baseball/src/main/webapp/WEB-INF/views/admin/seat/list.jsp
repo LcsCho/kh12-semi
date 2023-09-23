@@ -27,7 +27,7 @@
 				<td>${seatSeletDto.seatRow}</td>
 				<td>${seatSeletDto.seatCol}</td>
 				<td>${seatSeletDto.seatStatus}</td>
-				<td><td><a href="/admin/seat/update?seatAreaZone=${seatSeletDto.seatAreaZone}&seatCol=${seatSeletDto.seatCol}&seatRow=${seatSeletDto.seatRow}&stadiumName=${seatSeletDto.stadiumName}">수정</a></td></td>
+<td><a href="/admin/seat/update?seatAreaZone=${seatSeletDto.seatAreaZone}&seatCol=${seatSeletDto.seatCol}&seatRow=${seatSeletDto.seatRow}&stadiumName=${seatSeletDto.stadiumName}">수정</a></td>
 				<!-- 
       
        -->
