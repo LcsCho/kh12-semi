@@ -126,7 +126,7 @@
     
                             <div class="row col-5">
                                 <div class="row">
-                                    <li><a href="/schedule">
+                                    <li><a href="/schedule/doosan">
                                             <i class="fa-solid fa-calendar-days"></i></a></li>
                                 </div>
                                 <div class="row i-font">
