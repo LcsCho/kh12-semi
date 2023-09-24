@@ -28,4 +28,9 @@ public class MenuController {
 	public String reservationLg() {
 		return "/WEB-INF/views/menu/reservationLg.jsp";
 	}	
+	
+	@RequestMapping("/teamInfo")
+	public String teamInfo() {
+		return "/WEB-INF/views/menu/teamInfo.jsp";
+	}	
 }

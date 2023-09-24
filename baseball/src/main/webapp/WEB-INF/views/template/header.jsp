@@ -149,7 +149,7 @@
     
                             <div class="row col-5">
                                 <div class="row">
-                                    <li><a href="#">
+                                    <li><a href="/teamInfo">
                                             <i class="fa-solid fa-baseball-bat-ball"></i></a></li>
                                 </div>
                                 <div class="row i-font">
