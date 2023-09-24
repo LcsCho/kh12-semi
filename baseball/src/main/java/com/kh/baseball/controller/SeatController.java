@@ -15,6 +15,7 @@ import com.kh.baseball.dao.SeatAreaDao;
 import com.kh.baseball.dao.SeatDao;
 import com.kh.baseball.dto.FindStadiumNameDto;
 import com.kh.baseball.dto.SeatDto;
+import com.kh.baseball.dto.SeatGroupDto;
 import com.kh.baseball.dto.SeatListDto;
 
 @Controller
@@ -36,8 +37,8 @@ public class SeatController {
 	}
 	
 	@RequestMapping("/listByZone")
-	public String listByZone(@ModelAttribute SeatListDto seatListDto,@RequestParam String seatAreaZone, Model model) {
-		List<SeatListDto> list = seatDao.seatGroupZoneList(seatAreaZone);
+	public String listByZone(@ModelAttribute SeatListDto seatListDto,@RequestParam String seatAreaZone, @RequestParam String stadiumName, Model model) {
+		List<SeatListDto> list = seatDao.seatGroupZoneList(seatAreaZone,stadiumName);
 		model.addAttribute("list",list);
 		return "/WEB-INF/views/admin/seat/listByZone.jsp";
 
@@ -47,7 +48,7 @@ public class SeatController {
 	//개별 출력 가능 합치면 끝남
 	@RequestMapping("/listByStadium")
 	public String listByStadium(@ModelAttribute SeatListDto seatListDto,@RequestParam String stadiumName, Model model) {
-		List<SeatListDto> list = seatDao.seatGroupStadiumList(stadiumName);
+		List<SeatGroupDto> list = seatDao.seatGroupStadiumList(stadiumName);
 		model.addAttribute("list",list);
 		return "/WEB-INF/views/admin/seat/listByStadium.jsp";
 

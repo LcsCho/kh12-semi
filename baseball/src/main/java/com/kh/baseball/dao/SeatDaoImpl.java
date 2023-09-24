@@ -7,7 +7,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.baseball.dto.SeatDto;
+import com.kh.baseball.dto.SeatGroupDto;
 import com.kh.baseball.dto.SeatListDto;
+import com.kh.baseball.mapper.SeatGourpMapper;
 import com.kh.baseball.mapper.SeatListMapper;
 import com.kh.baseball.mapper.SeatMapper;
 
@@ -150,7 +152,7 @@ public class SeatDaoImpl implements SeatDao {
 	
 	
 	@Override
-	public List<SeatListDto> seatGroupZoneList(String seatAreaZone) {
+	public List<SeatListDto> seatGroupZoneList(String seatAreaZone,String stadiumName) {
 		// 좌석상태와 경기장이름 좌석구역을 확인 할 수 있는 리스트 출력
 		String sql = "SELECT "
 		        + "s.seat_no, "
@@ -168,34 +170,34 @@ public class SeatDaoImpl implements SeatDao {
 		        + "seat_area sa ON s.seat_area_no = sa.seat_area_no "
 		        + "INNER JOIN "
 		        + "stadium st ON sa.stadium_no = st.stadium_no "
-		        + "where seat_area_zone=?";
+		        + "where seat_area_zone=? and stadium_name=?";
 		
-		return jdbcTemplate.query(sql,seatListMapper,seatAreaZone);	
+		return jdbcTemplate.query(sql,seatListMapper,seatAreaZone,stadiumName);	
 		}
 	
 	
+	
+	@Autowired
+	private SeatGourpMapper seatGourpMapper;
 
 	@Override
-	public List<SeatListDto> seatGroupStadiumList(String stadiumName) {
+	public List<SeatGroupDto> seatGroupStadiumList(String stadiumName) {
 		String sql = "SELECT "
-		        + "s.seat_no, "
-		        + "sa.seat_area_no, "
-		        + "st.stadium_name, "
-		        + "sa.seat_area_price,"
-		        + "sa.seat_area_zone, " 
-		        + "s.seat_col, "
-		        + "s.seat_row, "
-		        + "s.seat_status, "
-		        + "st.stadium_no " 
-		        + "FROM "
-		        + "seat s "
-		        + "INNER JOIN "
-		        + "seat_area sa ON s.seat_area_no = sa.seat_area_no "
-		        + "INNER JOIN "
-		        + "stadium st ON sa.stadium_no = st.stadium_no "
-		        + "where stadium_name=?";
-		
-		return jdbcTemplate.query(sql,seatListMapper,stadiumName);	
+	             + "sa.seat_area_zone, "
+	             + "st.stadium_name,"
+	             + "COUNT(*) AS seat_count "
+	             + "FROM "
+	             + "seat s "
+	             + "INNER JOIN "
+	             + "seat_area sa ON s.seat_area_no = sa.seat_area_no "
+	             + "INNER JOIN "
+	             + "stadium st ON sa.stadium_no = st.stadium_no "
+	             + "WHERE "
+	             + "st.stadium_name = ? "
+	             + "GROUP BY "
+	             + "sa.seat_area_zone,"
+	             + "st.stadium_name";
+		return jdbcTemplate.query(sql,seatGourpMapper,stadiumName);	
 		}
 	
 	
