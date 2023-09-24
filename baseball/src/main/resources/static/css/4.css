@@ -216,7 +216,7 @@ textarea.form-input.fixed {
 
 .btn:hover {
     /*마우스가 버튼에 올라가면 배경을 조금 더 어둡게*/
-    filter: brightness(98%);
+    filter: brightness(90%);
 }
 
 /*
@@ -657,9 +657,9 @@ ul.menu li {
 }
 
 /* 메뉴에 마우스가 올라가면 하이라이트 효과 */
-/* ul.menu li:hover {*/
-/*    background-color: #ebeded;*/
-/*} 
+ ul.menu li:hover {
+   background-color: #ebeded;
+} 
 
 /* 
     1차메뉴의 아래쪽에 2차메뉴가 위치하도록 position 변경

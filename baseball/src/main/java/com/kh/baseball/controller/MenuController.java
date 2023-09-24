@@ -18,4 +18,14 @@ public class MenuController {
 	public String scheduleLg() {
 		return "/WEB-INF/views/menu/scheduleLg.jsp";
 	}	
+	
+	@RequestMapping("/reservation/doosan")
+	public String reservationDoosan() {
+		return "/WEB-INF/views/menu/reservationDoosan.jsp";
+	}	
+	
+	@RequestMapping("/reservation/lg")
+	public String reservationLg() {
+		return "/WEB-INF/views/menu/reservationLg.jsp";
+	}	
 }

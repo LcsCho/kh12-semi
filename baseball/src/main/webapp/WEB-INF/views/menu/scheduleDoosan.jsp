@@ -32,34 +32,28 @@
             }
 
 
-        .day{
-            padding-left: 1em;
-            font-size: 13px;
-        }
-
-        .font{
-        font-weight: bold;
-        font-size: 15px;
-        color: #838383;
-        margin-top: -1em;
-    }
-
     .btn{
         font-size: 18px;
         margin: 0.5em;
-        border-radius: 10px;
-        background-color: #110f29;
+        border-radius: 5px;
+        background-color: #bf0838;
         color: white;
         border: none;
     }
 
-     .doosan, .lg{
+    .team-choice{
+        margin-left: -1.5em;
+        height: 60px;
+    }
+
+    .doosan, .lg{
         margin-left: 2em;
         font-size: 20px;
         border-radius: 5px;
         background-color: #110f29;
         color: white;
         margin-bottom: 2em;
+        width: 80px;'
 
     }
     .doosan{
@@ -69,6 +63,7 @@
     .lg{
         background-color: #bf0838;
         margin-left: 0em;
+        text-align: center;
     }
     
     table {border-collapse: collapse;}
@@ -81,7 +76,7 @@
  <div class="container w-1000">
  
 				<a href="/schedule/doosan" class="btn doosan">두산</a> 
-                 <a href="/schedule/lg" class="btn lg">엘지</a>
+                 <a href="/schedule/lg" class="btn lg">LG</a>
 
                     <div class="float-container">
                         <div class="col-2 teamlogo">
