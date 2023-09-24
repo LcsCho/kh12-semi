@@ -188,7 +188,7 @@ $(document).ready(function () {
                                 <tr>
                                     <th>홈페이지</th>
                                     <td>
-                                        <a href="http://www.ssglanders.com">www.ssglanders.com</a>
+                                        <a href="http://www.ssglanders.com" target="_blank">www.ssglanders.com</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -270,7 +270,7 @@ $(document).ready(function () {
                                 <tr>
                                     <th>홈페이지</th>
                                     <td>
-                                        <a href="https://www.heroesbaseball.co.kr">www.heroesbaseball.co.kr </a>
+                                        <a href="https://www.heroesbaseball.co.kr" target="_blank">www.heroesbaseball.co.kr </a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -349,7 +349,7 @@ $(document).ready(function () {
                                 <tr>
                                     <th>홈페이지</th>
                                     <td>
-                                        <a href="https://www.lgtwins.com">www.lgtwins.com</a>
+                                        <a href="https://www.lgtwins.com" target="_blank">www.lgtwins.com</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -428,7 +428,7 @@ $(document).ready(function () {
                                 <tr>
                                     <th>홈페이지</th>
                                     <td>
-                                        <a href="https://www.ktwiz.co.kr">www.ktwiz.co.kr</a>
+                                        <a href="https://www.ktwiz.co.kr" target="_blank">www.ktwiz.co.kr</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -507,7 +507,7 @@ $(document).ready(function () {
                                 <tr>
                                     <th>홈페이지</th>
                                     <td>
-                                        <a href="https://www.tigers.co.kr">www.tigers.co.kr</a>
+                                        <a href="https://www.tigers.co.kr" target="_blank">www.tigers.co.kr</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -587,7 +587,7 @@ $(document).ready(function () {
                                 <tr>
                                     <th>홈페이지</th>
                                     <td>
-                                        <a href="https://www.ncdinos.com">www.ncdinos.com</a>
+                                        <a href="https://www.ncdinos.com" target="_blank">www.ncdinos.com</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -666,7 +666,7 @@ $(document).ready(function () {
                                 <tr>
                                     <th>홈페이지</th>
                                     <td>
-                                        <a href="https://www.samsunglions.com">www.samsunglions.com </a>
+                                        <a href="https://www.samsunglions.com" target="_blank">www.samsunglions.com </a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -745,7 +745,7 @@ $(document).ready(function () {
                                 <tr>
                                     <th>홈페이지</th>
                                     <td>
-                                        <a href="https://www.giantsclub.com">www.giantsclub.com</a>
+                                        <a href="https://www.giantsclub.com" target="_blank">www.giantsclub.com</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -823,7 +823,7 @@ $(document).ready(function () {
                                 <tr>
                                     <th>홈페이지</th>
                                     <td>
-                                        <a href="https://www.doosanbears.com">www.doosanbears.com</a>
+                                        <a href="https://www.doosanbears.com" target="_blank">www.doosanbears.com</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -903,7 +903,7 @@ $(document).ready(function () {
                                 <tr>
                                     <th>홈페이지</th>
                                     <td>
-                                        <a href="https://www.hanwhaeagles.co.kr">www.hanwhaeagles.co.kr</a>
+                                        <a href="https://www.hanwhaeagles.co.kr" target="_blank">www.hanwhaeagles.co.kr</a>
                                     </td>
                                 </tr>
                                 <tr>
