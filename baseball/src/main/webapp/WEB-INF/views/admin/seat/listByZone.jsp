@@ -29,9 +29,7 @@
 				<td>${seatSeletDto.seatStatus}</td>
 <td><a href="/admin/seat/update?seatAreaZone=${seatSeletDto.seatAreaZone}&seatCol=${seatSeletDto.seatCol}&seatRow=${seatSeletDto.seatRow}&stadiumName=${seatSeletDto.stadiumName}">수정</a></td>
 <td><a href="/admin/seat/detail?seatNo=${seatSeletDto.seatNo}">상세</a></td>      
-<td><a href="/admin/seat/listByZone?seatAreaZone=${seatSeletDto.seatAreaZone}">존</a></td>      
-<td><a href="/admin/seat/listByStadium?stadiumName=${seatSeletDto.stadiumName}">경기장</a></td>      
-<td><a href="/admin/seat/listByZone?seatAreaZone=C">C</a></td>      
+<td><a href="/admin/seat/listByZone?seatAreaZone=A">상세</a></td>      
 
 			</tr>
 		</c:forEach>

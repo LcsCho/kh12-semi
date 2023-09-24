@@ -35,6 +35,34 @@ public class SeatController {
 		return "/WEB-INF/views/admin/seat/list.jsp";
 	}
 	
+	@RequestMapping("/listByZone")
+	public String listByZone(@ModelAttribute SeatListDto seatListDto,@RequestParam String seatAreaZone, Model model) {
+		List<SeatListDto> list = seatDao.seatGroupZoneList(seatAreaZone);
+		model.addAttribute("list",list);
+		return "/WEB-INF/views/admin/seat/listByZone.jsp";
+
+		
+	}
+	
+	//개별 출력 가능 합치면 끝남
+	@RequestMapping("/listByStadium")
+	public String listByStadium(@ModelAttribute SeatListDto seatListDto,@RequestParam String stadiumName, Model model) {
+		List<SeatListDto> list = seatDao.seatGroupStadiumList(stadiumName);
+		model.addAttribute("list",list);
+		return "/WEB-INF/views/admin/seat/listByStadium.jsp";
+
+		
+	}
+	
+	
+	@RequestMapping("/detail")
+	public String detail(@RequestParam int seatNo, Model model ) {
+		SeatListDto seatListDto = seatDao.selectOne(seatNo);
+		model.addAttribute("seatListDto",seatListDto);
+		return "/WEB-INF/views/admin/seat/detail.jsp";
+		
+	} 
+	
 //	@GetMapping("/insert")
 //	public String insert(@ModelAttribute SeatAreaDto seatAreaDto ,Model model) {
 //		List<SeatAreaDto> list = seatAreaDao.selectList();
@@ -96,6 +124,7 @@ public class SeatController {
 
 	@GetMapping("/update")
 	public String updateSeat(@RequestParam String seatAreaZone, @RequestParam int seatCol,
+
 			@RequestParam int seatRow, @RequestParam String stadiumName, Model model) {
 		SeatListDto seatListDto = seatDao.selectForSeatUpdate(seatAreaZone, seatCol, seatRow, stadiumName);
 		model.addAttribute("seatListDto", seatListDto);
@@ -103,14 +132,6 @@ public class SeatController {
 		return "/WEB-INF/views/admin/seat/update.jsp";
 		
 	}
-//	@GetMapping("/update")
-//	public String updateSeat(@RequestParam int seatNo, Model model) {
-//		SeatListDto seatListDto = seatDao.selectForSeatUpdate2(seatNo);
-//		model.addAttribute("seatListDto", seatListDto);
-//
-//		return "/WEB-INF/views/admin/seat/update.jsp";
-//		
-//	}
 
 	@PostMapping("/update")
 	public String updateSeat(@ModelAttribute SeatListDto seatListDto) {

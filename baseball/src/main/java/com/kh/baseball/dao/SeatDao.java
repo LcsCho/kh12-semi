@@ -8,16 +8,24 @@ import com.kh.baseball.dto.SeatListDto;
 public interface SeatDao {
 	int sequenceSeat();
 	void insert(SeatDto seatDto);
-	SeatDto selectOne(int seatNo);
 	List<SeatDto> selectList();
 	boolean delete(int seatNo);
 	
-	//int bulkInsert(SeatDto seatDto, int col, int row);
+	//다중 좌석 insert를 위한 구문
 	void insertSeats(SeatDto seatDto);
+	// 좌석상태와 경기장이름 좌석구역을 확인 할 수 있는 리스트
 	List<SeatListDto> seatSeletList();
+	//좌석 상태 업테이트
 	boolean seatStatusUpsate(SeatListDto seatListDto);
+	//좌석 상태 업데이트를 위한 조회구문
 	SeatListDto selectForSeatUpdate(String seatAreaZone, int seatCol, int seatRow, String stadiumName);
-	//SeatListDto selectForSeatUpdate2(int seatNo);
+	//좌석 좌석구역 경기장 조인해서 detail출력을 위한 구문 
+	SeatListDto selectOne(int seatNo);
+	//좌석 구역별 리스트 출력을 위한 DAO
+	List<SeatListDto> seatGroupZoneList(String seatAreaZone);
+	List<SeatListDto> seatGroupStadiumList(String stadiumName);
+
+	
 	
 	
 	
