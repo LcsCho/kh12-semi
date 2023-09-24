@@ -36,7 +36,7 @@
         font-size: 18px;
         margin: 0.5em;
         border-radius: 5px;
-        background-color: #bf0838;
+        background-color: #110f29;
         color: white;
         border: none;
     }
