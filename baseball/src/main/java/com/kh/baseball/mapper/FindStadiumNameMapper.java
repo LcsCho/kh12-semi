@@ -20,6 +20,7 @@ public class FindStadiumNameMapper implements RowMapper<FindStadiumNameDto>{
 		nameDto.setSeatAreaPrice(rs.getInt("seat_area_price"));
 		nameDto.setStadiumName(rs.getString("stadium_name"));
 		nameDto.setStadiumNo(rs.getInt("stadium_no"));
+		nameDto.setSeatCount(rs.getInt("seat_count"));
 
 		return nameDto;
 	}

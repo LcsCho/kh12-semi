@@ -29,7 +29,6 @@
 				<td>${seatSeletDto.seatStatus}</td>
 <td><a href="/admin/seat/update?seatAreaZone=${seatSeletDto.seatAreaZone}&seatCol=${seatSeletDto.seatCol}&seatRow=${seatSeletDto.seatRow}&stadiumName=${seatSeletDto.stadiumName}">수정</a></td>
 <td><a href="/admin/seat/detail?seatNo=${seatSeletDto.seatNo}">상세</a></td>      
-<td><a href="/admin/seat/listByZone?seatAreaZone=A">상세</a></td>      
 
 			</tr>
 		</c:forEach>

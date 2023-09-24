@@ -25,8 +25,9 @@ public class SeatDaoImpl implements SeatDao {
 	@Override
 	public void insert(SeatDto seatDto) {
 		// 2중 for문으로 행열의 곱으로 좌석을 생성한다
-		String sql = "insert into seat(seat_no, seat_area_no, " + "seat_row, seat_col, seat_status) "
-				+ "values(?, ?, ?, ?, ?)";
+		String sql = "insert into seat(seat_no, seat_area_no, "
+					+ "seat_row, seat_col, seat_status) "
+					+ "values(?, ?, ?, ?, ?)";
 		Object[] data = { seatDto.getSeatNo(), seatDto.getSeatAreaNo(), seatDto.getSeatRow(), seatDto.getSeatCol(),
 				seatDto.getSeatStatus() };
 
@@ -83,22 +84,25 @@ public class SeatDaoImpl implements SeatDao {
 	@Override
 	public List<SeatListDto> seatSeletList() {
 		// 좌석상태와 경기장이름 좌석구역을 확인 할 수 있는 리스트 출력
-		String sql = "SELECT "
-		        + "s.seat_no, "
-		        + "sa.seat_area_no, "
-		        + "st.stadium_name, "
-		        + "sa.seat_area_price,"
-		        + "sa.seat_area_zone, " 
-		        + "s.seat_col, "
-		        + "s.seat_row, "
-		        + "s.seat_status, "
-		        + "st.stadium_no " 
-		        + "FROM "
-		        + "seat s "
-		        + "INNER JOIN "
-		        + "seat_area sa ON s.seat_area_no = sa.seat_area_no "
-		        + "INNER JOIN "
-		        + "stadium st ON sa.stadium_no = st.stadium_no";
+		String sql = "SELECT * FROM (" +
+		        "SELECT " +
+		        "s.seat_no, " +
+		        "sa.seat_area_no, " +
+		        "st.stadium_name, " +
+		        "sa.seat_area_price," +
+		        "sa.seat_area_zone, " +
+		        "s.seat_col, " +
+		        "s.seat_row, " +
+		        "s.seat_status, " +
+		        "st.stadium_no, " +
+		        "ROW_NUMBER() OVER(PARTITION BY st.stadium_name ORDER BY s.seat_no) AS rn " +
+		        "FROM " +
+		        "seat s " +
+		        "INNER JOIN " +
+		        "seat_area sa ON s.seat_area_no = sa.seat_area_no " +
+		        "INNER JOIN " +
+		        "stadium st ON sa.stadium_no = st.stadium_no) temp " +
+		        "WHERE rn = 1";
 				
 		return jdbcTemplate.query(sql,seatListMapper);	
 		}

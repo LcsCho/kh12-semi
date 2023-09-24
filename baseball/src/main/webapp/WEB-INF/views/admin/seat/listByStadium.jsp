@@ -12,6 +12,7 @@
 				<th>경기장</th>
 				<th>구역</th>
 				<th>좌석수</th>
+				<th>상세</th>
 
 			</tr>
 		</thead>
@@ -21,6 +22,7 @@
 					<td>${SeatGroupDto.stadiumName}</td>
 					<td>${SeatGroupDto.seatAreaZone}</td>
 					<td>${SeatGroupDto.seatCount}</td>
+					<td><a href="/admin/seat/listByZone?seatAreaZone=${SeatGroupDto.seatAreaZone}&stadiumName=${SeatGroupDto.stadiumName}">상세</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
