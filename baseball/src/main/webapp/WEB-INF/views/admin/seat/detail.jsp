@@ -5,7 +5,7 @@
 
 <div class="container w-500">
    <div class="row">
-      <h1>경기결과</h1>
+      <h1>좌석 상세</h1>
    </div>
    
    
@@ -13,28 +13,28 @@
    <div class="row">
       <table class="table table-border table-stripe">
          <tr>
-            <th>좌석번호</th>
-            <td>${seatSeletDto.seatNo}</td>
+            <th>경기장</th>
+            <td>${seatListDto.stadiumName}</td>
          </tr>
          <tr>
             <th>구역</th>
-            <td>${seatSeletDto.seatAreaZone}</td>
+            <td>${seatListDto.seatAreaZone}</td>
          </tr>
          <tr>
-            <th>경기장</th>
-            <td>${seatSeletDto.stadiumName}</td>
+            <th>좌석번호</th>
+            <td>${seatListDto.seatNo}</td>
          </tr>
          <tr>
             <th>열</th>
-            <td>${seatSeletDto.seatRow}</td>
+            <td>${seatListDto.seatRow}</td>
          </tr>
          <tr>
             <th>행</th>
-            <td>${seatSeletDto.seatCol}</td>
+            <td>${seatListDto.seatCol}</td>
          </tr>
          <tr>
             <th>상태</th>
-            <td>${seatSeletDto.seatStatus}</td>
+            <td>${seatListDto.seatStatus}</td>
          </tr>
          
 
