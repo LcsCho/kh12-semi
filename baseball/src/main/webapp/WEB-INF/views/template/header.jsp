@@ -159,7 +159,7 @@
     
                             <div class="row col-5">
                                 <div class="row">
-                                    <li><a href="/team/list">
+                                    <li><a href="/ranking">
                                             <i class="fa-solid fa-ranking-star"></i></a></li>
                                 </div>
                                 <div class="row i-font">

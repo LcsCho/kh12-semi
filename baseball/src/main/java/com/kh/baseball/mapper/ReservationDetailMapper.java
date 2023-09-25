@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import com.kh.baseball.dto.ReservationDto;
 
 @Component
-public class ReservationMapper implements RowMapper<ReservationDto>{
+public class ReservationDetailMapper implements RowMapper<ReservationDto>{
 
 	@Override
 	public ReservationDto mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -29,7 +29,6 @@ public class ReservationMapper implements RowMapper<ReservationDto>{
 		reservationDto.setSeatCol(rs.getInt("seat_col"));
 		reservationDto.setSeatAreaNo(rs.getInt("seat_area_no"));
 		reservationDto.setMatchDate(rs.getDate("match_date"));
-		reservationDto.setReservationTicket(rs.getInt("reservation_ticket"));
 		return reservationDto;
 	}
 }

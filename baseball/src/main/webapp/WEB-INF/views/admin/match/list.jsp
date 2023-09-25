@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/template/matchSidebar.jsp"></jsp:include>
 
@@ -22,13 +23,17 @@
 		<tbody align="center">
 			<c:forEach var="matchDto" items="${list}">
 				<tr>
-					<td><a href="detail?matchNo=${matchDto.matchNo}">${matchDto.matchNo}</a></td>
+					<td><a href="detailMatch?matchNo=${matchDto.matchNo}">${matchDto.matchNo}</a></td>
 					<td>${matchDto.matchDate}</td>
 					<td>${matchDto.stadiumName}</td>
 					<td>${matchDto.homeTeam}</td>
 					<td>${matchDto.awayTeam}</td>
 					<td>${matchDto.matchHomeScore}</td>
 					<td>${matchDto.matchAwayScore}</td>
+					<td>
+						<a href="updateDate?matchNo=${matchDto.matchNo}">날짜수정</a>
+						<a href="insertResult?matchNo=${matchDto.matchNo}">결과입력</a> 
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

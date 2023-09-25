@@ -20,7 +20,7 @@ import com.kh.baseball.dto.MemberDto;
 import com.kh.baseball.vo.PaginationVO;
 
 @Controller
-@RequestMapping("/admin/board")
+@RequestMapping("/board")
 public class BoardController {
 
 	@Autowired

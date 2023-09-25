@@ -15,6 +15,7 @@
 		<tr>
 			<td><a href="detail?stadiumNo=${stadiumDto.stadiumNo}">${stadiumDto.stadiumNo}</a></td>
 			<td>${stadiumDto.stadiumName}</td>
+
 		</tr>
 		<!--</c:forEach>-->
 	</tbody>

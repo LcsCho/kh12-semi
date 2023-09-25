@@ -5,7 +5,7 @@ import java.sql.Date;
 import lombok.Data;
 
 @Data
-public class ReservationDto {
+public class ReservationCancelDto {
 	private int reservationNo;
 	private int matchNo;
 	private int seatNo;
@@ -19,5 +19,4 @@ public class ReservationDto {
 	private int seatRow, seatCol;
 	private int seatAreaNo;
 	private Date matchDate;
-	private int reservationTicket;
 }

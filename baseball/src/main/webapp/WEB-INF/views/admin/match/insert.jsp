@@ -34,6 +34,10 @@
 			<input type="date" name="matchDate"
 				value="${matchDto.matchDate}"><br><br> 
 			<button class="btn btn-positive">경기등록</button>
+			경기일 
+			<input type="date" name="matchDate"
+				value="${matchDto.matchDate}"><br><br> 
+			<button class="btn btn-positive">경기등록</button>
 		</div>
 	</div>
 </form>
