@@ -5,11 +5,8 @@ import java.util.List;
 import com.kh.baseball.dto.ReservationDto;
 
 public interface ReservationDao {
-	
-	int sequence();
 	void insert(ReservationDto reservationDto);
-	List<ReservationDto> selectList();
-	ReservationDto selectOne(int reservationNo);
+	List<ReservationDto> selectList(String memberId);
 	boolean update(ReservationDto reservationDto);
 	boolean delete(int reservationNo);
 	
