@@ -111,46 +111,18 @@ $(document).ready(function() {
 
                     <!-- 체크박스를 사용하여 구역 선택 -->
                     <div class="boxborder">
+                    
+                    
                     <label for="seatAreaZone">구역 선택:</label>
+                    
+                    
                     <div class="checkbox">
                         <input type="checkbox" name="seatAreaZone" id="zoneA" value="A">
-                        <label for="zoneA">A</label>
+                        <label for="zoneA">--</label>
                     </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="seatAreaZone" id="zoneA" value="A">
-                        <label for="zoneA">B</label>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="seatAreaZone" id="zoneA" value="A">
-                        <label for="zoneA">C</label>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="seatAreaZone" id="zoneA" value="A">
-                        <label for="zoneA">D</label>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="seatAreaZone" id="zoneA" value="A">
-                        <label for="zoneA">E</label>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="seatAreaZone" id="zoneA" value="A">
-                        <label for="zoneA">F</label>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="seatAreaZone" id="zoneA" value="A">
-                        <label for="zoneA">G</label>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="seatAreaZone" id="zoneA" value="A">
-                        <label for="zoneA">H</label>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="seatAreaZone" id="zoneA" value="A">
-                        <label for="zoneA">I</label>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="seatAreaZone" id="zoneA" value="A">
-                        <label for="zoneA">J</label>
+                    
+                    
+                    
                     </div>
                 </div>
             </div>
