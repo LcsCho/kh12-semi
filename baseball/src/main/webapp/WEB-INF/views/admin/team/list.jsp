@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/template/teamSidebar.jsp"></jsp:include>
-<table class="table table-slit" border="1" width="800">
+<table border="1" width="800">
 	<thead>
 		<tr>
 			<th>순위</th>
@@ -28,6 +28,10 @@
 			<td>${teamDto.teamLose}</td>
 			<td><fmt:formatNumber value="${teamDto.teamWinRate}" type="number" minFractionDigits="3" maxFractionDigits="3" /></td>
 			<td>${teamDto.teamGameGap}</td>
+			<td>
+						<a href="update?teamNo=${teamDto.teamNo}">수정</a>
+						<a href="delete?teamNo=${teamDto.teamNo}">삭제</a>  
+					</td>
 		</tr>
 		</c:forEach>
 	</tbody>

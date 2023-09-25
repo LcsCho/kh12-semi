@@ -22,13 +22,17 @@
 		<tbody align="center">
 			<c:forEach var="matchDto" items="${list}">
 				<tr>
-					<td><a href="detail?matchNo=${matchDto.matchNo}">${matchDto.matchNo}</a></td>
+					<td><a href="detailMatch?matchNo=${matchDto.matchNo}">${matchDto.matchNo}</a></td>
 					<td>${matchDto.matchDate}</td>
 					<td>${matchDto.stadiumName}</td>
 					<td>${matchDto.homeTeam}</td>
 					<td>${matchDto.awayTeam}</td>
 					<td>${matchDto.matchHomeScore}</td>
 					<td>${matchDto.matchAwayScore}</td>
+					<td>
+						<a href="updateDate?matchNo=${matchDto.matchNo}">날짜수정</a>
+						<a href="insertResult?matchNo=${matchDto.matchNo}">결과입력</a> 
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
