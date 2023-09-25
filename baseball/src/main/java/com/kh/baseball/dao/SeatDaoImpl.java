@@ -71,7 +71,8 @@ public class SeatDaoImpl implements SeatDao {
 
 	@Override
 	public void insertSeats(SeatDto seatDto) {
-		String sql = "INSERT INTO seat(seat_no,seat_area_no, seat_row, seat_col, seat_status) VALUES (seat_no_seq.nextval,?, ?, ?, ?)";
+		String sql = "INSERT INTO seat(seat_no,seat_area_no,"
+				+ " seat_row, seat_col, seat_status) VALUES (seat_no_seq.nextval,?, ?, ?, ?)";
 		for (int row = 1; row <= seatDto.getSeatRow(); row++) {
 			for (int col = 1; col <= seatDto.getSeatCol(); col++) {
 				jdbcTemplate.update(sql, seatDto.getSeatAreaNo(), row, col, seatDto.getSeatStatus());
@@ -144,7 +145,8 @@ public class SeatDaoImpl implements SeatDao {
 	@Override
 	public SeatListDto selectOne(int seatNo) {
 		//update 문을 실행하기 위한 좌석구역과 경기장 이름 ,열 행으로 상태를 좌석을 찾아 상태를 찾는 sql 만들어야함
-		 String sql = "SELECT s.seat_no, sa.seat_area_no, st.stadium_name, sa.seat_area_price, sa.seat_area_zone, s.seat_col, s.seat_row, s.seat_status, st.stadium_no "
+		 String sql = "SELECT s.seat_no, sa.seat_area_no, st.stadium_name, sa.seat_area_price,"
+		 		+ " sa.seat_area_zone, s.seat_col, s.seat_row, s.seat_status, st.stadium_no "
 	                + "FROM seat s "
 	                + "INNER JOIN seat_area sa ON s.seat_area_no = sa.seat_area_no "
 	                + "INNER JOIN stadium st ON sa.stadium_no = st.stadium_no "
@@ -203,11 +205,5 @@ public class SeatDaoImpl implements SeatDao {
 	             + "st.stadium_name";
 		return jdbcTemplate.query(sql,seatGourpMapper,stadiumName);	
 		}
-	
-	
-	
-	
-
-
 
 }
