@@ -61,7 +61,8 @@ public class ReservationDaoImpl implements ReservationDao{
 				    "sa.stadium_no, " +
 				    "sa.seat_area_zone, " +
 				    "s.seat_row, " +
-				    "s.seat_col " +
+				    "s.seat_col,"
+				    + "ma.match_date  " +
 				    "FROM reservation rs " +
 				    "INNER JOIN seat s ON rs.seat_no = s.seat_no " +
 				    "INNER JOIN match ma ON rs.match_no = ma.match_no " +
