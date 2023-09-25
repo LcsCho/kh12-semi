@@ -20,4 +20,5 @@ public class ReservationVO {
 	private String seatAreaZone;
 	private int seatRow, seatCol;
 	private Date matchDate;
+	private int reservationTicket;
 }

@@ -9,7 +9,6 @@ public interface ReservationDao {
 	void insert(ReservationDto reservationDto);
 	List<ReservationDto> selectList(String memberId);
 	ReservationDto selectOne(int reservationNo);
-	boolean update(ReservationDto reservationDto);
 	boolean cancel(int reservationNo);
 	List<ReservationCancelDto> cancelList(String memberId);
 	

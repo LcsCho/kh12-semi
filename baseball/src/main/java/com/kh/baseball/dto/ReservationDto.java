@@ -19,4 +19,5 @@ public class ReservationDto {
 	private int seatRow, seatCol;
 	private int seatAreaNo;
 	private Date matchDate;
+	private int reservationTicket;
 }
