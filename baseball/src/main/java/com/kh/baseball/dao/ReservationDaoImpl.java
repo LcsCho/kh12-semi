@@ -67,7 +67,8 @@ public class ReservationDaoImpl implements ReservationDao{
 	                "sa.seat_area_zone, " +
 	                "s.seat_row, " +
 	                "s.seat_col,"
-	                + "ma.match_date  " +
+	                + "ma.match_date, " +
+	                "rs.reservation_ticket " +
 	                "FROM reservation rs " +
 	                "INNER JOIN seat s ON rs.seat_no = s.seat_no " +
 	                "INNER JOIN match ma ON rs.match_no = ma.match_no " +
@@ -80,23 +81,7 @@ public class ReservationDaoImpl implements ReservationDao{
 		return jdbcTemplate.query(sql, reservationMapper, data);
 	}
 	
-	 //수정
-	 @Override
-	public boolean update(ReservationDto reservationDto) {
-		 String sql = "update reservation set match_no=?, seat_no=?, home_team=?, "
-		 		+ "member_id=?, away_team=?, reservation_date=? "
-		 		+ "where reservation_no=?";
-		 Object[] data = { reservationDto.getMatchNo(), 
-								reservationDto.getSeatNo(), 
-								reservationDto.getHomeTeam(),
-								reservationDto.getMemberId(), 
-								reservationDto.getAwayTeam(), 
-								reservationDto.getReservationDate(), 
-								reservationDto.getReservationNo()
-		 		};
-		return jdbcTemplate.update(sql, data) > 0;
-	}
-	 
+
 	 //삭제
 	@Override
 	public boolean cancel(int reservationNo) {
@@ -109,7 +94,7 @@ public class ReservationDaoImpl implements ReservationDao{
 	public List<ReservationCancelDto> cancelList(String memberId) {
 		String sql = "select * from reservation_cancel where member_id = ?";
 		Object[] data = {memberId};
-		return jdbcTemplate.query(sql, reservationCancelMapper);
+		return jdbcTemplate.query(sql, reservationCancelMapper, data);
 	}
 
 
