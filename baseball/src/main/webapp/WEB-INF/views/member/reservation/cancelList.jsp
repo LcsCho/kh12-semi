@@ -16,15 +16,16 @@
 			</tr>
 		</thead>
 		<tbody align="center">
-			<c:forEach var="reservationDto" items="${list}">
+			<c:forEach var="cancelDto" items="${cancelList}">
 				<tr>
-					<td>${reservationDto.reservationNo}</td>
-					<td><fmt:formatDate value="${reservationDto.matchDate}" pattern="yyyy-MM-dd-HH-mm"/>
+					<td>${cancelDto.reservationNo}</td>
+					<td><fmt:formatDate value="${cancelDto.matchDate}" pattern="yyyy-MM-dd-HH-mm"/>
 					</td>
-					<td>${reservationDto.stadiumName}</td>
-					<td>${reservationDto.homeTeam}</td>
-					<td>${reservationDto.awayTeam}</td>
-					<td><a href="memberByDetail?reservationNo=${reservationDto.reservationNo}">상세</a></td>
+					<td>${cancelDto.stadiumName}</td>
+					<td>${cancelDto.homeTeam}</td>
+					<td>${cancelDto.awayTeam}</td>
+					<td><a href="/">홈으로</a></td>
+					<td><a href="#">예매하기</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
