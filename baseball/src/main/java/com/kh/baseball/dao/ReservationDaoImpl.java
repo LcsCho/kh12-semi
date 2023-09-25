@@ -25,7 +25,7 @@ public class ReservationDaoImpl implements ReservationDao{
 	}
 	
 	//등록
-	 @Override
+	@Override
 	public void insert(ReservationDto reservationDto) {
 		String sql = "insert into reservation(reservation_no, match_no, seat_no, home_team, "
 				+ "away_team, member_id, reservation_date) "

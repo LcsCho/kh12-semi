@@ -27,8 +27,6 @@ public class ReservationMapper implements RowMapper<ReservationDto>{
 		reservationDto.setSeatAreaZone(rs.getString("seat_area_zone"));
 		reservationDto.setSeatRow(rs.getInt("seat_row"));
 		reservationDto.setSeatCol(rs.getInt("seat_col"));
-		reservationDto.setHomeTeamNo(rs.getInt("home_team_no"));
-		reservationDto.setAwayTeamNo(rs.getInt("away_team_no"));
 		return reservationDto;
 	}
 }
