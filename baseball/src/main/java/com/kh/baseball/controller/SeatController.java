@@ -125,7 +125,6 @@ public class SeatController {
 
 	@GetMapping("/update")
 	public String updateSeat(@RequestParam String seatAreaZone, @RequestParam int seatCol,
-
 			@RequestParam int seatRow, @RequestParam String stadiumName, Model model) {
 		SeatListDto seatListDto = seatDao.selectForSeatUpdate(seatAreaZone, seatCol, seatRow, stadiumName);
 		model.addAttribute("seatListDto", seatListDto);
