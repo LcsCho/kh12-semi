@@ -48,29 +48,30 @@ public class ReservationDaoImpl implements ReservationDao{
 	//회원별 목록 조회
 	 @Override
 	public List<ReservationDto> selectList(String memberId) {
-		 String sql = "SELECT rs.reservation_no, " +
-				    "ma.match_no, " +
-				    "s.seat_no, " +
-				    "hm.TEAM_NO as HOME_TEAM, " +
-				    "aw.team_no as AWAY_TEAM, " +
-				    "m.member_id, " +
-				    "ma.stadium_name, " +
-				    "rs.RESERVATION_DATE, " +
-				    "s.seat_area_no, " +
-				    "sa.seat_area_price, " +
-				    "sa.stadium_no, " +
-				    "sa.seat_area_zone, " +
-				    "s.seat_row, " +
-				    "s.seat_col,"
-				    + "ma.match_date  " +
-				    "FROM reservation rs " +
-				    "INNER JOIN seat s ON rs.seat_no = s.seat_no " +
-				    "INNER JOIN match ma ON rs.match_no = ma.match_no " +
-				    "INNER JOIN member m ON rs.member_id = m.member_id " +
-				    "INNER JOIN team hm ON rs.home_team = hm.team_no " +
-				    "INNER JOIN team aw ON rs.away_team = aw.team_no " +
-				    "INNER JOIN seat_area sa ON rs.seat_area_no = sa.SEAT_AREA_NO " +
-				    "WHERE m.member_id = ?";
+
+	       String sql = "SELECT rs.reservation_no, " +
+	                "ma.match_no, " +
+	                "s.seat_no, " +
+	                "hm.TEAM_name as HOME_TEAM, " +
+	                "aw.team_name as AWAY_TEAM, " +
+	                "m.member_id, " +
+	                "ma.stadium_name, " +
+	                "rs.RESERVATION_DATE, " +
+	                "s.seat_area_no, " +
+	                "sa.seat_area_price, " +
+	                "sa.stadium_no, " +
+	                "sa.seat_area_zone, " +
+	                "s.seat_row, " +
+	                "s.seat_col,"
+	                + "ma.match_date  " +
+	                "FROM reservation rs " +
+	                "INNER JOIN seat s ON rs.seat_no = s.seat_no " +
+	                "INNER JOIN match ma ON rs.match_no = ma.match_no " +
+	                "INNER JOIN member m ON rs.member_id = m.member_id " +
+	                "INNER JOIN team hm ON rs.home_team = hm.team_no " +
+	                "INNER JOIN team aw ON rs.away_team = aw.team_no " +
+	                "INNER JOIN seat_area sa ON rs.seat_area_no = sa.SEAT_AREA_NO " +
+	                "WHERE m.member_id = ?";
 		Object[] data = {memberId};
 		return jdbcTemplate.query(sql, reservationMapper, data);
 	}
