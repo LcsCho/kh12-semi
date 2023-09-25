@@ -17,4 +17,6 @@ public class ReservationDto {
 	private int stadiumNo;
 	private String seatAreaZone;
 	private int seatRow, seatCol;
+	private int seatAreaNo;
+	private Date matchDate;
 }
