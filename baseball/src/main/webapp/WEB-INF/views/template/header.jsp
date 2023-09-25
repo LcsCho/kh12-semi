@@ -58,6 +58,8 @@
             .fa-solid {
                 font-size: 40px;
                 color: #360a01;
+				padding: auto;
+                padding-top: 0.05em;
             }
     
             .logo{
@@ -126,7 +128,7 @@
     
                             <div class="row col-5">
                                 <div class="row">
-                                    <li><a href="/schedule">
+                                    <li><a href="/schedule/doosan">
                                             <i class="fa-solid fa-calendar-days"></i></a></li>
                                 </div>
                                 <div class="row i-font">
@@ -137,7 +139,7 @@
     
                             <div class="row col-5">
                                 <div class="row">
-                                    <li><a href="#">
+                                    <li><a href="/reservation/doosan">
                                             <i class="fa-solid fa-ticket"></i></a></li>
                                 </div>
                                 <div class="row i-font">
@@ -147,7 +149,7 @@
     
                             <div class="row col-5">
                                 <div class="row">
-                                    <li><a href="#">
+                                    <li><a href="/teamInfo">
                                             <i class="fa-solid fa-baseball-bat-ball"></i></a></li>
                                 </div>
                                 <div class="row i-font">

@@ -33,16 +33,7 @@
 			경기일 
 			<input type="date" name="matchDate"
 				value="${matchDto.matchDate}"><br><br> 
-			
-			홈팀스코어 
-			<input type="number" name="matchHomeScore"
-				value="${matchDto.matchHomeScore}"><br><br>
-			
-			어웨이팀스코어 
-			<input type="number" name="matchAwayScore"
-				value="${matchDto.matchAwayScore}"><br><br>
-			
-			<button class="btn btn-positive">등록하기</button>
+			<button class="btn btn-positive">경기등록</button>
 		</div>
 	</div>
 </form>

@@ -74,9 +74,13 @@ public class SeatAreaDaoImpl implements SeatAreaDao{
 	
 	@Override
 	public List<FindStadiumNameDto> selectStadiumName() {
-        String sql = "SELECT sa.seat_area_no, sa.seat_area_zone, sa.seat_area_price, s.stadium_name, sa.seat_area_price, s.stadium_no " +
-                     "FROM seat_area sa " +
-                     "INNER JOIN stadium s ON sa.stadium_no = s.stadium_no ORDER BY s.stadium_no ASC, sa.seat_area_zone ASC";
+		String sql = "SELECT st.stadium_no, sa.SEAT_AREA_NO, sa.seat_area_zone, st.stadium_name, sa.seat_area_price, " +
+	             "COALESCE(COUNT(s.seat_no), 0) AS seat_count " +
+	             "FROM stadium st " +
+	             "LEFT OUTER JOIN seat_area sa ON st.stadium_no = sa.stadium_no " +
+	             "LEFT OUTER JOIN seat s ON sa.seat_area_no = s.seat_area_no " +
+	             "GROUP BY st.stadium_no, sa.SEAT_AREA_NO, sa.seat_area_zone, st.stadium_name, sa.seat_area_price " +
+	             "ORDER BY st.stadium_name ASC, sa.seat_area_zone ASC";
 
         return jdbcTemplate.query(sql, nameMapper);
     }

@@ -5,8 +5,7 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <style>
-
-            .teamlogo{
+.teamlogo{
                 width: 30%;
                 margin-right: -2em;
                 margin-left: 2em;
@@ -32,49 +31,56 @@
                 color: #62676C;
             }
 
-        .col-7.schedule-top {
-            box-shadow: 0px 0px 0px 1px #D1CFCF;
-            height: 50px;
-            padding-top: 1em;
-            font-weight: bold;
-            font-size: 17px;
-        }
-
-        .col-7.schedule-bottom {
-            box-shadow: 0px 0px 0px 1px #D1CFCF;
-            height: 200px;
-            font-weight: bold;
-            font-size: 17px;
-            margin-top: -1.9em;
-        }
-
-        .day{
-            padding-left: 1em;
-            font-size: 13px;
-        }
-
-        .font{
-        font-weight: bold;
-        font-size: 15px;
-        color: #838383;
-        margin-top: -1em;
-    }
 
     .btn{
         font-size: 18px;
         margin: 0.5em;
-        border-radius: 10px;
-        background-color: #360a01;
+        border-radius: 5px;
+        background-color: #bf0838;
         color: white;
         border: none;
     }
+
+    .team-choice{
+        margin-left: -1.5em;
+        height: 60px;
+    }
+
+    .doosan, .lg{
+        margin-left: 2em;
+        font-size: 20px;
+        border-radius: 5px;
+        background-color: #110f29;
+        color: white;
+        margin-bottom: 2em;
+        width: 80px;'
+
+    }
+    .doosan{
+        margin-left: 2em;
+        background-color: #110f29;
+    }
+    .lg{
+        background-color: #bf0838;
+        margin-left: 0em;
+        text-align: center;
+    }
+    
+    table {border-collapse: collapse;}
+    td{border: 1px solid #D1CFCF; padding: 3px; width: 150px; height: 205px;}
+    th{border: 1px solid #D1CFCF; font-weight: bold; height: 40px; padding-top: 0.5em;}
+    th:nth-child(6) {color:#DD6045;} 
+    th:nth-last-child(1) {color:#3D85B9;}
         </style>
 
  <div class="container w-1000">
+ 
+				<a href="/schedule/doosan" class="btn doosan">두산</a> 
+                 <a href="/schedule/lg" class="btn lg">LG</a>
 
                     <div class="float-container">
                         <div class="col-2 teamlogo">
-                            <img src="/images/두산.png" width="200px"> 
+                            <img src="/images/엘지트윈스.png" width="200px"> 
                         </div>
                         <div class="col-2 notice">
                             <div class="float-container">
@@ -97,67 +103,34 @@
                            <label class="open">예매하기 <2023. 10></label>
                     </div>
 
-                    <div class="container w-1000 reservation">
+                   <table>
+                <thead>
+                    <tr>
+                        <th>월</th>
+                        <th>화</th>
+                        <th>수</th>
+                        <th>목</th>
+                        <th>금</th>
+                        <th>토</th>
+                        <th>일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>                           
 
-                    <div class="float-container center">
-            
-                        <div class="col-7 schedule-top">
-                            월요일
-                        </div>
-                        <div class="col-7 schedule-top">
-                            화요일
-                        </div>
-                        <div class="col-7 schedule-top">
-                            수요일
-                        </div>
-                        <div class="col-7 schedule-top">
-                            목요일
-                        </div>
-                        <div class="col-7 schedule-top">
-                            금요일
-                        </div>
-                        <div class="col-7 schedule-top">
-                            토요일
-                        </div>
-                        <div class="col-7 schedule-top">
-                            일요일
-                        </div>
-                        
-                    </div>
-                    
-                    <!-- 1주차 -->
-                    <div class="float-container">
-        
-                        <div class="col-7 schedule-bottom">
-                            
-                        </div>
-        
-                        <div class="col-7 schedule-bottom">
-                           
-                        </div>
-        
-                        <div class="col-7 schedule-bottom">
-                            
-                        </div>
-                        
-                        <div class="col-7 schedule-bottom">
-                            
-                        </div>
-
-                        <div class="col-7 schedule-bottom">
-                            
-                        </div>
-
-                        <div class="col-7 schedule-bottom">
-                           
-                        </div>
-
-             <div class="col-7 schedule-bottom">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">1</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -165,26 +138,21 @@
                             <div class="row">
                                 <a href="#" class="btn">예매하기</a>
                             </div>
-                        </div>
-
-                    </div>
-
-                    <!-- 2주차 -->
-                    <div class="float-container">
-        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <div class="row left">
                                 <label class="day left">2</label>
                             </div>
-
-                        </div>
-        
-                        <div class="col-7 schedule-bottom">
+                            
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">3</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -192,14 +160,13 @@
                             <div class="row">
                                 <a href="#" class="btn">예매하기</a>
                             </div>
-                        </div>
-        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">4</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -207,14 +174,13 @@
                             <div class="row">
                                 <a href="#" class="btn">예매하기</a>
                             </div>
-                        </div>
-                        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">5</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -222,14 +188,13 @@
                             <div class="row">
                                 <a href="#" class="btn">예매하기</a>
                             </div>
-                        </div>
-
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">6</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -237,14 +202,13 @@
                             <div class="row">
                                 <a href="#" class="btn">예매하기</a>
                             </div>
-                        </div>
-
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">7</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -252,14 +216,13 @@
                             <div class="row">
                                 <a href="#" class="btn">예매하기</a>
                             </div>
-                        </div>
-
-             <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">8</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -267,26 +230,20 @@
                             <div class="row">
                                 <a href="#" class="btn">예매하기</a>
                             </div>
-                        </div>
-
-                    </div>
-
-                    <!-- 3주차 -->
-                    <div class="float-container">
-        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <div class="row left">
                                 <label class="day left">9</label>
                             </div>
-
-                        </div>
-        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">10</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -294,14 +251,13 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">11</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -309,14 +265,13 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-                        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">12</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -324,14 +279,13 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">13</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -339,14 +293,13 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">14</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -354,14 +307,13 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-
-             <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">15</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -369,26 +321,20 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-
-                    </div>
-
-                    <!-- 4주차 -->
-                    <div class="float-container">
-        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <div class="row left">
                                 <label class="day left">16</label>
                             </div>
-
-                        </div>
-        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">17</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -396,14 +342,13 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">18</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -411,14 +356,13 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-                        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">19</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -426,14 +370,13 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">20</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -441,14 +384,13 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">21</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -456,14 +398,13 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-
-             <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">22</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -471,26 +412,20 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-
-                    </div>
-
-                    <!-- 5주차 -->
-                    <div class="float-container">
-        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <div class="row left">
                                 <label class="day left">23</label>
                             </div>
-
-                        </div>
-        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">24</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -498,14 +433,13 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">25</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -513,14 +447,13 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-                        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">26</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -528,14 +461,13 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">27</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -543,14 +475,13 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">28</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -558,14 +489,13 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-
-             <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">29</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -573,26 +503,20 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-
-                    </div>
-
-                    <!-- 6주차 -->
-                    <div class="float-container">
-        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <div class="row left">
                                 <label class="day left">30</label>
                             </div>
-
-                        </div>
-        
-                        <div class="col-7 schedule-bottom">
+                        </td>
+                        <td>
                             <div class="row left">
                                 <label class="day left">31</label>
                             </div>
                             <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
+                                <img src="/images/vs두산.png" width="50%">
                             </div>
                             <div class="row">
                                 <label class="font">잠실야구장</label>
@@ -600,27 +524,15 @@
                             <div class="row">
                                 <label class="font">10:8 11:00오픈</label>
                             </div>
-                        </div>
-        
-                        <div class="col-7 schedule-bottom">
-                            
-                        </div>
-                        
-                        <div class="col-7 schedule-bottom">
-                            
-                        </div>
-
-                        <div class="col-7 schedule-bottom">
-                            
-                        </div>
-
-                        <div class="col-7 schedule-bottom">
-                         
-                        </div>
-
-             <div class="col-7 schedule-bottom">
-                         
-                        </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
 
                     </div>
         

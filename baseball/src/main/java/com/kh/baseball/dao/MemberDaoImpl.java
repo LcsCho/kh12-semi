@@ -218,6 +218,14 @@ public class MemberDaoImpl implements MemberDao{
 		List<MemberBlockDto> list = jdbcTemplate.query(sql, memberBlockMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}
+
+	@Override
+	public MemberDto selectOneByMemberNickname(String memberNick) {
+		String sql = "select * from member where member_nick = ?";
+		Object[] data = {memberNick};
+		List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
+		return list.isEmpty() ? null : list.get(0);
+	}
 	
 }
 

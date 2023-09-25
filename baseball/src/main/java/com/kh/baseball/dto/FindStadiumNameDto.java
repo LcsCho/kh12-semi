@@ -8,6 +8,7 @@ public class FindStadiumNameDto {
 	private String seatAreaZone;
 	private int seatAreaPrice;
 	private String stadiumName;
-	private int StadiumNo;
+	private int stadiumNo;
+	private int seatCount;
 
 }

@@ -20,6 +20,7 @@ import com.kh.baseball.dto.TeamDto;
 @Repository
 @RequestMapping("/admin/match")
 public class MatchController {
+	
 	@Autowired 
 	private MatchDao matchDao;
 	
@@ -43,8 +44,39 @@ public class MatchController {
 	public String insert(@ModelAttribute MatchDto matchDto) {
 		int matchNo = matchDao.sequence();
 		matchDto.setMatchNo(matchNo);
-		matchDao.insert(matchDto);
+		matchDao.insertMatch(matchDto);
+
+		return "redirect:detailMatch?matchNo="+matchNo;
+	}
+	
+	@GetMapping("/updateDate")
+	public String updateDate(Model model, @RequestParam int matchNo) {
+		MatchDto matchDto = matchDao.selectOne(matchNo);
+		model.addAttribute("matchDto", matchDto);
 		
+		return "/WEB-INF/views/admin/match/updateDate.jsp";
+	}
+	
+	@PostMapping("/updateDate")
+	public String updateDate(@ModelAttribute MatchDto matchDto) {
+		matchDao.updateDate(matchDto);
+		return "redirect:detailMatch?matchNo="+matchDto.getMatchNo();
+	}
+	
+	@GetMapping("/insertResult")
+	public String insertResult(Model model,
+			@RequestParam int matchNo) {
+		MatchDto matchDto = matchDao.selectOne(matchNo);
+		model.addAttribute("matchDto", matchDto);
+		
+		return "/WEB-INF/views/admin/match/insertResult.jsp";
+	}
+	
+	@PostMapping("/insertResult")
+	public String insertResult(@ModelAttribute MatchDto matchDto) {
+		matchDao.update(matchDto);
+		
+		int matchNo = matchDto.getMatchNo();
 		matchDto = matchDao.selectOne(matchNo);
 		String homeTeam = matchDto.getHomeTeam();
 		String awayTeam = matchDto.getAwayTeam();
@@ -67,7 +99,7 @@ public class MatchController {
 		teamDao.updateWinRate(awayTeam);
 		teamDao.updateGameGap();
 
-		return "redirect:detail?matchNo="+matchNo;
+		return "redirect:detailMatchResult?matchNo="+matchNo;
 	}
 	
 	@RequestMapping("/list")
@@ -77,29 +109,18 @@ public class MatchController {
 		return "/WEB-INF/views/admin/match/list.jsp";				
 	}
 
-	@RequestMapping("/detail")
-	public String detail(@RequestParam int matchNo, Model model) {
+	@RequestMapping("/detailMatch")
+	public String detailMatch(@RequestParam int matchNo, Model model) {
 		MatchDto matchDto = matchDao.selectOne(matchNo);
 		model.addAttribute("matchDto", matchDto);
-		return "/WEB-INF/views/admin/match/detail.jsp";
+		return "/WEB-INF/views/admin/match/detailMatch.jsp";
 	}
 	
-	@GetMapping("/change")
-	public String change(Model model, @RequestParam int matchNo) {
+	@RequestMapping("/detailMatchResult")
+	public String detailMatchResult(@RequestParam int matchNo, Model model) {
 		MatchDto matchDto = matchDao.selectOne(matchNo);
 		model.addAttribute("matchDto", matchDto);
-		return "/WEB-INF/views/admin/match/change.jsp";
-	}
-	
-	@PostMapping("/change")
-	public String change(@ModelAttribute MatchDto matchDto) {
-		boolean result = matchDao.update(matchDto);
-		if(result) {
-			return "redirect:detail?matchNo="+matchDto.getMatchNo();
-		}
-		else {
-			return "redirecr:error";
-		}
+		return "/WEB-INF/views/admin/match/detailMatchResult.jsp";
 	}
 	
 }

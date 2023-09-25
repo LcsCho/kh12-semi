@@ -37,7 +37,8 @@
                   <option value="${FindStadiumNameDto.seatAreaNo}">
                      ${FindStadiumNameDto.stadiumName}  |
                      ${FindStadiumNameDto.seatAreaZone} |
-                     ${FindStadiumNameDto.seatAreaPrice} 원</option>
+                     ${FindStadiumNameDto.seatAreaPrice} 원  |
+                     ${FindStadiumNameDto.seatCount}석</option>
                </c:forEach>
             </select>
             <div class="row"></div>
