@@ -29,5 +29,7 @@
 			<i class="fa-solid fa-trash fa-2x"></i>
 		</a>
 	</div>
+	
 </div>
-<jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>    
+<jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>
+    

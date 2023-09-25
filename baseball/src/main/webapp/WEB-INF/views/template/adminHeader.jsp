@@ -202,7 +202,7 @@
 
                             <div class="row col-5">
                                 <div class="row">
-                                    <li><a href="/admin/board/list">
+                                    <li><a href="/board/list">
                                             <i class="fa-solid fa-check"></i></a></li>
     
                                 </div>

@@ -48,6 +48,7 @@ public class ReservationDaoImpl implements ReservationDao{
 	//회원별 목록 조회
 	 @Override
 	public List<ReservationDto> selectList(String memberId) {
+
 	       String sql = "SELECT rs.reservation_no, " +
 	                "ma.match_no, " +
 	                "s.seat_no, " +
@@ -71,7 +72,6 @@ public class ReservationDaoImpl implements ReservationDao{
 	                "INNER JOIN team aw ON rs.away_team = aw.team_no " +
 	                "INNER JOIN seat_area sa ON rs.seat_area_no = sa.SEAT_AREA_NO " +
 	                "WHERE m.member_id = ?";
-
 		Object[] data = {memberId};
 		return jdbcTemplate.query(sql, reservationMapper, data);
 	}
