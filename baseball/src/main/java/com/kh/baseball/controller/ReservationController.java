@@ -106,7 +106,6 @@ public class ReservationController {
 		trueReservationDao.insert(trueReservationDto);
 
 		return "redirect:list"; // 성공 페이지로 리다이렉트합니다.
-		
 
 	}
 
