@@ -29,28 +29,14 @@
 					<th>경기장</th>
 					<td>${matchDto.stadiumName}</td>
 				</tr>
-			<tr>
-				<th>홈팀스코어</th>
-				<td><c:choose>
-						<c:when test="${matchDto.matchDate.getTime() > now}">
-                경기 전
-            </c:when>
-						<c:otherwise>
-                ${matchDto.matchHomeScore}
-            </c:otherwise>
-					</c:choose></td>
-			</tr>
-			<tr>
-				<th>어웨이스코어</th>
-				<td><c:choose>
-						<c:when test="${matchDto.matchDate.getTime() > now}">
-                		경기 전
-            			</c:when>
-						<c:otherwise>
-                ${matchDto.matchAwayScore}
-            </c:otherwise>
-					</c:choose></td>
-			</tr>
+				<tr>
+					<th>홈팀</th>
+					<td>${matchDto.homeTeam}</td>
+				</tr>
+				<tr>
+					<th>어웨이팀</th>
+					<td>${matchDto.awayTeam}</td>
+				</tr>
 			</table>
 			<button class="btn btn-positive">경기날짜수정</button>
 		</div>
