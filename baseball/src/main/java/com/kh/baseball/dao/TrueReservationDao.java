@@ -10,4 +10,5 @@ public interface TrueReservationDao {
 	int sequence();
 	void insert(TrueReservationDto trueReservationDto);
 	List<ReservationVO> selectList(int matchNo);
+
 }
