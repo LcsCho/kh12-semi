@@ -22,5 +22,4 @@ public interface TeamDao {
 	boolean updateDraw(String teamName);
 	boolean updateWinRate(String teamName);
 	boolean updateGameGap();
-
 }
