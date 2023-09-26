@@ -3,10 +3,91 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function() {
+		// 체크박스가 변경될 때마다 호출되는 이벤트 핸들러
+		$("input[type='checkbox']").change(function() {
+			// 선택한 체크박스 값 가져오기
+			var selectedValues = [];
+			$("input[type='checkbox']:checked").each(function() {
+				selectedValues.push($(this).val());
+			});
+
+			// 선택한 값을 서버로 전송 (Ajax 요청)
+			$.ajax({
+				type : "POST",
+				url : "your_server_url", // 서버 URL을 여기에 입력
+				data : {
+					selectedValues : selectedValues
+				},
+				success : function(data) {
+					// 서버로부터 받은 데이터를 출력할 요소에 추가
+					$("#seatList").html(data);
+				}
+			});
+		});
+	});
+</script>
+
+<head>
+<title>매치 예약</title>
+</head>
+<body>
+	<div class="row">
+		<form action="insert" method="post">
+			<h1>매치 예약</h1>
+			<!-- matchNo 값을 출력합니다. -->
+			<p>
+				경기장 이름: <span>${reservationVo.seatAreaPrice}</span>
+			</p>
+			<p>
+				경기장 번호: <span>${reservationVo.seatAreaNo}</span>
+			</p>
+			<p>
+				매치 번호: <span>${matchNo}</span>
+			</p>
+			<p>
+				멤버아이디: <span></span>${name}</p>
+			<input type="hidden" id="homeTeam" name="homeTeam" value="${matchNo}"><br>
+			<input type="hidden" id="awayTeam" name="awayTeam" value="${matchNo}"><br>
+
+
+			<input type="hidden" id="seatNo" name="matchNo" value="${matchNo}"><br>
+
+			<c:forEach var="reservationVo" items="${list}">
+				<div class="row">
+					<input type="checkbox" name="seatAreaNo"
+						value="${reservationVo.seatAreaNo}">${reservationVo.seatAreaZone}
+					| ${reservationVo.seatAreaPrice}
+				</div>
+			</c:forEach>
+			
+
+			<label for="seatNo">좌석 번호:</label> <input type="text" id="seatNo"
+				name="seatNo" required><br> <label for="seatAreaNo">좌석
+				구역 번호:</label> <label for="reservationTicket">티켓 수:</label> <input
+				type="text" id="reservationTicket" name="reservationTicket" required><br>
+
+			<button type="submit">등록</button>
+		</form>
+	</div>
+
+</body>
+</html>
 
 
 
-<style>
+
+
+<%--<style>
+			<c:forEach var="reservationVo" items="${list}">
+				<div class="row">
+					<select name="seatAreaNo"> 
+					<option value="${reservationVo.seatNo}">${reservationVo.seatNo}</option>	
+					</select>
+				</div>
+			</c:forEach>
 .boxborder {
 	box-shadow: 0px 0px 0px 1px #2d3436;
 	padding: 1em;
@@ -59,7 +140,6 @@
 }
 </style>
 
-<script src="/js/multipage.js"></script>
 <!-- javascript 작성 공간 -->
 <script>
 	//     $(function(){
@@ -73,27 +153,7 @@
 	//     }
 	// });
 
-	$(document).ready(function() {
-		for (var i = 0; i < 10; i++) {
-			var zone = document.createElement("div"); // 각 구역을 나타내는 <div> 요소 생성
-			zone.className = "zone"; // 구역을 나타내는 CSS 클래스 추가
-			$(".inputzone").append(zone); // .inputzone에 구역을 추가
 
-			for (var a = 0; a < 12; a++) {
-				var input = document.createElement("input");
-				input.type = "checkbox";
-				input.value = "zone" + i + "seat" + a; // 좌석의 이름 설정 (예: zone0seat0, zone0seat1, ...)
-
-				if (a % 4 === 3 && a !== 19) {
-					// 4번째와 8번째 좌석 뒤에 띄어쓰기 추가 (19는 띄어쓰기를 추가하지 않는 조건)
-					$(zone).append(input);
-					$(zone).append(" "); // 띄어쓰기 추가
-				} else {
-					$(zone).append(input);
-				}
-			}
-		}
-	});
 </script>
 </head>
 
@@ -142,6 +202,16 @@
 
 			</div>
 		</div>
+		
+		
+		<c:forEach var="i" begin="${vo.begin}" end="${vo.end}" step="1">
+		<input type="checkbox" value="${reservationVo.seatAreaZone}">
+		</c:forEach>
+		
+		
+		
+		
+		
 		<div class="row right">
 			<button type="button" class="btn btn-prev">이전단계</button>
 			<button type="button" class="btn btn-next">다음단계</button>
@@ -207,7 +277,7 @@
 
 	</div>
 
-</form>
+</form> --%>
 
 
 
