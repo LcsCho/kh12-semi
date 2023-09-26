@@ -7,6 +7,38 @@
 <html>
 <head>
     <title>매치 예약</title>
+    
+    <script>
+    	$(function(){
+    		$("[name=seatAreaNo]").change(function(){
+    			var seatAreaNo = $(this).val();
+    			if(seatAreaNo.length == 0) return;
+    			
+    			var params = new URLSearchParams(location.search);
+    			var matchNo = params.get("matchNo");
+    			
+    			$.ajax({
+    				url:"http://localhost:8080/reservation/selectSeatAreaZone",
+    				method:"post",
+    				data:{
+    					seatAreaNo: seatAreaNo ,
+    					matchNo : matchNo
+    				},
+    				success:function(response){
+    					console.log(response);
+    				generateCheckboxes(seatData.row, seatData.col);
+    				},
+    			});
+    		});
+    		// 체크박스 생성 함수
+    	    function generateCheckboxes(rows, cols) {
+    	        // 이 함수에서 rows 및 cols를 기반으로 체크박스를 생성하는 코드를 작성합니다.
+    	        // 예를 들어, 반복문을 사용하여 테이블 형태로 체크박스를 생성할 수 있습니다.
+    	        
+    	    }
+    		
+    	});
+    </script>
 </head>
 <body>
     <div class="row">
@@ -50,40 +82,7 @@
         </form>
     </div>
     
-    <script>
-        const seatAreaSelect = document.getElementById('selectedSeatArea');
-        const seatNoSelect = document.getElementById('selectedSeatNo');
-
-        seatAreaSelect.addEventListener('change', () => {
-            const selectedArea = seatAreaSelect.value;
-            
-            // 선택한 구역에 해당하는 좌석 번호를 서버로부터 가져오는 Ajax 요청을 보내고,
-            // 서버에서 받아온 데이터를 이용하여 좌석 번호를 업데이트합니다.
-            
-            // 아래는 예시로 Ajax를 사용하여 서버로부터 데이터를 가져오는 방법입니다.
-            // 실제로는 서버와의 통신을 구현해야 합니다.
-            fetch(`/seatAreaNo=${selectedArea}`)
-                .then(response => response.json())
-                .then(data => {
-                    seatNoSelect.innerHTML = ''; // 기존 옵션을 지웁니다.
-                    data.forEach(seatNumber => {
-                        const option = document.createElement('option');
-                        option.value = seatNumber;
-                        option.textContent = seatNumber;
-                        seatNoSelect.appendChild(option);
-                    });
-                })
-                .catch(error => console.error(error));
-        });
-
-        // 폼 제출 전에 선택한 좌석을 input 필드에 설정
-        document.getElementById('reservationForm').addEventListener('submit', () => {
-            const selectedArea = seatAreaSelect.value;
-            const selectedSeat = seatNoSelect.value;
-            document.getElementById('selectedSeatArea').value = selectedArea;
-            document.getElementById('selectedSeatNo').value = selectedSeat;
-        });
-    </script>
+    
 </body>
 </html>
 

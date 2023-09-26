@@ -92,7 +92,9 @@ public class TrueReservationDaoImpl implements TrueReservationDao{
 			    "s.SEAT_AREA_NO, " +
 			    "sa.seat_area_zone, " +
 			    "st.STADIUM_NAME, " +
-			    "st.STADIUM_NO " +
+			    "st.STADIUM_NO," + 
+			    "sa.seat_area_price," +
+			    "s.seat_status " +
 			    "FROM " +
 			    "seat s " +
 			    "INNER JOIN " +
@@ -102,7 +104,7 @@ public class TrueReservationDaoImpl implements TrueReservationDao{
 			    "INNER JOIN " +
 			    "match ma ON ma.STADIUM_name = st.STADIUM_Name " +
 			    "WHERE " +
-			    "match_no = ? AND seat_area_zone = ?";
+			    "ma.match_no = ? AND sa.seat_area_no = ?";
 		Object[] data = {matchNo, seatAreaNo};
 		return jdbcTemplate.query(sql , seatListMapper,data);
 	}
