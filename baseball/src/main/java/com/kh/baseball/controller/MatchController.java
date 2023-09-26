@@ -76,7 +76,20 @@ public class MatchController {
 	}
 	
 	@PostMapping("/updateDate")
-	public String updateDate(@ModelAttribute MatchDto matchDto) {
+	public String updateDate(@ModelAttribute MatchDto matchDto, @RequestParam("matchDto.matchDateStr") String matchDateStr) {
+		// matchDateStr을 Timestamp로 변환
+	    try {
+	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+	        Date parsedDate = dateFormat.parse(matchDateStr);
+
+	        // java.util.Date를 java.sql.Timestamp으로 변환
+	        java.sql.Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+
+	        matchDto.setMatchDate(timestamp);
+	    } catch (ParseException e) {
+	        // 예외 처리 로직 추가
+	    }
+		
 		matchDao.updateDate(matchDto);
 		return "redirect:detailMatch?matchNo="+matchDto.getMatchNo();
 	}

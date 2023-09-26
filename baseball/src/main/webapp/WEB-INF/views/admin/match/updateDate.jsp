@@ -23,8 +23,7 @@
 				<tr>
 					<th>경기일</th>
 					<td>
-					<input type="date" name="matchDate"
-						value="${matchDto.matchDate}"></td>
+					<input class="w-600" type="datetime-local" name="matchDto.matchDateStr" value="${matchDto.matchDate}"></td>
 				</tr>
 				<tr>
 					<th>경기장</th>
