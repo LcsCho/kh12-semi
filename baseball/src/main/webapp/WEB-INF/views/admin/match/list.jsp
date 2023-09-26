@@ -31,17 +31,47 @@
                     <c:choose>
                         <c:when test="${matchDto.matchDate.before(now)}">
                             <td>${matchDto.matchHomeScore}</td>
+                        </c:when>
+                        <c:otherwise>
+                            <c:choose>
+                                <c:when test="${(now.time - matchDto.matchDate.time) <= 3 * 60 * 60 * 1000}">
+                                    <td>경기 중(${matchDto.matchHomeScore})</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:choose>
+                                        <c:when test="${now.time >= matchDto.matchDate.time + (3 * 60 * 60 * 1000)}">
+                                            <td>${matchDto.matchHomeScore}</td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td>경기 전</td>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${matchDto.matchDate.before(now)}">
                             <td>${matchDto.matchAwayScore}</td>
                         </c:when>
                         <c:otherwise>
-                            <td>경기 전</td>
-                            <td>경기 전</td>
+                            <c:choose>
+                                <c:when test="${(now.time - matchDto.matchDate.time) <= 3 * 60 * 60 * 1000}">
+                                    <td>경기 중(${matchDto.matchAwayScore})</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:choose>
+                                        <c:when test="${now.time >= matchDto.matchDate.time + (3 * 60 * 60 * 1000)}">
+                                            <td>${matchDto.matchAwayScore}</td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td>경기 전</td>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:otherwise>
+                            </c:choose>
                         </c:otherwise>
                     </c:choose>
-                    <td>
-                        <a href="updateDate?matchNo=${matchDto.matchNo}">날짜수정</a>
-                        <a href="insertResult?matchNo=${matchDto.matchNo}">결과입력</a>
-                    </td>
                 </tr>
             </c:forEach>
         </tbody>

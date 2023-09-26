@@ -8,7 +8,15 @@
 
 <div class="container w-500">
 	<div class="row">
-		<h1>경기정보</h1>
+		<c:choose>
+			<c:when
+				test="${now.time >= matchDto.matchDate.time + (3 * 60 * 60 * 1000)}">
+				<h1>경기결과</h1>
+			</c:when>
+			<c:otherwise>
+				<h1>경기정보</h1>
+			</c:otherwise>
+		</c:choose>
 	</div>
 
 	<div class="row">
@@ -19,9 +27,8 @@
 			</tr>
 			<tr>
 				<th>경기일</th>
-				<td>
-                        <fmt:formatDate value="${matchDto.matchDate}" pattern="yyyy-MM-dd HH:mm" />
-                    </td>
+				<td><fmt:formatDate value="${matchDto.matchDate}"
+						pattern="yyyy-MM-dd HH:mm" /></td>
 			</tr>
 			<tr>
 				<th>경기장</th>
@@ -37,25 +44,33 @@
 			</tr>
 			<tr>
 				<th>홈팀 스코어</th>
-				<c:choose>
-					<c:when test="${matchDto.matchDate.time < now.time}">
-						<td>${matchDto.matchHomeScore}</td>
-					</c:when>
-					<c:otherwise>
-						<td>경기 전</td>
-					</c:otherwise>
-				</c:choose>
+				<td><c:choose>
+						<c:when
+							test="${now.time >= matchDto.matchDate.time && now.time <= matchDto.matchDate.time + (3 * 60 * 60 * 1000)}">
+                경기 중(${matchDto.matchHomeScore})
+            </c:when>
+						<c:when test="${matchDto.matchDate.time < now.time}">
+                ${matchDto.matchHomeScore}
+            </c:when>
+						<c:otherwise>
+                경기 전
+            </c:otherwise>
+					</c:choose></td>
 			</tr>
 			<tr>
 				<th>어웨이팀 스코어</th>
-				<c:choose>
-					<c:when test="${matchDto.matchDate.time < now.time}">
-						<td>${matchDto.matchAwayScore}</td>
-					</c:when>
-					<c:otherwise>
-						<td>경기 전</td>
-					</c:otherwise>
-				</c:choose>
+				<td><c:choose>
+						<c:when
+							test="${now.time >= matchDto.matchDate.time && now.time <= matchDto.matchDate.time + (3 * 60 * 60 * 1000)}">
+                경기 중(${matchDto.matchAwayScore})
+            </c:when>
+						<c:when test="${matchDto.matchDate.time < now.time}">
+                ${matchDto.matchAwayScore}
+            </c:when>
+						<c:otherwise>
+                경기 전
+            </c:otherwise>
+					</c:choose></td>
 			</tr>
 		</table>
 	</div>

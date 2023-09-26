@@ -5,7 +5,7 @@
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/template/matchSidebar.jsp"></jsp:include>
 
-<div class="row container w-800">
+<div class="row">
     <table class="table table-hover table-border">
         <thead>
             <tr>
@@ -29,21 +29,45 @@
                     <td>${matchDto.stadiumName}</td>
                     <td>${matchDto.homeTeam}</td>
                     <td>${matchDto.awayTeam}</td>
-                    <c:choose>
-                        <c:when test="${matchDto.matchDate.before(now)}">
-                            <td>${matchDto.matchHomeScore}</td>
-                            <td>${matchDto.matchAwayScore}</td>
-                            <td>예매 불가</td>
-                        </c:when>
-                        <c:otherwise>
-                            <td>경기 전</td>
-                            <td>경기 전</td>
-                             <td>
-                        <a href="updateDate?matchNo=${matchDto.matchNo}">예매하기</a>
+                    <td>
+                        <c:choose>
+                            <c:when test="${now.time >= matchDto.matchDate.time && now.time <= matchDto.matchDate.time + (3 * 60 * 60 * 1000)}">
+                                경기 중(${matchDto.matchHomeScore})
+                            </c:when>
+                            <c:when test="${matchDto.matchDate.time < now.time}">
+                                ${matchDto.matchHomeScore}
+                            </c:when>
+                            <c:otherwise>
+                                경기 전
+                            </c:otherwise>
+                        </c:choose>
                     </td>
-                        </c:otherwise>
-                    </c:choose>
-                   
+                    <td>
+                        <c:choose>
+                            <c:when test="${now.time >= matchDto.matchDate.time && now.time <= matchDto.matchDate.time + (3 * 60 * 60 * 1000)}">
+                                경기 중(${matchDto.matchAwayScore})
+                            </c:when>
+                            <c:when test="${matchDto.matchDate.time < now.time}">
+                                ${matchDto.matchAwayScore}
+                            </c:when>
+                            <c:otherwise>
+                                경기 전
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${now.time >= matchDto.matchDate.time}">
+                                예매 불가
+                            </c:when>
+                            <c:when test="${now.time >= matchDto.matchDate.time - (4 * 24 * 60 * 60 * 1000)}">
+                                <a href="/reservation/insert?matchNo=${matchDto.matchNo}">예매하기</a>
+                            </c:when>
+                            <c:otherwise>
+                                예매 전
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>
