@@ -6,5 +6,4 @@ public interface TrueReservationDao {
 	
 	int sequence();
 	void insert(TrueReservationDto trueReservationDto);
-	
 }

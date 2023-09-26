@@ -79,18 +79,22 @@ public class ReservationController {
 	public String insert(@ModelAttribute TrueReservationDto trueReservationDto,   Model model) {
 		
 		
-//    		, @RequestParam int seatNo,
+		
+    		//, @RequestParam int seatNo,
 //    		@RequestParam int seatAreaNo,@RequestParam int reservationTicket) {
-		// 세션에서 아이디를 가져옵니다.
-		// List<ReservationVO> reservationInfo = reservationDao.getMatchInfo(matchNo);
-
-		// TrueReservationDto 객체 생성 및 채우기 (선택한 정보로)
-		// TrueReservationDto trueReservationDto = new TrueReservationDto();
+//		 세션에서 아이디를 가져옵니다.
+//		 List<ReservationVO> reservationInfo = reservationDao.getMatchInfo(matchNo);
+//
+//		 TrueReservationDto 객체 생성 및
+//
+//	채우기 (선택한 정보로)
+//		 TrueReservationDto trueReservationDto = new TrueReservationDto();
 //        trueReservationDto.setMatchNo(matchNo);
 //        trueReservationDto.setSeatNo(seatNo);
 //        trueReservationDto.setMemberId(memberId);
-//        trueReservationDto.setSeatAreaNo(seatAreaNo);
-//        trueReservationDto.setReservationTicket(reservationTicket);
+//      trueReservationDto.setSeatAreaNo(seatAreaNo);
+//       trueReservationDto.setReservationTicket(reservationTicket);
+       
 
 		// 나머지 필드도 설정
 
@@ -111,6 +115,7 @@ public class ReservationController {
 		// reservationDao.insertReservation(trueReservationDto);
 
 		return "redirect:/success"; // 성공 페이지로 리다이렉트합니다.
+
 	}
 
 }
