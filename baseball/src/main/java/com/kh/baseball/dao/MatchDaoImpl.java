@@ -1,5 +1,8 @@
 package com.kh.baseball.dao;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +30,13 @@ public class MatchDaoImpl implements MatchDao{
 	
 	@Override
 	public void insertMatch(MatchDto matchDto) {
+		
 		String sql = "insert into match"
 				+ "(match_no, home_team, "
 				+ "away_team, stadium_name, "
 				+ "match_date) "
 				+ "values(?, ?, ?, ?, ?)";
-		Object[] data = {
+	    Object[] data = {
 				matchDto.getMatchNo(), matchDto.getHomeTeam(),
 				matchDto.getAwayTeam(),matchDto.getStadiumName(),
 				matchDto.getMatchDate()

@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.baseball.dto.SeatListDto;
 import com.kh.baseball.dto.TrueReservationDto;
 import com.kh.baseball.mapper.MatchInfoMapper;
+import com.kh.baseball.mapper.SeatListMapper;
 import com.kh.baseball.mapper.TrueReservationMapper;
 import com.kh.baseball.vo.ReservationVO;
 
@@ -31,17 +33,28 @@ public class TrueReservationDaoImpl implements TrueReservationDao{
 	
 	@Override
 	public void insert(TrueReservationDto trueReservationDto) {
-		String sql = "INSERT INTO reservation (reservation_no, match_no, seat_no, home_team, away_team, member_id, seat_area_no, reservation_date, reservation_ticket) " +
-	             "VALUES (?, ?, ?, " +
+		String sql = "INSERT INTO reservation (reservation_no,"
+				+ " match_no, seat_no, "
+				+ "home_team, away_team, "
+				+ "member_id, seat_area_no, "
+				+ "reservation_date, "
+				+ "reservation_ticket) " +
+	             "VALUES (reservation_seq.nextval, ?, ?, " +
 	             "(SELECT team_no FROM team WHERE team_name = (SELECT home_team FROM match WHERE match_no = ?)), " +
 	             "(SELECT team_no FROM team WHERE team_name = (SELECT away_team FROM match WHERE match_no = ?)), " +
 	             "?, ?, sysdate, ?)";
-		
-		Object[] data = {
-				trueReservationDto.getReservationNo(), trueReservationDto.getMatchNo(), trueReservationDto.getSeatNo(),
-				trueReservationDto.getMatchNo(), trueReservationDto.getMatchNo(), trueReservationDto.getMemberId(),
-				trueReservationDto.getSeatAreaNo(), trueReservationDto.getReservationTicket()
-		};
+//		String sql = "INSERT INTO reservation (reservation_no, match_no, seat_no, home_team, away_team, member_id, seat_area_no, reservation_date, reservation_ticket) " +
+//	             "VALUES (reservation_seq.nextval, ?, ?, ?, ?, ?, ?, sysdate, ?)";
+
+	Object[] data = {
+	    trueReservationDto.getMatchNo(),
+	    trueReservationDto.getSeatNo(),
+	    trueReservationDto.getHomeTeam(),
+	    trueReservationDto.getAwayTeam(),
+	    trueReservationDto.getMemberId(),
+	    trueReservationDto.getSeatAreaNo(),
+	    trueReservationDto.getReservationTicket()
+	};
 		jdbcTemplate.update(sql, data);
 	}
 
@@ -67,6 +80,33 @@ public class TrueReservationDaoImpl implements TrueReservationDao{
 			    "ma.match_no = ?";
 		Object[] data = {matchNo};
 		return jdbcTemplate.query(sql, matchInfoMapper,data);
+	}
+	@Autowired
+	private SeatListMapper seatListMapper;
+	@Override
+	public List<SeatListDto> findSeatForReservation(int matchNo, int seatAreaNo) {
+		String sql = "SELECT " +
+			    "s.seat_no, " +
+			    "s.seat_col, " +
+			    "s.seat_row, " +
+			    "s.SEAT_AREA_NO, " +
+			    "sa.seat_area_zone, " +
+			    "st.STADIUM_NAME, " +
+			    "st.STADIUM_NO," + 
+			    "sa.seat_area_price," +
+			    "s.seat_status " +
+			    "FROM " +
+			    "seat s " +
+			    "INNER JOIN " +
+			    "seat_area sa ON s.SEAT_AREA_NO = sa.SEAT_AREA_NO " +
+			    "INNER JOIN " +
+			    "stadium st ON sa.STADIUM_NO = st.STADIUM_NO " +
+			    "INNER JOIN " +
+			    "match ma ON ma.STADIUM_name = st.STADIUM_Name " +
+			    "WHERE " +
+			    "ma.match_no = ? AND sa.seat_area_no = ?";
+		Object[] data = {matchNo, seatAreaNo};
+		return jdbcTemplate.query(sql , seatListMapper,data);
 	}
 	
 }

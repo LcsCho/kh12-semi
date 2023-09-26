@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.baseball.dao.ReservationDao;
 import com.kh.baseball.dao.TrueReservationDao;
 import com.kh.baseball.dto.ReservationCancelDto;
 import com.kh.baseball.dto.ReservationDto;
+import com.kh.baseball.dto.SeatListDto;
 import com.kh.baseball.dto.TrueReservationDto;
 import com.kh.baseball.vo.ReservationVO;
 
@@ -81,30 +83,45 @@ public class ReservationController {
 
 	@GetMapping("/insert")
 	public String insert(@ModelAttribute TrueReservationDto trueReservationDto,   Model model,
-			@RequestParam int matchNo, HttpSession session) {
+			@RequestParam int matchNo,
+			@RequestParam(required = false) Integer seatAreaNo) {
 		//경기정보 리스트
 		List<ReservationVO> list = trueReservationDao.selectList(matchNo);
 		model.addAttribute("list", list);
+		model.addAttribute("matchNo",matchNo);
+		
+		if(seatAreaNo!=null) {
+		List<SeatListDto> seatList = trueReservationDao.findSeatForReservation(matchNo, seatAreaNo);
+		model.addAttribute("seatList",seatList);
+		}
 		
 		//아이디 저장
-		String memberId =  (String) session.getAttribute("name");
-		trueReservationDto.setMemberId(memberId);
+		trueReservationDto.setMatchNo(matchNo);
 		
 		return "/WEB-INF/views/reservation/insert.jsp";
 	}
 
 	@PostMapping("/insert")
-	public String insertPost(TrueReservationDto trueReservationDto) {
+	public String insertPost(TrueReservationDto trueReservationDto,HttpSession session,@RequestParam int matchNo,Model model) {
 		// POST 요청을 처리하는 코드를 작성합니다.
 		// trueReservationDto 객체에 클라이언트로부터 전송된 데이터가 자동으로 바인딩됩니다.
-		// 따라서 여기에서 데이터베이스에 삽입 등의 작업을 수행합니다.
+		String memberId =  (String) session.getAttribute("name");
+		trueReservationDto.setMemberId(memberId);
+		trueReservationDto.setMatchNo(matchNo);
+		model.addAttribute("matchNo",matchNo);
+		
+		trueReservationDao.insert(trueReservationDto);
 
-		// reservationDao를 사용하여 데이터베이스에 삽입 등의 작업을 수행합니다.
-		// reservationDao.insertReservation(trueReservationDto);
-
-		return "redirect:/success"; // 성공 페이지로 리다이렉트합니다.
+		return "redirect:list"; // 성공 페이지로 리다이렉트합니다.
 
 	}
 
+	@RequestMapping("/selectSeatAreaZone")
+	@ResponseBody
+	public List<SeatListDto> selectSeatAreaZone(@RequestParam int seatAreaNo, @RequestParam int matchNo) {
+		List<SeatListDto> seatList = trueReservationDao.findSeatForReservation(matchNo, seatAreaNo);
+		return seatList;
+	}
+	
 	
 }

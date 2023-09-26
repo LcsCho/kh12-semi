@@ -16,7 +16,7 @@ public class ReservationRestController {
 
 	@PostMapping("/insert")
 	public void insert(@ModelAttribute TrueReservationDto trueReservationDto) {
-		int reservationNo = YReservationDao.sequence();
-		TrueReservationDto.set
+//		int reservationNo = YReservationDao.sequence();
+//		TrueReservationDto.set
 	}
 }

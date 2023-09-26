@@ -1,5 +1,10 @@
 package com.kh.baseball.controller;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +24,7 @@ import com.kh.baseball.dto.StadiumDto;
 import com.kh.baseball.dto.TeamDto;
 @Repository
 //잠시 admin 뺐음
+
 @RequestMapping("/match")
 public class MatchController {
 	
@@ -42,9 +48,23 @@ public class MatchController {
 		return "/WEB-INF/views/admin/match/insert.jsp";
 	}
 	@PostMapping("/insert")
-	public String insert(@ModelAttribute MatchDto matchDto) {
+	public String insert(@ModelAttribute MatchDto matchDto, @RequestParam("matchDto.matchDateStr") String matchDateStr) {
 		int matchNo = matchDao.sequence();
 		matchDto.setMatchNo(matchNo);
+		
+	    // matchDateStr을 Timestamp로 변환
+	    try {
+	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+	        Date parsedDate = dateFormat.parse(matchDateStr);
+
+	        // java.util.Date를 java.sql.Timestamp으로 변환
+	        java.sql.Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+
+	        matchDto.setMatchDate(timestamp);
+	    } catch (ParseException e) {
+	        // 예외 처리 로직 추가
+	    }
+		
 		matchDao.insertMatch(matchDto);
 
 		return "redirect:detailMatch?matchNo="+matchNo;
@@ -59,7 +79,20 @@ public class MatchController {
 	}
 	
 	@PostMapping("/updateDate")
-	public String updateDate(@ModelAttribute MatchDto matchDto) {
+	public String updateDate(@ModelAttribute MatchDto matchDto, @RequestParam("matchDto.matchDateStr") String matchDateStr) {
+		// matchDateStr을 Timestamp로 변환
+	    try {
+	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+	        Date parsedDate = dateFormat.parse(matchDateStr);
+
+	        // java.util.Date를 java.sql.Timestamp으로 변환
+	        java.sql.Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+
+	        matchDto.setMatchDate(timestamp);
+	    } catch (ParseException e) {
+	        // 예외 처리 로직 추가
+	    }
+		
 		matchDao.updateDate(matchDto);
 		return "redirect:detailMatch?matchNo="+matchDto.getMatchNo();
 	}
@@ -106,14 +139,23 @@ public class MatchController {
 	@RequestMapping("/list")
 	public String list(Model model) {
 		List<MatchDto> list = matchDao.selectList();
+		LocalDateTime now = LocalDateTime.now();
+		Timestamp timestamp = Timestamp.valueOf(now);
+		model.addAttribute("now", timestamp);
+		
+		
 		model.addAttribute("list",list);
-		return "/WEB-INF/views/match/list.jsp";				
+		return "/WEB-INF/views/admin/match/list.jsp";				
 	}
+
 	
 
 	@RequestMapping("/detailMatch")
 	public String detailMatch(@RequestParam int matchNo, Model model) {
 		MatchDto matchDto = matchDao.selectOne(matchNo);
+		LocalDateTime now = LocalDateTime.now();
+		Timestamp timestamp = Timestamp.valueOf(now);
+		model.addAttribute("now", timestamp);
 		model.addAttribute("matchDto", matchDto);
 		return "/WEB-INF/views/admin/match/detailMatch.jsp";
 	}
