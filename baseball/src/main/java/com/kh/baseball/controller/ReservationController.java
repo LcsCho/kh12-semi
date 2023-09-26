@@ -82,7 +82,7 @@ public class ReservationController {
 
 	@GetMapping("/insert")
 	public String insert(@ModelAttribute TrueReservationDto trueReservationDto,   Model model,
-			@RequestParam int matchNo,  HttpSession session) {
+			@RequestParam int matchNo) {
 		//경기정보 리스트
 		List<ReservationVO> list = trueReservationDao.selectList(matchNo);
 		model.addAttribute("list", list);
@@ -106,6 +106,7 @@ public class ReservationController {
 		trueReservationDao.insert(trueReservationDto);
 
 		return "redirect:list"; // 성공 페이지로 리다이렉트합니다.
+		
 
 	}
 
