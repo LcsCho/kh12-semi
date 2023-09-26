@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
-
+<script src="/js/multipage.js"></script>
 
 
 <style>
@@ -59,7 +59,7 @@
 }
 </style>
 
-<script src="/js/multipage.js"></script>
+
 <!-- javascript 작성 공간 -->
 <script>
 	//     $(function(){
@@ -104,13 +104,6 @@
 	<div class="container w-600">
 
 
-		<!-- 전체 진행단계를 알 수 있는 게이지 출력 -->
-		<!-- <div class="row">
-                <div class="progressbar">
-                    <div class="guage"></div>
-                </div>
-            </div> -->
-
 		<!-- 1단계 : 예매하기 -->
 		<div class="row page">
 			<div class="row seatreservation">
@@ -127,7 +120,7 @@
 
 
 				<!-- 체크박스를 사용하여 구역 선택 -->
-				<div class="boxborder">
+				<div class="">
 					<label for="seatAreaZone">구역 선택:</label>
 					<div class="checkbox">
 						<c:forEach var="reservationVo" items="${list}">
@@ -141,7 +134,7 @@
 				</div>
 
 			</div>
-		</div>
+		
 		<div class="row right">
 			<button type="button" class="btn btn-prev">이전단계</button>
 			<button type="button" class="btn btn-next">다음단계</button>
@@ -167,7 +160,7 @@
 
 			<div class="float-right clickseat">
 				<div style="height: 50%;">
-					<img src="./image/seatimage.png" style="max-block-size: 45%;"
+					<img src="/images/seatimage.png" style="max-block-size: 45%;"
 						class="mt-10 ms-20">
 				</div>
 				<div class="boxborder ms-10">선택좌석(0석)</div>
@@ -183,27 +176,8 @@
 		</div>
 	</div>
 
-	<!-- 3단계 : 예매완료 -->
-	<div class="row page">
-		<div class="row">
-			<h2>3단계 : 예매완료</h2>
-		</div>
 
 
-		<div class="row right">
-			<button type="button" class="btn btn-prev">이전단계</button>
-			<button type="button" class="btn btn-next">다음단계</button>
-		</div>
-	</div>
-
-	<!-- 5단계 : 주소 -->
-	<div class="row page">
-		<div class="row right">
-			<button type="button" class="btn btn-prev">이전단계</button>
-			<button type="button" class="btn btn-next">다음단계</button>
-			<button type="submit" class="btn btn-positive">가입하기</button>
-		</div>
-	</div>
 
 	</div>
 
