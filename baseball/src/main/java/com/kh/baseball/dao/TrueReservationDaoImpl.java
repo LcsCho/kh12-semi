@@ -99,6 +99,7 @@ public class TrueReservationDaoImpl implements TrueReservationDao{
                 "WHERE sa.seat_Area_zone = ? AND sa.stadium_no = ?";
 		Object[] data = { seatAreaNo};
 		return jdbcTemplate.query(sql , seatListMapper,data);
+		
 	}
 	
 }
