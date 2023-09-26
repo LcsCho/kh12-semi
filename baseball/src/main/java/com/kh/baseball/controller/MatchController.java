@@ -18,7 +18,8 @@ import com.kh.baseball.dto.MatchDto;
 import com.kh.baseball.dto.StadiumDto;
 import com.kh.baseball.dto.TeamDto;
 @Repository
-@RequestMapping("/admin/match")
+//잠시 admin 뺐음
+@RequestMapping("/match")
 public class MatchController {
 	
 	@Autowired 
@@ -106,8 +107,9 @@ public class MatchController {
 	public String list(Model model) {
 		List<MatchDto> list = matchDao.selectList();
 		model.addAttribute("list",list);
-		return "/WEB-INF/views/admin/match/list.jsp";				
+		return "/WEB-INF/views/match/list.jsp";				
 	}
+	
 
 	@RequestMapping("/detailMatch")
 	public String detailMatch(@RequestParam int matchNo, Model model) {

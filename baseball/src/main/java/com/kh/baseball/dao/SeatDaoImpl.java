@@ -78,6 +78,7 @@ public class SeatDaoImpl implements SeatDao {
 				jdbcTemplate.update(sql, seatDto.getSeatAreaNo(), row, col, seatDto.getSeatStatus());
 			}
 		}
+	
 	}
 	@Autowired
 	private SeatListMapper seatListMapper;

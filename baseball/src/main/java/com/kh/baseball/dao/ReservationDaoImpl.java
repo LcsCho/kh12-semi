@@ -10,6 +10,8 @@ import com.kh.baseball.dto.ReservationCancelDto;
 import com.kh.baseball.dto.ReservationDto;
 import com.kh.baseball.mapper.ReservationCancelMapper;
 import com.kh.baseball.mapper.ReservationMapper;
+import com.kh.baseball.mapper.ReservationVoMapper;
+import com.kh.baseball.vo.ReservationVO;
 
 @Repository
 public class ReservationDaoImpl implements ReservationDao{
@@ -104,5 +106,38 @@ public class ReservationDaoImpl implements ReservationDao{
 		Object[] data = {reservationNo};
 		List<ReservationDto> list = jdbcTemplate.query(sql, reservationMapper, data);
 		return list.isEmpty() ? null : list.get(0);
+	}
+
+	
+	
+	@Autowired
+	private ReservationVoMapper reservationVoMapper;
+	@Override
+	public List<ReservationVO> getMatchInfo(int matchNo) {
+		String sql = "SELECT rs.reservation_no, " +
+	             "ma.match_no, " +
+	             "s.seat_no, " +
+	             "hm.TEAM_NO as HOME_TEAM, " +
+	             "aw.team_no as AWAY_TEAM, " +
+	             "m.member_id, " +
+	             "ma.stadium_name, " +
+	             "rs.RESERVATION_DATE, " +
+	             "s.seat_area_no, " +
+	             "sa.seat_area_price, " +
+	             "sa.stadium_no, " +
+	             "sa.seat_area_zone, " +
+	             "s.seat_row, " +
+	             "s.seat_col, " +
+	             "ma.MATCH_DATE, " +
+	             "rs.RESERVATION_TICKET " +
+	             "FROM reservation rs " +
+	             "INNER JOIN seat s ON rs.seat_no = s.seat_no " +
+	             "INNER JOIN match ma ON rs.match_no = ma.match_no " +
+	             "INNER JOIN member m ON rs.member_id = m.member_id " +
+	             "INNER JOIN team hm ON rs.home_team = hm.team_no " +
+	             "INNER JOIN team aw ON rs.away_team = aw.team_no " +
+	             "INNER JOIN seat_area sa ON rs.seat_area_no = sa.SEAT_AREA_NO " +
+	             "WHERE ma.MATCH_NO = ?";
+		return jdbcTemplate.query(sql, reservationVoMapper, matchNo);
 	}
 }
