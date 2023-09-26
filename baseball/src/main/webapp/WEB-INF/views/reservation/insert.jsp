@@ -26,17 +26,33 @@
     				},
     				success:function(response){
     					console.log(response);
-    				generateCheckboxes(seatData.row, seatData.col);
+    					
+    				    // 마지막 배열의 seatCol 및 seatRow 값을 가져옴
+    				    var lastSeat = response[response.length - 1];
+    				    var numCols = lastSeat.seatCol;
+    				    var numRows = lastSeat.seatRow;
+
+    				    // 체크박스 컨테이너 선택
+    				    var checkboxContainer = $("#checkboxContainer");
+    				    checkboxContainer.empty(); // 기존 내용을 지웁니다.
+
+    				    // 행 반복
+    				  
+    				    for (var i = 0; i < numRows; i++) {
+    				        // 열 반복
+    				        for (var j = 0; j < numCols; j++) {
+    				            // 체크박스 생성 및 컨테이너에 추가
+    				             var index = i * numCols + j;
+
+    				            var checkbox = $("<input>").attr("type", "checkbox").attr("value",response[index].seatNo).attr("name","seatNo");
+    				            checkboxContainer.append(checkbox);
+    				        }
+    				        // 줄 바꿈을 위한 <br> 추가
+    				        checkboxContainer.append("<br>");
+    				    }
     				},
-    			});
-    		});
-    		// 체크박스 생성 함수
-    	    function generateCheckboxes(rows, cols) {
-    	        // 이 함수에서 rows 및 cols를 기반으로 체크박스를 생성하는 코드를 작성합니다.
-    	        // 예를 들어, 반복문을 사용하여 테이블 형태로 체크박스를 생성할 수 있습니다.
-    	        
-    	    }
-    		
+    	        });
+    	    });
     	});
     </script>
 </head>
@@ -66,6 +82,7 @@
             </select>
 
             <label>좌석 번호:</label>
+            <div id="checkboxContainer"></div>
            <%--
            <select name="seatNo" id="selectedSeatNo" required>
                 <c:forEach var="seatListDto" items="${seatList}">
