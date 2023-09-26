@@ -11,6 +11,6 @@ public interface TrueReservationDao {
 	int sequence();
 	void insert(TrueReservationDto trueReservationDto);
 	List<ReservationVO> selectList(int matchNo);
-	List<SeatListDto> findSeatForReservation( int seatAreaNo);
+	List<SeatListDto> findSeatForReservation( int matchNo ,int seatAreaNo);
 
 }

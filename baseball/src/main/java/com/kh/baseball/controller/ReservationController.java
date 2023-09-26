@@ -82,11 +82,17 @@ public class ReservationController {
 
 	@GetMapping("/insert")
 	public String insert(@ModelAttribute TrueReservationDto trueReservationDto,   Model model,
-			@RequestParam int matchNo) {
+			@RequestParam int matchNo,
+			@RequestParam(required = false) Integer seatAreaNo) {
 		//경기정보 리스트
 		List<ReservationVO> list = trueReservationDao.selectList(matchNo);
 		model.addAttribute("list", list);
 		model.addAttribute("matchNo",matchNo);
+		
+		if(seatAreaNo!=null) {
+		List<SeatListDto> seatList = trueReservationDao.findSeatForReservation(matchNo, seatAreaNo);
+		model.addAttribute("seatList",seatList);
+		}
 		
 		//아이디 저장
 		trueReservationDto.setMatchNo(matchNo);

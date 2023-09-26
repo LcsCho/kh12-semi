@@ -4,80 +4,88 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-	$(document).ready(function() {
-		// 체크박스가 변경될 때마다 호출되는 이벤트 핸들러
-		$("input[type='checkbox']").change(function() {
-			// 선택한 체크박스 값 가져오기
-			var selectedValues = [];
-			$("input[type='checkbox']:checked").each(function() {
-				selectedValues.push($(this).val());
-			});
-
-			// 선택한 값을 서버로 전송 (Ajax 요청)
-			$.ajax({
-				type : "POST",
-				url : "your_server_url", // 서버 URL을 여기에 입력
-				data : {
-					selectedValues : selectedValues
-				},
-				success : function(data) {
-					// 서버로부터 받은 데이터를 출력할 요소에 추가
-					$("#seatList").html(data);
-				}
-			});
-		});
-	});
-</script>
-
+<html>
 <head>
-<title>매치 예약</title>
+    <title>매치 예약</title>
 </head>
 <body>
-	<div class="row">
-		<form action="insert" method="post">
-			<h1>매치 예약</h1>
-			<!-- matchNo 값을 출력합니다. -->
-			<p>
-				경기장 이름: <span>${reservationVo.seatAreaPrice}</span>
-			</p>
-			<p>
-				경기장 번호: <span>${reservationVo.seatAreaNo}</span>
-			</p>
-			<p>
-				매치 번호: <span>${matchNo}</span>
-			</p>
-			<p>
-				멤버아이디: <span></span>${name}</p>
-			<input type="hidden" id="homeTeam" name="homeTeam" value="${matchNo}"><br>
-			<input type="hidden" id="awayTeam" name="awayTeam" value="${matchNo}"><br>
+    <div class="row">
+        <form id="reservationForm" action="insert" method="post">
+            <h1>매치 예약</h1>
+            <!-- matchNo 값을 출력합니다. -->
+            <p>
+                매치 번호: <span>${matchNo}</span>
+            </p>
+            <p>
+                멤버아이디: <span>${name}</span>
+            </p>
+            <input type="hidden" id="homeTeam" name="homeTeam" value="${matchNo}"><br>
+            <input type="hidden" id="awayTeam" name="awayTeam" value="${matchNo}"><br>
+            <input type="hidden" id="matchNo" name="matchNo" value="${matchNo}"><br>
 
+            <label>좌석 구역 선택:</label>
+            <select name="seatAreaNo" id="selectedSeatArea" required>
+                <option value="">선택하세요</option>
+                <c:forEach var="reservationVo" items="${list}">
+                    <option value="${reservationVo.seatAreaNo}">
+                        ${reservationVo.seatAreaZone}
+                    </option>
+                </c:forEach>
+            </select>
 
-			<input type="hidden" id="seatNo" name="matchNo" value="${matchNo}"><br>
+            <label>좌석 번호:</label>
+           <%--
+           <select name="seatNo" id="selectedSeatNo" required>
+                <c:forEach var="seatListDto" items="${seatList}">
+                    <option value="${list.seatNo}">${list.seatNo}</option>
+                </c:forEach>
+            </select>
+            --%> 
+            <input type="text" name="seatNo">
 
-			<c:forEach var="reservationVo" items="${list}">
-				<div class="row">
-					<input type="checkbox" name="seatAreaNo"
-						value="${reservationVo.seatAreaNo}">${reservationVo.seatAreaZone}
-					| ${reservationVo.seatAreaPrice}
-				</div>
-			</c:forEach>
-			
+            <label>티켓 수:</label>
+            <input type="number" id="reservationTicket" name="reservationTicket" required><br>
 
-			<label for="seatNo">좌석 번호:</label> <input type="text" id="seatNo"
-				name="seatNo" required><br> <label for="seatAreaNo">좌석
-				구역 번호:</label> <label for="reservationTicket">티켓 수:</label> <input
-				type="text" id="reservationTicket" name="reservationTicket" required><br>
+            <button >등록</button>
+        </form>
+    </div>
+    
+    <script>
+        const seatAreaSelect = document.getElementById('selectedSeatArea');
+        const seatNoSelect = document.getElementById('selectedSeatNo');
 
-			<button type="submit">등록</button>
-		</form>
-	</div>
+        seatAreaSelect.addEventListener('change', () => {
+            const selectedArea = seatAreaSelect.value;
+            
+            // 선택한 구역에 해당하는 좌석 번호를 서버로부터 가져오는 Ajax 요청을 보내고,
+            // 서버에서 받아온 데이터를 이용하여 좌석 번호를 업데이트합니다.
+            
+            // 아래는 예시로 Ajax를 사용하여 서버로부터 데이터를 가져오는 방법입니다.
+            // 실제로는 서버와의 통신을 구현해야 합니다.
+            fetch(`/seatAreaNo=${selectedArea}`)
+                .then(response => response.json())
+                .then(data => {
+                    seatNoSelect.innerHTML = ''; // 기존 옵션을 지웁니다.
+                    data.forEach(seatNumber => {
+                        const option = document.createElement('option');
+                        option.value = seatNumber;
+                        option.textContent = seatNumber;
+                        seatNoSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error(error));
+        });
 
+        // 폼 제출 전에 선택한 좌석을 input 필드에 설정
+        document.getElementById('reservationForm').addEventListener('submit', () => {
+            const selectedArea = seatAreaSelect.value;
+            const selectedSeat = seatNoSelect.value;
+            document.getElementById('selectedSeatArea').value = selectedArea;
+            document.getElementById('selectedSeatNo').value = selectedSeat;
+        });
+    </script>
 </body>
 </html>
-
-
-
 
 
 <%--<style>

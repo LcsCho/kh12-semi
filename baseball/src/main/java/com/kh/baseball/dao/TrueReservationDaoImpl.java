@@ -84,20 +84,26 @@ public class TrueReservationDaoImpl implements TrueReservationDao{
 	@Autowired
 	private SeatListMapper seatListMapper;
 	@Override
-	public List<SeatListDto> findSeatForReservation( int seatAreaNo) {
+	public List<SeatListDto> findSeatForReservation(int matchNo, int seatAreaNo) {
 		String sql = "SELECT " +
-                "s.seat_no, " +
-                "s.seat_col, " +
-                "s.seat_row, " +
-                "s.SEAT_AREA_NO, " +
-                "sa.seat_area_zone, " +
-                "st.STADIUM_NAME, " +
-                "st.STADIUM_NO " +
-                "FROM seat s " +
-                "INNER JOIN seat_area sa ON s.SEAT_AREA_NO = sa.SEAT_AREA_NO " +
-                "INNER JOIN stadium st ON sa.STADIUM_NO = st.STADIUM_NO " +
-                "WHERE sa.seat_Area_zone = ? AND sa.stadium_no = ?";
-		Object[] data = { seatAreaNo};
+			    "s.seat_no, " +
+			    "s.seat_col, " +
+			    "s.seat_row, " +
+			    "s.SEAT_AREA_NO, " +
+			    "sa.seat_area_zone, " +
+			    "st.STADIUM_NAME, " +
+			    "st.STADIUM_NO " +
+			    "FROM " +
+			    "seat s " +
+			    "INNER JOIN " +
+			    "seat_area sa ON s.SEAT_AREA_NO = sa.SEAT_AREA_NO " +
+			    "INNER JOIN " +
+			    "stadium st ON sa.STADIUM_NO = st.STADIUM_NO " +
+			    "INNER JOIN " +
+			    "match ma ON ma.STADIUM_name = st.STADIUM_Name " +
+			    "WHERE " +
+			    "match_no = ? AND seat_area_zone = ?";
+		Object[] data = {matchNo, seatAreaNo};
 		return jdbcTemplate.query(sql , seatListMapper,data);
 	}
 	
