@@ -46,7 +46,7 @@ public class TeamDaoImpl implements TeamDao {
 
 	@Override
 	public List<TeamDto> selectList() {
-		String sql = "select * from team order by team_win_rate desc, team_game_gap";
+		String sql = "select * from team order by team_win_rate desc, team_game_gap, team_win desc";
 		return jdbcTemplate.query(sql, teamMapper);
 	}
 

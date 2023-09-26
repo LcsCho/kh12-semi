@@ -30,13 +30,11 @@
 					<option value="${stadiumDto.stadiumName}">${stadiumDto.stadiumName}</option>
 				</c:forEach>
 			</select> 
-			경기일 
-			<input type="date" name="matchDate"
-				value="${matchDto.matchDate}"><br><br> 
-			<button class="btn btn-positive">경기등록</button>
-			경기일 
-			<input type="date" name="matchDate"
-				value="${matchDto.matchDate}"><br><br> 
+			
+            <div class="row">
+                <label for="matchDate">경기일</label>
+                <input class="w-600" type="datetime-local" name="matchDate" value="${matchDto.matchDate}">
+            </div>
 			<button class="btn btn-positive">경기등록</button>
 		</div>
 	</div>

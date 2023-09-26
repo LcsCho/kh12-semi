@@ -13,4 +13,5 @@ public interface ReservationDao {
 	boolean cancel(int reservationNo);
 	List<ReservationCancelDto> cancelList(String memberId);
 	List<ReservationVO> getMatchInfo(int matchNo);
+	
 }
