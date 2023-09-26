@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -20,7 +19,7 @@
             </tr>
         </thead>
         <tbody align="center">
-            <c:forEach var="matchDto" items="${list}">
+            <c:forEach var="matchDto" items="${list}" varStatus="status">
                 <tr>
                     <td><a href="detailMatch?matchNo=${matchDto.matchNo}">${matchDto.matchNo}</a></td>
                     <td>
@@ -29,26 +28,16 @@
                     <td>${matchDto.stadiumName}</td>
                     <td>${matchDto.homeTeam}</td>
                     <td>${matchDto.awayTeam}</td>
-                    <td>
-                        <c:choose>
-                            <c:when test="${matchDto.matchDate.time > now.time}">
-                                경기 전
-                            </c:when>
-                            <c:otherwise>
-                                ${matchDto.matchHomeScore}
-                            </c:otherwise>
-                        </c:choose>
-                    </td>
-                    <td>
-                        <c:choose>
-                            <c:when test="${matchDto.matchDate.time > now.time}">
-                                경기 전
-                            </c:when>
-                            <c:otherwise>
-                                ${matchDto.matchAwayScore}
-                            </c:otherwise>
-                        </c:choose>
-                    </td>
+                    <c:choose>
+                        <c:when test="${matchDto.matchDate.before(now)}">
+                            <td>${matchDto.matchHomeScore}</td>
+                            <td>${matchDto.matchAwayScore}</td>
+                        </c:when>
+                        <c:otherwise>
+                            <td>경기 전</td>
+                            <td>경기 전</td>
+                        </c:otherwise>
+                    </c:choose>
                     <td>
                         <a href="updateDate?matchNo=${matchDto.matchNo}">날짜수정</a>
                         <a href="insertResult?matchNo=${matchDto.matchNo}">결과입력</a>
