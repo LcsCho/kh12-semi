@@ -19,8 +19,9 @@
 			</tr>
 			<tr>
 				<th>경기일</th>
-				<td><fmt:formatDate value="${matchDto.matchDate}"
-						pattern="yyyy-MM-dd HH:mm" /></td>
+				<td>
+                        <fmt:formatDate value="${matchDto.matchDate}" pattern="yyyy-MM-dd HH:mm" />
+                    </td>
 			</tr>
 			<tr>
 				<th>경기장</th>
@@ -35,26 +36,26 @@
 				<td>${matchDto.awayTeam}</td>
 			</tr>
 			<tr>
-				<th>홈팀스코어</th>
-				<td><c:choose>
-						<c:when test="${matchDto.matchDate.getTime() > now}">
-                경기 전
-            </c:when>
-						<c:otherwise>
-                ${matchDto.matchHomeScore}
-            </c:otherwise>
-					</c:choose></td>
+				<th>홈팀 스코어</th>
+				<c:choose>
+					<c:when test="${matchDto.matchDate.time < now.time}">
+						<td>${matchDto.matchHomeScore}</td>
+					</c:when>
+					<c:otherwise>
+						<td>경기 전</td>
+					</c:otherwise>
+				</c:choose>
 			</tr>
 			<tr>
-				<th>어웨이스코어</th>
-				<td><c:choose>
-						<c:when test="${matchDto.matchDate.getTime() > now}">
-                		경기 전
-            			</c:when>
-						<c:otherwise>
-                ${matchDto.matchAwayScore}
-            </c:otherwise>
-					</c:choose></td>
+				<th>어웨이팀 스코어</th>
+				<c:choose>
+					<c:when test="${matchDto.matchDate.time < now.time}">
+						<td>${matchDto.matchAwayScore}</td>
+					</c:when>
+					<c:otherwise>
+						<td>경기 전</td>
+					</c:otherwise>
+				</c:choose>
 			</tr>
 		</table>
 	</div>
