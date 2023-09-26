@@ -29,21 +29,31 @@
                     <td>${matchDto.stadiumName}</td>
                     <td>${matchDto.homeTeam}</td>
                     <td>${matchDto.awayTeam}</td>
-                    <c:choose>
-                        <c:when test="${matchDto.matchDate.before(now)}">
-                            <td>${matchDto.matchHomeScore}</td>
-                            <td>${matchDto.matchAwayScore}</td>
-                            <td>예매 불가</td>
-                        </c:when>
-                        <c:otherwise>
-                            <td>경기 전</td>
-                            <td>경기 전</td>
-                             <td>
-                        <a href="updateDate?matchNo=${matchDto.matchNo}">예매하기</a>
-                    </td>
-                        </c:otherwise>
-                    </c:choose>
-                   
+          <c:choose>
+    <c:when test="${now.time >= matchDto.matchDate.time - 4 * 24 * 60 * 60 * 1000 && now.time < matchDto.matchDate.time - 11 * 60 * 60 * 1000}">
+        <!-- 현재일로부터 4일 전 11시 이전 (예매 불가) -->
+           <td>${matchDto.matchHomeScore}</td>
+        <td>${matchDto.matchAwayScore}</td>
+        <td><a href="/reservation/insert?matchNo=${matchDto.matchNo}">예매하기</a></td>
+    </c:when>
+    <c:when test="${now.time >= matchDto.matchDate.time - 4 * 24 * 60 * 60 * 1000 && now.time >= matchDto.matchDate.time - 11 * 60 * 60 * 1000 && now.time <= matchDto.matchDate.time + 3 * 60 * 60 * 1000}">
+        <!-- 현재일로부터 4일 전 11시부터 경기일까지 (예매 가능) -->
+            <td>경기 중(${matchDto.matchHomeScore})</td>
+        <td>경기 중(${matchDto.matchAwayScore})</td>
+        <td>예매 불가</td>
+       
+    </c:when>
+    <c:when test="${now.time > matchDto.matchDate.time + 3 * 60 * 60 * 1000}">
+        <!-- 경기 종료 후 (경기 종료 3시간 이후) -->
+         <td>${matchDto.matchHomeScore}</td>
+        <td>${matchDto.matchAwayScore}</td>
+        <td>-</td>
+    </c:when>
+    <c:otherwise>
+        <!-- 경기 중 (현재 경기 중) -->
+      <td colspan="3">예매 전</td>
+    </c:otherwise>
+</c:choose>
                 </tr>
             </c:forEach>
         </tbody>
