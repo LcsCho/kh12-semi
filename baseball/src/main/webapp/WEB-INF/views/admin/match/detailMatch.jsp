@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/template/matchSidebar.jsp"></jsp:include>
 
@@ -16,7 +17,7 @@
 			</tr>
 			<tr>
 				<th>경기일</th>
-				<td>${matchDto.matchDate}</td>
+				<td><fmt:formatDate value="${matchDto.matchDate}" pattern="yyyy-MM-dd HH:mm"/></td>
 			</tr>
 			<tr>
 				<th>경기장</th>

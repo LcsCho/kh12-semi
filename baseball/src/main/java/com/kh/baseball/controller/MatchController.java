@@ -1,5 +1,8 @@
 package com.kh.baseball.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +45,23 @@ public class MatchController {
 		return "/WEB-INF/views/admin/match/insert.jsp";
 	}
 	@PostMapping("/insert")
-	public String insert(@ModelAttribute MatchDto matchDto) {
+	public String insert(@ModelAttribute MatchDto matchDto, @RequestParam("matchDto.matchDateStr") String matchDateStr) {
 		int matchNo = matchDao.sequence();
 		matchDto.setMatchNo(matchNo);
+		
+	    // matchDateStr을 Timestamp로 변환
+	    try {
+	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+	        Date parsedDate = dateFormat.parse(matchDateStr);
+
+	        // java.util.Date를 java.sql.Timestamp으로 변환
+	        java.sql.Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+
+	        matchDto.setMatchDate(timestamp);
+	    } catch (ParseException e) {
+	        // 예외 처리 로직 추가
+	    }
+		
 		matchDao.insertMatch(matchDto);
 
 		return "redirect:detailMatch?matchNo="+matchNo;

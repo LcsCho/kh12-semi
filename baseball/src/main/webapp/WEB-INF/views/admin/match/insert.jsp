@@ -33,7 +33,7 @@
 			
             <div class="row">
                 <label for="matchDate">경기일</label>
-                <input class="w-600" type="datetime-local" name="matchDate" value="${matchDto.matchDate}">
+                <input class="w-600" type="datetime-local" name="matchDto.matchDateStr" value="${matchDto.matchDate}">
             </div>
 			<button class="btn btn-positive">경기등록</button>
 		</div>
