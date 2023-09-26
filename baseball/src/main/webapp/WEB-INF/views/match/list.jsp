@@ -28,6 +28,11 @@
 					<td>${matchDto.awayTeam}</td>
 					<td>${matchDto.matchHomeScore}</td>
 					<td>${matchDto.matchAwayScore}</td>
+					<td><a href="/reservation/insert?matchNo=${matchDto.matchNo}">예매하기</a>
+					</td>
+					<td><a href="insertResult?matchNo=${matchDto.matchNo}">결과입력</a>
+					</td>
+
 				</tr>
 			</c:forEach>
 		</tbody>
