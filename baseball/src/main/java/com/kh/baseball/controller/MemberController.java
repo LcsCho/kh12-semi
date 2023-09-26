@@ -1,11 +1,14 @@
 package com.kh.baseball.controller;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.baseball.dao.MatchDao;
 import com.kh.baseball.dao.MemberDao;
+import com.kh.baseball.dto.MatchDto;
 import com.kh.baseball.dto.MemberDto;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +34,9 @@ public class MemberController {
 	
 	@Autowired
 	private JavaMailSender sender;
+	
+	@Autowired
+	private MatchDao matchDao;
 	
 	//회원가입
 	@GetMapping("/join")
@@ -234,4 +242,19 @@ public class MemberController {
 		
 		return "/WEB-INF/views/member/findPwFinish.jsp"; 	
 	}
+	
+	
+	@RequestMapping("/match/list")
+	public String memberList(Model model) {
+		List<MatchDto> list = matchDao.selectList();
+		LocalDateTime now = LocalDateTime.now();
+		Timestamp timestamp = Timestamp.valueOf(now);
+		model.addAttribute("now", timestamp);
+		
+		
+		model.addAttribute("list",list);
+		return "/WEB-INF/views/match/list.jsp";				
+	}
+	
+	
 }

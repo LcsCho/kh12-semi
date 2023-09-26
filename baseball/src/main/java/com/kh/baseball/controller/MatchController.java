@@ -24,6 +24,7 @@ import com.kh.baseball.dto.StadiumDto;
 import com.kh.baseball.dto.TeamDto;
 @Repository
 //잠시 admin 뺐음
+
 @RequestMapping("/match")
 public class MatchController {
 	
@@ -144,8 +145,9 @@ public class MatchController {
 		
 		
 		model.addAttribute("list",list);
-		return "/WEB-INF/views/match/list.jsp";				
+		return "/WEB-INF/views/admin/match/list.jsp";				
 	}
+
 	
 
 	@RequestMapping("/detailMatch")
