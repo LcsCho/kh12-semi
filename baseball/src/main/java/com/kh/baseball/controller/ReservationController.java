@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.baseball.dao.ReservationDao;
+import com.kh.baseball.dao.TrueReservationDao;
 import com.kh.baseball.dto.ReservationCancelDto;
 import com.kh.baseball.dto.ReservationDto;
+import com.kh.baseball.dto.SeatListDto;
 import com.kh.baseball.dto.TrueReservationDto;
 import com.kh.baseball.vo.ReservationVO;
 
@@ -28,6 +30,9 @@ public class ReservationController {
 
 	@Autowired
 	private ReservationDao reservationDao;
+	
+	@Autowired
+	private TrueReservationDao trueReservationDao;
 
 	// 등록
 //	@GetMapping("/insert")
@@ -76,46 +81,33 @@ public class ReservationController {
 	}
 
 	@GetMapping("/insert")
-	public String insert(@ModelAttribute TrueReservationDto trueReservationDto,   Model model) {
+	public String insert(@ModelAttribute TrueReservationDto trueReservationDto,   Model model,
+			@RequestParam int matchNo,  HttpSession session) {
+		//경기정보 리스트
+		List<ReservationVO> list = trueReservationDao.selectList(matchNo);
+		model.addAttribute("list", list);
+		model.addAttribute("matchNo",matchNo);
 		
+		//아이디 저장
+		trueReservationDto.setMatchNo(matchNo);
 		
-		
-    		//, @RequestParam int seatNo,
-//    		@RequestParam int seatAreaNo,@RequestParam int reservationTicket) {
-//		 세션에서 아이디를 가져옵니다.
-//		 List<ReservationVO> reservationInfo = reservationDao.getMatchInfo(matchNo);
-//
-//		 TrueReservationDto 객체 생성 및
-//
-//	채우기 (선택한 정보로)
-//		 TrueReservationDto trueReservationDto = new TrueReservationDto();
-//        trueReservationDto.setMatchNo(matchNo);
-//        trueReservationDto.setSeatNo(seatNo);
-//        trueReservationDto.setMemberId(memberId);
-//      trueReservationDto.setSeatAreaNo(seatAreaNo);
-//       trueReservationDto.setReservationTicket(reservationTicket);
-       
-
-		// 나머지 필드도 설정
-
-		// 모델에 데이터를 추가하여 뷰로 전달
-		// model.addAttribute("trueReservationDto", trueReservationDto);
-		// model.addAttribute("reservationInfo", reservationInfo); // 예약 정보를 모델에 추가합니다.
-
 		return "/WEB-INF/views/reservation/insert.jsp";
 	}
 
 	@PostMapping("/insert")
-	public String insertPost(TrueReservationDto trueReservationDto) {
+	public String insertPost(TrueReservationDto trueReservationDto,HttpSession session,@RequestParam int matchNo,Model model) {
 		// POST 요청을 처리하는 코드를 작성합니다.
 		// trueReservationDto 객체에 클라이언트로부터 전송된 데이터가 자동으로 바인딩됩니다.
-		// 따라서 여기에서 데이터베이스에 삽입 등의 작업을 수행합니다.
+		String memberId =  (String) session.getAttribute("name");
+		trueReservationDto.setMemberId(memberId);
+		trueReservationDto.setMatchNo(matchNo);
+		model.addAttribute("matchNo",matchNo);
+		
+		trueReservationDao.insert(trueReservationDto);
 
-		// reservationDao를 사용하여 데이터베이스에 삽입 등의 작업을 수행합니다.
-		// reservationDao.insertReservation(trueReservationDto);
-
-		return "redirect:/success"; // 성공 페이지로 리다이렉트합니다.
+		return "redirect:list"; // 성공 페이지로 리다이렉트합니다.
 
 	}
 
+	
 }
