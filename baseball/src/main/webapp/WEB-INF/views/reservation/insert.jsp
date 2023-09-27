@@ -23,7 +23,7 @@
     				method:"post",
     				data:{
     					seatAreaNo: seatAreaNo ,
-    					matchNo : matchNo
+    					matchNo : matchNo 
     				},
     				success:function(response){
     					console.log(response);
@@ -40,8 +40,12 @@
     	                for (var i = 0; i < numRows; i++) {
     	                    for (var j = 0; j < numCols; j++) {
     	                        var index = i * numCols + j;
-	
+    	                        var seatStatus = response[index].seatStatus; // 서버 응답에서 seatStatus 가져오기
+
     	                        var checkbox = $("<input>").attr("type", "checkbox").attr("value", response[index].seatNo).attr("name", "seatNo");
+
+    	                        // seatStatus 정보를 출력
+    	                        var seatStatusElement = $("<span>").text(seatStatus);
 
     	                        checkbox.change(function(){
     	                            if ($(this).is(":checked")) {
@@ -54,7 +58,9 @@
     	                            var ticket = $("#reservationTicket").attr("value", ticketCount);
     	                        });
 
+    	                        // 좌석과 seatStatus를 checkboxContainer에 추가
     	                        checkboxContainer.append(checkbox);
+    	                        checkboxContainer.append(seatStatusElement);
     	                    }
     	                    checkboxContainer.append("<br>");
     	                }
@@ -93,9 +99,9 @@
                     </option>
                 </c:forEach>
             </select>
-
+			
             <label>좌석 번호:</label>
-            <div id="seat-checkbox"></div>
+            <div id="seat-checkbox">${reservationVo.seatStatus}</div>
  
 
             <div id="ticket-count">티켓 수: <span id="ticket-count-value">0</span></div>
