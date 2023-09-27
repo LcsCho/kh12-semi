@@ -4,6 +4,35 @@
 
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/template/matchSidebar.jsp"></jsp:include>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // 홈팀과 어웨이팀 선택 엘리먼트 가져오기
+        var homeTeamSelect = document.getElementById("homeTeam");
+        var awayTeamSelect = document.getElementById("awayTeam");
+
+        // 홈팀과 어웨이팀이 같을 경우 중복 선택 방지
+        homeTeamSelect.addEventListener("change", function () {
+            var selectedHomeTeam = homeTeamSelect.value;
+            var selectedAwayTeam = awayTeamSelect.value;
+
+            if (selectedHomeTeam === selectedAwayTeam) {
+                alert("홈팀과 어웨이팀은 동일하게 선택할 수 없습니다.");
+                homeTeamSelect.value = ""; // 선택 초기화
+            }
+        });
+
+        awayTeamSelect.addEventListener("change", function () {
+            var selectedHomeTeam = homeTeamSelect.value;
+            var selectedAwayTeam = awayTeamSelect.value;
+
+            if (selectedHomeTeam === selectedAwayTeam) {
+                alert("홈팀과 어웨이팀은 동일하게 선택할 수 없습니다.");
+                awayTeamSelect.value = ""; // 선택 초기화
+            }
+        });
+    });
+</script>
+
 <h2>등록</h2>
 <form action="insert" method="post" autocomplete="off">
 	<div class="container w-600">

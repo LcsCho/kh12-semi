@@ -1,7 +1,9 @@
 package com.kh.baseball.controller;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +24,7 @@ import com.kh.baseball.dto.StadiumDto;
 import com.kh.baseball.dto.TeamDto;
 @Repository
 //잠시 admin 뺐음
+
 @RequestMapping("/match")
 public class MatchController {
 	
@@ -136,14 +139,23 @@ public class MatchController {
 	@RequestMapping("/list")
 	public String list(Model model) {
 		List<MatchDto> list = matchDao.selectList();
+		LocalDateTime now = LocalDateTime.now();
+		Timestamp timestamp = Timestamp.valueOf(now);
+		model.addAttribute("now", timestamp);
+		
+		
 		model.addAttribute("list",list);
-		return "/WEB-INF/views/match/list.jsp";				
+		return "/WEB-INF/views/admin/match/list.jsp";				
 	}
+
 	
 
 	@RequestMapping("/detailMatch")
 	public String detailMatch(@RequestParam int matchNo, Model model) {
 		MatchDto matchDto = matchDao.selectOne(matchNo);
+		LocalDateTime now = LocalDateTime.now();
+		Timestamp timestamp = Timestamp.valueOf(now);
+		model.addAttribute("now", timestamp);
 		model.addAttribute("matchDto", matchDto);
 		return "/WEB-INF/views/admin/match/detailMatch.jsp";
 	}
