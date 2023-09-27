@@ -15,6 +15,7 @@ import com.kh.baseball.dao.MatchDao;
 import com.kh.baseball.dao.TeamDao;
 import com.kh.baseball.dto.MatchDto;
 import com.kh.baseball.dto.TeamDto;
+import com.kh.baseball.vo.MatchVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,23 +38,28 @@ public class MenuController {
 	@RequestMapping("/schedule/lg")
 	public String scheduleLg(Model model) {
 		List<MatchDto> list = matchDao.selectList();
+		List<MatchVO> voList = matchDao.selectNoList();
 		LocalDateTime now = LocalDateTime.now();
 		Timestamp timestamp = Timestamp.valueOf(now);
 		model.addAttribute("now", timestamp);
 		model.addAttribute("list",list);
-		return "/WEB-INF/views/menu/scheduleLg3.jsp";
+		model.addAttribute("voList", voList);
+		return "/WEB-INF/views/menu/scheduleLg2.jsp";
 	}	
 	
 	@RequestMapping("/reservationList")
-	public String reservationList(Model model) {
-		List<MatchDto> list = matchDao.selectList();
+	public String reservationList(Model model, TeamDto teamDto) {
+		// List<MatchDto> list = matchDao.selectList();
+		List<MatchVO> voList = matchDao.selectNoList();
 		LocalDateTime now = LocalDateTime.now();
 		Timestamp timestamp = Timestamp.valueOf(now);
 		model.addAttribute("now", timestamp);
+		model.addAttribute("voList", voList);
 		
 		
-		model.addAttribute("list",list);
-		return "/WEB-INF/views/menu/reservationList.jsp";
+		// model.addAttribute("list",list);
+		// return "/WEB-INF/views/menu/reservationList.jsp";
+		return "/WEB-INF/views/menu/reservationListBackup.jsp";
 	}	
 	
 	@RequestMapping("/teamInfo")
