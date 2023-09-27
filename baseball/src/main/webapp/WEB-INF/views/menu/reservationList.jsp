@@ -164,7 +164,14 @@ td {
 								<div class="col-2 left"><fmt:formatDate value="${matchDto.matchDate}" pattern="HH:mm" /></div>
 							</div>
 							<div class="row col-7-4">
-								<div class="font">${matchDto.homeTeam}</div>
+								<c:choose>
+                            		<c:when test="${matchDto.matchDate.time >= now.time}">
+                                		<div class="font">${matchDto.homeTeam} (${matchDto.matchHomeScore})</div>
+                            		</c:when>
+                            		<c:otherwise>
+                                		<div class="font">${matchDto.homeTeam}</div>
+                            		</c:otherwise>
+                        		</c:choose>
 							</div>
 							<div class="row col-7">
 								<img src="/images/엘지로고.png" width="90%">
@@ -177,11 +184,28 @@ td {
 								<img src="/images/두산로고.png" width="90%">
 							</div>
 							<div class="row col-7-4">
-								<div class="font">${matchDto.awayTeam}</div>
+								<c:choose>
+                            		<c:when test="${matchDto.matchDate.time >= now.time}">
+                                		<div class="font">(${matchDto.matchAwayScore}) ${matchDto.awayTeam}</div>
+                            		</c:when>
+                            		<c:otherwise>
+                                		<div class="font">${matchDto.awayTeam}</div>
+                            		</c:otherwise>
+                        		</c:choose>
 								
 							</div>
 							<div class="row col-7-5">
-								<div class="btn reservation">예매하기</div>
+								<c:choose>
+                            		<c:when test="${now.time >= matchDto.matchDate.time}">
+                                		<div class="btn reservation">예매 불가</div>
+                            		</c:when>
+                            		<c:when test="${now.time >= matchDto.matchDate.time - (4 * 24 * 60 * 60 * 1000)}">
+                                		<div class="btn reservation"><a href="/reservation/insert?matchNo=${matchDto.matchNo}">예매하기</a></div>
+                            		</c:when>
+                            		<c:otherwise>
+                                		<div class="btn reservation">예매전</div>
+                            		</c:otherwise>
+                        		</c:choose>
 							</div>
 						</div>
 					</td>
