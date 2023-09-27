@@ -25,27 +25,46 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 	@Autowired
 	private MatchInfoMapper matchInfoMapper;
 
-	@Override
-	public int sequence() {
-		String sql = "select reservation_seq.nextval from dual";
-		return jdbcTemplate.queryForObject(sql, int.class);
-	}
-
+//	@Override
+//	public int sequence() {
+//		String sql = "select reservation_seq.nextval from dual";
+//		return jdbcTemplate.queryForObject(sql, int.class);
+//	}
+//
+//	@Override
+//	public void insert(TrueReservationDto trueReservationDto) {
+//		String sql = "INSERT INTO reservation (reservation_no," + " match_no, seat_no, " + "home_team, away_team, "
+//				+ "member_id, seat_area_no, " + "reservation_date, " + "reservation_ticket) "
+//				+ "VALUES (reservation_seq.nextval, ?, ?, "
+//				+ "(SELECT team_no FROM team WHERE team_name = (SELECT home_team FROM match WHERE match_no = ?)), "
+//				+ "(SELECT team_no FROM team WHERE team_name = (SELECT away_team FROM match WHERE match_no = ?)), "
+//				+ "?, ?, sysdate, ?)";
+////		String sql = "INSERT INTO reservation (reservation_no, match_no, seat_no, home_team, away_team, member_id, seat_area_no, reservation_date, reservation_ticket) " +
+////	             "VALUES (reservation_seq.nextval, ?, ?, ?, ?, ?, ?, sysdate, ?)";
+//
+//		Object[] data = { trueReservationDto.getMatchNo(), trueReservationDto.getSeatNo(),
+//				trueReservationDto.getHomeTeam(), trueReservationDto.getAwayTeam(), trueReservationDto.getMemberId(),
+//				trueReservationDto.getSeatAreaNo(), trueReservationDto.getReservationTicket() };
+//		jdbcTemplate.update(sql, data);
+//	}
 	@Override
 	public void insert(TrueReservationDto trueReservationDto) {
-		String sql = "INSERT INTO reservation (reservation_no," + " match_no, seat_no, " + "home_team, away_team, "
-				+ "member_id, seat_area_no, " + "reservation_date, " + "reservation_ticket) "
-				+ "VALUES (reservation_seq.nextval, ?, ?, "
-				+ "(SELECT team_no FROM team WHERE team_name = (SELECT home_team FROM match WHERE match_no = ?)), "
-				+ "(SELECT team_no FROM team WHERE team_name = (SELECT away_team FROM match WHERE match_no = ?)), "
-				+ "?, ?, sysdate, ?)";
-//		String sql = "INSERT INTO reservation (reservation_no, match_no, seat_no, home_team, away_team, member_id, seat_area_no, reservation_date, reservation_ticket) " +
-//	             "VALUES (reservation_seq.nextval, ?, ?, ?, ?, ?, ?, sysdate, ?)";
+	    String sql = "INSERT INTO reservation (reservation_no, match_no, seat_no, home_team, away_team, member_id, seat_area_no, reservation_date, reservation_ticket) " +
+	            "VALUES (reservation_seq.nextval, ?, ?, " +
+	            "(SELECT team_no FROM team WHERE team_name = (SELECT home_team FROM match WHERE match_no = ?)), " +
+	            "(SELECT team_no FROM team WHERE team_name = (SELECT away_team FROM match WHERE match_no = ?)), " +
+	            "?, ?, sysdate, ?)";
 
-		Object[] data = { trueReservationDto.getMatchNo(), trueReservationDto.getSeatNo(),
-				trueReservationDto.getHomeTeam(), trueReservationDto.getAwayTeam(), trueReservationDto.getMemberId(),
-				trueReservationDto.getSeatAreaNo(), trueReservationDto.getReservationTicket() };
-		jdbcTemplate.update(sql, data);
+	    int[] seatNos = trueReservationDto.getSeatNo(); // seatNo를 int 배열로 받아옴
+	    int reservationTicket = trueReservationDto.getReservationTicket(); // 예약 티켓 수를 가져옴
+
+	    for (int i = 0; i < reservationTicket; i++) {
+	        Object[] data = { trueReservationDto.getMatchNo(), seatNos[i], // reservationTicket 수만큼 seatNo를 반복해서 설정
+	                trueReservationDto.getHomeTeam(), trueReservationDto.getAwayTeam(), trueReservationDto.getMemberId(),
+	                trueReservationDto.getSeatAreaNo(), 1 }; // 1은 예약 티켓 수를 나타냄
+
+	        jdbcTemplate.update(sql, data);
+	    }
 	}
 //	@Override
 //	public void insert(TrueReservationDto trueReservationDto) {
@@ -90,5 +109,12 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 		Object[] data = { matchNo, seatAreaNo };
 		return jdbcTemplate.query(sql, seatListMapper, data);
 	}
+
+	@Override
+	public boolean seatStatusUpdate(int seatNo) {
+		
+		return false;
+	}
+
 
 }
