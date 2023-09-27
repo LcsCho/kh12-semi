@@ -15,20 +15,20 @@ MemberInterceptor memberInterceptor;
 
 @Override
 	public void addInterceptors(InterceptorRegistry registry) {
-	//pathpattern 은 아직 안정해둠 필효하면 추가하세요
-//	registry.addInterceptor(memberInterceptor).addPathPatterns(		"/member/**",
-//			"/board/**",
-//			"/rest/reply/**"
-//	)
-//	.excludePathPatterns(
-//			"/member/join*",
-//			"/member/login",
-//			"/member/exitFinish",
-//			"/member/find*",
-//			"/board/list*",
-//			"/board/detail",
-//			"/rest/reply/list"
-//
-//	);
+//	pathpattern 은 아직 안정해둠 필효하면 추가하세요
+	registry.addInterceptor(memberInterceptor).addPathPatterns(		"/member/**",
+			"/board/**",
+			"/rest/reply/**"
+	)
+	.excludePathPatterns(
+			"/member/join*",
+			"/member/login",
+			"/member/exitFinish",
+			"/member/find*",
+			"/board/list*",
+			"/board/detail",
+			"/rest/reply/list"
+
+	);
 	}
 }

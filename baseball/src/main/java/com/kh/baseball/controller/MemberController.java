@@ -47,7 +47,8 @@ public class MemberController {
 	@PostMapping("/join")
 	public String join(@ModelAttribute MemberDto memberDto) {
 		memberDao.insert(memberDto);
-		return "redirect:joinFinish";
+		//return "redirect:joinFinish";
+		return "redirect:/member/joinFinish";
 	}
 	
 	@RequestMapping("/joinFinish")

@@ -153,7 +153,7 @@ $(function(){
     $(".join-form").submit(function(e){
         $(".form-input").blur();
         if(!status.ok()) {
-            e.preventDefault();
+            //e.preventDefault();
             //return false;
         }
         else {
