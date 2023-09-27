@@ -181,7 +181,17 @@ td {
 								
 							</div>
 							<div class="row col-7-5">
-								<div class="btn reservation">예매하기</div>
+								<c:choose>
+                            		<c:when test="${now.time >= matchDto.matchDate.time}">
+                                		<div class="btn reservation">예매 불가</div>
+                            		</c:when>
+                            		<c:when test="${now.time >= matchDto.matchDate.time - (4 * 24 * 60 * 60 * 1000)}">
+                                		<div class="btn reservation"><a href="/reservation/insert?matchNo=${matchDto.matchNo}">예매하기</a></div>
+                            		</c:when>
+                            		<c:otherwise>
+                                		<div class="btn reservation">예매전</div>
+                            		</c:otherwise>
+                        		</c:choose>
 							</div>
 						</div>
 					</td>
