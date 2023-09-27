@@ -12,5 +12,6 @@ public interface TrueReservationDao {
 	void insert(TrueReservationDto trueReservationDto);
 	List<ReservationVO> selectList(int matchNo);
 	List<SeatListDto> findSeatForReservation( int matchNo ,int seatAreaNo);
+	//void insert(String[] seatNoArray, TrueReservationDto trueReservationDto);
 
 }
