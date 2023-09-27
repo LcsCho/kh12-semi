@@ -9,70 +9,93 @@
     <title>매치 예약</title>
     
     <script>
-    	$(function(){
-    		
-    		$("[name=seatAreaNo]").change(function(){
-    			var seatAreaNo = $(this).val();
-    			if(seatAreaNo.length == 0) return;
-    			
-    			var params = new URLSearchParams(location.search);
-    			var matchNo = params.get("matchNo");
-    			
-    			$.ajax({
-    				url:"http://localhost:8080/reservation/selectSeatAreaZone",
-    				method:"post",
-    				data:{
-    					seatAreaNo: seatAreaNo ,
-    					matchNo : matchNo 
-    				},
-    				success:function(response){
-    					console.log(response);
-    					
-    					var lastSeat = response[response.length - 1];
-    	                var numCols = lastSeat.seatCol;
-    	                var numRows = lastSeat.seatRow;
+	$(function(){
+		//좌석 번호에 change 이벤트 발생시 수행하는 함수
+		$("[name=seatAreaNo]").change(function(){
+			var seatAreaNo = $(this).val();
+			if(seatAreaNo.length == 0) return;
+            //비어있으면 리턴
+			
+			var params = new URLSearchParams(location.search);
+            //url에 있는 matchNo를 저장
+			var matchNo = params.get("matchNo");
+			
+			$.ajax({
+				url:"http://localhost:8080/reservation/selectSeatAreaZone",
+				method:"post",
+				data:{
+					seatAreaNo: seatAreaNo ,
+					matchNo : matchNo 
+				},
+                //성공시
+				success:function(response){
+					console.log(response);
+					//마지막 번호 정보
+					var lastSeat = response[response.length - 1];
+                    //마지막 컬럼 값
+	                var numCols = lastSeat.seatCol;
+                    //마지막 로우 값
+	                var numRows = lastSeat.seatRow;
+                    
+                    //이름을 checkboxcontainer로 저장
+	                var checkboxContainer = $("#seat-checkbox");
+                    //체크박스의 내용을 초기화
+	                checkboxContainer.empty(); 
+	                //티켓을 초기화
+	                var ticketCount = 0;
+                    //티켓의 요소를 엘리멘트로 저장
+	                var ticketCountElement = $("#ticket-count-value");
+                    //for 문을 사용하여 checkbox를 자동으로 생성
+	                for (var i = 0; i < numRows; i++) {
+	                    for (var j = 0; j < numCols; j++) {
+                            //배열에 있는 요소를 가져오기 위한 index
+	                        var index = i * numCols + j;
+                            //응답에서 status값 저장
+	                        var seatStatus = response[index].seatStatus;
+                            //
+	                        var checkbox = $("<input>")
+	                        .attr("type", "checkbox")
+	                        .attr("value", response[index].seatNo)
+	                        .attr("name", "seatNo");
 
-    	                var checkboxContainer = $("#seat-checkbox");
-    	                checkboxContainer.empty(); 
-    	                
-    	                var ticketCount = 0;
-    	                var ticketCountElement = $("#ticket-count-value");
-    	                for (var i = 0; i < numRows; i++) {
-    	                    for (var j = 0; j < numCols; j++) {
-    	                        var index = i * numCols + j;
-    	                        var seatStatus = response[index].seatStatus; // 서버 응답에서 seatStatus 가져오기
+	                        // seatStatus 정보를 출력
+	                        var seatStatusElement = $("<span>").text(seatStatus);
+	                      	//만약에 seatStatus가 N이라면 선택이 되어있고 disable로 처리
+                            if(response[index].seatStatus == "N"){
+                                checkbox
+                                .attr("checked", true)
+                                .attr("disabled", true);
+                            }
+                            
+                            
+                            //반복문에서 col row를 생성했으므로 for문안에 있어야 함
+	                        checkbox.change(function(){
+	                            if ($(this).is(":checked")) {
+	                                ticketCount++;
+	                            } else {
+	                                ticketCount--;
+	                            }
+	                            
+                                //티켓 카운트 요소가있는 곳에 text로 티켓의 수를 출력
+	                            ticketCountElement.text(ticketCount);
+                                //티켓이라는 변수에 id가 reservationTicket인 곳에 value를 ticketcount 로 설정
+	                            var ticket = $("#reservationTicket").attr("value", ticketCount);
 
-    	                        var checkbox = $("<input>").attr("type", "checkbox").attr("value", response[index].seatNo).attr("name", "seatNo");
 
-    	                        // seatStatus 정보를 출력
-    	                        var seatStatusElement = $("<span>").text(seatStatus);
 
-    	                        checkbox.change(function(){
-    	                            if ($(this).is(":checked")) {
-    	                                ticketCount++;
-    	                            } else {
-    	                                ticketCount--;
-    	                            }
+                                
+	                        });
 
-    	                            ticketCountElement.text(ticketCount);
-    	                            var ticket = $("#reservationTicket").attr("value", ticketCount);
-    	                        });
-
-    	                        // 좌석과 seatStatus를 checkboxContainer에 추가
-    	                        checkboxContainer.append(checkbox);
-    	                        checkboxContainer.append(seatStatusElement);
-    	                    }
-    	                    checkboxContainer.append("<br>");
-    	                }
-    	            },
-    	        });
-    	    });
-    	});
-    	
-    	//다중 예약처리를 하려고 json형태의 리스트로 저장 하고 ajax로 보냈는데 문자열로 들어가서 파싱을 해보려 했지만 실패하고
-    	//파싱을한 배열에 for문을 돌러 list의 length만큼 0번부터 출력한 값을 자동으로 insert 하려 했지만 실패
-    	//1개씩은 예매가 된다
-    	//예매 된 좌석은 이제 disable로 처리를 해야한다
+	                        // 좌석과 seatStatus를 checkboxContainer에 추가
+	                        checkboxContainer.append(checkbox);
+	                        checkboxContainer.append(seatStatusElement);
+	                    }
+	                    checkboxContainer.append("<br>");
+	                }
+	            },
+	        });
+	    });
+	});
     </script>
 </head>
 <body>

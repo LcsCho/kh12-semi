@@ -121,6 +121,7 @@ public class ReservationController {
 	public List<SeatListDto> selectSeatAreaZone(@RequestParam int seatAreaNo, @RequestParam int matchNo) {
 		List<SeatListDto> seatList = trueReservationDao.findSeatForReservation(matchNo, seatAreaNo);
 		return seatList;
+		
 	}
 	
 	
