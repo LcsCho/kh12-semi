@@ -3,6 +3,7 @@ package com.kh.baseball.dao;
 import java.util.List;
 
 import com.kh.baseball.dto.MatchDto;
+import com.kh.baseball.vo.MatchVO;
 
 public interface MatchDao {
 	
@@ -13,4 +14,6 @@ public interface MatchDao {
 	boolean updateDate(MatchDto matchDto);
 	MatchDto selectOne(int matchNo);
 	List<MatchDto> selectList();
+	List<MatchVO> selectNoList();
+	
 }

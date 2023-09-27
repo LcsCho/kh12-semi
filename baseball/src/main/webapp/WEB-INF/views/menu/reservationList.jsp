@@ -155,52 +155,52 @@ td {
 	<table>
 
 		<tbody>
-			<c:forEach var="matchDto" items="${list}" varStatus="status">
+			<c:forEach var="matchVo" items="${voList}" varStatus="status">
 				<tr>
 					<td>
 						<div class="row flex-container">
 							<div class="row col-7-2">
-								<div class="col-2 left">(<fmt:formatDate value="${matchDto.matchDate}" pattern="EEE" />)</div>
-								<div class="col-2 left"><fmt:formatDate value="${matchDto.matchDate}" pattern="HH:mm" /></div>
+								<div class="col-2 left">(<fmt:formatDate value="${matchVo.matchDate}" pattern="EEE" />)</div>
+								<div class="col-2 left"><fmt:formatDate value="${matchVo.matchDate}" pattern="HH:mm" /></div>
 							</div>
 							<div class="row col-7-4">
 								<c:choose>
-                            		<c:when test="${matchDto.matchDate.time >= now.time}">
-                                		<div class="font">${matchDto.homeTeam} (${matchDto.matchHomeScore})</div>
+                            		<c:when test="${matchVo.matchDate.time >= now.time}">
+                                		<div class="font">${matchVo.homeTeam} (${matchVo.matchHomeScore})</div>
                             		</c:when>
                             		<c:otherwise>
-                                		<div class="font">${matchDto.homeTeam}</div>
+                                		<div class="font">${matchVo.homeTeam}</div>
                             		</c:otherwise>
                         		</c:choose>
 							</div>
-							<div class="row col-7">
-								<img src="/images/엘지로고.png" width="90%">
-							</div>
-							<div class="row col-7">
-								<div class="vs">VS</div>
-								<div class="font-2">${matchDto.stadiumName}</div>
-							</div>
-							<div class="row col-7">
-								<img src="/images/두산로고.png" width="90%">
-							</div>
+								<div class="row col-7">
+									<img src="./images/${matchVo.homeTeamNo}.jpg" width="90%">
+								</div>
+								<div class="row col-7">
+									<div class="vs">VS</div>
+									<div class="font-2">${matchVo.stadiumName}</div>
+								</div>
+								<div class="row col-7">
+									<img src="./images/${matchVo.awayTeamNo}.jpg" width="90%">
+								</div>
 							<div class="row col-7-4">
 								<c:choose>
-                            		<c:when test="${matchDto.matchDate.time >= now.time}">
-                                		<div class="font">(${matchDto.matchAwayScore}) ${matchDto.awayTeam}</div>
+                            		<c:when test="${matchVo.matchDate.time >= now.time}">
+                                		<div class="font">(${matchVo.matchAwayScore}) ${matchVo.awayTeam}</div>
                             		</c:when>
                             		<c:otherwise>
-                                		<div class="font">${matchDto.awayTeam}</div>
+                                		<div class="font">${matchVo.awayTeam}</div>
                             		</c:otherwise>
                         		</c:choose>
 								
 							</div>
 							<div class="row col-7-5">
 								<c:choose>
-                            		<c:when test="${now.time >= matchDto.matchDate.time}">
+                            		<c:when test="${now.time >= matchVo.matchDate.time}">
                                 		<div class="btn reservation">예매 불가</div>
                             		</c:when>
-                            		<c:when test="${now.time >= matchDto.matchDate.time - (4 * 24 * 60 * 60 * 1000)}">
-                                		<div class="btn reservation"><a href="/reservation/insert?matchNo=${matchDto.matchNo}">예매하기</a></div>
+                            		<c:when test="${now.time >= matchVo.matchDate.time - (4 * 24 * 60 * 60 * 1000)}">
+                                		<div class="btn reservation"><a href="/reservation/insert?matchNo=${matchVo.matchNo}">예매하기</a></div>
                             		</c:when>
                             		<c:otherwise>
                                 		<div class="btn reservation">예매전</div>

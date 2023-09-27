@@ -25,7 +25,7 @@ import com.kh.baseball.dto.TeamDto;
 @Repository
 //잠시 admin 뺐음
 
-@RequestMapping("/match")
+@RequestMapping("/admin/match")
 public class MatchController {
 	
 	@Autowired 

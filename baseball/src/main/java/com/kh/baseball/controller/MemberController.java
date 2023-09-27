@@ -21,6 +21,7 @@ import com.kh.baseball.dao.MatchDao;
 import com.kh.baseball.dao.MemberDao;
 import com.kh.baseball.dto.MatchDto;
 import com.kh.baseball.dto.MemberDto;
+import com.kh.baseball.vo.MatchVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -247,13 +248,15 @@ public class MemberController {
 	
 	@RequestMapping("/match/list")
 	public String memberList(Model model) {
-		List<MatchDto> list = matchDao.selectList();
+		// List<MatchDto> list = matchDao.selectList();
+		List<MatchVO> voList = matchDao.selectNoList();
 		LocalDateTime now = LocalDateTime.now();
 		Timestamp timestamp = Timestamp.valueOf(now);
 		model.addAttribute("now", timestamp);
+		model.addAttribute("voList", voList);
 		
 		
-		model.addAttribute("list",list);
+		// model.addAttribute("list",list);
 		return "/WEB-INF/views/match/list.jsp";				
 	}
 	

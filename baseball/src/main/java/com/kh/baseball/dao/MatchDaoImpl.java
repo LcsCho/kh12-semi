@@ -1,8 +1,5 @@
 package com.kh.baseball.dao;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.baseball.dto.MatchDto;
 import com.kh.baseball.mapper.MatchMapper;
+import com.kh.baseball.mapper.MatchVoMapper;
+import com.kh.baseball.vo.MatchVO;
 
 @Repository
 public class MatchDaoImpl implements MatchDao{
@@ -21,6 +20,9 @@ public class MatchDaoImpl implements MatchDao{
 	
 	@Autowired
 	private MatchMapper matchMapper;
+	
+	@Autowired
+	private MatchVoMapper matchVoMapper;
 	
 	@Override
 	public int sequence() {
@@ -79,6 +81,22 @@ public class MatchDaoImpl implements MatchDao{
 	public List<MatchDto> selectList() {
 		String sql ="select * from match order by match_date desc";
 		return jdbcTemplate.query(sql, matchMapper);
+	}
+	
+	@Override
+	public List<MatchVO> selectNoList() {
+		String sql = "SELECT " +
+	             " t1.TEAM_NO AS home_team_no, " +
+	             " t2.TEAM_NO AS away_team_no, " +
+	             " ma.* " +
+	             "FROM " +
+	             " match ma " +
+	             "LEFT OUTER JOIN " +
+	             " team t1 ON ma.home_team = t1.team_name " +
+	             "LEFT OUTER JOIN " +
+	             " team t2 ON ma.away_team = t2.team_name " +
+	             "ORDER BY ma.match_date DESC";
+		return jdbcTemplate.query(sql, matchVoMapper);
 	}
 
 }
