@@ -1,5 +1,7 @@
 package com.kh.baseball.controller;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.baseball.dao.MatchDao;
 import com.kh.baseball.dao.TeamDao;
+import com.kh.baseball.dto.MatchDto;
 import com.kh.baseball.dto.TeamDto;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +25,8 @@ public class MenuController {
 	@Autowired
 	private TeamDao teamDao;
 	
+	@Autowired
+	private MatchDao matchDao;
 
 	@RequestMapping("/schedule/doosan")
 	public String scheduleDoosan() {
@@ -28,8 +34,13 @@ public class MenuController {
 	}	
 	
 	@RequestMapping("/schedule/lg")
-	public String scheduleLg() {
-		return "/WEB-INF/views/menu/scheduleLg.jsp";
+	public String scheduleLg(Model model) {
+		List<MatchDto> list = matchDao.selectList();
+		LocalDateTime now = LocalDateTime.now();
+		Timestamp timestamp = Timestamp.valueOf(now);
+		model.addAttribute("now", timestamp);
+		model.addAttribute("list",list);
+		return "/WEB-INF/views/menu/scheduleLg2.jsp";
 	}	
 	
 	@RequestMapping("/reservation/doosan")
