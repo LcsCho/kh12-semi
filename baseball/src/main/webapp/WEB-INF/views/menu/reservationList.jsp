@@ -166,7 +166,7 @@ td {
 							<div class="row col-7-4">
 								<c:choose>
                             		<c:when test="${matchDto.matchDate.time >= now.time}">
-                                		<div class="font">${matchDto.homeTeam} ${matchDto.matchHomeScore}</div>
+                                		<div class="font">${matchDto.homeTeam} (${matchDto.matchHomeScore})</div>
                             		</c:when>
                             		<c:otherwise>
                                 		<div class="font">${matchDto.homeTeam}</div>
@@ -186,7 +186,7 @@ td {
 							<div class="row col-7-4">
 								<c:choose>
                             		<c:when test="${matchDto.matchDate.time >= now.time}">
-                                		<div class="font">${matchDto.matchAwayScore} ${matchDto.awayTeam}</div>
+                                		<div class="font">(${matchDto.matchAwayScore}) ${matchDto.awayTeam}</div>
                             		</c:when>
                             		<c:otherwise>
                                 		<div class="font">${matchDto.awayTeam}</div>
