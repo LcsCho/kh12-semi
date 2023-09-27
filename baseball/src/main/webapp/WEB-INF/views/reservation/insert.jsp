@@ -69,9 +69,16 @@
                             
                             
                             //반복문에서 col row를 생성했으므로 for문안에 있어야 함
+                            //체크박스 4개 이상 제약 조건
 	                        checkbox.change(function(){
 	                            if ($(this).is(":checked")) {
-	                                ticketCount++;
+	                            	if(ticketCount  >= 4){
+	                            		alert("최대 4개 구매 가능합니다!");
+	                            		$(this).prop("checked" , false)
+	                            	}
+	                            	else{
+	                                ticketCount++;}
+	                                
 	                            } else {
 	                                ticketCount--;
 	                            }
@@ -80,10 +87,6 @@
 	                            ticketCountElement.text(ticketCount);
                                 //티켓이라는 변수에 id가 reservationTicket인 곳에 value를 ticketcount 로 설정
 	                            var ticket = $("#reservationTicket").attr("value", ticketCount);
-
-
-
-                                
 	                        });
 
 	                        // 좌석과 seatStatus를 checkboxContainer에 추가
