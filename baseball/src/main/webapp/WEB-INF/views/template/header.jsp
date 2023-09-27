@@ -139,7 +139,7 @@
     
                             <div class="row col-5">
                                 <div class="row">
-                                    <li><a href="/reservation/doosan">
+                                    <li><a href="/reservationList">
                                             <i class="fa-solid fa-ticket"></i></a></li>
                                 </div>
                                 <div class="row i-font">
