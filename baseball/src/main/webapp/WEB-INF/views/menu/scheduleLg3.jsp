@@ -6,11 +6,10 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <style>
+
     table {border-collapse: collapse;
     width: 1000px; 
     height: 1000px; 
-  }
-  
     td{border: 1px solid #D1CFCF; padding: 3px; width: 150px; height: 205px;}
     th{border: 1px solid #D1CFCF; font-weight: bold; height: 40px; padding-top: 0.5em;}
     th:nth-child(6) {color:#DD6045;} 
@@ -25,7 +24,8 @@
     	height: 40px; 
     	 font-size: 16px;
         }
-        </style>
+
+</style>
 
 <script>
     <!-- javascript 작성 공간 -->
@@ -35,7 +35,9 @@
     var currentYear = today.getFullYear();
     var currentMonth = today.getMonth();
 
+
     // 가상의 데이터 배열 (실제 데이터는 백엔드에서 불러와야 함)
+
     var eventData = [];
 
     // 날짜 채우기
@@ -130,7 +132,9 @@
     // 월별 달력 생성
     fillCalendar(currentYear, currentMonth, eventData);
 
-    // AJAX 요청을 수행하여 서버에서 match 테이블 데이터를 가져옵니다.
+
+// AJAX 요청을 수행하여 서버에서 match 테이블 데이터를 가져옵니다.
+
     $.ajax({
         url: "http://localhost:8080/match", // 백엔드 API 엔드포인트를 지정합니다.
         method: 'GET',
@@ -141,8 +145,10 @@
                 var matchNo = match.matchNo; 
                 var homeTeam = match.homeTeam;
                 var awayTeam = match.awayTeam;
+
                 var homeTeamNo = match.homeTeamNo;
                 var awayTeamNo = match.awayTeamNo;
+
                 var stadiumName = match.stadiumName;
                 var matchDate = new Date(match.matchDate);
 
@@ -157,6 +163,12 @@
                 });
             });
 
+                    stadiumName: stadiumName,
+                    matchDate: matchDate
+                });
+            }); 
+
+
             // 캘린더를 채우는 함수를 호출합니다.
             fillCalendar(currentYear, currentMonth, eventData);
         },
@@ -166,7 +178,10 @@
     });
 });
 
+
 </script>
+
+  
 
 </head>
 <body>

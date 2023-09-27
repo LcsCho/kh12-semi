@@ -129,91 +129,61 @@ td {
 .col-7-4 {
 	width: 30%;
 }
+
+.row {
+	display: flex; /* 요소들을 가로로 나열하기 위해 flex를 사용합니다. */
+	justify-content: space-between; /* 요소들을 양쪽 끝으로 정렬합니다. */
+	align-items: center; /* 요소들을 수직 가운데 정렬합니다. */
+}
 </style>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // 초기 로딩 시 오늘 날짜로 경기 필터링
-    var currentDate = new Date();
-    filterMatchesByDate(currentDate);
+document.addEventListener('DOMContentLoaded', () => {
+    const currentDateElement = document.getElementById('currentDate');
+    const matches = document.querySelectorAll('.row.flex-container');
 
-    // 이전 경기 보기 버튼 클릭 시
-    document.getElementById('previousButton').addEventListener('click', function () {
-        currentDate.setDate(currentDate.getDate() - 1); // 어제로 날짜 변경
-        filterMatchesByDate(currentDate);
-    });
+    function updateMatchDisplay(selectedDate) {
+        currentDateElement.textContent = formatDate(selectedDate);
 
-    // 다음 경기 보기 버튼 클릭 시
-    document.getElementById('nextButton').addEventListener('click', function () {
-        currentDate.setDate(currentDate.getDate() + 1); // 내일로 날짜 변경
-        filterMatchesByDate(currentDate);
-    });
-
-    function filterMatchesByDate(selectedDate) {
-        // 현재 날짜 표시 업데이트
-        document.getElementById('currentDate').textContent = formatDate(selectedDate);
-
-        // 선택한 날짜를 기준으로 경기를 필터링하여 표시
-        var matches = document.querySelectorAll('.row.flex-container');
-        matches.forEach(function (match) {
-            var matchDate = new Date(match.getAttribute('data-match-date'));
-
-            // 날짜를 비교하여 해당하지 않는 경기 숨김
-            if (matchDate.getDate() === selectedDate.getDate() &&
-                matchDate.getMonth() === selectedDate.getMonth() &&
-                matchDate.getFullYear() === selectedDate.getFullYear()) {
-                match.style.display = 'block';
-            } else {
-                match.style.display = 'none';
-            }
+        matches.forEach(match => {
+            const matchDate = new Date(match.getAttribute('data-match-date'));
+            match.style.display = matchDate.toDateString() === selectedDate.toDateString() ? 'block' : 'none';
         });
     }
 
     function formatDate(date) {
-        // 날짜를 'YYYY년 MM월 DD일' 형식으로
-        var year = date.getFullYear();
-        var month = (date.getMonth() + 1).toString().padStart(2, '0');
-        var day = date.getDate().toString().padStart(2, '0');
-
-        return year + '년 ' + month + '월 ' + day + '일';
+        return date.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
     }
+
+    const currentDate = new Date();
+    updateMatchDisplay(currentDate);
+
+    document.getElementById('previousButton').addEventListener('click', () => {
+        currentDate.setDate(currentDate.getDate() - 1);
+        updateMatchDisplay(currentDate);
+    });
+
+    document.getElementById('nextButton').addEventListener('click', () => {
+        currentDate.setDate(currentDate.getDate() + 1);
+        updateMatchDisplay(currentDate);
+    });
 });
 </script>
 
-
-<div class="container w-1000">
-	<div class="float-container">
-		<div class="col-2 notice">
-			<div class="float-container">
-				<div class="col-2 team-notice">구단공지</div>
-				<div class="col-2 pre-notice">
-					<pre>
-* 온라인 구매는 경기 시작 1시간 후 까지 예매 가능
-(단, 경기 시작 2시간 30분 전부터는 취소는 불가하오니 예매 시 참고)
-* 경기 당일 입장시간이 많이 소요되니 일찍 방문 하시기 바랍니다.
-* 36개월 이상 어린이는 티켓 구매 후 입장 가능.
-* 권종선택 실수로 인한 예매권은 현장에서 교환/환불 불가합니다.
-(현장에서 재구매 해야합니다.)
-                                    </pre>
-				</div>
-			</div>
-		</div>
+<div class="container w-400 center">
+	<div class="row">
+		<button class="btn" id="previousButton">&lt;</button>
+		<div id="currentDate" class="day"></div>
+		<button class="btn" id="nextButton">&gt;</button>
 	</div>
-	   <!-- 이전 경기 보기 버튼 -->
-	   <div class="row">
-    	<button class="btn" id="previousButton">&lt;</button>
-
-    <!-- 현재 날짜 표시 -->
-    <div id="currentDate"></div>
-
-    <!-- 다음 경기 보기 버튼 -->
-    <button class="btn" id="nextButton">&gt;</button>
-	</div>
+</div>
+<div class="container w-800 center">
 	<table>
 		<tbody>
-			<c:forEach var="matchVo" items="${voList}" varStatus="status">
+			<c:forEach var="matchVo" items="${voList}">
 				<tr>
 					<td>
-						<div class="row flex-container">
+						<div class="row flex-container"
+							data-match-date="<fmt:formatDate value='${matchVo.matchDate}' pattern='yyyy-MM-dd' />">
 							<div class="row col-7-2">
 								<div class="col-2 left">
 									(
@@ -225,15 +195,8 @@ document.addEventListener('DOMContentLoaded', function () {
 								</div>
 							</div>
 							<div class="row col-7-4">
-								<c:choose>
-									<c:when test="${matchVo.matchDate.time >= now.time}">
-										<div class="font">${matchVo.homeTeam}
-											(${matchVo.matchHomeScore})</div>
-									</c:when>
-									<c:otherwise>
-										<div class="font">${matchVo.homeTeam}</div>
-									</c:otherwise>
-								</c:choose>
+								<div class="font">${matchVo.homeTeam}
+									(${matchVo.matchDate.time >= now.time ? matchVo.matchHomeScore : ''})</div>
 							</div>
 							<div class="row col-7">
 								<img src="./images/${matchVo.homeTeamNo}.jpg" width="90%">
@@ -246,32 +209,24 @@ document.addEventListener('DOMContentLoaded', function () {
 								<img src="./images/${matchVo.awayTeamNo}.jpg" width="90%">
 							</div>
 							<div class="row col-7-4">
-								<c:choose>
-									<c:when test="${matchVo.matchDate.time >= now.time}">
-										<div class="font">(${matchVo.matchAwayScore})
-											${matchVo.awayTeam}</div>
-									</c:when>
-									<c:otherwise>
-										<div class="font">${matchVo.awayTeam}</div>
-									</c:otherwise>
-								</c:choose>
-
+								<div class="font">(${matchVo.matchDate.time >= now.time ? matchVo.matchAwayScore : ''})
+									${matchVo.awayTeam}</div>
 							</div>
 							<div class="row col-7-5">
-								<c:choose>
-									<c:when test="${now.time >= matchVo.matchDate.time}">
-										<div class="btn reservation">예매 불가</div>
-									</c:when>
-									<c:when
-										test="${now.time >= matchVo.matchDate.time - (4 * 24 * 60 * 60 * 1000)}">
-										<div class="btn reservation">
+								<div class="btn reservation">
+									<c:choose>
+										<c:when test="${now.time >= matchVo.matchDate.time}">
+                                            예매 불가
+                                        </c:when>
+										<c:when
+											test="${now.time >= matchVo.matchDate.time - (4 * 24 * 60 * 60 * 1000)}">
 											<a href="/reservation/insert?matchNo=${matchVo.matchNo}">예매하기</a>
-										</div>
-									</c:when>
-									<c:otherwise>
-										<div class="btn reservation">예매전</div>
-									</c:otherwise>
-								</c:choose>
+										</c:when>
+										<c:otherwise>
+                                            예매전
+                                        </c:otherwise>
+									</c:choose>
+								</div>
 							</div>
 						</div>
 					</td>
@@ -280,6 +235,5 @@ document.addEventListener('DOMContentLoaded', function () {
 		</tbody>
 	</table>
 </div>
-
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
