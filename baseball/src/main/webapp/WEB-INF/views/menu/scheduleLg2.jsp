@@ -18,7 +18,7 @@
         <tbody align="center">
            <c:forEach var="matchDto" items="${list}" varStatus="status">
                 <tr>
-                <c:if test="${matchDto.go == 'lg 트윈스'}">
+                <c:if test="${matchDto.homeTeam == 'lg 트윈스'}">
                     <td>
                         <fmt:formatDate value="${matchDto.matchDate}" pattern="yyyy-MM-dd HH:mm" />
                     </td>
