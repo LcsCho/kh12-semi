@@ -32,14 +32,9 @@ public class MenuController {
 		return "/WEB-INF/views/menu/scheduleLg.jsp";
 	}	
 	
-	@RequestMapping("/reservation/doosan")
+	@RequestMapping("/reservationList")
 	public String reservationDoosan() {
-		return "/WEB-INF/views/menu/reservationDoosan.jsp";
-	}	
-	
-	@RequestMapping("/reservation/lg")
-	public String reservationLg() {
-		return "/WEB-INF/views/menu/reservationLg.jsp";
+		return "/WEB-INF/views/menu/reservationList.jsp";
 	}	
 	
 	@RequestMapping("/teamInfo")
