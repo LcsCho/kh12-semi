@@ -115,7 +115,7 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 	public boolean seatStatusUpdate(int seatNo) {
 		String sql = "update seat set seat_status = 'Y' where seat_no = ?";
 		
-		return jdbcTemplate.update(sql, seatNo)>0;
+		return jdbcTemplate.update(sql, seatNo) > 0;
 		
 	}
 

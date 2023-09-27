@@ -35,7 +35,7 @@ public class TrueReservationMapper implements RowMapper<TrueReservationDto>{
 		trueReservationDto.setReservationDate(rs.getDate("reservation_date"));
 		trueReservationDto.setReservationTicket(rs.getInt("reservation_ticket"));
 		return trueReservationDto;
+		
 	}
 
-	
 }
