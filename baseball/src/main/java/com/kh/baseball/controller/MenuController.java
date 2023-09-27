@@ -37,12 +37,12 @@ public class MenuController {
 	
 	@RequestMapping("/schedule/lg")
 	public String scheduleLg(Model model) {
-		List<MatchDto> list = matchDao.selectList();
+		List<MatchVO> voList = matchDao.selectNoList();
 		LocalDateTime now = LocalDateTime.now();
 		Timestamp timestamp = Timestamp.valueOf(now);
 		model.addAttribute("now", timestamp);
-		model.addAttribute("list",list);
-		return "/WEB-INF/views/menu/scheduleLg2.jsp";
+		model.addAttribute("voList", voList);
+		return "/WEB-INF/views/menu/scheduleLg3.jsp";
 	}	
 	
 	@RequestMapping("/reservationList")
