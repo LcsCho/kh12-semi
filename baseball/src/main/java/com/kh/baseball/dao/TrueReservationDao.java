@@ -14,7 +14,6 @@ public interface TrueReservationDao {
 	List<SeatListDto> findSeatForReservation( int matchNo ,int seatAreaNo);
 	//void insert(String[] seatNoArray, TrueReservationDto trueReservationDto);
 	
-	boolean seatStatusUpdate(int seatNo);
+	boolean seatStatusUpdate(TrueReservationDto trueReservationDto);
 	
-
 }

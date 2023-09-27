@@ -112,12 +112,21 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 	}
 
 	@Override
-	public boolean seatStatusUpdate(int seatNo) {
-		String sql = "update seat set seat_status = 'Y' where seat_no = ?";
+	public boolean seatStatusUpdate(TrueReservationDto trueReservationDto) {
+		String sql = "update seat set seat_status = 'N' where seat_no = ?";
 		
-		return jdbcTemplate.update(sql, seatNo) > 0;
-		
+	    int[] seatNos = trueReservationDto.getSeatNo(); // seatNo를 int 배열로 받아옴
+	    int reservationTicket = trueReservationDto.getReservationTicket(); // 예약 티켓 수를 가져옴
+
+	    int updatedCount = 0; // 업데이트된 행의 수를 카운트
+
+	    for (int i = 0; i < reservationTicket; i++) {
+	        Object[] data = {seatNos[i] };
+	        int updatedRows = jdbcTemplate.update(sql, data);
+	        updatedCount += updatedRows;
+	    }
+
+	    // 모든 업데이트가 성공했을 때 true를 반환
+	    return updatedCount == reservationTicket;
 	}
-
-
-}
+	}

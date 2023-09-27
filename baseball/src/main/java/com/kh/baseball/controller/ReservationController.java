@@ -98,7 +98,7 @@ public class ReservationController {
 	}
 
 	@PostMapping("/insert")
-	public String insertPost(TrueReservationDto trueReservationDto,HttpSession session,@RequestParam int matchNo,int seatNo,Model model) {
+	public String insertPost(TrueReservationDto trueReservationDto,HttpSession session,@RequestParam int matchNo,Model model) {
 		// POST 요청을 처리하는 코드를 작성합니다.
 		// trueReservationDto 객체에 클라이언트로부터 전송된 데이터가 자동으로 바인딩됩니다.
 		String memberId =  (String) session.getAttribute("name");
@@ -108,7 +108,9 @@ public class ReservationController {
 		
 		trueReservationDao.insert(trueReservationDto);
 		
-		trueReservationDao.seatStatusUpdate(seatNo);
+	    	
+		trueReservationDao.seatStatusUpdate(trueReservationDto);
+		
 
 		return "/WEB-INF/views/reservation/insertFinish.jsp"; // 성공 페이지로 리다이렉트합니다.
 
@@ -120,6 +122,7 @@ public class ReservationController {
 		List<SeatListDto> seatList = trueReservationDao.findSeatForReservation(matchNo, seatAreaNo);
 		return seatList;
 	}
+	
 	
 	
 	
