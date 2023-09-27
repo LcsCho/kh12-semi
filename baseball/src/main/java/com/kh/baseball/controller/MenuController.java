@@ -42,7 +42,7 @@ public class MenuController {
 		Timestamp timestamp = Timestamp.valueOf(now);
 		model.addAttribute("now", timestamp);
 		model.addAttribute("list",list);
-		return "/WEB-INF/views/menu/scheduleLg2.jsp";
+		return "/WEB-INF/views/menu/scheduleLg3.jsp";
 	}	
 	
 	@RequestMapping("/reservationList")
