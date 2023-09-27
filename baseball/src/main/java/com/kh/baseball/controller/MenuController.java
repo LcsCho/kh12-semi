@@ -27,7 +27,7 @@ public class MenuController {
 	
 	@Autowired
 	private MatchDao matchDao;
-	
+
 
 	@RequestMapping("/schedule/doosan")
 	public String scheduleDoosan() {
@@ -35,8 +35,13 @@ public class MenuController {
 	}	
 	
 	@RequestMapping("/schedule/lg")
-	public String scheduleLg() {
-		return "/WEB-INF/views/menu/scheduleLg.jsp";
+	public String scheduleLg(Model model) {
+		List<MatchDto> list = matchDao.selectList();
+		LocalDateTime now = LocalDateTime.now();
+		Timestamp timestamp = Timestamp.valueOf(now);
+		model.addAttribute("now", timestamp);
+		model.addAttribute("list",list);
+		return "/WEB-INF/views/menu/scheduleLg2.jsp";
 	}	
 	
 	@RequestMapping("/reservationList")
