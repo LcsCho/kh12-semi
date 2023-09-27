@@ -56,7 +56,8 @@ public class MenuController {
 		
 		
 		// model.addAttribute("list",list);
-		return "/WEB-INF/views/menu/reservationList.jsp";
+		// return "/WEB-INF/views/menu/reservationList.jsp";
+		return "/WEB-INF/views/menu/reservationListBackup.jsp";
 	}	
 	
 	@RequestMapping("/teamInfo")
