@@ -33,7 +33,7 @@ public class MenuController {
 	}	
 	
 	@RequestMapping("/reservationList")
-	public String reservationDoosan() {
+	public String reservationList() {
 		return "/WEB-INF/views/menu/reservationList.jsp";
 	}	
 	
