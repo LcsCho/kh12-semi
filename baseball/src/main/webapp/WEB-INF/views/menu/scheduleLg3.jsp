@@ -26,9 +26,10 @@
     	 font-size: 16px;
         }
         </style>
-<script>
 
-document.addEventListener("DOMContentLoaded", function () {
+<script>
+    <!-- javascript 작성 공간 -->
+    document.addEventListener("DOMContentLoaded", function () {
     // 현재 날짜를 가져오기
     var today = new Date();
     var currentYear = today.getFullYear();
