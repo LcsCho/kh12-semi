@@ -99,7 +99,7 @@ public class ReservationController {
 	}
 
 	@PostMapping("/insert")
-	public String insertPost(TrueReservationDto trueReservationDto,HttpSession session,@RequestParam int matchNo,Model model) {
+	public String insertPost(@ModelAttribute TrueReservationDto trueReservationDto,HttpSession session,@RequestParam int matchNo,Model model) {
 		// POST 요청을 처리하는 코드를 작성합니다.
 		// trueReservationDto 객체에 클라이언트로부터 전송된 데이터가 자동으로 바인딩됩니다.
 		String memberId =  (String) session.getAttribute("name");
@@ -152,10 +152,10 @@ public class ReservationController {
 	}
 	
 	@PostMapping("/delete")
-    public String deleteReservations(TrueReservationDto trueReservationDto) {
+    public String deleteReservations(@ModelAttribute TrueReservationDto trueReservationDto) {
 		trueReservationDao.reservationDeleteByTicket(trueReservationDto);
 		trueReservationDao.seatStatusUpdate(trueReservationDto);
-            return "redirect:list";
+            return "redirect:/";
     }
 	
 	
