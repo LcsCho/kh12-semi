@@ -6,11 +6,25 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <style>
-    table {border-collapse: collapse; width: 1000px; height: 1000px; }
-    td{border: 1px solid #D1CFCF; padding: 3px; width: 150px; height: 150px;}
+
+    table {border-collapse: collapse;
+    width: 1000px; 
+    height: 1000px; 
+    td{border: 1px solid #D1CFCF; padding: 3px; width: 150px; height: 205px;}
     th{border: 1px solid #D1CFCF; font-weight: bold; height: 40px; padding-top: 0.5em;}
     th:nth-child(6) {color:#DD6045;} 
     th:nth-last-child(1) {color:#3D85B9;}
+
+	.custom{
+      font-size: 20px;
+        }
+        
+        .btn{
+         width: 100px; 
+    	height: 40px; 
+    	 font-size: 16px;
+        }
+
 </style>
 
 <script>
@@ -21,7 +35,9 @@
     var currentYear = today.getFullYear();
     var currentMonth = today.getMonth();
 
-    // 가상의 데이터 배열
+
+    // 가상의 데이터 배열 (실제 데이터는 백엔드에서 불러와야 함)
+
     var eventData = [];
 
     // 날짜 채우기
@@ -75,26 +91,31 @@
                     // 날짜를 표시
                     var cell = row.insertCell();
                     cell.innerHTML = date;
+                    
+                	 // cell에 클래스 추가
+                   cell.classList.add("custom");
 
                     var event = eventData.find(function(item) {
                         return item.matchDate.getDate() === date;
                     });
 
                     // 데이터가 있다면 해당 데이터를 추가
-                    if (event) {
-                        cell.innerHTML += "<br>"+event.homeTeam+" vs "+event.awayTeam;
-                        cell.innerHTML += "<br>"+event.stadiumName;
-                        
-                      // 현재 시간과 비교하여 예매 버튼 추가
-                      var nowTime = new Date().getTime();
-                        if (nowTime >= event.matchDate.getTime()) {
-                            cell.innerHTML += "<br>예매 불가";
-                        } else if (nowTime >= event.matchDate.getTime() - (4 * 24 * 60 * 60 * 1000)) {
-                            cell.innerHTML += "<br><a href='/reservation/insert?matchNo="+event.matchNo+"'>예매하기</a>";
-                        } else {
-                            cell.innerHTML += "<br>예매 전";
-                        }
-                    }
+                   if (event) {
+               	
+         		 cell.innerHTML += "<br> vs <img src='/images/" + event.awayTeamNo + ".jpg' width='70%'>";               	   
+			    /* cell.innerHTML += "<br>" + " vs " + event.awayTeam; */
+			    cell.innerHTML += "<br>" + event.stadiumName;
+			    			    
+			    // 현재 시간과 비교하여 예매 버튼 추가
+			    var nowTime = new Date().getTime();
+			    if (nowTime >= event.matchDate.getTime()) {
+			        cell.innerHTML += "<br>예매 불가";
+			    } else if (nowTime >= event.matchDate.getTime() - (4 * 24 * 60 * 60 * 1000)) {
+			    	cell.innerHTML += "<br><a href=\"/reservation/insert?matchNo=" + event.matchNo + "\" class=\"btn\">예매하기</a>";
+			    } else {
+			        cell.innerHTML += "<br>예매 전";
+			    }
+			}
 
                     date++; 
                 }
@@ -111,7 +132,9 @@
     // 월별 달력 생성
     fillCalendar(currentYear, currentMonth, eventData);
 
+
 // AJAX 요청을 수행하여 서버에서 match 테이블 데이터를 가져옵니다.
+
     $.ajax({
         url: "http://localhost:8080/match", // 백엔드 API 엔드포인트를 지정합니다.
         method: 'GET',
@@ -122,6 +145,10 @@
                 var matchNo = match.matchNo; 
                 var homeTeam = match.homeTeam;
                 var awayTeam = match.awayTeam;
+
+                var homeTeamNo = match.homeTeamNo;
+                var awayTeamNo = match.awayTeamNo;
+
                 var stadiumName = match.stadiumName;
                 var matchDate = new Date(match.matchDate);
 
@@ -129,10 +156,18 @@
                     matchNo: matchNo, 
                     homeTeam: homeTeam,
                     awayTeam: awayTeam,
+                    homeTeamNo: homeTeamNo,
+                    awayTeamNo: awayTeamNo,
+                    stadiumName: stadiumName,
+                    matchDate: matchDate
+                });
+            });
+
                     stadiumName: stadiumName,
                     matchDate: matchDate
                 });
             }); 
+
 
             // 캘린더를 채우는 함수를 호출합니다.
             fillCalendar(currentYear, currentMonth, eventData);
@@ -143,33 +178,34 @@
     });
 });
 
-    </script>
-    
+
+</script>
+
+  
+
 </head>
 <body>
     
         <!-- 경기 일정 표시 -->
-         <table id="calendar">
-        <thead>
-            <tr class="row">
-                <th>월</th>
-                <th>화</th>
-                <th>수</th>
-                <th>목</th>
-                <th>금</th>
-                <th>토</th>
-                <th>일</th>
-            </tr>
-        </thead>
-        <tbody>
-            <div class="match-info">
-            </div>
-        </tbody>
+        <table id="calendar" class="row left">
+            <thead>
+                <tr>
+                    <th>월</th>
+                    <th>화</th>
+                    <th>수</th>
+                    <th>목</th>
+                    <th>금</th>
+                    <th>토</th>
+                    <th>일</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                    <div class="match-info">
+                    </div>
+            
+    </tbody>
     </table>
-    
-    
 </body>
 </html>
-                                                       
-
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
