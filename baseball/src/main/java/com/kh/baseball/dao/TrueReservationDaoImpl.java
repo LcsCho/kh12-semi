@@ -148,10 +148,20 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 		
 		
 	}
-	
-	
-	
-	
-	
+	public boolean deleteReservationsForSeats(int[] reservationNo) {
+	    for (int reservationNos : reservationNo) {
+	        // 해당 좌석 번호에 대한 예매 행 삭제
+	        String sql = "DELETE FROM reservation WHERE reservation_no = ?";
+	        int updatedRows = jdbcTemplate.update(sql, reservationNos);
+
+	        // 삭제된 행이 없으면 삭제 실패로 간주
+	        if (updatedRows <= 0) {
+	            return false;
+	        }
+	    }
+
+	    // 모든 좌석 번호에 대한 삭제가 성공한 경우에만 true 반환
+	    return true;
+	}
 	
 	}
