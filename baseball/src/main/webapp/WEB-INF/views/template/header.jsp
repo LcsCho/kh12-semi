@@ -65,6 +65,7 @@
             .logo{
                 margin-top: -20px;
             }
+            
     </style>
     <!-- js작성공간 -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -78,7 +79,7 @@
 			<c:when test="${sessionScope.name != null}">
 			
                 <div class="row">
-                    <a href="/member/logout">로그아웃</a>
+                    <a href="/member/logout" class="link">로그아웃</a>
                 </div>              
                 &nbsp;
                 <div class="row">
@@ -86,7 +87,7 @@
                 </div>
                  &nbsp;                
                 <div class="row">
-                    <a href="/member/logout"> 예매확인</a>
+                    <a href="/member/logout" class="link"> 예매확인</a>
                 </div>
                 &nbsp;
                 <div class="row">
@@ -94,13 +95,13 @@
                 </div>
                 &nbsp;
                 <div class="row">
-                    <a href="/member/mypage">마이페이지</a>	              
+                    <a href="/member/mypage" class="link">마이페이지</a>	              
                 </div>        
             </c:when>
             
             <c:otherwise>
             	 <div class="row">
-                    <a href="/member/login">로그인</a>
+                    <a href="/member/login" class="link">로그인</a>
                 </div>
                 &nbsp;
                 <div class="row">
@@ -108,7 +109,7 @@
                 </div>
                 &nbsp;
                 <div class="row">
-                    <a href="/member/join">회원가입</a>                    
+                    <a href="/member/join" class="link">회원가입</a>                    
                 </div>        
             </c:otherwise>
             </c:choose>

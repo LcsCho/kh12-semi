@@ -2,67 +2,65 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 
 <style>
-.main-image{
-            box-shadow: 0px 0px 0px 1px #360a01;
-        }
-.box {
-    box-shadow: 0px 0px 0px 2px #CCCCCC;
-    border-radius: 5px;
-    height: 300px;
-    display: flex; /* 수직 정렬을 위해 flex 사용 */
-    flex-direction: column; /* 내용을 세로로 정렬 */
-    align-items: center; /* 수직 정렬 */
-    justify-content: center; /* 수평 정렬 */
-}
 
-.box img {
-    display: inline; /* 이미지를 인라인으로 표시하여 같은 라인에 배치 */
-}
-
- 	.row::after {
-        content: "";
-        clear: both;
-        display: table;   
- }
-
-    .col-3 {
-        float: left;
-        width: 30%;
-    }
-    .btn{
-        width: 250px;
-    }
-    .font{
-    font-size: 18px
-    }
-    
-	.stadium{
-		font-size: 18px;
-		font-weight: bold;
-		color: #00000;
+	.main-image{
+	            box-shadow: 0px 0px 0px 1px #360a01;
+	        }
+	.box {
+	    box-shadow: 0px 0px 0px 2px #CCCCCC;
+	    border-radius: 5px;
+	    height: 300px;
+	    display: flex; /* 수직 정렬을 위해 flex 사용 */
+	    flex-direction: column; /* 내용을 세로로 정렬 */
+	    align-items: center; /* 수직 정렬 */
+	    justify-content: center; /* 수평 정렬 */
 	}
-
-a.link,
-a.link:visited {
-    text-decoration: none;
-    color: #2d3436;
-}
-
-.btn.before{
-	filter: brightness(100%);
-}
-
-.btn.ing{
-background-color: #fa2828;
-}
-
-.btn.ing >.link{
-color: #ffffff;
-}
+	
+	.box img {
+	    display: inline; /* 이미지를 인라인으로 표시하여 같은 라인에 배치 */
+	}
+	
+	.container  >.row::after {
+	        content: "";
+	        clear: both;
+	        display: table;   
+	 }
+	
+	    .col-3 {
+	        float: left;
+	        width: 30%;
+	    }
+	    .btn{
+	        width: 250px;
+	    }
+	    .font{
+	    font-size: 18px
+	    }
+	    
+		.stadium{
+			font-size: 18px;
+			font-weight: bold;
+			color: #00000;
+		}
+		
+		.btn.before{
+			filter: brightness(100%);
+		}
+		
+		.btn.ing{
+		background-color: #fa2828;
+		}
+		
+		.btn.ing >.link{
+		color: #ffffff;
+		}
+		
+		
 
 </style>
 
