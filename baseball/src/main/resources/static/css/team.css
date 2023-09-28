@@ -1,0 +1,196 @@
+
+    /* 캘린더를 감싸는 컨테이너 */
+    .calendarContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100%;
+    }
+
+
+    table {
+        border-collapse: collapse;
+        width: 900px;
+        height: 900px;
+        text-align: center;
+    }
+
+    td {
+        border: 1px solid #D1CFCF;
+        padding: 3px;
+        width: 125px;
+        height: 200px;
+    }
+
+    th {
+        border: 1px solid #D1CFCF;
+        font-weight: bold;
+        height: 40px;
+        padding-top: 0.5em;
+    }
+
+    th:nth-child(6) {
+        color: #DD6045;
+    }
+
+    th:nth-last-child(1) {
+        color: #3D85B9;
+    }
+
+    td>.float-container {
+        width: 125px;
+        height: 60px;
+    }
+
+    .div-custom {
+        font-size: 20px;
+        text-align: left;
+    }
+
+    .div-text {
+        font-size: 18px;
+        padding-top: 2.5em
+    }
+
+    .div-stadium {
+        font-size: 18px;
+        font-weight: bold;
+        color: #838383
+    }
+
+    .div-end,
+    .div-ing,
+    .div-before {
+        font-size: 18px;
+        margin: 0.5em;
+        border-radius: 10px;
+        background-color: #CCCCCC;
+        border: none;
+    }
+
+    .div-end {
+        color: #fa2828;
+    }
+
+    .btn.div-end {
+        /*마우스가 버튼에 올라가면 배경을 조금 더 어둡게*/
+        filter: brightness(100%);
+    }
+    
+
+    .div-ing {
+        background-color: #fa2828;
+        color: white;
+
+    }
+
+    .team-choice {
+        margin-left: -1.5em;
+        height: 60px;
+    }
+
+    .team{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2em;
+    }
+    
+
+    .btn.doosan, .btn.lg, .btn.ssg, .btn.kiwoom, .btn.kt, 
+    .btn.kia, .btn.nc, .btn.samsung, .btn.lotte, .btn.hanwha{
+	    width:70px;
+	   text-align: center;
+	    font-weight: bold;
+    }
+    
+    .doosan {
+        background-color: #0f0c29;
+        color: #ffffff;
+    }
+
+    .lg {
+        background-color: #c21343;
+        color: #ffffff;
+    }
+    .ssg{
+        background-color: #c01c2d;
+        color: #ffffff;
+    }
+    .kiwoom{
+        background-color: #820823;
+        color: #ffffff;
+    }
+    .kt{
+        background-color: #221e1f;
+        color: #ffffff;
+    }
+    .kia{
+        background-color: #e30322;
+        color: #ffffff;
+    }
+    .nc{
+        background-color: #174578;
+        color: #ffffff;
+    }
+    .samsung{
+        background-color: #005bb0;
+        color: #ffffff;
+    }
+    .lotte{
+        background-color: #62b1e3;
+        color: #ffffff;
+    }
+    .hanwha{
+        background-color: #e14906;
+        color: #ffffff;
+    }
+    
+
+    .teamlogo {
+        width: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .notice {
+        width: 70%;
+        height: 180px;
+        box-shadow: 0px 0px 0px 2px #D1CFCF;
+    }
+
+    .team-notice {
+        width: 20%;
+        color: #1AA8BB;
+        font-weight: bold;
+        font-size: 20px;
+        padding-left: 1em;
+        padding-top: 4em;
+    }
+
+    .pre-notice {
+        padding-top: 2em;
+        width: 80%;
+        color: #62676C;
+    }
+
+    .box {
+        width: 900px;
+    }
+
+
+    .calendarButton {
+        display: flex;
+        align-items: center;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    #prevMonthButton,
+    #nextMonthButton {
+        border: none;
+        background-color: white;
+    }
+
