@@ -32,17 +32,52 @@ public class MenuController {
 
 	@RequestMapping("/schedule/doosan")
 	public String scheduleDoosan() {
-		return "/WEB-INF/views/menu/scheduleDoosan.jsp";
+		return "/WEB-INF/views/menu/schedules/scheduleDoosan.jsp";
 	}	
 	
 	@RequestMapping("/schedule/lg")
-	public String scheduleLg(Model model) {
-		List<MatchVO> voList = matchDao.selectNoList();
-		LocalDateTime now = LocalDateTime.now();
-		Timestamp timestamp = Timestamp.valueOf(now);
-		model.addAttribute("now", timestamp);
-		model.addAttribute("voList", voList);
-		return "/WEB-INF/views/menu/scheduleLg3.jsp";
+	public String scheduleLg() {
+		return "/WEB-INF/views/menu/schedules/scheduleLg.jsp";
+	}	
+	
+	@RequestMapping("/schedule/ssg")
+	public String scheduleSsg() {
+		return "/WEB-INF/views/menu/schedules/scheduleSsg.jsp";
+	}	
+	
+	@RequestMapping("/schedule/kiwoom")
+	public String scheduleKiwoom() {
+		return "/WEB-INF/views/menu/schedules/scheduleKiwoom.jsp";
+	}	
+	
+	@RequestMapping("/schedule/kt")
+	public String scheduleKt() {
+		return "/WEB-INF/views/menu/schedules/scheduleKt.jsp";
+	}	
+	
+	@RequestMapping("/schedule/kia")
+	public String scheduleKia() {
+		return "/WEB-INF/views/menu/schedules/scheduleKia.jsp";
+	}	
+	
+	@RequestMapping("/schedule/nc")
+	public String scheduleNc() {
+		return "/WEB-INF/views/menu/schedules/scheduleNc.jsp";
+	}	
+	
+	@RequestMapping("/schedule/samsung")
+	public String scheduleSamsung() {
+		return "/WEB-INF/views/menu/schedules/scheduleSamsung.jsp";
+	}	
+	
+	@RequestMapping("/schedule/lotte")
+	public String scheduleLotte() {
+		return "/WEB-INF/views/menu/schedules/scheduleLotte.jsp";
+	}	
+	
+	@RequestMapping("/schedule/hanwha")
+	public String scheduleHanwha() {
+		return "/WEB-INF/views/menu/schedules/scheduleHanwha.jsp";
 	}	
 	
 	@RequestMapping("/reservationList")
