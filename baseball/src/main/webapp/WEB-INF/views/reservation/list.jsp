@@ -29,7 +29,7 @@
 					<td>${reservationVo.homeTeam}</td>	
 					<td>${reservationVo.awayTeam}</td>
 					<td>${reservationVo.reservationDate}</td>
-					<td></td>
+					<td><a href="/reservation/detail?reservationNo=${reservationVo.reservationNo}">상세</a></td>
 					<td></td>
 					</tr>
 					</c:forEach>

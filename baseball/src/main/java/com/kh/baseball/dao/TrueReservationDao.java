@@ -20,4 +20,7 @@ public interface TrueReservationDao {
 	List<ReservationVO> reservationList(String memberId);
 	
 	
+	ReservationVO reservationSelectOne(int reservationNo);
+	
+	
 }

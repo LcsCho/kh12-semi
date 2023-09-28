@@ -138,4 +138,20 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 		
 		return jdbcTemplate.query(sql, reservationVoMapper, memberId);
 	}
+	@Override
+	public ReservationVO reservationSelectOne(int reservationNo) {
+		String sql = "select * from reservation_vo where reservation_no = ?";
+		List<ReservationVO> list = jdbcTemplate.query(sql, reservationVoMapper,reservationNo);
+		
+		return list.isEmpty() ? null:list.get(0);
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 	}

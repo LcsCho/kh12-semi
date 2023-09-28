@@ -136,6 +136,18 @@ public class ReservationController {
 	}
 	
 	
+	@RequestMapping("/detail")
+	public String detail(@RequestParam int reservationNo, Model model) {
+		ReservationVO reservationVO = trueReservationDao.reservationSelectOne(reservationNo);
+		model.addAttribute("reservationVO",reservationVO);
+		
+		return "/WEB-INF/views/reservation/detail.jsp";
+		
+		
+		
+	}
+	
+	
 	
 	
 }
