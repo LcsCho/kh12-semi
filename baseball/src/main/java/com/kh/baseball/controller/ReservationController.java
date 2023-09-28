@@ -151,16 +151,11 @@ public class ReservationController {
 		return "/WEB-INF/views/reservation/delete.jsp";
 	}
 	
-    @PostMapping("/delete")
-    public String deleteReservations(@RequestParam int[] reservationNo) {
-        // 받은 reservationNo 배열을 사용하여 예매 행 삭제
-        boolean deleteResult = trueReservationDao.deleteReservationsForSeats(reservationNo);
-
-        if (deleteResult) {
+	@PostMapping("/delete")
+    public String deleteReservations(TrueReservationDto trueReservationDto) {
+		trueReservationDao.reservationDeleteByTicket(trueReservationDto);
+		trueReservationDao.seatStatusUpdate(trueReservationDto);
             return "redirect:list";
-        } else {
-            return "Failed to delete reservations.";
-        }
     }
 	
 	

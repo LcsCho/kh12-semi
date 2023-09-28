@@ -117,7 +117,7 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 		String sql = "update seat set seat_status = case when seat_status ='Y' then 'N' else 'Y' end where seat_no = ?";
 		
 	    int[] seatNos = trueReservationDto.getSeatNo(); // seatNo를 int 배열로 받아옴
-	    int reservationTicket = trueReservationDto.getReservationTicket(); // 예약 티켓 수를 가져옴
+	    int reservationTicket = seatNos.length; // 예약 티켓 수를 가져옴
 
 	    int updatedCount = 0; // 업데이트된 행의 수를 카운트
 
@@ -148,20 +148,24 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 		
 		
 	}
-	public boolean deleteReservationsForSeats(int[] reservationNo) {
-	    for (int reservationNos : reservationNo) {
-	        // 해당 좌석 번호에 대한 예매 행 삭제
-	        String sql = "DELETE FROM reservation WHERE reservation_no = ?";
-	        int updatedRows = jdbcTemplate.update(sql, reservationNos);
 
-	        // 삭제된 행이 없으면 삭제 실패로 간주
-	        if (updatedRows <= 0) {
-	            return false;
-	        }
+	@Override
+	public boolean reservationDeleteByTicket(TrueReservationDto trueReservationDto) {
+		String sql = "delete from reservation where seat_no = ?";
+		
+	    int[] seatNos = trueReservationDto.getSeatNo(); // seatNo를 int 배열로 받아옴
+	    int reservationTicket = seatNos.length; // 예약 티켓 수를 가져옴
+
+	    int updatedCount = 0; // 업데이트된 행의 수를 카운트
+
+	    for (int i = 0; i < reservationTicket; i++) {
+	        Object[] data = {seatNos[i] };
+	        int updatedRows = jdbcTemplate.update(sql, data);
+	        updatedCount += updatedRows;
 	    }
 
-	    // 모든 좌석 번호에 대한 삭제가 성공한 경우에만 true 반환
-	    return true;
+	    // 모든 업데이트가 성공했을 때 true를 반환
+	    return updatedCount == reservationTicket;
 	}
 	
 	}
