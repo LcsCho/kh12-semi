@@ -124,6 +124,17 @@ public class ReservationController {
 		
 	}
 	
+	//회원별 리스트 출력
+	@RequestMapping("/list")
+	public String list(HttpSession session, Model model) {
+		String memberId = (String)session.getAttribute("name");
+		
+		List<ReservationVO> list = trueReservationDao.reservationList(memberId);
+		model.addAttribute("list",list);
+		
+		return "/WEB-INF/views/reservation/list.jsp";
+	}
+	
 	
 	
 	

@@ -16,4 +16,8 @@ public interface TrueReservationDao {
 	
 	boolean seatStatusUpdate(TrueReservationDto trueReservationDto);
 	
+	
+	List<ReservationVO> reservationList(String memberId);
+	
+	
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.baseball.dto.SeatListDto;
 import com.kh.baseball.dto.TrueReservationDto;
 import com.kh.baseball.mapper.MatchInfoMapper;
+import com.kh.baseball.mapper.ReservationVoMapper;
 import com.kh.baseball.mapper.SeatListMapper;
 import com.kh.baseball.mapper.TrueReservationMapper;
 import com.kh.baseball.vo.ReservationVO;
@@ -113,7 +114,7 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 
 	@Override
 	public boolean seatStatusUpdate(TrueReservationDto trueReservationDto) {
-		String sql = "update seat set seat_status = 'N' where seat_no = ?";
+		String sql = "update seat set seat_status = case when seat_status ='Y' then 'N' else 'Y' end where seat_no = ?";
 		
 	    int[] seatNos = trueReservationDto.getSeatNo(); // seatNo를 int 배열로 받아옴
 	    int reservationTicket = trueReservationDto.getReservationTicket(); // 예약 티켓 수를 가져옴
@@ -128,5 +129,13 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 
 	    // 모든 업데이트가 성공했을 때 true를 반환
 	    return updatedCount == reservationTicket;
+	}
+	@Autowired
+	private ReservationVoMapper reservationVoMapper;
+	@Override
+	public List<ReservationVO> reservationList(String memberId) {
+		String sql = "select * from reservation_Vo where member_id =? order by reservation_no desc ";
+		
+		return jdbcTemplate.query(sql, reservationVoMapper, memberId);
 	}
 	}
