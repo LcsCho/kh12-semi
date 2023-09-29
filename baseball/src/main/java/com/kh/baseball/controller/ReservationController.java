@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.baseball.dao.ReservationCancelListDao;
 import com.kh.baseball.dao.ReservationDao;
 import com.kh.baseball.dao.TrueReservationDao;
 import com.kh.baseball.dto.ReservationCancelDto;
@@ -74,13 +75,7 @@ public class ReservationController {
 		return "/WEB-INF/views/member/reservation/cancelFinish.jsp";
 	}
 
-	@RequestMapping("/cancelList")
-	public String cancelList(@ModelAttribute ReservationCancelDto reservationCancelDto, Model model,
-			@RequestParam String memberId) {
-		List<ReservationCancelDto> cancelList = reservationDao.cancelList(memberId);
-		model.addAttribute("cancelList", cancelList);
-		return "/WEB-INF/views/member/reservation/cancelList.jsp";
-	}
+	
 
 	@GetMapping("/insert")
 	public String insert(@ModelAttribute TrueReservationDto trueReservationDto,   Model model, @RequestParam int matchNo ,
@@ -152,11 +147,22 @@ public class ReservationController {
 	}
 	@PostMapping("/delete")
     public String deleteReservations(@ModelAttribute TrueReservationDto trueReservationDto,@ModelAttribute ReservationCancelDto reservationCancelDto) {
+		trueReservationDao.reservationCancelInsertBySeatNo(reservationCancelDto);
 		trueReservationDao.reservationDeleteByTicket(trueReservationDto);
 		trueReservationDao.seatStatusUpdate(trueReservationDto);
-		trueReservationDao.reservationCancelInsertBySeatNo(reservationCancelDto);
-            return "redirect:/";
+            return "redirect:list";
     }
+	@Autowired
+	private ReservationCancelListDao reservationCancelListDao;
+	
+	
+	@RequestMapping("/cancelList")
+	public String cancelList(@ModelAttribute ReservationVO reservationVO ,HttpSession session, Model model) {
+		String memberId = (String) session.getAttribute("name");
+		List<ReservationVO> list = reservationCancelListDao.reservationCancelListByMember(memberId);
+		model.addAttribute("list",list);
+		return "/WEB-INF/views/reservation/cancelList.jsp";
+	}
 	
 	
 	
