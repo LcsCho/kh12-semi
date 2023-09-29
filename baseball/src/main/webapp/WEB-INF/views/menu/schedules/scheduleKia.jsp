@@ -160,7 +160,7 @@
 
                                 if (nowTime >= event.matchDate.getTime()) {
                                     var notAvailableDiv = document.createElement("div");
-                                    notAvailableDiv.innerHTML = "예매불가";
+                                    notAvailableDiv.innerHTML = "예매마감";
                                     notAvailableDiv.className = "btn";
                                     notAvailableDiv.classList.add("div-end");
                                     cell.appendChild(notAvailableDiv);
