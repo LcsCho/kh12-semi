@@ -97,6 +97,24 @@ public class MatchController {
 		return "redirect:detailMatch?matchNo="+matchDto.getMatchNo();
 	}
 	
+	@GetMapping("/updateScore")
+	public String updateMatch(Model model,
+			@RequestParam int matchNo) {
+		MatchDto matchDto = matchDao.selectOne(matchNo);
+		model.addAttribute("matchDto", matchDto);
+		
+		return "/WEB-INF/views/admin/match/updateScore.jsp";
+	}
+	
+	
+	
+	@PostMapping("/updateScore")
+	public String updateMatch(@ModelAttribute MatchDto matchDto) {
+		matchDao.update(matchDto);
+
+		return "redirect:detailMatch?matchNo="+matchDto.getMatchNo();
+	}
+	
 	@GetMapping("/insertResult")
 	public String insertResult(Model model,
 			@RequestParam int matchNo) {
@@ -120,14 +138,21 @@ public class MatchController {
 		if (matchHomeScore > matchAwayScore) {
 			teamDao.updateWin(homeTeam);
 			teamDao.updateLose(awayTeam);
+			teamDao.updateSequenceWin(homeTeam);
+			teamDao.updateSequenceLose(awayTeam);
 		}
 		else if (matchHomeScore < matchAwayScore) {
 			teamDao.updateWin(awayTeam);
 			teamDao.updateLose(homeTeam);
+			teamDao.updateSequenceWin(awayTeam);
+			teamDao.updateSequenceLose(homeTeam);
+			
 		}
 		else {
 			teamDao.updateDraw(homeTeam);
 			teamDao.updateDraw(awayTeam);
+			teamDao.updateSequenceDraw(homeTeam);
+			teamDao.updateSequenceDraw(awayTeam);
 		}
 		teamDao.updateWinRate(homeTeam);
 		teamDao.updateWinRate(awayTeam);

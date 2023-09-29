@@ -103,7 +103,7 @@ public class MenuController {
 	@RequestMapping("/ranking")
 	public String ranking(@ModelAttribute TeamDto teamDto, TeamVO teamVO, Model model) {
 		// List<TeamDto> list = teamDao.selectList();
-		List<TeamVO> voList = teamDao.recent10GamesList();
+		List<TeamVO> voList = teamDao.list();
 		
 		// model.addAttribute("list", list);
 		model.addAttribute("voList", voList);

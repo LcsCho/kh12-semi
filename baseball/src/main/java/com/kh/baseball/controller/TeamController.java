@@ -43,7 +43,7 @@ public class TeamController {
 	@RequestMapping("/list")
 	public String list(@ModelAttribute TeamDto teamDto, Model model) {
 		List<TeamDto> list = teamDao.selectList();
-		List<TeamVO> voList = teamDao.recent10GamesList();
+		List<TeamVO> voList = teamDao.list();
 		
 		model.addAttribute("list", list);
 		model.addAttribute("voList", voList);
