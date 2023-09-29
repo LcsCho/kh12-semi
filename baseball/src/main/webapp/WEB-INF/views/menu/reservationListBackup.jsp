@@ -199,14 +199,14 @@ document.addEventListener('DOMContentLoaded', () => {
 									(${matchVo.matchDate.time >= now.time ? matchVo.matchHomeScore : ''})</div>
 							</div>
 							<div class="row col-7">
-								<img src="./images/${matchVo.homeTeamNo}.jpg" width="90%">
+								<img src="./images/${matchVo.homeTeam}.jpg" width="90%">
 							</div>
 							<div class="row col-7">
 								<div class="vs">VS</div>
 								<div class="font-2">${matchVo.stadiumName}</div>
 							</div>
 							<div class="row col-7">
-								<img src="./images/${matchVo.awayTeamNo}.jpg" width="90%">
+								<img src="./images/${matchVo.awayTeam}.jpg" width="90%">
 							</div>
 							<div class="row col-7-4">
 								<div class="font">(${matchVo.matchDate.time >= now.time ? matchVo.matchAwayScore : ''})
