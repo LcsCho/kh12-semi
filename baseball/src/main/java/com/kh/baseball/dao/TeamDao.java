@@ -23,8 +23,11 @@ public interface TeamDao {
 	boolean updateDraw(String teamName);
 	boolean updateWinRate(String teamName);
 	boolean updateGameGap();
+	
+	boolean updateSequenceWin(String teamName);
+	boolean updateSequenceLose(String teamName);
+	boolean updateSequenceDraw(String teamName);
 
-	List<TeamVO> consequence(int teamNo);
-	List<TeamVO> recent10GamesList();
+	List<TeamVO> list();
 	
 }

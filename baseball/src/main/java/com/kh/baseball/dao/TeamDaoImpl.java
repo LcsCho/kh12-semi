@@ -138,13 +138,34 @@ public class TeamDaoImpl implements TeamDao {
 	}
 	
 	@Override
-	public List<TeamVO> consequence(int teamNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean updateSequenceWin(String teamName) {
+		String sql = "UPDATE TEAM_SEQUENCE "
+				+ "SET SEQUENCE_win = SEQUENCE_win + 1, SEQUENCE_lose = 0, SEQUENCE_draw = 0 "
+				+ "WHERE team_name = ?";
+		Object[] data = {teamName};
+		return jdbcTemplate.update(sql, data) > 0;
 	}
 	
 	@Override
-	public List<TeamVO> recent10GamesList() {
+	public boolean updateSequenceDraw(String teamName) {
+		String sql = "UPDATE TEAM_SEQUENCE "
+				+ "SET SEQUENCE_draw = SEQUENCE_draw + 1, SEQUENCE_lose = 0, SEQUENCE_win = 0 "
+				+ "WHERE team_name = ?";
+		Object[] data = {teamName};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+	
+	@Override
+	public boolean updateSequenceLose(String teamName) {
+		String sql = "UPDATE TEAM_SEQUENCE "
+				+ "SET SEQUENCE_lose = SEQUENCE_lose + 1, SEQUENCE_win = 0, SEQUENCE_draw = 0 "
+				+ "WHERE team_name = ?";
+		Object[] data = {teamName};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+	
+	@Override
+	public List<TeamVO> list() {
 		String sql = "SELECT * from team_vo order by team_win_rate desc, team_game_gap, team_win desc";
 		return jdbcTemplate.query(sql, teamVoMapper);
 	}

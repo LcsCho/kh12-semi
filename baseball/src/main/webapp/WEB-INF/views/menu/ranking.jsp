@@ -14,7 +14,7 @@
 			<th>패</th>
 			<th>승률</th>
 			<th>게임차</th>
-			<th>연속</th>
+<!-- 			<th>연속</th> -->
 			<th>최근 10경기</th>
 		</tr>
 	</thead>
@@ -47,20 +47,20 @@
 						type="number" minFractionDigits="3" maxFractionDigits="3" /></td>
 				<td>${teamVo.teamGameGap}</td>
 <!-- 				<td>?</td> -->
-				<c:choose>
-					<c:when test="${teamVo.consequenceWin > 0}">
-						<td>${teamVo.consequenceWin}승</td>
-					</c:when>
-					<c:when test="${teamVo.consequenceDraw > 0}">
-						<td>${teamVo.consequenceDraw}무</td>
-					</c:when>
-					<c:when test="${teamVo.consequenceLose > 0}">
-						<td>${teamVo.consequenceLose}패</td>
-					</c:when>
-					<c:otherwise>
-						<td>0</td>
-					</c:otherwise>
-				</c:choose>
+<%-- 				<c:choose> --%>
+<%-- 					<c:when test="${teamVo.sequenceWin > 0}"> --%>
+<%-- 						<td>${teamVo.sequenceWin}승</td> --%>
+<%-- 					</c:when> --%>
+<%-- 					<c:when test="${teamVo.sequenceDraw > 0}"> --%>
+<%-- 						<td>${teamVo.sequenceDraw}무</td> --%>
+<%-- 					</c:when> --%>
+<%-- 					<c:when test="${teamVo.sequenceLose > 0}"> --%>
+<%-- 						<td>${teamVo.sequenceLose}패</td> --%>
+<%-- 					</c:when> --%>
+<%-- 					<c:otherwise> --%>
+<!-- 						<td>0</td> -->
+<%-- 					</c:otherwise> --%>
+<%-- 				</c:choose> --%>
 				<td>${teamVo.recentWin}승-${teamVo.recentLose}패-${teamVo.recentDraw}무</td>
 				<td>
 			</tr>
