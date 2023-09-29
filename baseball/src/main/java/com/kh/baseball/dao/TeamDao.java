@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kh.baseball.dto.AttachDto;
 import com.kh.baseball.dto.TeamDto;
+import com.kh.baseball.vo.TeamVO;
 
 
 public interface TeamDao {
@@ -22,4 +23,8 @@ public interface TeamDao {
 	boolean updateDraw(String teamName);
 	boolean updateWinRate(String teamName);
 	boolean updateGameGap();
+
+	List<TeamVO> consequence(int teamNo);
+	List<TeamVO> recent10GamesList();
+	
 }

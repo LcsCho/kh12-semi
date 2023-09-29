@@ -25,6 +25,7 @@ import com.kh.baseball.dao.AttachDao;
 import com.kh.baseball.dao.TeamDao;
 import com.kh.baseball.dto.AttachDto;
 import com.kh.baseball.dto.TeamDto;
+import com.kh.baseball.vo.TeamVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,7 +43,10 @@ public class TeamController {
 	@RequestMapping("/list")
 	public String list(@ModelAttribute TeamDto teamDto, Model model) {
 		List<TeamDto> list = teamDao.selectList();
+		List<TeamVO> voList = teamDao.recent10GamesList();
+		
 		model.addAttribute("list", list);
+		model.addAttribute("voList", voList);
 		
 		return "/WEB-INF/views/admin/team/list.jsp";
 	}

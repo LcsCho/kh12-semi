@@ -133,7 +133,7 @@ public class MatchController {
 		teamDao.updateWinRate(awayTeam);
 		teamDao.updateGameGap();
 
-		return "redirect:detailMatchResult?matchNo="+matchNo;
+		return "redirect:detailMatch?matchNo="+matchNo;
 	}
 	
 	@RequestMapping("/list")
@@ -160,11 +160,11 @@ public class MatchController {
 		return "/WEB-INF/views/admin/match/detailMatch.jsp";
 	}
 	
-	@RequestMapping("/detailMatchResult")
-	public String detailMatchResult(@RequestParam int matchNo, Model model) {
-		MatchDto matchDto = matchDao.selectOne(matchNo);
-		model.addAttribute("matchDto", matchDto);
-		return "/WEB-INF/views/admin/match/detailMatchResult.jsp";
-	}
+//	@RequestMapping("/detailMatchResult")
+//	public String detailMatchResult(@RequestParam int matchNo, Model model) {
+//		MatchDto matchDto = matchDao.selectOne(matchNo);
+//		model.addAttribute("matchDto", matchDto);
+//		return "/WEB-INF/views/admin/match/detailMatch.jsp";
+//	}
 	
 }
