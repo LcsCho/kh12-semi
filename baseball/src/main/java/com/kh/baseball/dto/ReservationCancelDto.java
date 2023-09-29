@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class ReservationCancelDto {
 	
-	private int reservationNo , seatNo, reservationCancelNo;
+	private int reservationNo , reservationCancelNo;
 	private Date reservationCancelDate;
-	
+	private int[] seatNo;
 	
 }
