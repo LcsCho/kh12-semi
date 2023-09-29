@@ -16,4 +16,14 @@ public interface TrueReservationDao {
 	
 	boolean seatStatusUpdate(TrueReservationDto trueReservationDto);
 	
+	
+	List<ReservationVO> reservationList(String memberId);
+	
+	
+	ReservationVO reservationSelectOne(int reservationNo);
+	
+	//티켓의 개수와 좌석의 배열을 저장하는 메소드를 만들어야함
+	//티켓의 수를 가져오고 좌석을 배열화 시킴
+	boolean reservationDeleteByTicket(TrueReservationDto trueReservationDto);
+	
 }

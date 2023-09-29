@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -98,7 +99,7 @@ public class ReservationController {
 	}
 
 	@PostMapping("/insert")
-	public String insertPost(TrueReservationDto trueReservationDto,HttpSession session,@RequestParam int matchNo,Model model) {
+	public String insertPost(@ModelAttribute TrueReservationDto trueReservationDto,HttpSession session,@RequestParam int matchNo,Model model) {
 		// POST 요청을 처리하는 코드를 작성합니다.
 		// trueReservationDto 객체에 클라이언트로부터 전송된 데이터가 자동으로 바인딩됩니다.
 		String memberId =  (String) session.getAttribute("name");
@@ -121,7 +122,41 @@ public class ReservationController {
 	public List<SeatListDto> selectSeatAreaZone(@RequestParam int seatAreaNo, @RequestParam int matchNo) {
 		List<SeatListDto> seatList = trueReservationDao.findSeatForReservation(matchNo, seatAreaNo);
 		return seatList;
+		
 	}
+	
+	//회원별 리스트 출력
+	@RequestMapping("/list")
+	public String list(HttpSession session, Model model) {
+		String memberId = (String)session.getAttribute("name");
+		
+		List<ReservationVO> list = trueReservationDao.reservationList(memberId);
+		model.addAttribute("list",list);
+		
+		return "/WEB-INF/views/reservation/list.jsp";
+	}
+	
+	
+	@RequestMapping("/detail")
+	public String detail(@RequestParam int reservationNo, Model model) {
+		ReservationVO reservationVO = trueReservationDao.reservationSelectOne(reservationNo);
+		model.addAttribute("reservationVO",reservationVO);
+		
+		return "/WEB-INF/views/reservation/detail.jsp";
+		
+	}
+	
+	@GetMapping("/delete")
+	public String delete() {
+		return "/WEB-INF/views/reservation/delete.jsp";
+	}
+	
+	@PostMapping("/delete")
+    public String deleteReservations(@ModelAttribute TrueReservationDto trueReservationDto) {
+		trueReservationDao.reservationDeleteByTicket(trueReservationDto);
+		trueReservationDao.seatStatusUpdate(trueReservationDto);
+            return "redirect:/";
+    }
 	
 	
 	
