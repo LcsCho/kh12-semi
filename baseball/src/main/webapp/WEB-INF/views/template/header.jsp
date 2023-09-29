@@ -146,6 +146,7 @@
                                 <div class="row i-font">
                                     예매하기
                                 </div>
+                                
                             </div>
     
                             <div class="row col-5">
