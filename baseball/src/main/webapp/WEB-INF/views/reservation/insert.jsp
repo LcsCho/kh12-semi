@@ -130,7 +130,7 @@ $(function () {
 									// seatStatus 정보를 출력
 									var seatStatusElement = $(
 										"<span>").text(
-											seatStatus);
+											);
 									//만약에 seatStatus가 N이라면 선택이 되어있고 disable로 처리
 									if (response[index].seatStatus == "N") {
 										checkbox
@@ -205,6 +205,9 @@ $(function () {
 				<p>
 					멤버아이디: <span>${name}</span>
 				</p>
+					<p>
+					경기장이름: <span>${reservationVo.stadiumNo}</span>
+				</p>
 				<!-- 1단계 : 예매하기 -->
 				<div class="row page">
 					<div class="row seatreservation">
@@ -222,7 +225,7 @@ $(function () {
 							value="${matchNo}"><br> <input type="hidden"
 							id="awayTeam" name="awayTeam" value="${matchNo}"><br>
 						<input type="hidden" id="matchNo" name="matchNo"
-							value="${matchNo}"><br> <label>좌석 구역 선택:</label>
+							value="${matchNo}"><br> <label> 좌석 구역 선택: </label>
 						<c:forEach var="reservationVo" items="${list}">
 							<div class="row">
 								<input class="btn" type="radio"  name="seatAreaNo" id="selectedSeatArea"
@@ -253,7 +256,7 @@ $(function () {
 							GROUND</div>
 						<div class="row">A zone</div>
 						<label>좌석 번호:</label>
-						<div id="seat-checkbox">${reservationVo.seatStatus}</div>
+						<div id="seat-checkbox">${reservationVo.seatCol}</div>
 					</div>
 					<div class="float-right clickseat">
 						<div style="height: 50%;">
