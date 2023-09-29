@@ -26,4 +26,6 @@ public interface TrueReservationDao {
 	//티켓의 수를 가져오고 좌석을 배열화 시킴
 	boolean reservationDeleteByTicket(TrueReservationDto trueReservationDto);
 	
+	
+	
 }
