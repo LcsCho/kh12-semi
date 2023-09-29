@@ -56,7 +56,6 @@
 	color: white;
 	margin-bottom: 2em;
 	width: 80px;
-	'
 }
 
 .doosan {
@@ -134,12 +133,13 @@ td {
 	display: flex; /* 요소들을 가로로 나열하기 위해 flex를 사용합니다. */
 	justify-content: space-between; /* 요소들을 양쪽 끝으로 정렬합니다. */
 	align-items: center; /* 요소들을 수직 가운데 정렬합니다. */
+	flex-wrap: wrap; /* 행이 넘칠 경우 다음 줄로 넘어갈 수 있도록 설정합니다. */
 }
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const currentDateElement = document.getElementById('currentDate');
-    const matches = document.querySelectorAll('.row.flex-container');
+    const matches = document.querySelectorAll('.flex-container');
 
     function updateMatchDisplay(selectedDate) {
         currentDateElement.textContent = formatDate(selectedDate);
@@ -177,63 +177,68 @@ document.addEventListener('DOMContentLoaded', () => {
 	</div>
 </div>
 <div class="container w-800 center">
-	<table>
-		<tbody>
-			<c:forEach var="matchVo" items="${voList}">
-				<tr>
-					<td>
-						<div class="row flex-container"
-							data-match-date="<fmt:formatDate value='${matchVo.matchDate}' pattern='yyyy-MM-dd' />">
-							<div class="row col-7-2">
-								<div class="col-2 left">
-									(
-									<fmt:formatDate value="${matchVo.matchDate}" pattern="EEE" />
-									)
-								</div>
-								<div class="col-2 left">
-									<fmt:formatDate value="${matchVo.matchDate}" pattern="HH:mm" />
-								</div>
-							</div>
-							<div class="row col-7-4">
-								<div class="font">${matchVo.homeTeam}
-									(${matchVo.matchDate.time >= now.time ? matchVo.matchHomeScore : ''})</div>
-							</div>
-							<div class="row col-7">
-								<img src="./images/${matchVo.homeTeam}.jpg" width="90%">
-							</div>
-							<div class="row col-7">
-								<div class="vs">VS</div>
-								<div class="font-2">${matchVo.stadiumName}</div>
-							</div>
-							<div class="row col-7">
-								<img src="./images/${matchVo.awayTeam}.jpg" width="90%">
-							</div>
-							<div class="row col-7-4">
-								<div class="font">(${matchVo.matchDate.time >= now.time ? matchVo.matchAwayScore : ''})
-									${matchVo.awayTeam}</div>
-							</div>
-							<div class="row col-7-5">
-								<div class="btn reservation">
-									<c:choose>
-										<c:when test="${now.time >= matchVo.matchDate.time}">
-                                            예매 불가
-                                        </c:when>
-										<c:when
-											test="${now.time >= matchVo.matchDate.time - (4 * 24 * 60 * 60 * 1000)}">
-											<a href="/reservation/insert?matchNo=${matchVo.matchNo}">예매하기</a>
-										</c:when>
-										<c:otherwise>
-                                            예매전
-                                        </c:otherwise>
-									</c:choose>
-								</div>
-							</div>
-						</div>
-					</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+	<c:forEach var="matchVo" items="${voList}">
+		<div class="flex-container" data-match-date="<fmt:formatDate value='${matchVo.matchDate}' pattern='yyyy-MM-dd' />">
+			<div class="col-7-2">
+				<div class="col-2 left">
+					(
+					<fmt:formatDate value="${matchVo.matchDate}" pattern="EEE" />
+					)
+				</div>
+				<div class="col-2 left">
+					<fmt:formatDate value="${matchVo.matchDate}" pattern="HH:mm" />
+				</div>
+			</div>
+			<div class="col-7-4">
+				<c:choose>
+					<c:when test="${matchVo.matchDate.time <= now.time}">
+						<div class="font">${matchVo.homeTeam}
+							(${matchVo.matchHomeScore})</div>
+					</c:when>
+					<c:otherwise>
+						<div class="font">${matchVo.homeTeam}</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<div class="col-7">
+				<img src="./images/${matchVo.homeTeam}.jpg" width="90%">
+			</div>
+			<div class="col-7">
+				<div class="vs">VS</div>
+				<div class="font-2">${matchVo.stadiumName}</div>
+			</div>
+			<div class="col-7">
+				<img src="./images/${matchVo.awayTeam}.jpg" width="90%">
+			</div>
+			<div class="col-7-4">
+				<c:choose>
+					<c:when test="${matchVo.matchDate.time <= now.time}">
+						<div class="font">(${matchVo.matchAwayScore})
+							${matchVo.awayTeam}</div>
+					</c:when>
+					<c:otherwise>
+						<div class="font">${matchVo.awayTeam}</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<div class="col-7-5">
+				<div class="btn reservation">
+					<c:choose>
+						<c:when test="${now.time >= matchVo.matchDate.time}">
+                                예매 불가
+                            </c:when>
+						<c:when
+							test="${now.time >= matchVo.matchDate.time - (4 * 24 * 60 * 60 * 1000)}">
+							<a href="/reservation/insert?matchNo=${matchVo.matchNo}">예매하기</a>
+						</c:when>
+						<c:otherwise>
+                                예매전
+                            </c:otherwise>
+					</c:choose>
+				</div>
+			</div>
+		</div>
+	</c:forEach>
 </div>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

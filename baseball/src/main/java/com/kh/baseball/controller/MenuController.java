@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.baseball.dao.MatchDao;
 import com.kh.baseball.dao.TeamDao;
-import com.kh.baseball.dto.MatchDto;
 import com.kh.baseball.dto.TeamDto;
 import com.kh.baseball.vo.MatchVO;
+import com.kh.baseball.vo.TeamVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -101,9 +101,12 @@ public class MenuController {
 	}	
 	
 	@RequestMapping("/ranking")
-	public String ranking(@ModelAttribute TeamDto teamDto, Model model) {
-		List<TeamDto> list = teamDao.selectList();
-		model.addAttribute("list", list);
+	public String ranking(@ModelAttribute TeamDto teamDto, TeamVO teamVO, Model model) {
+		// List<TeamDto> list = teamDao.selectList();
+		List<TeamVO> voList = teamDao.recent10GamesList();
+		
+		// model.addAttribute("list", list);
+		model.addAttribute("voList", voList);
 		return "/WEB-INF/views/menu/ranking.jsp";
 	}
 		

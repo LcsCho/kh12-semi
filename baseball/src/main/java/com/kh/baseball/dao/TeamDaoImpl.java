@@ -10,6 +10,8 @@ import com.kh.baseball.dto.AttachDto;
 import com.kh.baseball.dto.TeamDto;
 import com.kh.baseball.mapper.AttachMapper;
 import com.kh.baseball.mapper.TeamMapper;
+import com.kh.baseball.mapper.TeamVoMapper;
+import com.kh.baseball.vo.TeamVO;
 
 @Repository
 public class TeamDaoImpl implements TeamDao {
@@ -22,6 +24,9 @@ public class TeamDaoImpl implements TeamDao {
 
 	@Autowired
 	private AttachMapper attachMapper;
+	
+	@Autowired
+	private TeamVoMapper teamVoMapper;
 
 	@Override
 	public int sequenceTeam() {
@@ -130,6 +135,18 @@ public class TeamDaoImpl implements TeamDao {
 		Object[] data = { teamNo };
 		List<AttachDto> list = jdbcTemplate.query(sql, attachMapper, data);
 		return list.isEmpty() ? null : list.get(0);
+	}
+	
+	@Override
+	public List<TeamVO> consequence(int teamNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public List<TeamVO> recent10GamesList() {
+		String sql = "SELECT * from team_vo order by team_win_rate desc, team_game_gap, team_win desc";
+		return jdbcTemplate.query(sql, teamVoMapper);
 	}
 
 }
