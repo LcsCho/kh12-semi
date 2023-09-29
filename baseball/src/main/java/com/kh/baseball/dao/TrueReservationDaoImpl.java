@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.baseball.dto.ReservationCancelDto;
 import com.kh.baseball.dto.SeatListDto;
 import com.kh.baseball.dto.TrueReservationDto;
 import com.kh.baseball.mapper.MatchInfoMapper;
@@ -167,5 +168,24 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 	    // 모든 업데이트가 성공했을 때 true를 반환
 	    return updatedCount == reservationTicket;
 	}
-	
+
+	@Override
+	public void reservationCancelInsertBySeatNo(ReservationCancelDto reservationCancelDto) {
+		String sql = "INSERT INTO reservation_cancel (reservation_cancel_no, reservation_no, reservation_cancel_time, seat_no) " +
+	             "VALUES (reservation_cancel_seq, " +
+	             "(SELECT reservation_no FROM reservation WHERE seat_no = ?), " +
+	             "SYSDATE, " +
+	             "?)";
+		
+	    int[] seatNos = reservationCancelDto.getSeatNo(); 
+	    int reservationTicket = seatNos.length; 
+
+	    for (int i = 0; i < reservationTicket; i++) {
+	        Object[] data = {seatNos[i] };
+
+	        jdbcTemplate.update(sql, data);
+	    }
 	}
+	}
+	
+	

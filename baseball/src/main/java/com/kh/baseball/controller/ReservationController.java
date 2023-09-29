@@ -150,11 +150,11 @@ public class ReservationController {
 	public String delete() {
 		return "/WEB-INF/views/reservation/delete.jsp";
 	}
-	
 	@PostMapping("/delete")
-    public String deleteReservations(@ModelAttribute TrueReservationDto trueReservationDto) {
+    public String deleteReservations(@ModelAttribute TrueReservationDto trueReservationDto,@ModelAttribute ReservationCancelDto reservationCancelDto) {
 		trueReservationDao.reservationDeleteByTicket(trueReservationDto);
 		trueReservationDao.seatStatusUpdate(trueReservationDto);
+		trueReservationDao.reservationCancelInsertBySeatNo(reservationCancelDto);
             return "redirect:/";
     }
 	
