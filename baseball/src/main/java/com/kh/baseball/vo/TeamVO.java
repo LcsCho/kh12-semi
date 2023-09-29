@@ -8,7 +8,7 @@ public class TeamVO {
 	private String teamName; 
 	private String teamRegion;
 	private int teamWin, teamLose, teamDraw, teamMatch;
-	private int consequenceWin, consequenceDraw, consequenceLose;
+	private int sequenceWin, sequenceDraw, sequenceLose;
 	private float teamWinRate, teamGameGap;
 	private int recentWin, recentLose, recentDraw;
 }

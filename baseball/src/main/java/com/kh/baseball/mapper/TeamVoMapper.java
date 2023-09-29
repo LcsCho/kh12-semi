@@ -26,9 +26,9 @@ public class TeamVoMapper implements RowMapper<TeamVO>{
 		teamVO.setRecentWin(rs.getInt("recent_win"));
 		teamVO.setRecentLose(rs.getInt("recent_lose"));
 		teamVO.setRecentDraw(rs.getInt("recent_draw"));
-		teamVO.setConsequenceWin(rs.getInt("consequence_win"));
-		teamVO.setConsequenceLose(rs.getInt("consequence_lose"));
-		teamVO.setConsequenceDraw(rs.getInt("consequence_draw"));
+		teamVO.setSequenceWin(rs.getInt("sequence_win"));
+		teamVO.setSequenceLose(rs.getInt("sequence_lose"));
+		teamVO.setSequenceDraw(rs.getInt("sequence_draw"));
 		return teamVO;
 	}
 
