@@ -87,6 +87,7 @@ td {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	border-bottom: 1px solid #000;
 }
 
 .day {
@@ -146,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         matches.forEach(match => {
             const matchDate = new Date(match.getAttribute('data-match-date'));
-            match.style.display = matchDate.toDateString() === selectedDate.toDateString() ? 'block' : 'none';
+            match.style.display = matchDate.toDateString() === selectedDate.toDateString() ? 'flex' : 'none';
         });
     }
 
