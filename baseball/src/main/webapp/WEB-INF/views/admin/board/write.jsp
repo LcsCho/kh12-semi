@@ -73,8 +73,8 @@
 	
 	<div class="container w-800">
 	
-        <div class="left">
-			<h1>게시글 작성</h1>
+        <div class="left mb-30">
+			<h3>게시글 작성</h3>
         </div>
         
         <div class="row">   

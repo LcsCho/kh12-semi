@@ -5,9 +5,42 @@
 <!-- summernote cdn -->
  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <style>
-      .note-editable {
-          line-height: 2 !important;
-      }
+     .note-editable {
+            line-height: 2 !important;
+        }
+        
+         .form-input {
+            height: 40px;
+            font-size: 15px;
+        }
+
+       .btn, .btn.btn-positive {
+            width: 100px;
+            height: 40px;
+            font-size: 15px;
+            border-radius: 0px;
+        }
+        
+        .btn.row{
+		padding-top: 0.8em;
+		}
+        
+	/* Summernote 툴바를 왼쪽으로 이동 */
+	.note-toolbar {
+	    text-align: left; /* 툴바 내용을 왼쪽 정렬 */
+	}
+	
+	/* 툴바 버튼들을 왼쪽 정렬 */
+	.note-toolbar button {
+	    float: left;
+	    margin-right: 5px; /* 버튼 간격 설정 (원하는 간격으로 조절) */
+	}
+	
+	/* 툴바 드롭다운 메뉴들도 왼쪽 정렬 */
+	.note-toolbar .dropdown-menu {
+	    text-align: left;
+	}
+
    </style>
 
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
@@ -39,29 +72,25 @@
 <form action="edit" method="post">
 <input type="hidden" name="boardNo" value="${boardDto.boardNo}">
 
-<div class="container w-600">
-	<div class="row">
-		<h1>게시글 수정</h1>
-	</div>
+<div class="container w-800">
+	<div class="left mb-30">
+			<h3>게시글 수정</h3>
+        </div>
 	
-	<div class="row left">
-		<label>제목</label>
+	<div class="row">
 		<input class="form-input w-100" type="text" name="boardTitle" value="${boardDto.boardTitle}" required>
 	</div>
 	
 	<div class="row left">
-		<label>내용</label>
 		<textarea class="form-input w-100" name="boardContent" 
 			style="min-height:250px" required>${boardDto.boardContent}</textarea>
 	</div>
 	
 	<div class="row right">
-		<a href="list" class="btn">
-			<i class="fa-solid fa-list"></i>
+		<a href="list" class="btn row">
 			목록
 		</a>
 		<button type="submit" class="btn btn-positive">
-			<i class="fa-solid fa-edit"></i>
 			수정하기
 		</button>
 		
