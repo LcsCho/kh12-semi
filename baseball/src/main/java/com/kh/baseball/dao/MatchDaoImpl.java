@@ -1,5 +1,6 @@
 package com.kh.baseball.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,6 +98,14 @@ public class MatchDaoImpl implements MatchDao{
 	             " team t2 ON ma.away_team = t2.team_name " +
 	             "ORDER BY ma.match_date DESC";
 		return jdbcTemplate.query(sql, matchVoMapper);
+	}
+	
+	@Override
+	public List<MatchDto> selectDate(Timestamp matchDate) {
+		String sql = "SELECT * FROM MATCH " +
+	             "WHERE trunc(match_date) = trunc(to_timestamp('?', 'YYYY-MM-DD HH24:MI:SS'))";
+		Object[] data = {matchDate};
+		return jdbcTemplate.query(sql, matchMapper, data);
 	}
 
 }
