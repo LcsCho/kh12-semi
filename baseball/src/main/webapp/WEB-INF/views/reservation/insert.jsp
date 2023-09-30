@@ -197,6 +197,7 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
 																.attr(
 																		"disabled",
 																		true);
+														icon.css("color", "#952323");
 													}
 
 													// 반복문에서 col row를 생성했으므로 for문안에 있어야 함
@@ -212,11 +213,11 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
 																if (currentCheckbox
 																		.is(":checked")) {
 																	if (ticketCount >= 4) {
-																		alert("최대 4개 구매 가능합니다!");
 																		currentCheckbox
 																				.prop(
 																						"checked",
 																						false);
+																		alert("최대 4개 구매 가능합니다!");
 																	} else {
 																		ticketCount++;
 																	}
