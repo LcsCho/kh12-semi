@@ -87,7 +87,7 @@
                 </div>
                  &nbsp;                
                 <div class="row">
-                    <a href="/member/logout" class="link"> 예매확인</a>
+                    <a href="/reservation/list" class="link"> 예매확인</a>
                 </div>
                 &nbsp;
                 <div class="row">

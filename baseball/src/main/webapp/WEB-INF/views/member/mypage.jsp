@@ -88,7 +88,16 @@
          회원 탈퇴
       </a>
    </div> 
-   
+      <div class="row mb-40">
+      <a class="btn btn w-100" href="http://localhost:8080/reservation/list">
+         예매 내역
+      </a>
+   </div> 
+         <div class="row mb-40">
+      <a class="btn btn w-100" href="http://localhost:8080/reservation/cancelList">
+         취소 내역
+      </a>
+   </div> 
 </div>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
