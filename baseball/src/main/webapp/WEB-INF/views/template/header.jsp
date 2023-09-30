@@ -146,6 +146,7 @@
                                 <div class="row i-font">
                                     예매하기
                                 </div>
+                                
                             </div>
     
                             <div class="row col-5">
@@ -172,7 +173,6 @@
                                 <div class="row">
                                     <li><a href="/board/list">
                                             <i class="fa-solid fa-check"></i></a></li>
-    
                                 </div>
                                 <div class="row i-font">
                                     공지사항
