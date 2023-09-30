@@ -3,7 +3,45 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
-<table class="table table-slit" border="1" width="800">
+
+<style>
+       table {
+            border-collapse: collapse;
+        }
+
+        table th {
+            border-top: #62676C 3px solid;
+            border-bottom: #62676C 2px solid;
+            border-right: #D1CFCF 2px solid;
+            background-color: #f1f1f1;
+            font-weight: bold;
+            height: 40px;
+            padding-top: 0.5em;
+            font-size: 16px;
+            color: #62676C;
+            font-weight: bold;
+        }
+
+        table td {
+            border-top: #D1CFCF 2px solid;
+            border-bottom: #D1CFCF 2px solid;
+            border-right: #D1CFCF 3px solid;
+            height: 35px;
+			padding-top: 0.4em;
+        }
+
+        td:nth-last-child(1),
+        th:nth-last-child(1) {
+            border-right: none;
+        }
+        
+
+</style>
+<table width="1000px">
+
+<h3>팀 순위</h3>
+        <br>
+        
 	<thead>
 		<tr>
 			<th>순위</th>
@@ -38,7 +76,7 @@
 						${loop.index + 1}
 					</c:otherwise>
 					</c:choose></td>
-				<td><a href="?teamNo=${teamVo.teamNo}">${teamVo.teamName}</a></td>
+				<td><a href="rankingDetail?teamNo=${teamVo.teamNo}"  class="link">${teamVo.teamName}</a></td>
 				<td>${teamVo.teamMatch}</td>
 				<td>${teamVo.teamWin}</td>
 				<td>${teamVo.teamDraw}</td>
@@ -62,7 +100,6 @@
 <%-- 					</c:otherwise> --%>
 <%-- 				</c:choose> --%>
 				<td>${teamVo.recentWin}승-${teamVo.recentLose}패-${teamVo.recentDraw}무</td>
-				<td>
 			</tr>
 		</c:forEach>
 	</tbody>

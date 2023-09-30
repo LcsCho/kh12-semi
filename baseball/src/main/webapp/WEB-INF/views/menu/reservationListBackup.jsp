@@ -129,7 +129,7 @@ td {
 	width: 30%;
 }
 
-.row {
+.container> .row {
 	display: flex; /* 요소들을 가로로 나열하기 위해 flex를 사용합니다. */
 	justify-content: space-between; /* 요소들을 양쪽 끝으로 정렬합니다. */
 	align-items: center; /* 요소들을 수직 가운데 정렬합니다. */
