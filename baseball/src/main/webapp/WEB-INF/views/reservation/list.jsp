@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
-<jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
-<jsp:include page="/WEB-INF/views/template/teamSidebar.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 <script>
 
 </script>
@@ -37,17 +36,16 @@
                         <td>${reservationVo.awayTeam}</td>
                         <td>${reservationVo.reservationDate}</td>
                         <td><a href="/reservation/detail?reservationNo=${reservationVo.reservationNo}">상세</a></td>
-                        <td></td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
         <!-- 선택된 예매 번호 배열을 서버로 전송하는 버튼 -->
-        <button>예매 취소하기</button>
+        <button class="btn btn-origin">예매 취소하기</button>
     </form>
 </div>
 
 
 
 					
-<jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
