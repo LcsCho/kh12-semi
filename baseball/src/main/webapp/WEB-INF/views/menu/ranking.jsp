@@ -26,8 +26,8 @@
             border-top: #D1CFCF 2px solid;
             border-bottom: #D1CFCF 2px solid;
             border-right: #D1CFCF 3px solid;
-            height: 30px;
-			padding-top: 0.2em;
+            height: 35px;
+			padding-top: 0.4em;
         }
 
         td:nth-last-child(1),
@@ -37,7 +37,7 @@
         
 
 </style>
-<table width="1000">
+<table width="1000px">
 
 <h3>팀 순위</h3>
         <br>
