@@ -249,6 +249,12 @@ textarea.form-input.fixed {
     color: white;
 }
 
+.btn.btn-edit{	
+	 border-color: #0984e3;
+    background-color: #0984e3;
+    color: white;
+}
+
 /*
     간격 스타일(spacing)
     - margin, padding을 자주 사용하는 것들 위주로 클래스화

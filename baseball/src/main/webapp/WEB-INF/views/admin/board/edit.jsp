@@ -90,7 +90,7 @@
 		<a href="list" class="btn row">
 			목록
 		</a>
-		<button type="submit" class="btn btn-positive">
+		<button type="submit" class="btn btn-edit">
 			수정하기
 		</button>
 		
