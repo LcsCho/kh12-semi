@@ -171,16 +171,17 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 
 	@Override
 	public void reservationCancelInsertBySeatNo(ReservationCancelDto reservationCancelDto) {
-	    String sql = "INSERT INTO reservation_cancel (reservation_cancel_no, reservation_no, seat_no) " +
-	                 "VALUES (reservation_cancel_seq.nextval, " +
-	                 "(SELECT reservation_no FROM reservation WHERE seat_no = ?), " +
-	                 "?)";
+		String sql = "INSERT INTO reservation_cancel (reservation_cancel_no, reservation_no, match_no, reservation_cancel_time, seat_no, member_id) " +
+	             "VALUES (reservation_cancel_seq.nextval, " +
+	             "(SELECT reservation_no FROM reservation WHERE seat_no = ?), " +
+	             "(SELECT match_no FROM reservation WHERE seat_no = ?), " +
+	             "SYSDATE, ?, ?)";
 	    
 	    int[] seatNos = reservationCancelDto.getSeatNo(); 
 	    int reservationTicket = seatNos.length; 
 
 	    for (int i = 0; i < reservationTicket; i++) {
-	        Object[] data = {seatNos[i], seatNos[i]};
+	        Object[] data = {seatNos[i], seatNos[i],seatNos[i], reservationCancelDto.getMemberId()};
 
 	        jdbcTemplate.update(sql, data);
 	    }

@@ -20,24 +20,21 @@ public class ReservationCancelListDaoImpl implements ReservationCancelListDao{
 	
 	@Override
 	public List<ReservationVO> reservationCancelListByMember(String memberId) {
-		 String sql = "select " +
-                 "m.home_team, " +
-                 "m.away_team, " +
-                 "m.stadium_name, " +
-                 "rc.reservation_cancel_no, " +
-                 "rc.reservation_cancel_time, " +
-                 "rc.seat_no, " +
-                 "s.seat_col, " +
-                 "s.seat_row, " +
-                 "sa.seat_area_zone " +
-                 "from " +
-                 "reservation_cancel rc " +
-                 "inner join reservation r on rc.seat_no = r.seat_no " +
-                 "inner join seat s on rc.seat_no = s.seat_no " +
-                 "inner join seat_area sa on s.seat_area_no = sa.seat_area_no " +
-                 "inner join member mb on r.member_id = mb.member_id " +
-                 "inner join match m on r.match_no = m.match_no " +
-                 "where mb.member_id = ?";
+		String sql = "SELECT " +
+	             "rc.RESERVATION_CANCEL_NO, " +
+	             "ma.home_team, " +
+	             "ma.away_team, " +
+	             "ma.stadium_name, " +
+	             "rc.RESERVATION_CANCEL_TIME, " +
+	             "s.SEAT_NO, " +
+	             "s.seat_col, " +
+	             "s.seat_row, " +
+	             "sa.seat_area_zone " +
+	             "FROM reservation_cancel rc " +
+	             "INNER JOIN match ma ON rc.match_no = ma.MATCH_NO " +
+	             "INNER JOIN seat s ON s.SEAT_NO = rc.SEAT_NO " +
+	             "INNER JOIN seat_area sa ON sa.SEAT_AREA_NO = s.SEAT_AREA_NO " +
+	             "WHERE MEMBER_ID = ?";
 		return jdbcTemplate.query(sql ,reservationCancleListMapper, memberId);
 	}
 
