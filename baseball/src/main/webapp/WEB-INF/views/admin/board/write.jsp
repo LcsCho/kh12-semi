@@ -10,6 +10,40 @@
         .note-editable {
             line-height: 2 !important;
         }
+        
+         .form-input {
+            height: 40px;
+            font-size: 15px;
+        }
+
+       .btn, .btn.btn-positive {
+            width: 100px;
+            height: 40px;
+            font-size: 15px;
+            border-radius: 0px;
+        }
+        
+        .btn.row{
+		padding-top: 0.8em;
+		}
+        
+	/* Summernote 툴바를 왼쪽으로 이동 */
+	.note-toolbar {
+	    text-align: left; /* 툴바 내용을 왼쪽 정렬 */
+	}
+	
+	/* 툴바 버튼들을 왼쪽 정렬 */
+	.note-toolbar button {
+	    float: left;
+	    margin-right: 5px; /* 버튼 간격 설정 (원하는 간격으로 조절) */
+	}
+	
+	/* 툴바 드롭다운 메뉴들도 왼쪽 정렬 */
+	.note-toolbar .dropdown-menu {
+	    text-align: left;
+	}
+
+		
     </style>
 
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
@@ -37,27 +71,24 @@
 
 <form action="write" method="post" autocomplete="off" >
 	
-	<div class="container w-600">
+	<div class="container w-800">
 	
-        <div class="row">
+        <div class="left">
 			<h1>게시글 작성</h1>
         </div>
         
-        <div class="row left">
-         <label>제목</label>     
-		<input type="text" name="boardTitle" class="form-input w-100" >
+        <div class="row">   
+		<input type="text" name="boardTitle" class="form-input w-100" placeholder="제목" >
         </div>
         
         <div class="row left">
-            <label>내용</label>
-            <textarea name="boardContent" class="form-input w-100" style="min-height:250px" ></textarea>
+            <textarea name="boardContent" class="form-input w-100" style="min-height:250px"></textarea>
         </div>
         
         <div class="row right">
             <button type="submit" class="btn btn-positive">
-            <i class="fa-solid fa-plus"></i>
             작성하기</button>
-            <a href="list" class="btn">목록보기</a>
+            <a href="list" class="btn row">목록보기</a>
         </div>
     </div>
 
