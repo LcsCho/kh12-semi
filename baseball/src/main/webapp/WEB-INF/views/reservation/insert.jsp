@@ -72,13 +72,34 @@
 .seatrow {
 	margin: 0.1em;
 }
+
+input[type="checkbox"].custom-checkbox {
+	display: none;
+margin-left: 5px;
+}
+
+.custom-checkbox-label {
+	cursor: pointer;
+	display: inline-block;
+}
+
+.custom-checkbox-label i {
+	font-size: 20px; /* 아이콘 크기 조절 */
+	color: #360a01; /* 아이콘 색상 설정 */
+}
+
+/* 체크된 상태일 때 아이콘 변경 */
+input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
+	{
+	color: #952323; /* 체크된 상태의 아이콘 색상 설정 */
+}
+/* 체크된 상태일 때 이미지 변경 */
 </style>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script>
 	$(function() {
-
-		//좌석 번호에 change 이벤트 발생시 수행하는 함수
+		// 좌석 번호에 change 이벤트 발생시 수행하는 함수
 		$("[name=seatAreaNo]")
 				.on(
 						"input",
@@ -89,11 +110,10 @@
 							}
 							var seatAreaNo = $(this).val();
 							if (seatAreaNo.length == 0)
-								return;
-							//비어있으면 리턴
+								return; // 비어있으면 리턴
 
 							var params = new URLSearchParams(location.search);
-							//url에 있는 matchNo를 저장
+							// url에 있는 matchNo를 저장
 							var matchNo = params.get("matchNo");
 
 							$
@@ -104,30 +124,30 @@
 											seatAreaNo : seatAreaNo,
 											matchNo : matchNo
 										},
-										//성공시
+										// 성공시
 										success : function(response) {
 											console.log(response);
-											//마지막 번호 정보
+											// 마지막 번호 정보
 											var lastSeat = response[response.length - 1];
-											//마지막 컬럼 값
+											// 마지막 컬럼 값
 											var numCols = lastSeat.seatCol;
-											//마지막 로우 값
+											// 마지막 로우 값
 											var numRows = lastSeat.seatRow;
 
-											//이름을 checkboxcontainer로 저장
+											// 이름을 checkboxcontainer로 저장
 											var checkboxContainer = $("#seat-checkbox");
-											//체크박스의 내용을 초기화
+											// 체크박스의 내용을 초기화
 											checkboxContainer.empty();
-											//티켓을 초기화
+											// 티켓을 초기화
 											var ticketCount = 0;
-											//티켓의 요소를 엘리멘트로 저장
+											// 티켓의 요소를 엘리멘트로 저장
 											var ticketCountElement = $("#ticket-count-value");
-											//for 문을 사용하여 checkbox를 자동으로 생성
+											// for 문을 사용하여 checkbox를 자동으로 생성
 											for (var i = 0; i < numRows; i++) {
 												for (var j = 0; j < numCols; j++) {
-													//배열에 있는 요소를 가져오기 위한 index
+													// 배열에 있는 요소를 가져오기 위한 index
 													var index = i * numCols + j;
-													//응답에서 status값 저장
+													// 응답에서 status값 저장
 													var seatStatus = response[index].seatStatus;
 													//
 													var checkbox = $("<input>")
@@ -139,13 +159,24 @@
 															.attr("name",
 																	"seatNo")
 															.addClass(
-																	"custom-checkbox");
-													//빈칸 생성
+																	"custom-checkbox")
+															
+
+													var icon = $("<i>")
+															.addClass(
+																	"fa-solid fa-couch");
+
+													var iconLabel = $("<label>")
+															.addClass(
+																	"custom-checkbox-label")
+															.append(checkbox) // 체크박스를 라벨에 추가
+															.append(icon);
+													// 빈칸 생성
 													if (j % 4 == 0) {
 														var blank = $("<span>")
 																.addClass(
 																		"blank")
-																.text("　　　");
+																.text("　");
 														checkboxContainer
 																.append(blank);
 													}
@@ -156,7 +187,8 @@
 
 													// 라벨 아래에 좌석 번호와 상태 표시
 													label.append((i + 1) + "-"
-															+ (j + 1)) //만약에 seatStatus가 N이라면 선택이 되어있고 disable로 처리
+															+ (j + 1));
+													// 만약에 seatStatus가 N이라면 선택이 되어있고 disable로 처리
 													if (response[index].seatStatus == "N") {
 														checkbox
 																.attr(
@@ -167,44 +199,54 @@
 																		true);
 													}
 
-													//반복문에서 col row를 생성했으므로 for문안에 있어야 함
-													//체크박스 4개 이상 제약 조건
+													// 반복문에서 col row를 생성했으므로 for문안에 있어야 함
+													// 체크박스 4개 이상 제약 조건
 													checkbox
 															.change(function() {
-																if ($(this)
-																		.is(
-																				":checked")) {
+																var currentCheckbox = $(this);
+																var currentIcon = currentCheckbox
+																		.parent()
+																		.find(
+																				"i");
+
+																if (currentCheckbox
+																		.is(":checked")) {
 																	if (ticketCount >= 4) {
 																		alert("최대 4개 구매 가능합니다!");
-																		$(this)
+																		currentCheckbox
 																				.prop(
 																						"checked",
-																						false)
+																						false);
 																	} else {
 																		ticketCount++;
 																	}
-
+																	// 체크된 상태일 때 아이콘 색상 변경
+																	currentIcon
+																			.css(
+																					"color",
+																					"#952323");
 																} else {
 																	ticketCount--;
+																	// 체크 해제된 상태일 때 아이콘 색상 원래 색상으로 변경
+																	currentIcon
+																			.css(
+																					"color",
+																					"#360a01");
 																}
-
-																//티켓 카운트 요소가있는 곳에 text로 티켓의 수를 출력
+																// 티켓 카운트 요소가 있는 곳에 text로 티켓의 수를 출력
 																ticketCountElement
 																		.text(ticketCount);
-																//티켓이라는 변수에 id가 reservationTicket인 곳에 value를 ticketcount 로 설정
+																// 티켓이라는 변수에 id가 reservationTicket인 곳에 value를 ticketcount로 설정
 																var ticket = $(
 																		"#reservationTicket")
 																		.attr(
 																				"value",
 																				ticketCount);
-																
-																
-																
 															});
 
 													// 좌석과 seatStatus를 checkboxContainer에 추가
 													checkboxContainer
-															.append(checkbox);
+															.append(iconLabel);
 
 													checkboxContainer
 															.append(label);
