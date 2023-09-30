@@ -1,8 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
+
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:choose>
+<c:when test="${sessionScope.level == '관리자'}"> 
+<jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
+</c:when>
+<c:otherwise>
+<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+</c:otherwise>
+</c:choose>
 
 <style>
 	.note-viewer {
@@ -43,15 +52,17 @@
             border-radius: 0px;
             
         }
-		.btn.row{
+		.container>.btn.row{
 		padding-top: 0.8em;
 		}
+		
 		.btn.edit{
 		 border-color: blue;
-    background-color: #e17055;
-    color: white;
+	    background-color: #e17055;
+	    color: white;
 		}
-		.float-container{
+		
+		.container>.float-container{
 		margin-top : 15px;
 		margin-bottom: 15px;
 			}
