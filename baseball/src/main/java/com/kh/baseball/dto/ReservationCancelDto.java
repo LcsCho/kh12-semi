@@ -10,5 +10,6 @@ public class ReservationCancelDto {
 	private int reservationNo , reservationCancelNo;
 	private Date reservationCancelDate;
 	private int[] seatNo;
+	private String memberId;
 	
 }

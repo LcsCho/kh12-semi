@@ -146,7 +146,11 @@ public class ReservationController {
 		return "/WEB-INF/views/reservation/delete.jsp";
 	}
 	@PostMapping("/delete")
-    public String deleteReservations(@ModelAttribute TrueReservationDto trueReservationDto,@ModelAttribute ReservationCancelDto reservationCancelDto) {
+    public String deleteReservations(@ModelAttribute TrueReservationDto trueReservationDto,@ModelAttribute ReservationCancelDto reservationCancelDto,HttpSession session) {
+		//memberId를 세션에있는 id로 저장해서 dto에 보냄
+		String memberId = (String) session.getAttribute("name");
+		reservationCancelDto.setMemberId(memberId);
+		
 		trueReservationDao.reservationCancelInsertBySeatNo(reservationCancelDto);
 		trueReservationDao.reservationDeleteByTicket(trueReservationDto);
 		trueReservationDao.seatStatusUpdate(trueReservationDto);
