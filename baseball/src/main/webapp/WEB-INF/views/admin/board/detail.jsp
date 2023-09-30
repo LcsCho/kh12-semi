@@ -52,7 +52,7 @@
             border-radius: 0px;
             
         }
-		.container>.btn.row{
+		.btn.row{
 		padding-top: 0.8em;
 		}
 		
