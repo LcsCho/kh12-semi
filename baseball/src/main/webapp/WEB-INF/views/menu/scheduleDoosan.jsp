@@ -1,544 +1,194 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<style>
-.teamlogo{
-                width: 30%;
-                margin-right: -2em;
-                margin-left: 2em;
-            }
-            .notice{
-                margin-left: -1.5em;
-                width: 70%;
-                height: 180px;
-                box-shadow: 0px 0px 0px 2px #D1CFCF;
-            }
-            .team-notice{
-                width: 20%;
-                color: #1AA8BB;
-                font-weight: bold;
-                font-size: 20px;
-                padding-left: 2em;
-                padding-top: 4em;
-            }
-            .pre-notice{
-                padding-left: 1em;
-                padding-top: 2em;
-                width: 80%;
-                color: #62676C;
-            }
 
 
-    .btn{
-        font-size: 18px;
-        margin: 0.5em;
-        border-radius: 5px;
-        background-color: #110f29;
-        color: white;
-        border: none;
-    }
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9월 캘린더</title>
+    <style>
+        /* 스타일을 추가하여 캘린더를 꾸미세요 */
+        table {
+            border-collapse: collapse;
+            width: 300px;
+        }
+        th, td {
+            text-align: center;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>9월 캘린더</h1>
 
-    .team-choice{
-        margin-left: -1.5em;
-        height: 60px;
-    }
+    <div id="calendar-container">
+        <!-- 캘린더가 여기에 동적으로 생성됩니다 -->
+    </div>
 
-    .doosan, .lg{
-        margin-left: 2em;
-        font-size: 20px;
-        border-radius: 5px;
-        background-color: #110f29;
-        color: white;
-        margin-bottom: 2em;
-        width: 80px;'
+    <script>
+        // 현재 날짜를 가져오는 함수
+        function getCurrentDate() {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = today.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
+            const day = today.getDate();
+            return { year, month, day };
+        }
 
-    }
-    .doosan{
-        margin-left: 2em;
-        background-color: #110f29;
-    }
-    .lg{
-        background-color: #bf0838;
-        margin-left: 0em;
-        text-align: center;
-    }
-    
-    table {border-collapse: collapse;}
-    td{border: 1px solid #D1CFCF; padding: 3px; width: 150px; height: 205px;}
-    th{border: 1px solid #D1CFCF; font-weight: bold; height: 40px; padding-top: 0.5em;}
-    th:nth-child(6) {color:#DD6045;} 
-    th:nth-last-child(1) {color:#3D85B9;}
-        </style>
+        // 현재 월의 달력을 생성하는 함수
+        function createCalendar(year, month) {
+            const calendarContainer = document.getElementById("calendar-container");
 
- <div class="container w-1000">
- 
-				<a href="/schedule/doosan" class="btn doosan">두산</a> 
-                 <a href="/schedule/lg" class="btn lg">LG</a>
+            // 테이블 엘리먼트 생성
+            const table = document.createElement("table");
+            const thead = document.createElement("thead");
+            const tbody = document.createElement("tbody");
 
-                    <div class="float-container">
-                        <div class="col-2 teamlogo">
-                            <img src="/images/두산베어스.png" width="200px"> 
-                        </div>
-                        <div class="col-2 notice">
-                            <div class="float-container">
-                                <div class="col-2 team-notice">구단공지</div>
-                                <div class="col-2 pre-notice">
-                                    <pre>
-* 온라인 구매는 경기 시작 1시간 후 까지 예매 가능
-(단, 경기 시작 2시간 30분 전부터는 취소는 불가하오니 예매 시 참고)
-* 경기 당일 입장시간이 많이 소요되니 일찍 방문 하시기 바랍니다.
-* 36개월 이상 어린이는 티켓 구매 후 입장 가능.
-* 권종선택 실수로 인한 예매권은 현장에서 교환/환불 불가합니다.
-(현장에서 재구매 해야합니다.)
-                                    </pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            // 테이블 헤더 생성
+            const headerRow = document.createElement("tr");
+            const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+            daysOfWeek.forEach(day => {
+                const th = document.createElement("th");
+                th.textContent = day;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+
+            // 1일의 날짜를 가져오기
+            const firstDayOfMonth = new Date(year, month - 1, 1).getDay();
+
+            // 이전 달의 마지막 날짜 구하기
+            const lastDayOfPrevMonth = new Date(year, month - 1, 0).getDate();
+
+            // 현재 월의 마지막 날짜 구하기
+            const lastDayOfMonth = new Date(year, month, 0).getDate();
+
+            let date = 1;
+            for (let i = 0; i < 6; i++) { // 최대 6주 표시
+                const row = document.createElement("tr");
+                
+                for (let j = 0; j < 7; j++) {
+                    const cell = document.createElement("td");
                     
-                    <div class="row left mb-20">
-                           <label class="open">예매하기 <2023. 10></label>
-                    </div>
+                    if (i === 0 && j < firstDayOfMonth) {
+                        // 이전 달의 날짜 표시
+                        cell.textContent = lastDayOfPrevMonth - firstDayOfMonth + j + 1;
+                        cell.classList.add("prev-month");
+                    } else if (date > lastDayOfMonth) {
+                        // 다음 달의 날짜 표시
+                        cell.textContent = date - lastDayOfMonth;
+                        cell.classList.add("next-month");
+                        date++;
+                    } else {
+                        // 현재 달의 날짜 표시
+                        cell.textContent = date;
+                        if (date === getCurrentDate().day && year === getCurrentDate().year && month === getCurrentDate().month) {
+                            cell.classList.add("current-day");
+                        }
+                        date++;
+                    }
 
-                   <table>
-                <thead>
-                    <tr>
-                        <th>월</th>
-                        <th>화</th>
-                        <th>수</th>
-                        <th>목</th>
-                        <th>금</th>
-                        <th>토</th>
-                        <th>일</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>                           
+                    row.appendChild(cell);
+                }
+                tbody.appendChild(row);
+                
+            }
 
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">1</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <a href="#" class="btn">예매하기</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">2</label>
-                            </div>
-                            
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">3</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <a href="#" class="btn">예매하기</a>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">4</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <a href="#" class="btn">예매하기</a>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">5</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <a href="#" class="btn">예매하기</a>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">6</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <a href="#" class="btn">예매하기</a>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">7</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <a href="#" class="btn">예매하기</a>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">8</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <a href="#" class="btn">예매하기</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">9</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">10</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">11</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">12</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">13</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">14</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">15</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">16</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">17</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">18</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">19</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">20</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">21</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">22</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">23</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">24</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">25</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">26</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">27</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">28</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">29</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">30</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row left">
-                                <label class="day left">31</label>
-                            </div>
-                            <div class="row">
-                                <img src="/images/vs엘지.png" width="50%">
-                            </div>
-                            <div class="row">
-                                <label class="font">잠실야구장</label>
-                            </div>
-                            <div class="row">
-                                <label class="font">10:8 11:00오픈</label>
-                            </div>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+            // 테이블을 캘린더 컨테이너에 추가
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            calendarContainer.appendChild(table);
+        }
 
-                    </div>
-        
-                    </div>
-              
-                </div>
-            </div>
+        // 현재 날짜를 가져온 후 캘린더 생성
+        const currentDate = getCurrentDate();
+        createCalendar(currentDate.year, currentDate.month);
+    </script>
 
+
+
+
+<div class="row">
+    <table class="table table-hover table-border">
+        <thead>
+            <tr>
+                <th>매치번호</th>
+                <th>경기일</th>
+                <th>경기장</th>
+                <th>홈팀</th>
+                <th>어웨이팀</th>
+                <th>홈팀스코어</th>
+                <th>어웨이스코어</th>
+                <th>예매</th>
+            </tr>
+        </thead>
+        <tbody align="center">
+            <c:forEach var="matchDto" items="${list}" varStatus="status">
+                <tr>
+                 <c:if test="${matchDto.homeTeam == '두산 베어스'}">
+                    <td><a href="detailMatch?matchNo=${matchDto.matchNo}">${matchDto.matchNo}</a></td>
+                    <td>
+                        <fmt:formatDate value="${matchDto.matchDate}" pattern="yyyy-MM-dd HH:mm" />
+                    </td>
+                    <td>${matchDto.stadiumName}</td>
+                    <td>${matchDto.homeTeam}</td>
+                    <td>${matchDto.awayTeam}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${now.time >= matchDto.matchDate.time && now.time <= matchDto.matchDate.time + (3 * 60 * 60 * 1000)}">
+                                경기 중(${matchDto.matchHomeScore})
+                            </c:when>
+                            <c:when test="${matchDto.matchDate.time < now.time}">
+                                ${matchDto.matchHomeScore}
+                            </c:when>
+                            <c:otherwise>
+                                경기 전
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${now.time >= matchDto.matchDate.time && now.time <= matchDto.matchDate.time + (3 * 60 * 60 * 1000)}">
+                                경기 중(${matchDto.matchAwayScore})
+                            </c:when>
+                            <c:when test="${matchDto.matchDate.time < now.time}">
+                                ${matchDto.matchAwayScore}
+                            </c:when>
+                            <c:otherwise>
+                                경기 전
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${now.time >= matchDto.matchDate.time}">
+                                예매 불가
+                            </c:when>
+                            <c:when test="${now.time >= matchDto.matchDate.time - (4 * 24 * 60 * 60 * 1000)}">
+                                <a href="/reservation/insert?matchNo=${matchDto.matchNo}">예매하기</a>
+                            </c:when>
+                            <c:otherwise>
+                                예매 전
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    </c:if>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+    
+    
+    
+    
+    
+    
+</div>
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
