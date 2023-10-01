@@ -485,7 +485,9 @@ $(function () {
     </div>
     <h3>예매 정보</h3>
     <p>구역: <span class="seatAreaNo"></span></p>
-    <p>좌석번호: <span class="seatNo"></span></p>
+    <p>좌석번호(col row로 가능한지?): <span class="seatNo"></span></p>
+    <p>총가격: <span class="seatNo"></span></p>
+    
 
     <div class="row right">
         <button type="button" class="btn btn-prev">
