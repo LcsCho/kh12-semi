@@ -8,10 +8,12 @@ $(function(){
     //[2] 다음버튼을 누르면 버튼이 속한 페이지를 숨기고 뒷페이지 표시
     $(".btn-next").click(function(){
         $(this).parents(".page").hide().next(".page").show();
+		 console.log("다음단계 버튼 클릭");
      });
 
      //[3] 이전버튼을 누르면 버튼이 속한 페이지를 숨기고 앞페이지 표시
     $(".btn-prev").click(function(){
+		console.log("이전단계 버튼 클릭");
         $(this).parents(".page").hide().prev(".page").show();
     });
 });
