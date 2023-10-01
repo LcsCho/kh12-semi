@@ -5,69 +5,31 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 <style>
-.teamlogo {
-	width: 30%;
-	margin-right: -2em;
-	margin-left: 2em;
-}
 
-.notice {
-	margin-left: -1.5em;
-	width: 70%;
-	height: 180px;
-	box-shadow: 0px 0px 0px 2px #D1CFCF;
-}
 
-.team-notice {
-	width: 20%;
-	color: #1AA8BB;
-	font-weight: bold;
-	font-size: 20px;
-	padding-left: 2em;
-	padding-top: 4em;
-}
+  .btn-end,
+    .btn-ing,
+    .btn-before {
+        font-size: 16px;
+        margin: 0.5em;
+        border-radius: 5px;
+        background-color: #CCCCCC;
+        border: none;
+    }
 
-.pre-notice {
-	padding-left: 1em;
-	padding-top: 2em;
-	width: 80%;
-	color: #62676C;
-}
+    .btn-end {
+        color: #fa2828;
+    }
 
-.btn {
-	font-size: 18px;
-	margin: 0.5em;
-	border-radius: 5px;
-	background-color: #bf0838;
-	color: white;
-	border: none;
-}
-
-.team-choice {
-	margin-left: -1.5em;
-	height: 60px;
-}
-
-.doosan, .lg {
-	margin-left: 2em;
-	font-size: 20px;
-	border-radius: 5px;
-	background-color: #110f29;
-	color: white;
-	margin-bottom: 2em;
-	width: 80px;
-}
-
-.doosan {
-	margin-left: 2em;
-	background-color: #110f29;
-}
-
-.lg {
-	background-color: #bf0838;
-	margin-left: 0em;
-	text-align: center;
-}
+    .btn.btn-end {
+        /*마우스가 버튼에 올라가면 배경을 조금 더 어둡게*/
+        filter: brightness(100%);
+    }
+    
+    .btn-ing{
+        background-color: #fa2828;
+        color: #ffffff;
+    }
 
 table {
 	border-collapse: collapse;
@@ -91,7 +53,7 @@ td {
 }
 
 .day {
-	font-size: 30px;
+	font-size: 24px;
 	font-weight: bold;
 }
 
@@ -223,17 +185,17 @@ document.addEventListener('DOMContentLoaded', () => {
 				</c:choose>
 			</div>
 			<div class="col-7-5">
-				<div class="btn reservation">
+				<div class="row">
 					<c:choose>
 						<c:when test="${now.time >= matchVo.matchDate.time}">
-                                예매 불가
+                                <div class="btn btn-end">예매마감</div>
                             </c:when>
 						<c:when
 							test="${now.time >= matchVo.matchDate.time - (4 * 24 * 60 * 60 * 1000)}">
-							<a href="/reservation/insert?matchNo=${matchVo.matchNo}">예매하기</a>
+							<a href="/reservation/insert?matchNo=${matchVo.matchNo}" class="btn btn-ing">예매하기</a>
 						</c:when>
 						<c:otherwise>
-                                예매전
+                                <div class="btn btn-before">오픈예정</div>
                             </c:otherwise>
 					</c:choose>
 				</div>

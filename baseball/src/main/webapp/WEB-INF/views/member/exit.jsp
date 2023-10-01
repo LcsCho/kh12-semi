@@ -30,6 +30,9 @@
         background-color: #D32D2D;
         color: white;
         cursor: pointer;
+        font-size: 15px;
+        margin: 0.5em;
+        border-radius: 10px;
     }
     .btn:hover{ /* 마우스가 버튼에 올라가면 배경을 조금 더 어둡게 처리 */
         filter: brightness(95%);
@@ -37,58 +40,7 @@
     .exit{
         font-weight: bold;
     }
-    ul.menu li {
-        padding-top: 1.3em;
-        color: #360a01;
-        background-color: #ffff;
-        line-height: 2.5em;
-        font-size: 18px;
-        font-weight: bold;
-    }
-    
-	  .col-5{
-      padding-top: 1.5em;
-        }
-    
-    .fa-solid{
-        font-size: 40px;
-        color: #360a01;
-    }
-    
-     .open{
-        font-weight: bold;
-        font-size: 20px;
-    }
-	
-    .font{
-        font-weight: bold;
-        font-size: 18px;
-        color: #838383;
-    }
-    
-   .float-container{
-           margin-bottom: 2em;
-        }
-        
-    .float-container>.col-3{
-        border-radius: 15px;
-        border-style: solid;
-        box-shadow: 0 0 0 3px #CCCCCC;
-    }
 
-	.col-3,.open{
-        width: 30%;
-        margin-left: 1em;
-        margin-right: 1em;
-    }
-
-    .btn{
-        font-size: 15px;
-        margin: 0.5em;
-        border-radius: 10px;
-        background-color: #CCCCCC;
-        border: none;
-    }
     </style>
     
 <form action="exit" method="post">
