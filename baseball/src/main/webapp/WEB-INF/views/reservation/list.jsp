@@ -23,15 +23,13 @@ $(function(){
 
             <thead>
                 <tr>
+                	<th></th>
                     <th>예매번호</th>
-                    <th>열</th>
-                    <th>행</th>
                     <th>좌석번호</th>
                     <th>홈팀</th>
                     <th>어웨이팀</th>
                     <th>예매날짜</th>
                     <th>상세</th>
-                    <th>삭제</th>
                 </tr>
             </thead>
             <tbody align="center">
@@ -40,9 +38,7 @@ $(function(){
                     <tr>
                         <td><input type="checkbox" name="seatNo" value="${reservationVo.seatNo}"></td>
                         <td>${reservationVo.reservationNo}</td>
-                        <td>${reservationVo.seatCol}</td>
-                        <td>${reservationVo.seatRow}</td>
-                        <td>${reservationVo.seatNo}</td>
+                        <td>${reservationVo.seatAreaZone}-${reservationVo.seatCol}-${reservationVo.seatRow}</td>
                         <td>${reservationVo.homeTeam}</td>	
                         <td>${reservationVo.awayTeam}</td>
                         <td>${reservationVo.reservationDate}</td>
@@ -51,8 +47,9 @@ $(function(){
                 </c:forEach>
             </tbody>
         </table>
-        <!-- 선택된 예매 번호 배열을 서버로 전송하는 버튼 -->
+       	<div class="row right">
         <button id="confirm" class="btn btn-origin">예매 취소하기</button>
+        </div>
     </form>
 </div>
 
