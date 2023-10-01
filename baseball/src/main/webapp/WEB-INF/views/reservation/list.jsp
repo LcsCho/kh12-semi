@@ -4,7 +4,18 @@
     
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 <script>
-
+$(function(){
+    $("#confirm").on("click", function(){
+        var result = confirm("취소하시겠습니까?");
+        if (result) {
+            // 사용자가 확인을 클릭한 경우
+            alert("취소되었습니다.");
+        } else {
+            // 사용자가 취소를 클릭한 경우
+            alert("취소하지 않았습니다.");
+        }
+    });
+});
 </script>
 <div class="row">
     <form action="delete" method="post">
@@ -41,7 +52,7 @@
             </tbody>
         </table>
         <!-- 선택된 예매 번호 배열을 서버로 전송하는 버튼 -->
-        <button class="btn btn-origin">예매 취소하기</button>
+        <button id="confirm" class="btn btn-origin">예매 취소하기</button>
     </form>
 </div>
 
