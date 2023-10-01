@@ -271,7 +271,7 @@ $(function () {
                             checkboxContainer.append(blank);
                         }
 
-                        // seatStatus 정보를 출력
+                        // seatcolrow 정보를 출력
                         var label = $("<label>").addClass("seat-label");
                         // 라벨 아래에 좌석 번호와 상태 표시
                         label.append((i + 1) + "-" + (j + 1));
@@ -291,6 +291,7 @@ $(function () {
                         checkbox.on("change", function () {
                             var currentCheckbox = $(this);
                             var currentIcon = currentCheckbox.parent().find("i");
+                            
                             var seatName = currentCheckbox.val();
 
                             if (currentCheckbox.is(":checked")) {
