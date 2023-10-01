@@ -33,7 +33,12 @@ public class MatchRestController {
 	    boolean isDuplicate = false;
 
 	    for (MatchDto matchDto : list) {
-	        if (matchDto.getHomeTeam().equals(homeTeam) ||
+	    	System.out.println(matchDate.toString());
+	    	System.out.println(matchDto.getMatchDate().toString());
+	        if (matchDto.getHomeTeam().equals(homeTeam) || matchDto.getAwayTeam().equals(homeTeam) ||
+	        		matchDto.getHomeTeam().equals(awayTeam) ||
+	        		 
+	        		
 	            matchDto.getAwayTeam().equals(awayTeam) ||
 	            matchDto.getStadiumName().equals(stadiumName)) {
 	            isDuplicate = true;
@@ -43,4 +48,5 @@ public class MatchRestController {
 	    if (isDuplicate) return "N"; // 중복된 경우
 	    else return "Y"; // 중복이 없는 경우
 	}
+	
 }

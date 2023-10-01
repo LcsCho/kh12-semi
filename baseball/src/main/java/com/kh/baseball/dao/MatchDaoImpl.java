@@ -103,7 +103,7 @@ public class MatchDaoImpl implements MatchDao{
 	@Override
 	public List<MatchDto> selectDate(Timestamp matchDate) {
 		String sql = "SELECT * FROM MATCH " +
-	             "WHERE trunc(match_date) = trunc(to_timestamp('?', 'YYYY-MM-DD HH24:MI:SS'))";
+	             "WHERE trunc(match_date) = trunc(to_timestamp('?')";
 		Object[] data = {matchDate};
 		return jdbcTemplate.query(sql, matchMapper, data);
 	}
