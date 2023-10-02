@@ -13,6 +13,7 @@
         var stadiumSelect = document.getElementById("stadiumName");
         var matchDateInput = document.querySelector('input[type="datetime-local"]');
 
+        
         // 홈팀과 어웨이팀이 같을 경우 중복 선택 방지
         homeTeamSelect.addEventListener("change", function () {
             var selectedHomeTeam = homeTeamSelect.value;
