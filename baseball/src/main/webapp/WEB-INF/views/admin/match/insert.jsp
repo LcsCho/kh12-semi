@@ -13,6 +13,7 @@
         var matchDateInput = document.querySelector('input[type="datetime-local"]');
         var submitButton = document.querySelector('button.btn-positive');
 
+        
         // 홈팀과 어웨이팀 선택 시 중복 검사
         homeTeamSelect.addEventListener("change", checkDuplicate);
         awayTeamSelect.addEventListener("change", checkDuplicate);
