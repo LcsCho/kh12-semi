@@ -77,6 +77,35 @@
         </div>
     </form>
 </div>
+	<div class="row page-navigator mv-30">
+		<!-- 이전 버튼 -->
+		<c:if test="${!vo.first}">
+			<a href="list?${vo.prevQueryString}"> <i
+				class="fa-solid fa-angle-left"></i>
+			</a>
+		</c:if>
+
+		<!-- 숫자 버튼 -->
+		<c:forEach var="i" begin="${vo.begin}" end="${vo.end}" step="1">
+			<c:choose>
+				<c:when test="${vo.page == i}">
+					<a class="on">${i}</a>
+				</c:when>
+				<c:otherwise>
+					<a href="list?${vo.getQueryString(i)}">${i}</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+
+		<!-- 다음 버튼 -->
+		<c:if test="${!vo.last}">
+			<a href="list?${vo.nextQueryString}"> <i
+				class="fa-solid fa-angle-right"></i>
+			</a>
+		</c:if>
+	</div>
+
+
 
 
 

@@ -123,10 +123,13 @@ public class ReservationController {
 	
 	//회원별 리스트 출력
 	@RequestMapping("/list")
-	public String list(HttpSession session, Model model) {
+	public String list(@ModelAttribute(name="vo") PaginationVO vo,HttpSession session, Model model) {
 		String memberId = (String)session.getAttribute("name");
+		int count = trueReservationDao.countList(vo, memberId);
+		vo.setCount(count);
 		
-		List<ReservationVO> list = trueReservationDao.reservationList(memberId);
+		
+		List<ReservationVO> list = trueReservationDao.reservationList(vo,memberId);
 		model.addAttribute("list",list);
 		
 		return "/WEB-INF/views/reservation/list.jsp";

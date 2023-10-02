@@ -8,7 +8,8 @@
 	
 </script>
 <div class="row">
-	<table class="table table-hover table-border">
+	<h1 class="bold-font">${sessionScope.name} 님의 취소 목록</h1><br>
+	<table class="table table-hover table-border font-light">
 
 		<thead>
 			<tr>
