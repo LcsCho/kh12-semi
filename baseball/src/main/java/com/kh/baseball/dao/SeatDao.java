@@ -5,6 +5,7 @@ import java.util.List;
 import com.kh.baseball.dto.SeatDto;
 import com.kh.baseball.dto.SeatGroupDto;
 import com.kh.baseball.dto.SeatListDto;
+import com.kh.baseball.vo.PaginationVO;
 
 public interface SeatDao {
 	int sequenceSeat();
@@ -23,10 +24,10 @@ public interface SeatDao {
 	//좌석 좌석구역 경기장 조인해서 detail출력을 위한 구문 
 	SeatListDto selectOne(int seatNo);
 	//좌석 구역별 리스트 출력을 위한 DAO
-	List<SeatListDto> seatGroupZoneList(String seatAreaZone, String stadiumName);
+	List<SeatListDto> seatGroupZoneList(PaginationVO vo,String seatAreaZone, String stadiumName);
 	List<SeatGroupDto> seatGroupStadiumList(String stadiumName);
 
-	
+	int countList(PaginationVO vo,String seatAreaZone, String stadiumName);
 	
 	
 	

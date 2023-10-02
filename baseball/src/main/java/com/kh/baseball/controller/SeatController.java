@@ -17,6 +17,8 @@ import com.kh.baseball.dto.FindStadiumNameDto;
 import com.kh.baseball.dto.SeatDto;
 import com.kh.baseball.dto.SeatGroupDto;
 import com.kh.baseball.dto.SeatListDto;
+import com.kh.baseball.vo.PaginationVO;
+import com.kh.baseball.vo.SeatVO;
 
 @Controller
 @RequestMapping("/admin/seat")
@@ -37,9 +39,18 @@ public class SeatController {
 	}
 	
 	@RequestMapping("/listByZone")
-	public String listByZone(@ModelAttribute SeatListDto seatListDto,@RequestParam String seatAreaZone, @RequestParam String stadiumName, Model model) {
-		List<SeatListDto> list = seatDao.seatGroupZoneList(seatAreaZone,stadiumName);
+	public String listByZone(@ModelAttribute(name="vo") PaginationVO vo,@ModelAttribute SeatListDto seatListDto,@RequestParam String seatAreaZone, @RequestParam String stadiumName, Model model) {
+		int count = seatDao.countList(vo, seatAreaZone, stadiumName);
+		vo.setCount(count);
+		
+		List<SeatListDto> list = seatDao.seatGroupZoneList(vo,seatAreaZone,stadiumName);
+		SeatVO seatVo = new SeatVO();
+		seatVo.setSeatAreaZone(seatListDto.getSeatAreaZone());
+		seatVo.setStadiumName(seatListDto.getStadiumName());
+		
 		model.addAttribute("list",list);
+	    model.addAttribute("seatVo", seatVo); // DTO를 모델에 추가
+
 		return "/WEB-INF/views/admin/seat/listByZone.jsp";
 
 		
