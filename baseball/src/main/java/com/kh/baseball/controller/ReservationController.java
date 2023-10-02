@@ -22,6 +22,7 @@ import com.kh.baseball.dto.ReservationCancelDto;
 import com.kh.baseball.dto.ReservationDto;
 import com.kh.baseball.dto.SeatListDto;
 import com.kh.baseball.dto.TrueReservationDto;
+import com.kh.baseball.vo.PaginationVO;
 import com.kh.baseball.vo.ReservationVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -161,9 +162,12 @@ public class ReservationController {
 	
 	
 	@RequestMapping("/cancelList")
-	public String cancelList(@ModelAttribute ReservationVO reservationVO ,HttpSession session, Model model) {
+	public String cancelList(@ModelAttribute(name="vo") PaginationVO vo,@ModelAttribute ReservationVO reservationVO ,HttpSession session, Model model) {
 		String memberId = (String) session.getAttribute("name");
-		List<ReservationVO> list = reservationCancelListDao.reservationCancelListByMember(memberId);
+		int count = reservationCancelListDao.countList(vo, memberId);
+		vo.setCount(count);
+		
+		List<ReservationVO> list = reservationCancelListDao.reservationCancelListByMember(vo,memberId);
 		model.addAttribute("list",list);
 		return "/WEB-INF/views/reservation/cancelList.jsp";
 	}
