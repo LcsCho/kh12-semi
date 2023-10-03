@@ -5,12 +5,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.kh.baseball.interceptor.AdminInterceptor;
 import com.kh.baseball.interceptor.MemberInterceptor;
 
 @Configuration
 public class InterceptorConfiguration implements WebMvcConfigurer{
 @Autowired
 MemberInterceptor memberInterceptor;
+
+@Autowired
+	private AdminInterceptor adminInterceptor;
 
 
 @Override
@@ -30,5 +34,10 @@ MemberInterceptor memberInterceptor;
 			"/rest/reply/list"
 
 	);
-	}
+	
+	registry.addInterceptor(adminInterceptor)
+	.addPathPatterns(
+			"/admin/**");
 }
+}
+
