@@ -301,28 +301,43 @@ $(function () {
                                     return;
                                 } else {
                                     ticketCount++;
-                                    selectedSeats.push(seatName);
-                                    console.log("좌석 선택됨: " + seatName);
-                                    console.log("선택된 좌석 목록: " + selectedSeats.join(", "));
+
+                                    // 좌석 정보를 추출
+                                    var seatCol = response[index].seatCol;
+                                    var seatRow = response[index].seatRow;
+
+                                    selectedSeats.push({ row: seatRow, col: seatCol });
+                                    console.log("좌석 선택됨: Row " + seatRow + ", Col " + seatCol);
+                                    console.log("선택된 좌석 목록: " + JSON.stringify(selectedSeats));
                                 }
+
                                 // 체크된 상태일 때 아이콘 색상 변경
                                 currentIcon.css("color", "#952323");
                             } else {
                                 ticketCount--;
                                 // 체크 해제된 상태일 때 아이콘 색상 원래 색상으로 변경
-                                var index = selectedSeats.indexOf(seatName);
-                                if (index !== -1) {
-                                    selectedSeats.splice(index, 1);
+                                var seatCol = response[index].seatCol;
+                                var seatRow = response[index].seatRow;
+
+                                var indexToRemove = selectedSeats.findIndex(function(seat) {
+                                    return seat.row === seatRow && seat.col === seatCol;
+                                });
+
+                                if (indexToRemove !== -1) {
+                                    selectedSeats.splice(indexToRemove, 1);
                                 }
+
                                 currentIcon.css("color", "#360a01");
-                                console.log("좌석 선택 해제됨: " + seatName);
-                                console.log("선택된 좌석 목록: " + selectedSeats.join(", "));
+                                console.log("좌석 선택 해제됨: Row " + seatRow + ", Col " + seatCol);
+                                console.log("선택된 좌석 목록: " + JSON.stringify(selectedSeats));
                             }
 
                             // 티켓 카운트 요소가 있는 곳에 text로 티켓의 수를 출력
                             ticketCountElement.text(ticketCount);
                             $("#reservationTicket").attr("value", ticketCount);
-                            $(".selected-seats-list").text(selectedSeats.join("\n"));
+                            $(".selected-seats-list").text(selectedSeats.map(function(seat) {
+                                return "Row " + seat.row + ", Col " + seat.col;
+                            }).join("\n"));
                         });
                     }
                     checkboxContainer.append("<br><br>");
