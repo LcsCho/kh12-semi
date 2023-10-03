@@ -171,7 +171,12 @@ public class ReservationDaoImpl implements ReservationDao{
 		
 		return jdbcTemplate.query(sql, reservationListByAdminMApper, vo.getStartRow(), vo.getFinishRow());
 	}
-	
+	@Override
+	public AdminReservationListVO reservationDetailByAdmin(int reservationNo) {
+		String sql = "SELECT ma.HOME_TEAM, ma.AWAY_TEAM, sa.seat_area_zone, s.SEAT_ROW, s.SEAT_COL, rs.member_id, rs.RESERVATION_DATE, rs.RESERVATION_NO, ma.STADIUM_NAME, sa.SEAT_AREA_PRICE, s.seat_no FROM reservation rs INNER JOIN match ma ON rs.match_no = ma.MATCH_NO INNER JOIN seat_area sa ON rs.SEAT_AREA_NO = sa.SEAT_AREA_NO INNER JOIN seat s ON s.SEAT_NO = rs.SEAT_NO WHERE reservation_no = ?";
+		List<AdminReservationListVO> list = jdbcTemplate.query(sql, reservationListByAdminMApper,reservationNo);
+		return list.isEmpty() ? null : list.get(0);
+	}
 
 
 

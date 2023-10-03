@@ -20,4 +20,5 @@ public interface ReservationDao {
 	//관리자 페이지 예약 관리 
 	List<AdminReservationListVO> reservationListByAdmin(PaginationVO vo);
 	int count(PaginationVO vo);
+	AdminReservationListVO reservationDetailByAdmin(int reservationNo);
 }

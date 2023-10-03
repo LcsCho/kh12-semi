@@ -17,6 +17,7 @@ import com.kh.baseball.dao.ReservationDao;
 import com.kh.baseball.dao.SeatDao;
 import com.kh.baseball.dto.MemberDto;
 import com.kh.baseball.dto.MemberListDto;
+import com.kh.baseball.dto.ReservationDto;
 import com.kh.baseball.vo.AdminReservationListVO;
 import com.kh.baseball.vo.PaginationVO;
 
@@ -113,4 +114,12 @@ public class AdminController {
 		
 		return "/WEB-INF/views/admin/reservation/list.jsp";
 	};
+	
+	@RequestMapping("/reservation/detail")
+	public String detail(@RequestParam int reservationNo,Model model) {
+		AdminReservationListVO adminReservationListVO = reservationDao.reservationDetailByAdmin(reservationNo);
+		model.addAttribute("adminReservationListVO",adminReservationListVO);
+		return "/WEB-INF/views/admin/reservation/detail.jsp";
+		
+	}
 }
