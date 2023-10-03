@@ -243,90 +243,102 @@ $(function () {
                 var ticketCountElement = $("#ticket-count-value");
 
                 // for 문을 사용하여 checkbox를 자동으로 생성
-                for (var i = 0; i < numRows; i++) {
-                    for (var j = 0; j < numCols; j++) {
-                        // 배열에 있는 요소를 가져오기 위한 index
-                        var index = i * numCols + j;
-                        // 응답에서 status값 저장
-                        var seatStatus = response[index].seatStatus;
+for (var i = 0; i < numRows; i++) {
+    for (var j = 0; j < numCols; j++) {
+        // 배열에 있는 요소를 가져오기 위한 index
+        var index = i * numCols + j;
+        // 응답에서 status값 저장
+        var seatStatus = response[index].seatStatus;
 
-                        var checkbox = $("<input>")
-                            .attr("type", "checkbox")
-                            .attr("value", response[index].seatNo)
-                            .attr("name", "seatNo")
-                            .addClass("custom-checkbox");
+        var checkbox = $("<input>")
+            .attr("type", "checkbox")
+            .attr("value", response[index].seatNo)
+            .attr("name", "seatNo")
+            .addClass("custom-checkbox");
 
-                        var icon = $("<i>").addClass("fa-solid fa-couch");
+        var icon = $("<i>").addClass("fa-solid fa-couch");
 
-                        var iconLabel = $("<label>")
-                            .addClass("custom-checkbox-label")
-                            .append(checkbox) // 체크박스를 라벨에 추가
-                            .append(icon);
+        var iconLabel = $("<label>")
+            .addClass("custom-checkbox-label")
+            .append(checkbox) // 체크박스를 라벨에 추가
+            .append(icon);
 
-                        // 빈칸 생성
-                        if (j % 4 == 0) {
-                            var blank = $("<span>")
-                                .addClass("blank")
-                                .text("　");
-                            checkboxContainer.append(blank);
-                        }
+        // 빈칸 생성
+        if (j % 4 == 0) {
+            var blank = $("<span>")
+                .addClass("blank")
+                .text("　");
+            checkboxContainer.append(blank);
+        }
 
-                        // seatcolrow 정보를 출력
-                        var label = $("<label>").addClass("seat-label");
-                        // 라벨 아래에 좌석 번호와 상태 표시
-                        label.append((i + 1) + "-" + (j + 1));
+        // seatcolrow 정보를 출력
+        var label = $("<label>").addClass("seat-label");
+        // 라벨 아래에 좌석 번호와 상태 표시
+        label.append((i + 1) + "-" + (j + 1));
 
-                        // 만약에 seatStatus가 N이라면 선택이 되어있고 disable로 처리
-                        if (seatStatus == "N") {
-                            checkbox
-                                .prop("checked", true) // attr 대신 prop를 사용하여 checked 속성을 설정
-                                .attr("disabled", true);
-                            icon.css("color", "#952323");
-                        }
+        // 만약에 seatStatus가 N이라면 선택이 되어있고 disable로 처리
+        if (seatStatus == "N") {
+            checkbox
+                .prop("checked", true) // attr 대신 prop를 사용하여 checked 속성을 설정
+                .attr("disabled", true);
+            icon.css("color", "#952323");
+        }
 
-                        checkboxContainer.append(iconLabel);
-                        checkboxContainer.append(label);
+        checkboxContainer.append(iconLabel);
+        checkboxContainer.append(label);
 
-                        // 좌석 선택 및 업데이트 기능 추가
-                        checkbox.on("change", function () {
-                            var currentCheckbox = $(this);
-                            var currentIcon = currentCheckbox.parent().find("i");
-                            
-                            var seatName = currentCheckbox.val();
+        // 클로저를 사용하여 고유한 index, seatCol, seatRow 값을 갖도록 처리
+        (function (currentIndex, currentSeatCol, currentSeatRow) {
+            checkbox.on("change", function () {
+                var currentCheckbox = $(this);
+                var currentIcon = currentCheckbox.parent().find("i");
 
-                            if (currentCheckbox.is(":checked")) {
-                                if (ticketCount >= maxSeats) {
-                                    alert("최대 " + maxSeats + "개 구매 가능합니다!");
-                                    currentCheckbox.prop("checked", false);
-                                    return;
-                                } else {
-                                    ticketCount++;
-                                    selectedSeats.push(seatName);
-                                    console.log("좌석 선택됨: " + seatName);
-                                    console.log("선택된 좌석 목록: " + selectedSeats.join(", "));
-                                }
-                                // 체크된 상태일 때 아이콘 색상 변경
-                                currentIcon.css("color", "#952323");
-                            } else {
-                                ticketCount--;
-                                // 체크 해제된 상태일 때 아이콘 색상 원래 색상으로 변경
-                                var index = selectedSeats.indexOf(seatName);
-                                if (index !== -1) {
-                                    selectedSeats.splice(index, 1);
-                                }
-                                currentIcon.css("color", "#360a01");
-                                console.log("좌석 선택 해제됨: " + seatName);
-                                console.log("선택된 좌석 목록: " + selectedSeats.join(", "));
-                            }
+                var seatName = currentCheckbox.val();
 
-                            // 티켓 카운트 요소가 있는 곳에 text로 티켓의 수를 출력
-                            ticketCountElement.text(ticketCount);
-                            $("#reservationTicket").attr("value", ticketCount);
-                            $(".selected-seats-list").text(selectedSeats.join("\n"));
-                        });
+                if (currentCheckbox.is(":checked")) {
+                    if (ticketCount >= maxSeats) {
+                        alert("최대 " + maxSeats + "개 구매 가능합니다!");
+                        currentCheckbox.prop("checked", false);
+                        return;
+                    } else {
+                        ticketCount++;
+
+                        selectedSeats.push({ row: currentSeatRow, col: currentSeatCol });
+                        console.log("좌석 선택됨: Row " + currentSeatRow + ", Col " + currentSeatCol);
+                        console.log("선택된 좌석 목록: " + JSON.stringify(selectedSeats));
                     }
-                    checkboxContainer.append("<br><br>");
+
+                    // 체크된 상태일 때 아이콘 색상 변경
+                    currentIcon.css("color", "#952323");
+                } else {
+                    ticketCount--;
+                    // 체크 해제된 상태일 때 아이콘 색상 원래 색상으로 변경
+
+                    var indexToRemove = selectedSeats.findIndex(function (seat) {
+                        return seat.row === currentSeatRow && seat.col === currentSeatCol;
+                    });
+
+                    if (indexToRemove !== -1) {
+                        selectedSeats.splice(indexToRemove, 1);
+                    }
+
+                    currentIcon.css("color", "#360a01");
+                    console.log("좌석 선택 해제됨: Row " + currentSeatRow + ", Col " + currentSeatCol);
+                    console.log("선택된 좌석 목록: " + JSON.stringify(selectedSeats));
+                    
                 }
+
+                // 티켓 카운트 요소가 있는 곳에 text로 티켓의 수를 출력
+                ticketCountElement.text(ticketCount);
+                $("#reservationTicket").attr("value", ticketCount);
+                $(".selected-seats-list").text(selectedSeats.map(function (seat) {
+                    return   seat.seatAreaZone  + ":" + seat.row + "-" + seat.col;
+                }).join("\n"));
+            });
+        })(index, response[index].seatCol, response[index].seatRow);
+    }
+    checkboxContainer.append("<br><br>");
+}
             },
         });
     });
@@ -485,7 +497,7 @@ $(function () {
     </div>
     <h3>예매 정보</h3>
     <p>구역: <span class="seatAreaNo"></span></p>
-    <p>좌석번호(col row로 가능한지?): <span class="seatNo"></span></p>
+    <p>좌석번호 <span class="seatNo"></span></p>
     <p>총가격: <span class="seatNo"></span></p>
     
 

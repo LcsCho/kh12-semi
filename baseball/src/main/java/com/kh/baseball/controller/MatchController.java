@@ -20,8 +20,10 @@ import com.kh.baseball.dao.MatchDao;
 import com.kh.baseball.dao.StadiumDao;
 import com.kh.baseball.dao.TeamDao;
 import com.kh.baseball.dto.MatchDto;
+import com.kh.baseball.dto.SeatDto;
 import com.kh.baseball.dto.StadiumDto;
 import com.kh.baseball.dto.TeamDto;
+import com.kh.baseball.vo.PaginationVO;
 @Repository
 //잠시 admin 뺐음
 
@@ -111,6 +113,9 @@ public class MatchController {
 	@PostMapping("/updateScore")
 	public String updateMatch(@ModelAttribute MatchDto matchDto) {
 		matchDao.update(matchDto);
+		
+		//match 종료시 스코어 업데이트 하면 좌석 상태를 다 Y로 만드는 절
+		matchDao.seatStatusUpdateByMatchFinish(matchDto.getMatchNo());
 
 		return "redirect:detailMatch?matchNo="+matchDto.getMatchNo();
 	}
@@ -162,11 +167,17 @@ public class MatchController {
 	}
 	
 	@RequestMapping("/list")
-	public String list(Model model) {
-		List<MatchDto> list = matchDao.selectList();
+	public String list(@ModelAttribute(name="vo") PaginationVO vo,Model model) {
+		int count = matchDao.countList(vo);
+		vo.setCount(count);
+		
+		
+		List<MatchDto> list = matchDao.selectList(vo);
 		LocalDateTime now = LocalDateTime.now();
 		Timestamp timestamp = Timestamp.valueOf(now);
 		model.addAttribute("now", timestamp);
+		
+		//pagination
 		
 		
 		model.addAttribute("list",list);

@@ -11,6 +11,7 @@ import com.kh.baseball.dto.TeamDto;
 import com.kh.baseball.mapper.AttachMapper;
 import com.kh.baseball.mapper.TeamMapper;
 import com.kh.baseball.mapper.TeamVoMapper;
+import com.kh.baseball.vo.PaginationVO;
 import com.kh.baseball.vo.TeamVO;
 
 @Repository
@@ -169,5 +170,7 @@ public class TeamDaoImpl implements TeamDao {
 		String sql = "SELECT * from team_vo order by team_win_rate desc, team_game_gap, team_win desc";
 		return jdbcTemplate.query(sql, teamVoMapper);
 	}
+
+
 
 }

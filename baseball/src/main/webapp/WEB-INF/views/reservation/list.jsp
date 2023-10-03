@@ -7,6 +7,96 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <c:set var="formattedMatchDate" value='<fmt:formatDate value="${reservationVo.matchDate}" pattern="yyyy-MM-dd HH:mm" />' />
+<style>
+table {
+            border-collapse: collapse;
+        }
+
+        table th {
+            border-top: #62676C 3px solid;
+            border-bottom: #62676C 2px solid;         
+            background-color: #f1f1f1;
+            font-weight: bold;
+            height: 40px;
+            padding-top: 0.5em;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        table td {
+            border-top: #D1CFCF 2px solid;
+            border-bottom: #D1CFCF 2px solid;      
+            height: 40px;
+			padding-top: 0.6em;
+			font-size: 16px;
+            color: #62676C;
+            font-weight: bold;
+        }
+
+        td:nth-last-child(1),
+        th:nth-last-child(1) {
+            border-right: none;
+        }
+        
+        td:nth-child(2){
+        font-weight: bold;
+         color: #ffffff;
+        }
+        
+.custom-checkbox {
+	display: inline-block;
+	font-size: 18px;
+	position: relative;
+}
+
+.custom-checkbox>[type=checkbox] {
+	display: none;
+}
+
+.custom-checkbox>span {
+	display: block;
+	width: 1em;
+	height: 1em;
+	background-image: url("/images/checkbox-empty.png");
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.custom-checkbox>[type=checkbox]:checked+span {
+	
+	background-image: url("/images/checkbox-check.png");
+}
+
+		.search-box {
+            background-color: #f1f1f1;
+            border: #D1CFCF 2px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+             height: 80px;
+        }
+
+        .form-input {
+            height: 40px;
+            font-size: 15px;
+            margin: 0 10px;
+        }
+        .form-input.tite{
+            width: 120px;
+        }
+
+       .btn, .btn.btn-positive {
+            width: 100px;
+            height: 40px;
+            font-size: 15px;
+            border-radius: 0px;
+        }
+		.btn.row{
+		padding-top: 0.8em;
+		}
+
+</style>
 <script>
     // 포맷팅된 날짜를 JavaScript 변수에 할당
     var formattedMatchDate = "${formattedMatchDate}";
@@ -50,8 +140,6 @@
                 <td><fmt:formatDate value="${reservationVo.reservationDate}" 
                     pattern="y년 M월 d일 E HH시 mm분 ss초"/></td>
                 <td><a href="/reservation/detail?reservationNo=${reservationVo.reservationNo}">상세</a></td>
-                <td><fmt:formatDate value="${reservationVo.matchDate}" 
-                    pattern="y년 M월 d일 E HH시 mm분 ss초"/></td>
             </tr>
         </c:when>
         <c:otherwise>
@@ -64,8 +152,6 @@
                 <td><fmt:formatDate value="${reservationVo.reservationDate}" 
                     pattern="y년 M월 d일 E HH시 mm분 ss초"/></td>
                 <td><a href="/reservation/detail?reservationNo=${reservationVo.reservationNo}">상세</a></td>
-                <td><fmt:formatDate value="${reservationVo.matchDate}" 
-                    pattern="y년 M월 d일 E HH시 mm분 ss초"/></td>
             </tr>
         </c:otherwise>
     </c:choose>

@@ -2,6 +2,8 @@ package com.kh.baseball.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +17,12 @@ import com.kh.baseball.dao.MatchDao;
 import com.kh.baseball.dao.MemberDao;
 import com.kh.baseball.dao.ReservationDao;
 import com.kh.baseball.dao.SeatDao;
+import com.kh.baseball.dao.TrueReservationDao;
 import com.kh.baseball.dto.MemberDto;
 import com.kh.baseball.dto.MemberListDto;
+import com.kh.baseball.dto.ReservationCancelDto;
 import com.kh.baseball.dto.ReservationDto;
+import com.kh.baseball.dto.TrueReservationDto;
 import com.kh.baseball.vo.AdminReservationListVO;
 import com.kh.baseball.vo.PaginationVO;
 
@@ -122,4 +127,21 @@ public class AdminController {
 		return "/WEB-INF/views/admin/reservation/detail.jsp";
 		
 	}
+	@Autowired
+	private TrueReservationDao trueReservationDao;
+	@GetMapping("/delete")
+	public String delete() {
+		return "/WEB-INF/views/admin/reservation/delete.jsp";
+	}
+	@PostMapping("/reservation/delete")
+    public String deleteReservations(@ModelAttribute TrueReservationDto trueReservationDto,@ModelAttribute ReservationCancelDto reservationCancelDto,HttpSession session) {
+		//memberId를 세션에있는 id로 저장해서 dto에 보냄
+		String memberId = (String) session.getAttribute("name");
+		reservationCancelDto.setMemberId(memberId);
+		
+		trueReservationDao.reservationCancelInsertBySeatNo(reservationCancelDto);
+		trueReservationDao.reservationDeleteByTicket(trueReservationDto);
+		trueReservationDao.seatStatusUpdate(trueReservationDto);
+            return "redirect:list";
+    }
 }
