@@ -23,6 +23,7 @@ import com.kh.baseball.dto.MatchDto;
 import com.kh.baseball.dto.SeatDto;
 import com.kh.baseball.dto.StadiumDto;
 import com.kh.baseball.dto.TeamDto;
+import com.kh.baseball.vo.PaginationVO;
 @Repository
 //잠시 admin 뺐음
 
@@ -166,11 +167,17 @@ public class MatchController {
 	}
 	
 	@RequestMapping("/list")
-	public String list(Model model) {
-		List<MatchDto> list = matchDao.selectList();
+	public String list(@ModelAttribute(name="vo") PaginationVO vo,Model model) {
+		int count = matchDao.countList(vo);
+		vo.setCount(count);
+		
+		
+		List<MatchDto> list = matchDao.selectList(vo);
 		LocalDateTime now = LocalDateTime.now();
 		Timestamp timestamp = Timestamp.valueOf(now);
 		model.addAttribute("now", timestamp);
+		
+		//pagination
 		
 		
 		model.addAttribute("list",list);

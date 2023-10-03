@@ -11,6 +11,7 @@ import com.kh.baseball.dto.MatchDto;
 import com.kh.baseball.mapper.MatchMapper;
 import com.kh.baseball.mapper.MatchVoMapper;
 import com.kh.baseball.vo.MatchVO;
+import com.kh.baseball.vo.PaginationVO;
 
 @Repository
 public class MatchDaoImpl implements MatchDao{
@@ -79,10 +80,15 @@ public class MatchDaoImpl implements MatchDao{
 	
 
 	@Override
-	public List<MatchDto> selectList() {
-		String sql ="select * from match order by match_date desc";
-		return jdbcTemplate.query(sql, matchMapper);
+	public List<MatchDto> selectList(PaginationVO vo) {
+		String sql ="select *from("
+				+ "			select rownum rn, TMP.* from("
+				+ "					select * from match order by match_date desc"
+				+ "		)TMP"
+				+ "		)where rn BETWEEN ? and ?";
+		return jdbcTemplate.query(sql, matchMapper, vo.getStartRow(), vo.getFinishRow());
 	}
+	
 	
 	@Override
 	public List<MatchVO> selectNoList() {
@@ -121,6 +127,13 @@ public class MatchDaoImpl implements MatchDao{
 	             "    WHERE ma.MATCH_NO = ?" +
 	             ")";
 		return jdbcTemplate.update(sql,matchNo)>0;
+	}
+
+	@Override
+	public int countList(PaginationVO vo) {
+		String sql ="select count(*) from match";
+		
+		return jdbcTemplate.queryForObject(sql, int.class);
 	}
 
 }
