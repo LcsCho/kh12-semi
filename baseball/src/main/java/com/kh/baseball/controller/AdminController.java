@@ -17,6 +17,7 @@ import com.kh.baseball.dao.ReservationDao;
 import com.kh.baseball.dao.SeatDao;
 import com.kh.baseball.dto.MemberDto;
 import com.kh.baseball.dto.MemberListDto;
+import com.kh.baseball.vo.AdminReservationListVO;
 import com.kh.baseball.vo.PaginationVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -100,4 +101,16 @@ public class AdminController {
 		memberDao.deleteBlock(memberId);
 		return "redirect:list";
 	}
+	
+	@RequestMapping("/reservation/list")
+	public String list(Model model,@ModelAttribute(name="vo") PaginationVO vo) {
+		int count = reservationDao.count(vo);
+		vo.setCount(count);
+		
+		
+		List<AdminReservationListVO> list = reservationDao.reservationListByAdmin(vo);
+		model.addAttribute("list",list);
+		
+		return "/WEB-INF/views/admin/reservation/list.jsp";
+	};
 }
