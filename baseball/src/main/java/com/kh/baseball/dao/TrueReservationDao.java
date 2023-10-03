@@ -5,6 +5,7 @@ import java.util.List;
 import com.kh.baseball.dto.ReservationCancelDto;
 import com.kh.baseball.dto.SeatListDto;
 import com.kh.baseball.dto.TrueReservationDto;
+import com.kh.baseball.vo.PaginationVO;
 import com.kh.baseball.vo.ReservationVO;
 
 public interface TrueReservationDao {
@@ -18,7 +19,7 @@ public interface TrueReservationDao {
 	boolean seatStatusUpdate(TrueReservationDto trueReservationDto);
 	
 	
-	List<ReservationVO> reservationList(String memberId);
+	List<ReservationVO> reservationList(PaginationVO vo,String memberId);
 	
 	
 	ReservationVO reservationSelectOne(int reservationNo);
@@ -30,7 +31,7 @@ public interface TrueReservationDao {
 	
 	void reservationCancelInsertBySeatNo(ReservationCancelDto reservationCancelDto);
 	
-	
+	int countList(PaginationVO vo, String memberId);
 	
 	
 }

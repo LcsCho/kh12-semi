@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -7,7 +8,8 @@
 	
 </script>
 <div class="row">
-	<table class="table table-hover table-border">
+	<h1 class="bold-font">${sessionScope.name} 님의 취소 목록</h1><br>
+	<table class="table table-hover table-border font-light">
 
 		<thead>
 			<tr>
@@ -36,6 +38,36 @@
 	</table>
 	<!-- 선택된 예매 번호 배열을 서버로 전송하는 버튼 -->
 </div>
+
+	<div class="row page-navigator mv-30">
+		<!-- 이전 버튼 -->
+		<c:if test="${!vo.first}">
+			<a href="list?${vo.prevQueryString}"> <i
+				class="fa-solid fa-angle-left"></i>
+			</a>
+		</c:if>
+
+		<!-- 숫자 버튼 -->
+		<c:forEach var="i" begin="${vo.begin}" end="${vo.end}" step="1">
+			<c:choose>
+				<c:when test="${vo.page == i}">
+					<a class="on">${i}</a>
+				</c:when>
+				<c:otherwise>
+					<a href="cancelList?${vo.getQueryString(i)}">${i}</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+
+		<!-- 다음 버튼 -->
+		<c:if test="${!vo.last}">
+			<a href="list?${vo.nextQueryString}"> <i
+				class="fa-solid fa-angle-right"></i>
+			</a>
+		</c:if>
+	</div>
+
+
 
 
 

@@ -9,8 +9,11 @@ import org.springframework.stereotype.Repository;
 import com.kh.baseball.dto.ReservationCancelDto;
 import com.kh.baseball.dto.ReservationDto;
 import com.kh.baseball.mapper.ReservationCancelMapper;
+import com.kh.baseball.mapper.ReservationListByAdminMApper;
 import com.kh.baseball.mapper.ReservationMapper;
 import com.kh.baseball.mapper.ReservationVoMapper;
+import com.kh.baseball.vo.AdminReservationListVO;
+import com.kh.baseball.vo.PaginationVO;
 import com.kh.baseball.vo.ReservationVO;
 
 @Repository
@@ -139,5 +142,47 @@ public class ReservationDaoImpl implements ReservationDao{
 	             "INNER JOIN seat_area sa ON rs.seat_area_no = sa.SEAT_AREA_NO " +
 	             "WHERE ma.MATCH_NO = ?";
 		return jdbcTemplate.query(sql, reservationVoMapper, matchNo);
+	}
+
+	@Autowired
+	private ReservationListByAdminMApper reservationListByAdminMApper;
+	@Override
+	public List<AdminReservationListVO> reservationListByAdmin(PaginationVO vo) {
+		String sql ="select * from ("
+				+ "select rownum rn, TMP.* from ("
+				+ "SELECT ma.HOME_TEAM,"
+				+ " ma.AWAY_TEAM,"
+				+ " sa.seat_area_zone,"
+				+ " s.SEAT_ROW,"
+				+ " s.SEAT_COL,"
+				+ " rs.member_id,"
+				+ " rs.RESERVATION_DATE,"
+				+ " rs.RESERVATION_NO,"
+				+ " ma.STADIUM_NAME,"
+				+ " sa.SEAT_AREA_PRICE,"
+				+ " s.seat_no"
+				+ " FROM"
+				+ " reservation rs "
+				+ "INNER JOIN match ma ON rs.match_no = ma.MATCH_NO "
+				+ "INNER JOIN seat_area sa ON rs.SEAT_AREA_NO = sa.SEAT_AREA_NO "
+				+ "INNER JOIN seat s ON s.SEAT_NO = rs.SEAT_NO"
+			+ ")TMP"
+			+ ") where rn between ? and ?";
+		
+		return jdbcTemplate.query(sql, reservationListByAdminMApper, vo.getStartRow(), vo.getFinishRow());
+	}
+	@Override
+	public AdminReservationListVO reservationDetailByAdmin(int reservationNo) {
+		String sql = "SELECT ma.HOME_TEAM, ma.AWAY_TEAM, sa.seat_area_zone, s.SEAT_ROW, s.SEAT_COL, rs.member_id, rs.RESERVATION_DATE, rs.RESERVATION_NO, ma.STADIUM_NAME, sa.SEAT_AREA_PRICE, s.seat_no FROM reservation rs INNER JOIN match ma ON rs.match_no = ma.MATCH_NO INNER JOIN seat_area sa ON rs.SEAT_AREA_NO = sa.SEAT_AREA_NO INNER JOIN seat s ON s.SEAT_NO = rs.SEAT_NO WHERE reservation_no = ?";
+		List<AdminReservationListVO> list = jdbcTemplate.query(sql, reservationListByAdminMApper,reservationNo);
+		return list.isEmpty() ? null : list.get(0);
+	}
+
+
+
+	@Override
+	public int count(PaginationVO vo) {
+		String sql ="select count(*) from reservation";
+		return jdbcTemplate.queryForObject(sql, int.class);
 	}
 }

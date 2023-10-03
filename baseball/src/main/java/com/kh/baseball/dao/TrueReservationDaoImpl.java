@@ -13,6 +13,7 @@ import com.kh.baseball.mapper.MatchInfoMapper;
 import com.kh.baseball.mapper.ReservationVoMapper;
 import com.kh.baseball.mapper.SeatListMapper;
 import com.kh.baseball.mapper.TrueReservationMapper;
+import com.kh.baseball.vo.PaginationVO;
 import com.kh.baseball.vo.ReservationVO;
 
 @Repository
@@ -131,14 +132,23 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 	    // 모든 업데이트가 성공했을 때 true를 반환
 	    return updatedCount == reservationTicket;
 	}
+	
+	//회원별 예매 리스트
 	@Autowired
 	private ReservationVoMapper reservationVoMapper;
 	@Override
-	public List<ReservationVO> reservationList(String memberId) {
-		String sql = "select * from reservation_Vo where member_id =? order by reservation_no desc ";
+	public List<ReservationVO> reservationList(PaginationVO vo,String memberId) {
+		String sql = "select * from ("
+				+ "select rownum rn, TMP.* from ("
+				+ "select * from reservation_Vo where member_id =? order by reservation_no desc "
+			+ ")TMP"
+		+ ") where rn between ? and ?";
 		
-		return jdbcTemplate.query(sql, reservationVoMapper, memberId);
+		return jdbcTemplate.query(sql, reservationVoMapper, memberId, vo.getStartRow(), vo.getFinishRow());
 	}
+
+	
+	//예매 상세
 	@Override
 	public ReservationVO reservationSelectOne(int reservationNo) {
 		String sql = "select * from reservation_vo where reservation_no = ?";
@@ -185,6 +195,12 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 
 	        jdbcTemplate.update(sql, data);
 	    }
+	}
+
+	@Override
+	public int countList(PaginationVO vo, String memberId) {
+		String sql = "select count(*) from reservation where member_id = ?";
+		return jdbcTemplate.queryForObject(sql, int.class,memberId);
 	}
 	}
 	

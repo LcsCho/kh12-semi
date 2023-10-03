@@ -12,6 +12,7 @@ import com.kh.baseball.dto.SeatListDto;
 import com.kh.baseball.mapper.SeatGourpMapper;
 import com.kh.baseball.mapper.SeatListMapper;
 import com.kh.baseball.mapper.SeatMapper;
+import com.kh.baseball.vo.PaginationVO;
 
 @Repository
 public class SeatDaoImpl implements SeatDao {
@@ -159,28 +160,18 @@ public class SeatDaoImpl implements SeatDao {
 	
 	
 	@Override
-	public List<SeatListDto> seatGroupZoneList(String seatAreaZone,String stadiumName) {
+	public List<SeatListDto> seatGroupZoneList(PaginationVO vo,String seatAreaZone,String stadiumName) {
 		// 좌석상태와 경기장이름 좌석구역을 확인 할 수 있는 리스트 출력
-		String sql = "SELECT "
-		        + "s.seat_no, "
-		        + "sa.seat_area_no, "
-		        + "st.stadium_name, "
-		        + "sa.seat_area_price,"
-		        + "sa.seat_area_zone, " 
-		        + "s.seat_col, "
-		        + "s.seat_row, "
-		        + "s.seat_status, "
-		        + "st.stadium_no " 
-		        + "FROM "
-		        + "seat s "
-		        + "INNER JOIN "
-		        + "seat_area sa ON s.seat_area_no = sa.seat_area_no "
-		        + "INNER JOIN "
-		        + "stadium st ON sa.stadium_no = st.stadium_no "
-		        + "where seat_area_zone=? and stadium_name=?";
+		String sql = "select * from ("
+				+ "select rownum rn, TMP.* from ("
+				+ "SELECT s.seat_no, sa.seat_area_no, st.stadium_name, sa.seat_area_price, sa.seat_area_zone, s.seat_col, s.seat_row, s.seat_status, st.stadium_no FROM seat s INNER JOIN seat_area sa ON s.seat_area_no = sa.seat_area_no INNER JOIN stadium st ON sa.stadium_no = st.stadium_no where seat_area_zone=? and stadium_name=?"
+			+ ")TMP"
+		+ ") where rn between ? and ?";
 		
-		return jdbcTemplate.query(sql,seatListMapper,seatAreaZone,stadiumName);	
+		
+		return jdbcTemplate.query(sql,seatListMapper,seatAreaZone,stadiumName, vo.getStartRow(), vo.getFinishRow());	
 		}
+
 	
 	
 	
@@ -206,5 +197,11 @@ public class SeatDaoImpl implements SeatDao {
 	             + "st.stadium_name";
 		return jdbcTemplate.query(sql,seatGourpMapper,stadiumName);	
 		}
+
+	@Override
+	public int countList(PaginationVO vo, String seatAreaZone, String stadiumName) {
+		String sql = "SELECT COUNT(*)FROM seat s INNER JOIN seat_area sa ON s.seat_area_no = sa.seat_area_no INNER JOIN stadium st ON sa.stadium_no = st.stadium_no WHERE sa.SEAT_AREA_ZONE = ?  and st.stadium_name = ? GROUP BY sa.seat_area_zone, st.stadium_name";
+		return jdbcTemplate.queryForObject(sql, int.class,seatAreaZone,stadiumName);
+	}
 
 }
