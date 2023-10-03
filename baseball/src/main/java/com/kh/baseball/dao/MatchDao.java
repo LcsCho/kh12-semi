@@ -20,4 +20,7 @@ public interface MatchDao {
 	// 해당 날짜 경기 조회
 	List<MatchDto> selectDate(Timestamp matchDate);
 	
+	
+	boolean seatStatusUpdateByMatchFinish(int matchNo);
+	
 }

@@ -26,16 +26,7 @@ public class ReservationListByAdminMApper implements RowMapper<AdminReservationL
 		adminReservationListVO.setReservationNo(rs.getInt("RESERVATION_NO"));
 		adminReservationListVO.setStadiumName(rs.getString("STADIUM_NAME"));
 		adminReservationListVO.setSeatAreaPrice(rs.getInt("SEAT_AREA_PRICE"));
-        String seatNoString = rs.getString("seat_no");
-        if (seatNoString != null) {
-            String[] seatNoArray = seatNoString.split(",");
-            int[] seatNoInts = Arrays.stream(seatNoArray)
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
-            adminReservationListVO.setSeatNo(seatNoInts);
-        } else {
-        	adminReservationListVO.setSeatNo(null); // 예외 처리: seat_no가 null인 경우
-        }
+		adminReservationListVO.setSeatNo(rs.getInt("seat_no"));
 	        
 		
 		return adminReservationListVO;

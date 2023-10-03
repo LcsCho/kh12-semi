@@ -108,4 +108,19 @@ public class MatchDaoImpl implements MatchDao{
 		return jdbcTemplate.query(sql, matchMapper, data);
 	}
 
+	@Override
+	public boolean seatStatusUpdateByMatchFinish(int matchNo) {
+		String sql = "UPDATE SEAT " +
+	             "SET SEAT_STATUS = 'Y' " +
+	             "WHERE SEAT_NO IN (" +
+	             "    SELECT s.SEAT_NO " +
+	             "    FROM SEAT s " +
+	             "    INNER JOIN SEAT_AREA sa ON s.SEAT_AREA_NO = sa.SEAT_AREA_NO " +
+	             "    INNER JOIN STADIUM st ON st.STADIUM_NO = sa.STADIUM_NO " +
+	             "    INNER JOIN MATCH ma ON ma.STADIUM_NAME = st.STADIUM_NAME " +
+	             "    WHERE ma.MATCH_NO = ?" +
+	             ")";
+		return jdbcTemplate.update(sql,matchNo)>0;
+	}
+
 }

@@ -20,6 +20,7 @@ import com.kh.baseball.dao.MatchDao;
 import com.kh.baseball.dao.StadiumDao;
 import com.kh.baseball.dao.TeamDao;
 import com.kh.baseball.dto.MatchDto;
+import com.kh.baseball.dto.SeatDto;
 import com.kh.baseball.dto.StadiumDto;
 import com.kh.baseball.dto.TeamDto;
 @Repository
@@ -111,6 +112,9 @@ public class MatchController {
 	@PostMapping("/updateScore")
 	public String updateMatch(@ModelAttribute MatchDto matchDto) {
 		matchDao.update(matchDto);
+		
+		//match 종료시 스코어 업데이트 하면 좌석 상태를 다 Y로 만드는 절
+		matchDao.seatStatusUpdateByMatchFinish(matchDto.getMatchNo());
 
 		return "redirect:detailMatch?matchNo="+matchDto.getMatchNo();
 	}
