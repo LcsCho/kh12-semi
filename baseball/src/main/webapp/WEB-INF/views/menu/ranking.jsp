@@ -5,40 +5,41 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <style>
-table {
-	border-collapse: collapse;
-}
-
-table th {
-	border-top: #62676C 3px solid;
-	border-bottom: #62676C 2px solid;
-	border-right: #D1CFCF 2px solid;
-	background-color: #f1f1f1;
-	font-weight: bold;
-	height: 40px;
-	padding-top: 0.5em;
-	font-size: 16px;
-	color: #62676C;
-	font-weight: bold;
-}
-
-table td {
-	border-top: #D1CFCF 2px solid;
-	border-bottom: #D1CFCF 2px solid;
-	border-right: #D1CFCF 3px solid;
-	height: 35px;
-	padding-top: 0.4em;
-}
-
-td:nth-last-child(1), th:nth-last-child(1) {
-	border-right: none;
-}
+	table {
+		border-collapse: collapse;
+	}
+	
+	table th {
+		border-top: #62676C 3px solid;
+		border-bottom: #62676C 2px solid;
+		border-right: #D1CFCF 2px solid;
+		background-color: #f1f1f1;
+		font-weight: bold;
+		height: 40px;
+		padding-top: 0.6em;
+		font-size: 16px;
+		color: #62676C;
+		font-weight: bold;
+	}
+	
+	table td {
+		border-top: #D1CFCF 2px solid;
+		border-bottom: #D1CFCF 2px solid;
+		border-right: #D1CFCF 3px solid;
+		height: 35px;
+		text-align: center;
+		padding-top: 0.3em;
+	}
+	
+	td:nth-last-child(1), th:nth-last-child(1) {
+		border-right: none;
+	}
 </style>
-<table width="1000px">
 
 	<h3>팀 순위</h3>
 	<br>
 
+<table width="1000px">
 	<thead>
 		<tr>
 			<th>순위</th>
@@ -56,7 +57,8 @@ td:nth-last-child(1), th:nth-last-child(1) {
 	<tbody align="center">
 		<c:forEach var="teamVo" items="${voList}" varStatus="loop">
 			<tr>
-				<td><c:choose>
+				<td>
+				<c:choose>
 						<c:when test="${loop.index == 0}">
 							<i class="fa-solid fa-medal"
 								style="color: #ffd700; font-size: 20px;"></i>
@@ -72,13 +74,13 @@ td:nth-last-child(1), th:nth-last-child(1) {
 						<c:otherwise>
 						${loop.index + 1}
 					</c:otherwise>
-					</c:choose></td>
+					</c:choose>
+					</td>
 				<%-- 				<td style="text-align: center;"><img src="./images/${teamVo.teamName}.jpg" style="max-width: 25px; max-height: 25px; float: center;"><a href="rankingDetail?teamNo=${teamVo.teamNo}" class="link">${teamVo.teamName}</a></td> --%>
-				<td style="text-align: center;">
-					<div style="display: flex; align-items: center;">
+				<td>
+					<div style="text-align: center;">
 						<img src="./images/${teamVo.teamName}.jpg"
-							style="max-width: 25px; max-height: 25px;"> <a
-							href="rankingDetail?teamNo=${teamVo.teamNo}" class="link">${teamVo.teamName}</a>
+							style="max-width: 25px; max-height: 25px;">${teamVo.teamName}</a>
 					</div>
 				</td>
 				<td>${teamVo.teamMatch}</td>
