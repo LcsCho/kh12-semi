@@ -149,9 +149,7 @@ td:nth-child(2) {
 								<td><fmt:formatDate
 										value="${reservationVo.reservationDate}"
 										pattern="y년 M월 d일 E HH시 mm분 ss초" /></td>
-								<td><fmt:formatDate
-										value="${reservationVo.matchDate}"
-										pattern="y년 M월 d일 E HH시 mm분 ss초" /></td>
+								
 								<td><a
 									href="/reservation/detail?reservationNo=${reservationVo.reservationNo}">상세</a></td>
 							</tr>
@@ -169,9 +167,7 @@ td:nth-child(2) {
 								<td><fmt:formatDate
 										value="${reservationVo.reservationDate}"
 										pattern="y년 M월 d일 E HH시 mm분 ss초" /></td>
-								<td><fmt:formatDate
-										value="${reservationVo.matchDate}"
-										pattern="y년 M월 d일 E HH시 mm분 ss초" /></td>
+								
 								<td><a
 									href="/reservation/detail?reservationNo=${reservationVo.reservationNo}">상세</a></td>
 							</tr>
