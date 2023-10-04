@@ -114,19 +114,17 @@
 	
 	<%-- 각종 버튼이 위치하는 곳 --%>
 	<div class="row right">
+		<c:if test="${sessionScope.level == '관리자'}">
 		<a class="btn btn-positive row" href="write">
 			새글
 		</a>
-		
-		<%-- 수정/삭제는 소유자일 경우만 나와야 한다 --%>
-<%-- 		<c:if test="${sessionScope.level == '관리자'}"> --%>
 		<a class="btn btn-edit row" href="edit?boardNo=${boardDto.boardNo}">		
 			수정
 		</a>
 		<a class="btn btn-negative row" href="delete?boardNo=${boardDto.boardNo}">
 			삭제
 		</a>
-<%-- 		</c:if> --%>
+</c:if>
 		<a class="btn row" href="list">
 			목록
 		</a>

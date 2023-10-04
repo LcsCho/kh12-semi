@@ -179,11 +179,11 @@ table {
 					<button type="submit" class="btn btn-negative delete-btn">
 						 일괄삭제
 					</button>
-				</c:if>
-
 				<a href="write" class="btn row"> 글쓰기
 				</a>
+				</c:if>
 			</div>
+
 		</c:if>
 
 		<%-- 
