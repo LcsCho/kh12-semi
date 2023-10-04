@@ -57,7 +57,21 @@
             var displayText = currentYear + "년 " + currentMonthName;
             currentMonthDisplay.textContent = displayText;
         }
+        // 예매 버튼 클릭 시 처리
+        function handleReservationClick(event) {
+            event.preventDefault(); // 기본 동작 중단
 
+            // 여기에서 세션 값 확인
+            var sessionNameIsNull = <%= (session.getAttribute("name") == null) ? true : false %>;
+
+            if (sessionNameIsNull) {
+                // 세션 값이 없을 때 알림 표시
+                alert('로그인 후 이용 가능합니다.');
+            } else {
+                // 사용자가 로그인한 경우, 해당 페이지로 이동
+                window.location.href = event.target.href;
+            }
+        }
         // 날짜 채우기 함수
         function fillCalendar(year, month, calendarId) {
             var calendar = document.getElementById(calendarId);
@@ -172,6 +186,8 @@
                                     reservationLink.classList.add("div-ing");
                                     cell.appendChild(reservationLink);
                                 } else {
+                                	 // 예매 버튼에 클릭 이벤트 핸들러 연결
+                                    reservationLink.addEventListener("click", handleReservationClick);
                                     var beforeReservationDiv = document.createElement("div");
                                     beforeReservationDiv.innerHTML = "오픈예정";
                                     beforeReservationDiv.className = "btn";
@@ -189,6 +205,7 @@
                 }
             }
         }
+
 
         // 달력 새로고침 함수
         function refreshCalendar() {
