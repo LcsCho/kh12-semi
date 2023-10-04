@@ -50,12 +50,12 @@
          <tr>
          	<th>좌석수행</th>
          	<td>
-            <input name="seatRow" class="form-input w-100" type="number">
+            <input name="seatCol" class="form-input w-100" type="number">
             </td>
          </tr>
         <tr>
 			<th>좌석수열</th>
-            <td><input name="seatCol" class="form-input w-100" type="number">
+            <td><input name="seatRow" class="form-input w-100" type="number">
          	</td>
          <tr>
          	<th>예매상태</th>
