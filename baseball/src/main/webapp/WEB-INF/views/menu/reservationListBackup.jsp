@@ -130,9 +130,10 @@ document.addEventListener('DOMContentLoaded', () => {
         updateMatchDisplay(currentDate);
     });
 });
-function checkLogin() {
+function checkLogin(button) {
     // 여기에 로그인 여부를 확인하는 코드를 추가합니다.
     var sessionNameIsNull = <%= (session.getAttribute("name") == null) ? true : false %>;
+    var matchNo = button.getAttribute("data-match-no"); // data-match-no 속성 값 가져오기
     
     if (sessionNameIsNull) {
         // 세션 값이 없을 때 알림 표시
@@ -196,24 +197,24 @@ function checkLogin() {
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div class="col-7-5">
-				<div class="row">
-					<c:choose>
-						<c:when test="${now.time >= matchVo.matchDate.time}">
-                                <div class="btn btn-end">예매마감</div>
-                            </c:when>
-						<c:when
-							test="${now.time >= matchVo.matchDate.time - (4 * 24 * 60 * 60 * 1000)}">
-							<a href="javascript:void(0);" onclick="checkLogin()" class="btn btn-ing">예매하기</a>
-						</c:when>
-						<c:otherwise>
-                                <div class="btn btn-before">오픈예정</div>
-                            </c:otherwise>
-					</c:choose>
-				</div>
-			</div>
-		</div>
-	</c:forEach>
+			 <div class="col-7-5">
+                <div class="row">
+                    <c:choose>
+                        <c:when test="${now.time >= matchVo.matchDate.time}">
+                            <div class="btn btn-end">예매마감</div>
+                        </c:when>
+                        <c:when test="${now.time >= matchVo.matchDate.time - (4 * 24 * 60 * 60 * 1000)}">
+                            <!-- data-match-no 속성을 사용하여 matchNo 값을 설정 -->
+                            <a href="javascript:void(0);" data-match-no="${matchVo.matchNo}" onclick="checkLogin(this)" class="btn btn-ing">예매하기</a>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="btn btn-before">오픈예정</div>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+            </div>
+        </div>
+    </c:forEach>
 </div>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
