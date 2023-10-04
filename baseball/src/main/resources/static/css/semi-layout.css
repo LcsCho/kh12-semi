@@ -14,6 +14,7 @@ header {
 
 }
 
+
 header> .logo {
     width: 25%;
     display: flex;
@@ -51,3 +52,4 @@ section {
 /*    padding-top: 40px;*/
     padding-bottom: 40px;
 }
+

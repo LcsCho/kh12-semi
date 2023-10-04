@@ -101,7 +101,7 @@ $(function(){
         }
         else {//형식이 유효하지 않다면(1차실패)
             $(e.target).addClass("fail");
-            status.memberId = false;
+            status.memberNick = false;
         }
     });
     $("[name=memberEmail]").blur(function(){
@@ -118,7 +118,7 @@ $(function(){
         var isValid = contact.length == 0 || regex.test(contact);
         $(this).removeClass("success fail");
         $(this).addClass(isValid ? "success" : "fail");
-        status.memberContact = isValid;
+        status.memberTel = isValid;
     });
     $("[name=memberBirth]").blur(function(){
         var regex = /^(19[0-9]{2}|20[0-9]{2})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
@@ -145,15 +145,15 @@ $(function(){
 
     //페이지 이탈 방지
     //- window에 beforeunload 이벤트 설정
-    $(window).on("beforeunload", function(){
-        return false;
+   $(window).on("beforeunload", function(){
+       return false;
     });
 
-    //- form 전송할 때는 beforeunload 이벤트를 제거
+ //- form 전송할 때는 beforeunload 이벤트를 제거
     $(".join-form").submit(function(e){
         $(".form-input").blur();
         if(!status.ok()) {
-            e.preventDefault();
+           e.preventDefault();
             //return false;
         }
         else {

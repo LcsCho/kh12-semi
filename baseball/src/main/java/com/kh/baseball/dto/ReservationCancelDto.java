@@ -6,17 +6,10 @@ import lombok.Data;
 
 @Data
 public class ReservationCancelDto {
-	private int reservationNo;
-	private int matchNo;
-	private int seatNo;
-	private String homeTeam, awayTeam;
+	
+	private int reservationNo , reservationCancelNo;
+	private Date reservationCancelDate;
+	private int[] seatNo;
 	private String memberId;
-	private String stadiumName;
-	private Date reservationDate;
-	private int seatAreaPrice;
-	private int stadiumNo;
-	private String seatAreaZone;
-	private int seatRow, seatCol;
-	private int seatAreaNo;
-	private Date matchDate;
+	
 }

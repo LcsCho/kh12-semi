@@ -12,6 +12,41 @@
 </c:choose>
 
 <style>
+table {
+            border-collapse: collapse;
+        }
+
+        table th {
+            border-top: #62676C 3px solid;
+            border-bottom: #62676C 2px solid;         
+            background-color: #f1f1f1;
+            font-weight: bold;
+            height: 40px;
+            padding-top: 0.5em;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        table td {
+            border-top: #D1CFCF 2px solid;
+            border-bottom: #D1CFCF 2px solid;      
+            height: 40px;
+			padding-top: 0.6em;
+			font-size: 16px;
+            color: #62676C;
+            font-weight: bold;
+        }
+
+        td:nth-last-child(1),
+        th:nth-last-child(1) {
+            border-right: none;
+        }
+        
+        td:nth-child(2){
+        font-weight: bold;
+         color: #ffffff;
+        }
+        
 .custom-checkbox {
 	display: inline-block;
 	font-size: 18px;
@@ -36,6 +71,35 @@
 	
 	background-image: url("/images/checkbox-check.png");
 }
+
+		.search-box {
+            background-color: #f1f1f1;
+            border: #D1CFCF 2px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+             height: 80px;
+        }
+
+        .form-input {
+            height: 40px;
+            font-size: 15px;
+            margin: 0 10px;
+        }
+        .form-input.tite{
+            width: 120px;
+        }
+
+       .btn, .btn.btn-positive {
+            width: 100px;
+            height: 40px;
+            font-size: 15px;
+            border-radius: 0px;
+        }
+		.btn.row{
+		padding-top: 0.8em;
+		}
+
 </style>
 
 <!-- jquery cdn -->
@@ -88,11 +152,23 @@
 </script>
 
 
-<div class="container w-800">
-	<div class="row">
-		<h1>공지사항</h1>
-	</div>
 
+<h3>공지사항</h3>
+<br>
+
+	<!-- 검색창 -->
+	<form action="list" method="get">
+        <div class="row search-box w-1000">
+            <select name="type" required class="form-input tite">
+                <option value="board_title">제목</option>
+            </select> <input type="search" name="keyword" required class="form-input w-65" placeholder="검색어 입력"
+                value="${param.keyword}">
+            <button type="submit" class="btn btn-positive">
+                검색
+            </button>
+        </div>
+    </form>
+	
 	<!-- 폼 시작 -->
 	<form class="delete-form" action="deleteByAdmin" method="post">
 
@@ -101,11 +177,11 @@
 			<div class="row right">
 				<c:if test="${sessionScope.level == '관리자'}">
 					<button type="submit" class="btn btn-negative delete-btn">
-						<i class="fa-solid fa-trash"></i> 일괄삭제
+						 일괄삭제
 					</button>
 				</c:if>
 
-				<a href="write" class="btn"> <i class="fa-solid fa-pen"></i> 글쓰기
+				<a href="write" class="btn row"> 글쓰기
 				</a>
 			</div>
 		</c:if>
@@ -118,8 +194,7 @@
 			<div class="row left">&quot;${vo.keyword}&quot;에 대한 검색 결과</div>
 		</c:if>
 
-		<div class="row">
-			<table class="table table-slit">
+		<table width="1000px">
 				<thead>
 					<tr>
 						<c:if test="${sessionScope.level == '관리자'}">
@@ -130,12 +205,13 @@
 							</th>
 						</c:if>
 						<th>번호</th>
-						<th width="40%">제목</th>
+						<th width="50%">제목</th>
 						<th>작성일</th>
 						<th>조회수</th>
 					</tr>
 				</thead>
-				<tbody>
+				
+				<tbody align="center">
 					<c:forEach var="boardDto" items="${list}">
 						<tr>
 							<c:if test="${sessionScope.level == '관리자'}">
@@ -159,7 +235,6 @@
 					</c:forEach>
 				</tbody>
 			</table>
-		</div>
 
 		<!-- 폼 종료 -->
 	</form>
@@ -192,18 +267,7 @@
 		</c:if>
 	</div>
 
-	<!-- 검색창 -->
-	<form action="list" method="get">
-		<div class="row">
-			<select name="type" required class="form-input">
-				<option value="board_title">제목</option>
-			</select> <input type="search" name="keyword" required class="form-input"
-				placeholder="검색어 입력" value="${param.keyword}">
-			<button type="submit" class="btn btn-positive">
-				<i class="fa-solid fa-magnifying-glass"></i> 검색
-			</button>
-		</div>
-	</form>
-</div>
 
+
+</table>
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

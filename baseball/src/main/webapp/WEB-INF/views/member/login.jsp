@@ -33,13 +33,13 @@
     .btn:hover{ /* 마우스가 버튼에 올라가면 배경을 조금 더 어둡게 처리 */
         filter: brightness(95%);
     }
-	
+    
+
 </style>
 
-<div class="center">
 	 <form action="login" method="post" autocomplete="off">
                 <div class="container w-400">
-
+		
                     <div class="row">
                         <input type="text" name="memberId" class="form-input w-100" placeholder="아이디">
                     </div>
@@ -71,7 +71,6 @@
 <c:if test="${param.error != null}">
 	<h3 style="color: red">아이디 또는 비밀번호가 일치하지 않습니다.</h3>
 </c:if>
-
 
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

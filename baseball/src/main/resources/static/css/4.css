@@ -54,6 +54,18 @@
     width: 50%;
 }
 
+.w-60 {
+    width: 60%;
+}
+
+.w-65 {
+    width: 65%;
+}
+
+.w-65 {
+    width: 70%;
+}
+
 .w-75 {
     width: 75%;
 }
@@ -234,6 +246,12 @@ textarea.form-input.fixed {
 .btn.btn-negative {
     border-color: #e17055;
     background-color: #e17055;
+    color: white;
+}
+
+.btn.btn-edit{	
+	 border-color: #0984e3;
+    background-color: #0984e3;
     color: white;
 }
 
@@ -482,8 +500,8 @@ textarea.form-input.fixed {
 .page-navigator>a.on,
 .page-navigator>a:hover {
     /* border-color: #0984e3; */
-    box-shadow: 0px 0px 2px 0px #0984e3;
-    color: #0984e3;
+    box-shadow: 0px 0px 2px 0px #360a01;
+    color: #360a01;
 }
 
 /*
@@ -751,7 +769,7 @@ a.link:visited {
 }
 
 a.link:hover {
-    color: #0984e3;
+    color: #737373;
 }
 
 

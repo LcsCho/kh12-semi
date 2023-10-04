@@ -8,7 +8,7 @@ import lombok.Data;
 public class TrueReservationDto {
 	private int reservationNo;
 	private int matchNo;
-	private int seatNo;
+	private int[] seatNo;
 	private int homeTeam, awayTeam;
 	private String memberId;
 	private int seatAreaNo;

@@ -21,6 +21,7 @@ import com.kh.baseball.dao.MatchDao;
 import com.kh.baseball.dao.MemberDao;
 import com.kh.baseball.dto.MatchDto;
 import com.kh.baseball.dto.MemberDto;
+import com.kh.baseball.vo.MatchVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,7 +48,8 @@ public class MemberController {
 	@PostMapping("/join")
 	public String join(@ModelAttribute MemberDto memberDto) {
 		memberDao.insert(memberDto);
-		return "redirect:joinFinish";
+		//return "redirect:joinFinish";
+		return "redirect:/member/joinFinish";
 	}
 	
 	@RequestMapping("/joinFinish")
@@ -83,7 +85,7 @@ public class MemberController {
 			//memberDao.updateMemberLogin(inputDto.getMemberId());
 			if("관리자".equals(findDto.getMemberLevel())) {
 			//메인페이지로 이동
-			return "redirect:/admin/home"; 
+			return "redirect:/"; 
 		}
 			else {
 				return "redirect:/"; 
@@ -246,13 +248,15 @@ public class MemberController {
 	
 	@RequestMapping("/match/list")
 	public String memberList(Model model) {
-		List<MatchDto> list = matchDao.selectList();
+		// List<MatchDto> list = matchDao.selectList();
+		List<MatchVO> voList = matchDao.selectNoList();
 		LocalDateTime now = LocalDateTime.now();
 		Timestamp timestamp = Timestamp.valueOf(now);
 		model.addAttribute("now", timestamp);
+		model.addAttribute("voList", voList);
 		
 		
-		model.addAttribute("list",list);
+		// model.addAttribute("list",list);
 		return "/WEB-INF/views/match/list.jsp";				
 	}
 	
