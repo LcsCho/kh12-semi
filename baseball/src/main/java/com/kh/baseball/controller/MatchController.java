@@ -51,6 +51,12 @@ public class MatchController {
 	}
 	@PostMapping("/insert")
 	public String insert(@ModelAttribute MatchDto matchDto, @RequestParam("matchDto.matchDateStr") String matchDateStr) {
+		// 전달된 정보로 검사 후 차단 코드 추가
+		String subStrMatchDate = matchDateStr.substring(0, 10);
+		if(matchDao.checkDuplicate(matchDto, subStrMatchDate)) {
+			return "redirect:insertError";
+		}
+		
 		int matchNo = matchDao.sequence();
 		matchDto.setMatchNo(matchNo);
 		
@@ -70,6 +76,11 @@ public class MatchController {
 		matchDao.insertMatch(matchDto);
 
 		return "redirect:detailMatch?matchNo="+matchNo;
+	}
+	
+	@RequestMapping("/insertError") 
+		public String insertError() {
+		return "/WEB-INF/views/admin/match/insertError.jsp";
 	}
 	
 	@GetMapping("/updateDate")

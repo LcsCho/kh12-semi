@@ -1,11 +1,11 @@
 package com.kh.baseball.dao;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.baseball.dto.MatchDto;
 import com.kh.baseball.mapper.MatchMapper;
@@ -77,7 +77,6 @@ public class MatchDaoImpl implements MatchDao{
 		return list.isEmpty() ? null : list.get(0);
 	}
 	
-	
 
 	@Override
 	public List<MatchDto> selectList(PaginationVO vo) {
@@ -107,11 +106,15 @@ public class MatchDaoImpl implements MatchDao{
 	}
 	
 	@Override
-	public List<MatchDto> selectDate(Timestamp matchDate) {
+	public boolean checkDuplicate(MatchDto matchDto, @RequestParam String subStrMatchDate) {
 		String sql = "SELECT * FROM MATCH " +
-	             "WHERE trunc(match_date) = trunc(to_timestamp('?'))";
-		Object[] data = {matchDate};
-		return jdbcTemplate.query(sql, matchMapper, data);
+	             "WHERE " +
+	             "  (home_team IN (?, ?) OR away_team IN (?, ?) OR stadium_name = ?) " +
+	             "  AND to_char(match_date, 'YYYY-MM-DD') = ?";
+		Object[] data = {matchDto.getHomeTeam(), matchDto.getAwayTeam(),
+				matchDto.getAwayTeam(), matchDto.getHomeTeam(),
+				matchDto.getStadiumName(), subStrMatchDate};
+		return jdbcTemplate.update(sql,data) > 0;
 	}
 
 	@Override

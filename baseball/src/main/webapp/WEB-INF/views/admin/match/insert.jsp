@@ -44,42 +44,6 @@
 				event.preventDefault(); // 중복이 발견되면 폼 제출 막기
 			}
 		});
-
-		function checkDuplicate() {
-			var matchDateValue = matchDateInput.value;
-			var currentDate = new Date();
-			var selectedDate = new Date(matchDateValue);
-
-			if (selectedDate < currentDate) {
-				alert("경기일을 현재 시간 이전으로 선택할 수 없습니다.");
-				return false;
-			}
-
-			// AJAX 요청을 통해 중복 여부 확인
-			$.ajax({
-				url : "/rest/match/matchCheck",
-				type : "POST",
-				data : {
-					matchDate : $("[name=matchDate]").val(),
-					homeTeam : $("[name=homeTeam]").val(),
-					awayTeam : $("[name=awayTeam]").val(),
-					stadiumName : $("[name=stadiumName]").val()
-				},
-				success : function(response) {
-					if (response === "N") {
-						alert("이미 중복된 경기, 팀이 있습니다. 다른 경기장 또는 팀을 선택하세요.");
-					}
-					// 중복이 없는 경우와 요청 실패 시 버튼 활성화
-					submitButton.disabled = response == "N";
-				},
-				error : function() {
-					// 요청 실패 시 버튼 활성화
-					submitButton.disabled = false;
-				}
-			});
-
-			return true; // 중복 여부 확인 중
-		}
 	});
 </script>
 
