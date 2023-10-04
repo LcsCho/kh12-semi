@@ -8,6 +8,7 @@
 <!-- swiper cdn-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    
 <style>
 	.box {
 	    box-shadow: 0px 0px 0px 2px #CCCCCC;
@@ -113,19 +114,19 @@
                 <div class="swiper-wrapper">
                     <!-- Slides -->
                     <div class="swiper-slide">
-                        <img src="./images/main1.jpg" class="main-image"  width="1000px" >
+                        <img src="/images/main1.jpg" class="main-image"  width="1000px" >
                     </div>
                     <div class="swiper-slide">
-                        <img src="./images/main2.jpg" class="main-image"  width="1000px" >
+                        <img src="/images/main2.jpg" class="main-image"  width="1000px" >
                     </div>
                     <div class="swiper-slide">
-                        <img src="./images/main3.jpg" class="main-image"  width="1000px" >
+                        <img src="/images/main3.jpg" class="main-image"  width="1000px" >
                     </div>
                     <div class="swiper-slide">
-                        <img src="./images/main4.jpg" class="main-image"  width="1000px" >
+                        <img src="/images/main4.jpg" class="main-image"  width="1000px" >
                     </div>
                     <div class="swiper-slide">
-                        <img src="./images/main5.jpg" class="main-image"  width="1000px" >
+                        <img src="/images/main5.jpg" class="main-image"  width="1000px" >
                     </div>
                 </div>
                 <!-- If we need pagination -->
@@ -153,8 +154,8 @@
         <div class="col-3 mb-20">
             <div class="box">
             <div class="row">
-                <img src="./images/${group.awayTeamNo}.jpg" width="35%"> vs
-                <img src="./images/${group.homeTeamNo}.jpg" width="35%">
+                <img src="/images/${group.awayTeamNo}.jpg" width="35%"> vs
+                <img src="/images/${group.homeTeamNo}.jpg" width="35%">
                 </div>
                 <hr width="80%">
                 <label class="font mt-10">

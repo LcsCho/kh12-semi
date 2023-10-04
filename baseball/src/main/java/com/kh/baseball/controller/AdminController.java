@@ -1,5 +1,7 @@
 package com.kh.baseball.controller;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -22,8 +24,10 @@ import com.kh.baseball.dto.MemberDto;
 import com.kh.baseball.dto.MemberListDto;
 import com.kh.baseball.dto.ReservationCancelDto;
 import com.kh.baseball.dto.ReservationDto;
+import com.kh.baseball.dto.TeamDto;
 import com.kh.baseball.dto.TrueReservationDto;
 import com.kh.baseball.vo.AdminReservationListVO;
+import com.kh.baseball.vo.MatchVO;
 import com.kh.baseball.vo.PaginationVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +50,12 @@ public class AdminController {
 	private SeatDao dao;
 	
 	@RequestMapping("/home")
-	public String home() {
+	public String home(Model model, TeamDto teamDto) {
+		List<MatchVO> voList = matchDao.selectNoList();
+		LocalDateTime now = LocalDateTime.now();
+		Timestamp timestamp = Timestamp.valueOf(now);
+		model.addAttribute("now", timestamp);
+		model.addAttribute("voList", voList);
 		return "/WEB-INF/views/admin/adminHome.jsp";
 	}
 	
