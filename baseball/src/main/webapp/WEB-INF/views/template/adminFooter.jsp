@@ -5,11 +5,6 @@
 <hr>
 <footer>
     <div class="row flex-container auto-width">
-
-		<div class="left">
-		세션ID = ${pageContext.session.id} <br>
-		세션값 = ${sessionScope.name} <br>
-        </div>
         <div class="left">
             <a href="#" class="link">이용약관</a> |
             <a href="#" class="link">개인정보취급방침</a> |

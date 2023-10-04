@@ -47,7 +47,7 @@ public class AdminController {
 	
 	@RequestMapping("/home")
 	public String home() {
-		return "/WEB-INF/views/admin/home.jsp";
+		return "/WEB-INF/views/admin/adminHome.jsp";
 	}
 	
 	//목록
