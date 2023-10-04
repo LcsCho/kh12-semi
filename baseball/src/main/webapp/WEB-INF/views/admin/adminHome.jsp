@@ -10,57 +10,57 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     
 <style>
-	.box {
-	    box-shadow: 0px 0px 0px 2px #CCCCCC;
-	    border-radius: 5px;
-	    height: 300px;
-	    display: flex; /* 수직 정렬을 위해 flex 사용 */
-	    flex-direction: column; /* 내용을 세로로 정렬 */
-	    align-items: center; /* 수직 정렬 */
-	    justify-content: center; /* 수평 정렬 */
-	}
-	
-	.box img {
-	    display: inline; /* 이미지를 인라인으로 표시하여 같은 라인에 배치 */
-	}
-	
-	.container  >.row::after {
-	        content: "";
-	        clear: both;
-	        display: table;   
-	 }
-	
-	    .col-3 {
-	        float: left;
-	        width: 30%;
-	    }
-	    .btn{
-	        width: 250px;
-			font-size: 18px
-	    }
-	    .font{
-	    font-size: 18px
-	    }
-	    
-		.stadium{
-			font-size: 18px;
-			font-weight: bold;
-			color: #00000;
-		}
-		
-		.btn.before{
-			filter: brightness(100%);
-		}
-		
-		.btn.ing{
-		background-color: #fa2828;
-		}
-		
-		.btn.ing >.link{
-		color: #ffffff;
-		}
-		
-		:root {
+   .box {
+       box-shadow: 0px 0px 0px 2px #CCCCCC;
+       border-radius: 5px;
+       height: 300px;
+       display: flex; /* 수직 정렬을 위해 flex 사용 */
+       flex-direction: column; /* 내용을 세로로 정렬 */
+       align-items: center; /* 수직 정렬 */
+       justify-content: center; /* 수평 정렬 */
+   }
+   
+   .box img {
+       display: inline; /* 이미지를 인라인으로 표시하여 같은 라인에 배치 */
+   }
+   
+   .container  >.row::after {
+           content: "";
+           clear: both;
+           display: table;   
+    }
+   
+       .col-3 {
+           float: left;
+           width: 30%;
+       }
+       .btn{
+           width: 250px;
+         font-size: 18px
+       }
+       .font{
+       font-size: 18px
+       }
+       
+      .stadium{
+         font-size: 18px;
+         font-weight: bold;
+         color: #00000;
+      }
+      
+      .btn.before{
+         filter: brightness(100%);
+      }
+      
+      .btn.ing{
+      background-color: #fa2828;
+      }
+      
+      .btn.ing >.link{
+      color: #ffffff;
+      }
+      
+      :root {
             --swiper-theme-color : #black;
         } 
 
@@ -143,7 +143,7 @@
         <label class="open">예매오픈</label>
     </div>
     
-	<div class="container">
+   <div class="container">
     <c:set var="days" value="${now.time + (1 * 24 * 60 * 60 * 1000)}" />
     <c:forEach var="group"  items="${voList}" varStatus="status"  begin="0" end="5" >
      <c:if test="${group.matchDate.time > days}">
@@ -164,16 +164,16 @@
                 <label class="mt-10 stadium">${group.stadiumName}</label>
                 <div>
                 <c:choose>
-                            		<c:when test="${now.time >= group.matchDate.time - (4 * 24 * 60 * 60 * 1000)}">
-                                		<div class="btn ing">
-									    <a href="/reservation/insert?matchNo=${group.matchNo}" class="link">
-									        예매하기
-									    </a>
-									</div>
-                            		</c:when>
-                            		<c:otherwise>
-                                		<div class="btn before link">예매 오픈 예정</div>
-                            		</c:otherwise>
+                                  <c:when test="${now.time >= group.matchDate.time - (4 * 24 * 60 * 60 * 1000)}">
+                                      <div class="btn ing">
+                               <a href="/reservation/insert?matchNo=${group.matchNo}" class="link">
+                                   예매하기
+                               </a>
+                           </div>
+                                  </c:when>
+                                  <c:otherwise>
+                                      <div class="btn before link">예매 오픈 예정</div>
+                                  </c:otherwise>
                       </c:choose>
                 </div>
                 
