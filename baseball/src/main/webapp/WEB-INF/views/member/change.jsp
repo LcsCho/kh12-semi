@@ -23,11 +23,13 @@ table th {
 	background-color: #f1f1f1;
 	font-weight: bold;
     width: 150px;
-	height: 40px;
-	padding-top: 0.5em;
-	font-size: 16px;
+	height: 74px;
+	font-size: 18px;
 	color: #62676C;
 	font-weight: bold;
+	display: flex;
+  	justify-content: center; 
+  	align-items: center; 
 }
 
 table td {
@@ -35,36 +37,26 @@ table td {
 	border-bottom: #D1CFCF 2px solid;
 	border-right: #D1CFCF 3px solid;
     width: 500px;
-	height: 35px;
 	padding-top: 0.4em;
+	font-size: 20px;
 }
 
 td:nth-last-child(1), th:nth-last-child(1) {
 	border-right: none;
 }
+
 .form-input,
 .btn {
-	    /* a 태그 때문에 추가한 속성 */
 	    display: inline-block;
 	    text-decoration: none;
 	    vertical-align: bottom;
-		margin-top:-0.5em;
-		margin-bottom: -0.5em;
 	    font-size: 18px;
 	    padding: 0.5em 1em;
 	    outline: none;
 	    /*outline은 입력 창 선택 시 강조 효과 */
-	    border: 1px solid #636e72;
 	    border-radius: 0.1em;
 	    line-height: 1.2em;
-}
-
-.post-input,
-.basic-address,
-.detail-address {
-    width: 100%;
-    padding: 5px;
-    margin-top:-1em;   
+	    border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;
 }
 
 
@@ -124,10 +116,10 @@ td:nth-last-child(1), th:nth-last-child(1) {
  </script>
        
 <c:if test="${param.error != null}">
-	<h3 style="color:red">입력하신 비밀번호가 일치하지 않습니다</h3>
+	<h4 style="color:red">입력하신 비밀번호가 일치하지 않습니다</h4>
 </c:if>
 
-<h4 class="ms-75">해당 화면을 클릭하면 수정이 가능합니다</h4>
+<h4>해당 화면을 클릭하면 수정이 가능합니다</h4>
 <form action="change" method="post" autocomplete="off">
 
 		 <table>
@@ -157,44 +149,72 @@ td:nth-last-child(1), th:nth-last-child(1) {
             </tr>
             <tr>
                 <th>
-                    주소
+                    우편번호
                 </th>
           <td>
             <input type="text" name="memberPost" size="6" maxlength="6"
-                placeholder="우편번호" value="${memberDto.memberPost}" class="post-input post-search">
-        <input type="text" name="memberAddr1" size="50" 
-            placeholder="기본주소" value="${memberDto.memberAddr1}" class="basic-address post-search">
-        <input type="text" name="memberAddr2" size="50" 
-            placeholder="상세주소" value="${memberDto.memberAddr2}" class="detail-address">
+                placeholder="우편번호" value="${memberDto.memberPost}" class="form-input w-100 post-search">
+       
     </td>
-
+            </tr>
+            <tr>
+            	<th>
+            		기본주소
+            	</th>
+            	<td>
+            	<input type="text" name="memberAddr1" size="50" 
+            placeholder="기본주소" value="${memberDto.memberAddr1}" class="form-input w-100 post-search">
+            </td>
+            </tr>
+            <tr>
+            	<th>상세주소</th>
+            	<td>
+            	 <input type="text" name="memberAddr2" size="50" 
+            placeholder="상세주소" value="${memberDto.memberAddr2}" class="form-input w-100 post-input">
+            	</td>
             </tr>
             <tr>
                 <th>
                     등급
                 </th>
-                <td>${memberDto.memberLevel}</td>
+                <td>
+                <div class="form-input w-100">
+                ${memberDto.memberLevel}
+                 </div>
+                </td>
             </tr>
             <tr>
                 <th>
                     가입일
                 </th>
-                <td><fmt:formatDate value="${memberDto.memberJoin}" 
-                    pattern="y년 M월 d일 E a h시 m분 s초"/></td>
+                <td>
+                <div class="form-input w-100">
+                <fmt:formatDate value="${memberDto.memberJoin}" 
+                    pattern="y년 M월 d일 E a h시 m분 s초"/>
+                     </div>
+                    </td>
             </tr>
             <tr>
                 <th>
                     마지막로그인
                 </th>
-                <td><fmt:formatDate value="${memberDto.memberLastLogin}" 
-                    pattern="y년 M월 d일 E a h시 m분 s초"/></td>
+                <td>
+                <div class="form-input w-100">
+                <fmt:formatDate value="${memberDto.memberLastLogin}" 
+                    pattern="y년 M월 d일 E a h시 m분 s초"/>
+                     </div>
+                    </td>
             </tr>
             <tr>
                 <th>
                     마지막변경일
                 </th>
-                <td> <fmt:formatDate value="${memberDto.memberLastUpdate}" 
-                    pattern="y년 M월 d일 E a h시 m분 s초"/></td>
+                <td> 
+                <div class="form-input w-100">
+                 <fmt:formatDate value="${memberDto.memberLastUpdate}" 
+                    pattern="y년 M월 d일 E a h시 m분 s초"/>
+                     </div>
+                    </td>
             </tr>
              <tr>
                 <th>

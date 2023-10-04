@@ -6,8 +6,39 @@
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/template/matchSidebar.jsp"></jsp:include>
 
+<style>
+table {
+	border-collapse: collapse;
+}
+
+table th {
+	border-top: #62676C 3px solid;
+	border-bottom: #62676C 2px solid;
+	border-right: #D1CFCF 2px solid;
+	background-color: #f1f1f1;
+	font-weight: bold;
+	height: 40px;
+	padding-top: 0.5em;
+	font-size: 16px;
+	color: #62676C;
+	font-weight: bold;
+}
+
+table td {
+	border-top: #D1CFCF 2px solid;
+	border-bottom: #D1CFCF 2px solid;
+	border-right: #D1CFCF 3px solid;
+	height: 35px;
+	padding-top: 0.4em;
+}
+
+td:nth-last-child(1), th:nth-last-child(1) {
+	border-right: none;
+}
+</style>
+
 <div class="row">
-	<table class="table table-hover table-border">
+	<table width="800">
 		<thead>
 			<tr>
 				<th>매치번호</th>
@@ -24,7 +55,7 @@
 		<tbody align="center">
 			<c:forEach var="matchDto" items="${list}" varStatus="status">
 				<tr>
-					<td><a href="detailMatch?matchNo=${matchDto.matchNo}">${matchDto.matchNo}</a></td>
+					<td><a href="detailMatch?matchNo=${matchDto.matchNo}" class="link">${matchDto.matchNo}</a></td>
 					<td><fmt:formatDate value="${matchDto.matchDate}"
 							pattern="yyyy-MM-dd HH:mm" /></td>
 					<td>${matchDto.stadiumName}</td>
@@ -57,7 +88,7 @@
 					<td><c:choose>
 							<c:when
 								test="${now.time >= matchDto.matchDate.time - (3 * 60 * 60 * 1000) && now.time < matchDto.matchDate.time}">
-								<a href="insertResult?matchNo=${matchDto.matchNo}">수정</a>
+								<a href="insertResult?matchNo=${matchDto.matchNo}" class="link">수정</a>
 							</c:when>
 							<c:otherwise>
         							수정 불가
@@ -66,7 +97,7 @@
 					<td><c:choose>
 							<c:when
 								test="${now.time >= matchDto.matchDate.time && now.time <= matchDto.matchDate.time + (3 * 60 * 60 * 1000)}">
-								<a href="insertResult?matchNo=${matchDto.matchNo}">점수 입력</a>
+								<a href="insertResult?matchNo=${matchDto.matchNo}" class="link">점수 입력</a>
 							</c:when>
 							<c:when test="${matchDto.matchDate.time < now.time}">
                                 경기종료

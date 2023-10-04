@@ -5,27 +5,41 @@
 
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/template/seatSidebar.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="/css/insert.css">
+
 <script>
-	
 </script>
 
 <form action="insert" method="post">
-	<div class="container w-300">
-		<div class="row left">
-			경기장: <select name="stadiumNo" class="w-100" id="stadiumNo">
+	<table>
+		<tr>
+			<th>경기장</th>
+				<td><select name="stadiumNo" class="form-input w-100" id="stadiumNo">
 				<c:forEach var="stadiumDto" items="${list}">
 					<option value="${stadiumDto.stadiumNo}">${stadiumDto.stadiumName}</option>
 				</c:forEach>
-			</select> 구역: <select name="seatAreaZone" class="w-100">
+			</select> 
+			</td>
+		</tr>
+		<tr>
+			<th>구역</th>
+				<td><select name="seatAreaZone" class="form-input w-100">
 				<option value="A">A</option>
 				<option value="B">B</option>
 				<option value="C">C</option>
-			</select> 좌석가격: <input type="number" name="seatAreaPrice"
-				value="${seatAreaDto.seatAreaPrice}" class="w-100"> <br>
-			<br>
-		</div>
+			</select> 
+			</td>
+		</tr>	
+		<tr>
+			<th>좌석가격</th>
+				<td>
+			<input type="number" name="seatAreaPrice"
+				value="${seatAreaDto.seatAreaPrice}" class="form-input w-100">
+			</td>
+		</tr>
+	</table>
 		<div class="row w-100">
-			<button type="submit" class="btn btn-positive w-100">등록</button>
+			<button type="submit" class="btn">구역 등록</button>
 		</div>
 	</div>
 </form>
