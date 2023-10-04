@@ -91,7 +91,7 @@ public class ReservationController {
 		//아이디 저장
 		trueReservationDto.setMatchNo(matchNo);
 		
-		return "/WEB-INF/views/reservation/insert3.jsp";
+		return "/WEB-INF/views/reservation/insert2.jsp";
 	}
 
 	@PostMapping("/insert")
