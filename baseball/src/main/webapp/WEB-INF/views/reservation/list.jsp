@@ -162,7 +162,7 @@ td:nth-child(2) {
 									data-match-date="${reservationVo.matchDate}"
 									value="${reservationVo.seatNo}"></td>
 								<td>${reservationVo.reservationNo}</td>
-								<td>${reservationVo.seatAreaZone}-${reservationVo.seatCol}-${reservationVo.seatRow}</td>
+								<td>${reservationVo.seatAreaZone}-${reservationVo.seatRow}-${reservationVo.seatCol}</td>
 								<td>${reservationVo.stadiumName}</td>
 								<td>${reservationVo.homeTeam}</td>
 								<td>${reservationVo.awayTeam}</td>
