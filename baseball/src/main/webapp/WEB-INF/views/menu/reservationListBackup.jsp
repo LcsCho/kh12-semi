@@ -130,6 +130,18 @@ document.addEventListener('DOMContentLoaded', () => {
         updateMatchDisplay(currentDate);
     });
 });
+function checkLogin() {
+    // 여기에 로그인 여부를 확인하는 코드를 추가합니다.
+    var sessionNameIsNull = <%= (session.getAttribute("name") == null) ? true : false %>;
+    
+    if (sessionNameIsNull) {
+        // 세션 값이 없을 때 알림 표시
+        alert('로그인 후에 이용 가능합니다.');
+    } else {
+        // 사용자가 로그인한 경우, 예매 페이지로 이동
+        window.location.href = '/reservation/insert?matchNo=' + matchNo;
+    }
+}
 </script>
 
 <div class="container w-400 center">
@@ -192,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </c:when>
 						<c:when
 							test="${now.time >= matchVo.matchDate.time - (4 * 24 * 60 * 60 * 1000)}">
-							<a href="/reservation/insert?matchNo=${matchVo.matchNo}" class="btn btn-ing">예매하기</a>
+							<a href="javascript:void(0);" onclick="checkLogin()" class="btn btn-ing">예매하기</a>
 						</c:when>
 						<c:otherwise>
                                 <div class="btn btn-before">오픈예정</div>
