@@ -75,7 +75,7 @@ td:nth-last-child(1), th:nth-last-child(1) {
 					</c:choose></td>
 				<%-- 				<td style="text-align: center;"><img src="./images/${teamVo.teamName}.jpg" style="max-width: 25px; max-height: 25px; float: center;"><a href="rankingDetail?teamNo=${teamVo.teamNo}" class="link">${teamVo.teamName}</a></td> --%>
 				<td style="text-align: center;">
-					<div style="display: flex; align-items: center;">
+					<div style="display: center; align-items: center;">
 						<img src="./images/${teamVo.teamName}.jpg"
 							style="max-width: 25px; max-height: 25px;"> <a
 							href="rankingDetail?teamNo=${teamVo.teamNo}" class="link">${teamVo.teamName}</a>
