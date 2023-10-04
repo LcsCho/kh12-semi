@@ -4,6 +4,7 @@
 
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/template/matchSidebar.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="/css/insert.css">
 
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
@@ -47,37 +48,51 @@
 	});
 </script>
 
-<h2>등록</h2>
 <form action="insert" method="post" autocomplete="off">
-	<div class="container w-600">
-		<div class="row">
-			<br> 홈팀 선택 <select name="homeTeam" class="w-100" id="homeTeam">
+	<table>
+	<tr>
+		<th>홈팀 선택</th>
+			<td><select name="homeTeam" class="form-input w-100" id="homeTeam">
 				<option value="">-- 홈팀 선택 --</option>
 				<!-- 선택 안 함 옵션 -->
 				<c:forEach var="teamDto" items="${teamList}">
 					<option value="${teamDto.teamName}">${teamDto.teamName}</option>
 				</c:forEach>
-			</select> 어웨이팀 선택 <select name="awayTeam" class="w-100" id="awayTeam">
+			</select> 
+			</td>
+		</tr>
+		<tr>
+			<th>어웨이팀 선택</th>
+				<td>
+					<select name="awayTeam" class="form-input w-100" id="awayTeam">
 				<option value="">-- 어웨이팀 선택 --</option>
 				<!-- 선택 안 함 옵션 -->
 				<c:forEach var="teamDto" items="${teamList}">
 					<option value="${teamDto.teamName}">${teamDto.teamName}</option>
 				</c:forEach>
-			</select> <br> 경기장이름 <select name="stadiumName" class="w-100"
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<th>경기장 선택</th>
+			<td>
+		<select name="stadiumName" class="form-input w-100"
 				id="stadiumName">
 				<option value="">-- 경기장 선택 --</option>
 				<c:forEach var="stadiumDto" items="${stadiumList}">
 					<option value="${stadiumDto.stadiumName}">${stadiumDto.stadiumName}</option>
 				</c:forEach>
 			</select>
-
-			<div class="row">
-				<label for="matchDate">경기일</label> <input class="w-600"
+			</td>
+		</tr>
+		<tr>
+			<th><label for="matchDate">경기일</label></th>
+			<td> <input class="form-input w-100"
 					type="datetime-local" name="matchDto.matchDateStr"
 					value="${matchDto.matchDate}" required>
-			</div>
-			<button class="btn btn-positive">경기등록</button>
-		</div>
-	</div>
+			</td>
+		</tr>
+	</table>
+			<button type="submit" class="btn">경기등록</button>
 </form>
 <jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>
