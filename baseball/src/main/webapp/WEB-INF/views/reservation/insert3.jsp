@@ -402,7 +402,7 @@ for (var i = 0; i < numRows; i++) {
             $(".show-reservation-info-button").hide();
         }
     });
-    $(".btn-primary").click(function(event) {
+    $(".btn-primary").click(function(){
         // 사용자가 확인 버튼을 클릭한 경우에만 확인 대화상자를 표시
         if (confirm("예매를 진행 하시겠습니까?")) {
             // 확인 버튼을 클릭한 경우의 동작을 여기에 추가
@@ -411,7 +411,6 @@ for (var i = 0; i < numRows; i++) {
         } else {
             // "아니요"를 클릭한 경우
             alert("예매가 취소되었습니다."); // 예매가 취소되었음을 알림
-            event.preventDefault(); // 폼 전송을 막음
         }
     });
     
