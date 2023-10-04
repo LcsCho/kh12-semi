@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    
 
-<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 
-<!-- swiper cdn-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
 <style>
+	        
 	.box {
 	    box-shadow: 0px 0px 0px 2px #CCCCCC;
 	    border-radius: 5px;
@@ -71,41 +73,39 @@
 </style>
 
 <script>
-$(function () {
-    var swiper = new Swiper(".swiper", {
-        // Swiper 설정
-        loop: true,
-        pagination: {
-            el: ".swiper-pagination",
-            type: 'bullets',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-            hideOnClick: true,
-        },
-        autoplay: {
-            delay: 1500,
-            pauseOnMouseEnter: true,
-            disableOnInteraction: false,
-        },
-        effect: "slide",
-    });
+        $(function () {
+            var swiper = new Swiper(".swiper", {
+                // Optional parameters
+                // direction: 'vertical', //슬라이드 방향
+                loop: true, //슬라이드 순환 설정
 
-    // 예매하기 버튼 클릭 시 이벤트 처리
-    $(".btn.ing a").on("click", function (e) {
-        // sessionScope의 name이 null인 경우
-        var sessionNameIsNull = <%= (session.getAttribute("name") == null) ? true : false %>;
-        if (sessionNameIsNull) {
-            // 경고 메시지 출력
-            alert("로그인 후에 이용 가능합니다.");
-            // 이벤트 기본 동작 중단 (링크 이동 취소)
-            e.preventDefault();
-        }
-    });
-});
-</script>
+                // If we need pagination
+                pagination: { //페이지 번호 표시(분할)
+                    el: ".swiper-pagination", //적용할 영역(요소)
+                    type: 'bullets', //페이지네이션 유형 ('progressbar' | 'bullets' | 'fraction' | 'custom')
+                    clickable:true, //페이지네이션 클릭가능여부
+                },
+
+                // Navigation arrows (이동 화살표)
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                    hideOnClick:true, //클릭 시 숨김 처리 여부
+                },
+
+
+                //자동재생
+                autoplay:{
+                    delay:1500, //재생간격(ms)
+                    pauseOnMouseEnter:true, //마우스 진입 시 멈춤 여부
+                    disableOnInteraction: false, //유저 상호작용 시 자동재생을 일시적으로 멈추지 않도록 설정
+                },
+
+                //이펙트(전환효과) 설정
+                effect:"slide", // ('slide', 'fade', 'cube', 'coverflow', 'flip', 'creative', 'cards')
+            });
+        });
+    </script>
     
 <div class="container w-1000">
 
@@ -185,4 +185,5 @@ $(function () {
 </div>
 
 
-<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
+
+<jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>

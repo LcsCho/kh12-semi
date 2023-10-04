@@ -10,6 +10,10 @@
 <head>
 <title>매치 예약</title>
 <style>
+*{
+ font-family: 'KBO-Dia-Gothic_light';
+}
+
 .custom-checkbox {
 	padding: 0; /* 여기에서 0으로 변경 */
 	margin: 20; /* 오타 수정: margine -> margin */
@@ -132,6 +136,7 @@ $(function () {
 
     }
 
+    var totalSeatPrice = 0;
 
     // 초기화 함수
     function resetSeats() {
@@ -249,7 +254,11 @@ for (var i = 0; i < numRows; i++) {
         var index = i * numCols + j;
         // 응답에서 status값 저장
         var seatStatus = response[index].seatStatus;
-
+		var seatArea = response[index].seatAreaZone;
+		
+		var seatPrice = response[index].seatAreaPrice;
+		
+		console.log(seatArea);
         var checkbox = $("<input>")
             .attr("type", "checkbox")
             .attr("value", response[index].seatNo)
@@ -286,6 +295,7 @@ for (var i = 0; i < numRows; i++) {
 
         checkboxContainer.append(iconLabel);
         checkboxContainer.append(label);
+        
 
         // 클로저를 사용하여 고유한 index, seatCol, seatRow 값을 갖도록 처리
         (function (currentIndex, currentSeatCol, currentSeatRow) {
@@ -302,6 +312,7 @@ for (var i = 0; i < numRows; i++) {
                         return;
                     } else {
                         ticketCount++;
+                        totalSeatPrice += seatPrice;
 
                         selectedSeats.push({ row: currentSeatRow, col: currentSeatCol });
                         console.log("좌석 선택됨: Row " + currentSeatRow + ", Col " + currentSeatCol);
@@ -312,6 +323,8 @@ for (var i = 0; i < numRows; i++) {
                     currentIcon.css("color", "#952323");
                 } else {
                     ticketCount--;
+                    totalSeatPrice -= seatPrice;
+
                     // 체크 해제된 상태일 때 아이콘 색상 원래 색상으로 변경
 
                     var indexToRemove = selectedSeats.findIndex(function (seat) {
@@ -325,14 +338,17 @@ for (var i = 0; i < numRows; i++) {
                     currentIcon.css("color", "#360a01");
                     console.log("좌석 선택 해제됨: Row " + currentSeatRow + ", Col " + currentSeatCol);
                     console.log("선택된 좌석 목록: " + JSON.stringify(selectedSeats));
-                    
+
                 }
 
                 // 티켓 카운트 요소가 있는 곳에 text로 티켓의 수를 출력
                 ticketCountElement.text(ticketCount);
+                $("#totalPrice").text(totalSeatPrice + " 원");
+                $("#seat-area-zone").text(seatArea);
+
                 $("#reservationTicket").attr("value", ticketCount);
                 $(".selected-seats-list").text(selectedSeats.map(function (seat) {
-                    return   seat.row + "-" + seat.col;
+                    return  "　"+seatArea+"-"+ seat.row + "-" + seat.col;
                 }).join("\n"));
             });
         })(index, response[index].seatCol, response[index].seatRow);
@@ -364,12 +380,14 @@ for (var i = 0; i < numRows; i++) {
         // 선택한 구역과 좌석 정보 가져오기
         var selectedArea = $("input[name=seatAreaNo]:checked").val();
         var selectedSeats = $(".selected-seats-list").text();
+       
 
         // 예매 정보를 표시할 엘리먼트에 정보를 채워 넣음
         $(".seatAreaNo").text(selectedArea);
         $(".seatNo").text(selectedSeats);
+        $(".seatPrice").text(totalSeatPrice)
 
-        if (selectedSeats.trim() === "") {
+     if (selectedSeats.trim() === "") {
             alert("좌석을 선택해주세요!"); // 좌석을 선택하지 않았을 때 경고 메시지 표시
             $(".page:eq(1)").show();
             $(".page:eq(2)").hide();
@@ -382,6 +400,17 @@ for (var i = 0; i < numRows; i++) {
 
             // "다음" 버튼 숨김
             $(".show-reservation-info-button").hide();
+        }
+    });
+    $(".btn-primary").click(function(){
+        // 사용자가 확인 버튼을 클릭한 경우에만 확인 대화상자를 표시
+        if (confirm("예매를 진행 하시겠습니까?")) {
+            // 확인 버튼을 클릭한 경우의 동작을 여기에 추가
+            // 예를 들어 예매를 진행하는 코드를 추가할 수 있습니다.
+            alert("예매가 완료되었습니다."); // 예매가 성공적으로 진행되었음을 알림
+        } else {
+            // "아니요"를 클릭한 경우
+            alert("예매가 취소되었습니다."); // 예매가 취소되었음을 알림
         }
     });
     
@@ -417,7 +446,7 @@ for (var i = 0; i < numRows; i++) {
 							<div class="row">
 								<input class="btn" type="radio" name="seatAreaNo"
 									id="selectedSeatArea" value="${reservationVo.seatAreaNo}">
-								${reservationVo.seatAreaZone}
+								${reservationVo.seatAreaZone}:${reservationVo.seatAreaPrice} 원
 							</div>
 						</c:forEach>
 					</div>
@@ -440,11 +469,9 @@ for (var i = 0; i < numRows; i++) {
 					</div>
 					<div class="row float-container boxborder">
 						<div class="float-left clickseat boxborder">
-							<div class="row"
-								style="height: 30%; background-color: green; color: white; font-weight: bold; display: flex; justify-content: center; align-items: center;">
-								GROUND</div>
-							<div class="row">A zone</div>
-							<label>좌석 번호:</label>
+						
+							<div class="row">${reservationVo.seatAreaNo}</div>
+							좌석구역: <span id="seat-area-zone">0</span>
 							<div class="mt-20" id="seat-checkbox"></div>
 						</div>
 						<div class="float-right clickseat">
@@ -456,6 +483,7 @@ for (var i = 0; i < numRows; i++) {
 							<div class="boxborder ms-10">
 								<div id="ticket-count">
 								선택된 좌석: <span id="ticket-count-value">0</span>
+								<div id="totalPrice">0 원</div>
 							</div>
 							</div>
 							<div class="row left">
@@ -483,13 +511,28 @@ for (var i = 0; i < numRows; i++) {
   <!-- 3단계 : 예매완료 -->
 <div class="row page" style="display: none;">
     <div class="row">
-        <h2>3단계 : 예매완료</h2>
+        <h2>예매 정보 확인</h2>
     </div>
-    <h3>예매 정보</h3>
-    <p>구역: <span class="seatAreaNo"></span></p>
-    <p>좌석번호 <span class="seatNo"></span></p>
-    <p>총가격: <span class="seatNo"></span></p>
+     <h3>예매 정보</h3>
     
+<table class="table table-hover table-border">
+
+            <thead>
+                <tr>
+                	<tr>
+    <th>좌석번호</th>
+    <th>총가격</th>
+    </tr>
+                </tr>
+            </thead>
+            <tbody align="center">
+
+  <tr>
+    <td><p><span class="seatNo"></span></p></td>
+    <td><p><span class="seatPrice"></span></p></td>
+    </tr>
+            </tbody>
+        </table>
 
     <div class="row right">
         <button type="button" class="btn btn-prev">
