@@ -4,12 +4,71 @@
     
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 
-<div class="container w-700">
-	<div class="row mv-40">
-		<h1>회원 관리</h1>
-	</div>
+<style>
+table {
+	border-collapse: collapse;
+}
+
+table th {
+	border-top: #62676C 3px solid;
+	border-bottom: #62676C 2px solid;
+	border-right: #D1CFCF 2px solid;
+	background-color: #f1f1f1;
+	font-weight: bold;
+	height: 40px;
+	padding-top: 1em;
+	font-size: 16px;
+	color: #62676C;
+	font-weight: bold;
+}
+
+table td {
+	border-top: #D1CFCF 2px solid;
+	border-bottom: #D1CFCF 2px solid;
+	border-right: #D1CFCF 3px solid;
+	height: 35px;
+	padding-top: 0.4em;
+}
+
+td:nth-last-child(1), th:nth-last-child(1) {
+	border-right: none;
+}
+
+.search-box {
+            background-color: #f1f1f1;
+            border: #D1CFCF 2px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+             height: 80px;
+          }
+          
+          .form-input {
+            height: 40px;
+            font-size: 15px;
+            margin: 0 10px;
+        }
+	        .form-input.tite{
+	            width: 120px;
+	        }
+	
+	       .btn, .btn.btn-positive {
+	            width: 100px;
+	            height: 40px;
+	            font-size: 15px;
+	            border-radius: 0px;
+	        }
+			.btn.row{
+			padding-top: 0.8em;
+			}
+		
+</style>
+
+<table width="700">
 	<div class="row">
 		<form action="list" method="get">
+		<div class="row search-box w-1000">
+		
 			<c:choose>
 				<c:when test="${vo.type == 'member_nick'}">
 					<select name="type" class="form-input">
@@ -44,12 +103,15 @@
 					</select>
 				</c:otherwise>
 			</c:choose>
-		
+			
 			
 			<input type="search" name="keyword" placeholder="검색어" 
-				value="${vo.keyword}" required class="form-input">
+				value="${vo.keyword}" required class="form-input w-65">
 			<button type="submit" class="btn btn-positive">검색</button>
+			</div>
+			
 		</form>
+		
 	</div>
 	<div class="row">
 		<table class="table table-hover table-border">
@@ -58,7 +120,7 @@
 					<th>아이디</th>
 					<th>닉네임</th>
 					<th>전화번호</th>
-<!-- 					<th>이메일</th> -->
+ 					<th>이메일</th> 
 					<th>생년월일</th>
 					<th>등급</th>
 					<th>차단</th>
@@ -94,7 +156,7 @@
 		</table>
 	</div>
 	
-	<div class="row">
+	<div class="row mt-20">
 		<div class="page-navigator">
 			<c:if test="${!vo.first}">
 				<a href="list?${vo.prevQueryString}">&lt;</a>
@@ -118,5 +180,5 @@
 		</div>
 	</div>
 </div>
-
+</table>
 <jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>
