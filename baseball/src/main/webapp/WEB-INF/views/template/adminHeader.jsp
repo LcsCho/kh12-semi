@@ -19,11 +19,59 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 
+<<<<<<< HEAD
 <style>
 <
 style>nav ul.menu li a i {
 	display: block;
 }
+=======
+   
+        <style>
+            nav ul.menu li a i {
+                display: block;
+            }
+    
+            #delete-border.btn {
+                border: 10px solid;
+            }  
+    
+    
+            ul.menu li {
+                text-align: center;
+                padding-top: 0.2em;
+                box-shadow: 0px 0px 5px 2px #D1CFCF;
+                border-radius: 15px;
+                color: #360a01;
+                background-color: #ffff;
+                font-size: 15px;
+                font-weight: bold;
+                width: 65px;
+                height: 65px;
+                margin: 1.2em; 
+            }
+    
+            .col-5 {
+                width: 14%;
+            }
+    
+            .i-font {
+                margin-top: -5px;
+                font-size: 15px;
+                color: #360a01;
+                font-weight: bold;
+    
+            }
+    
+            .fa-solid {
+                font-size: 40px;
+                color: #360a01;
+            }
+    
+            .logo{
+                margin-top: -20px;
+            }
+>>>>>>> branch 'MG' of https://github.com/LcsCho/kh12-semi4.git
 
 #delete-border.btn {
 	border: 10px solid;
@@ -164,6 +212,7 @@ header>.logo {
 							<div class="row i-font">회원관리</div>
 						</div>
 
+<<<<<<< HEAD
 						<div class="row col-5">
 							<div class="row">
 								<li><a href="/board/list"> <i class="fa-solid fa-check"></i></a></li>
@@ -176,3 +225,25 @@ header>.logo {
 		</header>
 		<nav>
 			<section>
+=======
+                            <div class="row col-5">
+                                <div class="row">
+                                    <li><a href="/board/list">
+                                            <i class="fa-solid fa-check"></i></a></li>
+    
+                                </div>
+                                <div class="row i-font">
+                                    공지사항
+                                </div>
+                            </div>
+
+                        </div>
+    
+                    </ul>
+                </nav>
+
+					 
+        </header>
+        <nav>
+        <section>
+>>>>>>> branch 'MG' of https://github.com/LcsCho/kh12-semi4.git
