@@ -332,7 +332,7 @@ for (var i = 0; i < numRows; i++) {
                 ticketCountElement.text(ticketCount);
                 $("#reservationTicket").attr("value", ticketCount);
                 $(".selected-seats-list").text(selectedSeats.map(function (seat) {
-                    return   seat.seatAreaZone  + ":" + seat.row + "-" + seat.col;
+                    return   seat.row + "-" + seat.col;
                 }).join("\n"));
             });
         })(index, response[index].seatCol, response[index].seatRow);
@@ -394,17 +394,7 @@ for (var i = 0; i < numRows; i++) {
 
 <body>
 		<form id="reservationForm" action="insert" method="post" enctype="multipart/form-data">
-			
-				<h1>매치 예약</h1>
-				<!-- matchNo 값을 출력합니다. -->
-				<p>
-					매치 번호: <span>${matchNo}</span>
-				</p>
-				<p>
-					멤버아이디: <span>${name}</span>
-				</p>
-				
-				<!-- 1단계 : 구역선택 -->
+		
 				<div class="container w-1000">
 				<div class="row page">
 					<div class="row seatreservation">
