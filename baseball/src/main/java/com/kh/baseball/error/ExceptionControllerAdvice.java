@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.kh.baseball.error.NoTargetException;
+
 
 
 @ControllerAdvice(annotations = {Controller.class})
@@ -27,5 +29,9 @@ public class ExceptionControllerAdvice {
 		e.printStackTrace();
 	return "/WEB-INF/views/error/authority.jsp";
 	}
+	@ExceptionHandler(NoTargetException.class)
+	public String noTarget(NoTargetException e) {
 	
+		return "/WEB-INF/views/error/noTarget.jsp";
+	}
 }
