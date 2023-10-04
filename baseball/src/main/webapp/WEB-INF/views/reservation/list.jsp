@@ -142,16 +142,14 @@ td:nth-child(2) {
 									data-match-date="${reservationVo.matchDate}"
 									value="${reservationVo.seatNo}" disabled="disabled"></td>
 								<td>${reservationVo.reservationNo}</td>
-								<td>${reservationVo.seatAreaZone}-${reservationVo.seatCol}-${reservationVo.seatRow}</td>
+								<td>${reservationVo.seatAreaZone}-${reservationVo.seatRow}-${reservationVo.seatCol}</td>
 								<td>${reservationVo.stadiumName}</td>
 								<td>${reservationVo.homeTeam}</td>
 								<td>${reservationVo.awayTeam}</td> 
 								<td><fmt:formatDate
 										value="${reservationVo.reservationDate}"
 										pattern="y년 M월 d일 E HH시 mm분 ss초" /></td>
-								<td><fmt:formatDate
-										value="${reservationVo.matchDate}"
-										pattern="y년 M월 d일 E HH시 mm분 ss초" /></td>
+								
 								<td><a
 									href="/reservation/detail?reservationNo=${reservationVo.reservationNo}">상세</a></td>
 							</tr>
@@ -162,16 +160,14 @@ td:nth-child(2) {
 									data-match-date="${reservationVo.matchDate}"
 									value="${reservationVo.seatNo}"></td>
 								<td>${reservationVo.reservationNo}</td>
-								<td>${reservationVo.seatAreaZone}-${reservationVo.seatCol}-${reservationVo.seatRow}</td>
+								<td>${reservationVo.seatAreaZone}-${reservationVo.seatRow}-${reservationVo.seatCol}</td>
 								<td>${reservationVo.stadiumName}</td>
 								<td>${reservationVo.homeTeam}</td>
 								<td>${reservationVo.awayTeam}</td>
 								<td><fmt:formatDate
 										value="${reservationVo.reservationDate}"
 										pattern="y년 M월 d일 E HH시 mm분 ss초" /></td>
-								<td><fmt:formatDate
-										value="${reservationVo.matchDate}"
-										pattern="y년 M월 d일 E HH시 mm분 ss초" /></td>
+								
 								<td><a
 									href="/reservation/detail?reservationNo=${reservationVo.reservationNo}">상세</a></td>
 							</tr>

@@ -89,7 +89,7 @@ header>.logo {
                 <div class="row">|</div>
                  &nbsp;                
                 <div class="row">
-                  <a href="/member/logout"> 예매확인</a>
+                  <a href="/admin/reservation/list"> 예매확인</a>
                </div>
                 &nbsp;
                 <div class="row">|</div>

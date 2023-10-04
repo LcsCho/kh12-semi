@@ -77,10 +77,11 @@
 					</c:choose>
 					</td>
 				<%-- 				<td style="text-align: center;"><img src="./images/${teamVo.teamName}.jpg" style="max-width: 25px; max-height: 25px; float: center;"><a href="rankingDetail?teamNo=${teamVo.teamNo}" class="link">${teamVo.teamName}</a></td> --%>
+
 				<td>
 					<div style="text-align: center;">
 						<img src="./images/${teamVo.teamName}.jpg"
-							style="max-width: 25px; max-height: 25px;">${teamVo.teamName}</a>
+							style="max-width: 25px; max-height: 25px;">${teamVo.teamName}
 					</div>
 				</td>
 				<td>${teamVo.teamMatch}</td>
