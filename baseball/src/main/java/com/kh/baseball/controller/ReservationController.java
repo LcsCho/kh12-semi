@@ -109,7 +109,7 @@ public class ReservationController {
 		trueReservationDao.seatStatusUpdate(trueReservationDto);
 		
 
-		return "/WEB-INF/views/reservation/insertFinish.jsp"; // 성공 페이지로 리다이렉트합니다.
+		return "redirect:list"; // 성공 페이지로 리다이렉트합니다.
 
 	}
 
