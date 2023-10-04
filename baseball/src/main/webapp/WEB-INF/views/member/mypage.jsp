@@ -4,101 +4,113 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/mypageSidebar.jsp"></jsp:include>
 
-<div class="container w-500">
-   <div class="row">
-      <h1>${memberDto.memberId} 님의 회원 정보</h1>
-   </div>
-   
-   <div class="row">
-      <table class="table table-border table-stripe">
-         <tr>
-            <th width="25%">닉네임</th>
-            <td>${memberDto.memberNick}</td>
-         </tr>
-         <tr>
-            <th>이메일</th>
-            <td>${memberDto.memberEmail}</td>
-         </tr>
-         <tr>
-            <th>연락처</th>
-            <td>${memberDto.memberTel}</td>
-         </tr>
-         <tr>
-            <th>생년월일</th>
-            <td>${memberDto.memberBirth}</td>
-         </tr>
-         <tr>
-            <th>주소</th>
-            <td>
-               [${memberDto.memberPost}]
-               ${memberDto.memberAddr1}
-               ${memberDto.memberAddr2}
-            </td>
-         </tr>
-         <tr>
-            <th>등급</th>
-            <td>${memberDto.memberLevel}</td>
-         </tr>
+<style>
+table {
+	border-collapse: collapse;
+	text-align: center; 
+ 	display: flex;
+  	justify-content: center; 
+  	align-items: center; 
+  	margin-top: 2em;
+  	margin-bottom: 2em;
+}
 
-         <tr>
-            <th>가입일</th>
-      <%--       <td>${memberDto.memberJoin}</td> --%>
-            <td>
-               <fmt:formatDate value="${memberDto.memberJoin}" 
-                           pattern="y년 M월 d일 E a h시 m분 s초"/>
-            </td>
-         </tr>
-         <tr>
-            <th>마지막로그인</th>
-            <td>
-               <fmt:formatDate value="${memberDto.memberLastLogin}" 
-                           pattern="y년 M월 d일 E a h시 m분 s초"/>
-            </td>
-         </tr>
-         <tr>
-            <th>마지막변경일</th>
-            <td>
-               <fmt:formatDate value="${memberDto.memberLastUpdate}" 
-                           pattern="y년 M월 d일 E a h시 m분 s초"/>
-            </td>
-         </tr>
-      </table>
-   </div>
-   
-  
-   
-   <div class="row mt-40">
-      <a class="btn w-100" href="password">
-         <i class="fa-solid fa-key"></i>
-         비밀번호 변경
-      </a>
-   </div>
-   
-   <div class="row">
-      <a class="btn w-100" href="change">
-         <i class="fa-solid fa-user"></i>
-         개인정보 변경
-      </a>
-   </div>
-   
-   <div class="row mb-40">
-      <a class="btn btn-negative w-100" href="exit">
-         <i class="fa-solid fa-user-xmark"></i>
-         회원 탈퇴
-      </a>
-   </div> 
-      <div class="row mb-40">
-      <a class="btn btn w-100" href="http://localhost:8080/reservation/list">
-         예매 내역
-      </a>
-   </div> 
-         <div class="row mb-40">
-      <a class="btn btn w-100" href="http://localhost:8080/reservation/cancelList">
-         취소 내역
-      </a>
-   </div> 
-</div>
+table th {
+	border-top: #62676C 3px solid;
+	border-bottom: #62676C 2px solid;
+	border-right: #D1CFCF 2px solid;
+	background-color: #f1f1f1;
+	font-weight: bold;
+    width: 150px;
+	height: 40px;
+	padding-top: 0.5em;
+	font-size: 16px;
+	color: #62676C;
+	font-weight: bold;
+}
+
+table td {
+	border-top: #D1CFCF 2px solid;
+	border-bottom: #D1CFCF 2px solid;
+	border-right: #D1CFCF 3px solid;
+    width: 500px;
+	height: 35px;
+	padding-top: 0.4em;
+    padding-left: 1em;
+}
+
+td:nth-last-child(1), th:nth-last-child(1) {
+	border-right: none;
+}
+</style>
+
+
+    <table>
+            <tr>
+                <th>
+                    닉네임
+                </th>
+                <td>${memberDto.memberNick}</td>
+            </tr>
+            <tr>
+                <th>
+                    이메일
+                </th>
+                <td>${memberDto.memberEmail}</td>
+            </tr>
+            <tr>
+                <th>
+                    연락처
+                </th>
+                <td>${memberDto.memberTel}</td>
+            </tr>
+            <tr>
+                <th>
+                    생년월일
+                </th>
+                <td>${memberDto.memberBirth}</td>
+            </tr>
+            <tr>
+                <th>
+                    주소
+                </th>
+                <td>
+                    [${memberDto.memberPost}]
+                    ${memberDto.memberAddr1}
+                    ${memberDto.memberAddr2}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    등급
+                </th>
+                <td>${memberDto.memberLevel}</td>
+            </tr>
+            <tr>
+                <th>
+                    가입일
+                </th>
+                <td><fmt:formatDate value="${memberDto.memberJoin}" 
+                    pattern="y년 M월 d일 E a h시 m분 s초"/></td>
+            </tr>
+            <tr>
+                <th>
+                    마지막로그인
+                </th>
+                <td><fmt:formatDate value="${memberDto.memberLastLogin}" 
+                    pattern="y년 M월 d일 E a h시 m분 s초"/></td>
+            </tr>
+            <tr>
+                <th>
+                    마지막변경일
+                </th>
+                <td> <fmt:formatDate value="${memberDto.memberLastUpdate}" 
+                    pattern="y년 M월 d일 E a h시 m분 s초"/></td>
+            </tr>
+    </table>
+
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
 
