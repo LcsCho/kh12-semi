@@ -5,8 +5,9 @@
 
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/template/seatSidebar.jsp"></jsp:include>
-<div class="container w-400">
-<table class="table table-slit" border="1" width="800">
+<link rel="stylesheet" type="text/css" href="/css/list.css">
+
+<table width="800">
 	<thead>
 		<tr>
 			<th>경기장</th>
@@ -15,7 +16,7 @@
 			<th>열</th>
 			<th>행</th>
 			<th>좌석상태</th>
-
+			<th>수정/삭제</th>
 		</tr>
 	</thead>
 	<tbody align="center">
@@ -27,8 +28,10 @@
 				<td>${seatSeletDto.seatRow}</td>
 				<td>${seatSeletDto.seatCol}</td>
 				<td>${seatSeletDto.seatStatus}</td>
-<td><a href="/admin/seat/update?seatAreaZone=${seatSeletDto.seatAreaZone}&seatCol=${seatSeletDto.seatCol}&seatRow=${seatSeletDto.seatRow}&stadiumName=${seatSeletDto.stadiumName}">수정</a></td>
-<td><a href="/admin/seat/detail?seatNo=${seatSeletDto.seatNo}">상세</a></td>      
+<td><a href="/admin/seat/update?seatAreaZone=${seatSeletDto.seatAreaZone}&seatCol=${seatSeletDto.seatCol}&seatRow=${seatSeletDto.seatRow}&stadiumName=${seatSeletDto.stadiumName}" class="link">수정</a>
+<a href="/admin/seat/detail?seatNo=${seatSeletDto.seatNo}" class="link">상세</a>
+</td>
+
 
 			</tr>
 		</c:forEach>
