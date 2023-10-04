@@ -1,4 +1,125 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+
+
+<c:choose>
+    <c:when test="${isReply}">
+    <h3>답글 작성</h3>
+    </c:when>
+    <c:otherwise>
+      <div class="container w-600">
+        <div class="row">
+            <h2>게시글 작성</h2>
+        </div>
+    </c:otherwise>
+</c:choose>
+
+<form action="write" method="post" autocomplete="off">
+<%-- 답글일 때만 추가 정보를 전송--%> 
+    <c:if test="${isReply}">
+    <input type="hidden" name="boardParent" value="${originDto.boardNo}">
+    </c:if>
+
+    <c:choose>
+    <c:when test="${isReply}">
+         <div class="row left">
+            <label>제목</label>
+            <input type="text" name="boardTitle" class="form-input w-100">
+        </div>
+    </c:when>
+    <c:otherwise>
+         <div class="row left">
+            <label>제목</label>
+            <input type="text" name="boardTitle" class="form-input w-100">
+        </div>
+    </c:otherwise>
+</c:choose>
+        <div class="row left">
+            <label>내용</label>
+            <textarea name="boardContent" class="form-input fixed w-100"></textarea>
+        </div>
+        <div class="row right">
+            <button class="btn btn-positive">글쓰기</button>
+            <a href="list" class="btn">목록</a></div>
+    </form>
+
+<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
+신예지 — 2023.09.05. 오후 12:59
+전체복사좀용
+예슬님
+컨트롤에이
+박예슬 — 2023.09.05. 오후 1:00
+<script>
+
+        window.addEventListener("load", function(){
+            var buttonList = document.querySelectorAll(".btn")
+
+            //반복문으로 이벤트 설정 및 실행 코드 작성
+            for(var i=0; i<buttonList.length; i++){
+                buttonList[i].addEventListener("click", function(){
+                    //this == 클릭한 버튼(주인공)
+                    var target = document.querySelector(".target");
+                    // target.style.color = buttonList[i].dataset.color; //오답(여기서 [i]는 사용불가)
+                    target.style.color = this.dataset.color; 
+                });
+            };
+
+            // buttonList[0].addEventListener("click", function(){
+            //     var target = document.querySelector(".target");
+            //     target.style.color = "black";
+            // });
+            // buttonList[1].addEventListener("click", function(){
+            //     var target = document.querySelector(".target");
+            //     target.style.color = "blue";
+            // });
+            // buttonList[2].addEventListener("click", function(){
+            //     var target = document.querySelector(".target");
+            //     target.style.color = "red";
+            // });
+        });
+
+    </script>
+<body>
+    <div class="container w-500">
+    <div class="row">
+        <h1>색상 변경 예제</h1>
+    </div>
+    <div class="row">
+    <h1 class="target">Hello Javascript!</h1>
+    </div>
+    <div class="row">
+    <button class="btn" data-color="black">검정</button>
+    <button class="btn" data-color="blue">파랑</button>
+    <button class="btn" data-color="red">빨강</button>
+</div>
+    <div class="row">
+    <button class="btn" data-color="yellow">노랑</button>
+    <button class="btn" data-color="#cdcdcd">그레이</button>
+    <button class="btn" data-color="green">그린</button>
+</div>
+</div>
+</body>
+박예슬 — 2023.09.07. 오후 5:15
+document.querySelector("[name=memberPost]").value = data.zonecode;
+                document.querySelector("[name=memberAddr1]").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.querySelector("[name=memberAddr2]").focus();
+박예슬 — 오늘 오전 9:28
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+
+확장
+message.txt
+11KB
+﻿
+박예슬
+박예슬#6455
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -370,3 +491,5 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
 
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
+message.txt
+11KB
