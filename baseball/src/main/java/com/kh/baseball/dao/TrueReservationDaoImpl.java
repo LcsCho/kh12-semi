@@ -103,13 +103,24 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 
 		
 	public List<SeatListDto> findSeatForReservation(int matchNo, int seatAreaNo) {
-		String sql = "SELECT " + "s.seat_no, " + "s.seat_col, " + "s.seat_row, " + "s.SEAT_AREA_NO, "
-				+ "sa.seat_area_zone, " + "st.STADIUM_NAME, " + "st.STADIUM_NO," + "sa.seat_area_price,"
-				+ "s.seat_status " + "FROM " + "seat s " + "INNER JOIN "
-				+ "seat_area sa ON s.SEAT_AREA_NO = sa.SEAT_AREA_NO " + "INNER JOIN "
-				+ "stadium st ON sa.STADIUM_NO = st.STADIUM_NO " + "INNER JOIN "
-				+ "match ma ON ma.STADIUM_name = st.STADIUM_Name " + "WHERE "
-				+ "ma.match_no = ? AND sa.seat_area_no = ?";
+		String sql = "SELECT " +
+	             "ma.MATCH_NO, " +
+	             "s.seat_no, " +
+	             "s.seat_row, " +
+	             "s.seat_col, " +
+	             "s.SEAT_AREA_NO, " +
+	             "sa.seat_area_zone, " +
+	             "st.STADIUM_NAME, " +
+	             "st.STADIUM_NO, " +
+	             "sa.seat_area_price, " +
+	             "rs.reservation_no " +
+	             "FROM seat s " +
+	             "LEFT OUTER JOIN seat_area sa ON s.SEAT_AREA_NO = sa.SEAT_AREA_NO " +
+	             "LEFT OUTER JOIN stadium st ON sa.STADIUM_NO = st.STADIUM_NO " +
+	             "LEFT OUTER JOIN match ma ON ma.STADIUM_name = st.STADIUM_Name " +
+	             "LEFT OUTER JOIN reservation rs ON (rs.SEAT_NO = s.seat_no AND rs.MATCH_NO = ma.MATCH_NO) " +
+	             "WHERE ma.match_no = ? AND sa.seat_area_no = ?" +
+	             "order by s.seat_no asc";
 		Object[] data = { matchNo, seatAreaNo };
 		return jdbcTemplate.query(sql, seatListMapper, data);
 	}

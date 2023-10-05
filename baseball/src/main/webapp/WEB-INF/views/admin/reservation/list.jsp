@@ -21,6 +21,7 @@
                     <th>어웨이팀</th>
                     <th>예매날짜</th>
                     <th>상세</th>
+                    <th>아이디</th>
                 </tr>
             </thead>
             <tbody align="center">
@@ -35,6 +36,7 @@
                 <td><fmt:formatDate value="${adminReservationListVO.reservationDate}" 
                     pattern="y년 M월 d일 E HH시 mm분 ss초"/></td>
                 <td><a href="/admin/reservation/detail?reservationNo=${adminReservationListVO.reservationNo}" class="link">상세</a></td>
+                <td>${adminReservationListVO.memberId}</td>
             </tr>
 </c:forEach>
             </tbody>
