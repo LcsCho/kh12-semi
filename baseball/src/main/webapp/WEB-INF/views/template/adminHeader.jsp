@@ -97,6 +97,12 @@ header>.logo {
                 <div class="row">
                   <a href="/member/mypage">마이페이지</a>
                </div>
+               &nbsp;
+               <div class="row">|</div>
+               &nbsp;
+               <div class="row">
+              	 <a href="/">일반페이지</a>
+               </div>
             </c:when>
             <c:otherwise>
                <div class="row">
