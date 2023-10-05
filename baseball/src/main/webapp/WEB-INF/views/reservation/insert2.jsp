@@ -1,345 +1,630 @@
-<!DOCTYPE html>
-<html lang="ko">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+
+
+
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Javascript 실습</title>
-
-    <!-- css 파일을 불러오는 코드 -->
-
-    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-    <!-- 구글 웹 폰트 사용을 위한 CDN -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
-    <!-- 내가 만든 CSS 파일-->
-    <link rel="stylesheet" type="text/css" href="./css/reset.css">
-    <link rel="stylesheet" type="text/css" href="./css/commons.css">
-    <!-- <link rel="stylesheet" type="text/css" href="./css/test.css"> -->
-    <style>
-        .boxborder {
-        box-shadow: 0px 0px 0px 1px #2d3436;
-        padding: 1em;
-    }
-        .clickseat {
-            height: 550px;
-        }
-
-        .seatreservation {
-            padding: 5px;
-            font-weight: bold;
-            font-size: 16px;
-            background-color: #360a01;
-            color: white;
-        }
-
-        .float-container>.float-left {
-            float: left;
-            width: 70%;
-            /* 왼쪽 영역이 70%로 설정 */
-        }
-
-        .float-container>.float-right {
-            float: right;
-            width: 30%;
-            /* 오른쪽 영역이 30%로 설정 */
-        }
-
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-        }
-        .checkbox {
-            display: flex;
-            align-items: center;
-            /* 세로 중앙 정렬 */
-            margin-bottom: 2.27%;
-        }
-        .btn {
-            background-color: #360a01;
-            color: white;
-            width: 120px;
-        }
+<title>매치 예약</title>
+<style>
+* {
+	font-family: 'KBO-Dia-Gothic_light';
+}
 
 
-    .seatrow {
-        margin: 0.1em;
-    }
-    </style>
+.custom-checkbox {
+	padding: 0; /* 여기에서 0으로 변경 */
+	margin: 20; /* 오타 수정: margine -> margin */
+	background-color: yellow; /* 배경색을 노란색으로 지정 */
+}
 
-    <!-- jquery cdn -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="multipage.js"></script>
-    <!-- javascript 작성 공간 -->
-    <!-- 1단계 페이지 HTML 파일 -->
+.seat-label {
+	position: relative;
+	top: -13px;
+	left: -22px
+}
+
+.boxborder {
+	box-shadow: 0px 0px 0px 1px #2d3436;
+	height: 600px;
+	margin-right: -1em;
+}
+
+.reservation-choice{
+height: 600px;
+}
+.seatArea-box{
+	box-shadow: 0px 0px 0px 1px #2d3436;
+	height: 600px;
+}
+
+.seatimage{
+	box-shadow: 0px 0px 0px 1px #2d3436;
+	width: 283px;
+	height: 250px;
+	margin: 1em;
+	margin-top: 0.1em;
+}
+
+.choice-box{
+	box-shadow: 0px 0px 0px 1px #2d3436;
+	width: 283px;
+	height: 274px;
+	margin: 1em;
+	margin-top: 0.1em;
+}
+
+.seatreservation {
+	padding: 5px;
+	font-weight: bold;
+	font-size: 16px;
+	background-color: #360a01;
+	color: white;
+}
+
+.float-container>.float-left {
+	float: left;
+	width: 70%;
+	/* 왼쪽 영역이 70%로 설정 */
+}
+
+.float-container>.float-right {
+	float: right;
+	width: 30%;
+	/* 오른쪽 영역이 30%로 설정 */
+}
+
+.image-container img {
+	max-width: 100%;
+	height: auto;
+}
+
+.checkbox {
+	display: flex;
+	align-items: center;
+	/* 세로 중앙 정렬 */
+	margin-bottom: 2.27%;
+}
+
+.btn {
+	background-color: #360a01;
+	color: white;
+	width: 120px;
+}
+
+.seatrow {
+	margin: 0.1em;
+}
+
+input[type="checkbox"].custom-checkbox {
+	display: none;
+	margin-left: 5px;
+}
+
+.custom-checkbox-label {
+	cursor: pointer;
+	display: inline-block;
+	margin: -5px;
+}
+
+.custom-checkbox-label i {
+	font-size: 20px; /* 아이콘 크기 조절 */
+	color: #360a01; /* 아이콘 색상 설정 */
+}
+
+/* 체크된 상태일 때 아이콘 변경 */
+input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
+	{
+	color: #952323; /* 체크된 상태의 아이콘 색상 설정 */
+}
+/* 체크된 상태일 때 이미지 변경 */
+.selected-seats-list {
+	white-space: pre-line;
+}
+.seat{
+font-size: 20px;
+}
+
+.check{
+	font-size: 17px;
+	padding-top: 1em;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 <script>
-$(document).ready(function () {
-    var seatNumber = 1; // 좌석 번호를 나타내는 변수
-
-    // zone의 좌석 생성
-    var zone = document.createElement("div"); // 각 구역을 나타내는 <div> 요소 생성
-    zone.className = "zone"; // 구역을 나타내는 CSS 클래스 추가
-
-    // 좌석을 생성하고 zone에 추가하는 코드 (이전의 코드와 동일)
-
-    // zone을 .inputzone에 추가
-    $(".inputzone").append(zone);
-
+$(function () {
     var selectedSeats = []; // 선택된 좌석을 저장하는 배열
     var maxSeats = 4; // 최대 선택 가능한 좌석 수
+    var ticketCount = 0;
+    var currentPage = 0; // 현재 페이지 번호
+    var totalSeatPrice = 0;
 
-    $(".refresh-button").click(function () {
-        // 모든 체크박스를 해제
-        $("input[type='checkbox']").prop("checked", false);
 
-        // 선택된 좌석 리스트와 표시된 좌석을 지우기
-        $(".selected-seats-list").empty();
-        $(".selected-seats").empty();
+    // 페이지 초기화 함수
+    function initPage() {
+        $(".page").hide(); // 모든 페이지 숨김
+        $(".page:eq(" + currentPage + ")").show(); // 현재 페이지 표시
 
-        // 선택된 좌석 배열 초기화
-        selectedSeats = [];
-    });
-
-    for (var a = 1; a <= 120; a++) {
-        var input = document.createElement("input");
-        input.type = "checkbox";
-        input.name = "seatNo"; // 좌석의 이름 설정 (예: seatNo)
-        input.value = seatNumber; // 좌석 번호를 값으로 설정
-
-        // data-zone 속성을 추가하여 구역 정보 저장
-        input.setAttribute("data-zone", selectedArea);
-
-        $(zone).append(input);
-
-        if (a % 4 === 0) {
-            // 4개의 좌석 뒤에 띄어쓰기 추가
-            for (var i = 0; i < 4; i++) {
-                var space = document.createElement("span");
-                space.textContent = " "; // 띄어쓰기 문자 추가
-                $(zone).append(space);
-            }
-        }
-
-        if (a % 12 === 0) {
-            // 12열마다 줄바꿈 추가
-            $(zone).append("<br>");
-        }
-
-        seatNumber++; // 좌석 번호 증가
-    }
-
-    // A zone을 .inputzone에 추가
-    $(".inputzone").append(zone);
-
-    // 페이지 로드 시 선택한 구역 정보를 가져옵니다.
-    var selectedArea = localStorage.getItem("selectedArea");
-
-    $("input[name='seatAreaZone']").change(function () {
-        selectedArea = $(this).data("zone");
-        $(".selected-seats-list").text("구역: " + selectedArea);
-    });
-
-    $(".inputzone input[type='checkbox']").change(function () {
-        // 체크박스가 변경될 때마다 호출됩니다.
-        var checked = $(this).prop("checked"); // 체크박스의 체크 여부를 확인합니다.
-        var seatNo = $(this).val(); // 선택된 좌석 번호를 가져옵니다.
-
-        if (checked) {
-            // 체크박스가 체크되었을 때
-            if (selectedSeats.length < maxSeats) {
-                // 선택된 좌석이 최대 허용 개수 미만이면 추가합니다.
-                selectedSeats.push(seatNo);
-            } else {
-                // 이미 최대 개수의 좌석을 선택한 경우 체크를 해제합니다.
-                $(this).prop("checked", false);
-                selectedSeats.pop(); // 선택된 좌석 배열에서 마지막 항목을 제거합니다.
-                window.alert("최대 4매까지 예매 가능합니다");
-            }
+        // 이전 버튼 숨기기
+        if (currentPage === 0) {
+            $(".btn-prev").hide();
         } else {
-            // 체크박스가 해제되었을 때
-            var index = selectedSeats.indexOf(seatNo);
-            if (index !== -1) {
-                // 배열에서 해당 좌석을 제거합니다.
-                selectedSeats.splice(index, 1);
-            }
+            $(".btn-prev").show();
         }
 
-        // 선택된 좌석 정보를 업데이트합니다.
-        updateSelectedSeats(selectedSeats);
-    });
-
-    // 구역 선택이 변경되었을 때
-    $("input[name='seatAreaZone']").change(function () {
-        $("input[name='seatAreaZone']").not(this).prop("checked", false); // 다른 구역 체크 해제
-    });
-
-    $(".btn-next").click(function () {
-        // 선택한 구역 정보를 다음 페이지로 전달합니다.
-        var selectedArea = $("input[name='seatAreaZone']:checked").data("zone");
-        localStorage.setItem("selectedArea", selectedArea);
-
-        // 선택한 좌석 정보를 로컬 스토리지에 저장합니다.
-        localStorage.setItem("selectedSeats", JSON.stringify(selectedSeats));
-    });
-
-    function updateSelectedSeats(seats) {
-        // 선택된 좌석 정보를 업데이트하는 함수
-        var selectedSeatsCount = seats.length;
-        $(".selected-seats").text("(" + selectedSeatsCount + "석)");
-
-        // 선택된 좌석 번호를 출력합니다.
-        $(".selected-seats-list").text("구역: " + selectedArea + ", 좌석: " + seats.join(", "));
-        $(".seatAreaNo").text(selectedArea);
-        $(".seatNo").text(seats.join(", "));
+        // 다음 버튼 숨기기 (마지막 페이지에서만 표시)
+        if (currentPage === $(".page").length - 1) {
+            $(".btn-next").hide();
+        } else {
+            $(".btn-next").show();
+        }
     }
 
-    $(".btn-prev").click(function () {
-        // 이전 단계 버튼을 클릭했을 때 호출되는 함수
 
-        // 모든 체크박스를 해제
-        $("input[type='checkbox']").prop("checked", false);
-
-        // 선택된 좌석 리스트와 표시된 좌석을 지우기
-        $(".selected-seats-list").empty();
-        $(".selected-seats").empty();
-
-        // 선택된 좌석 배열 초기화
+    // 초기화 함수
+    function resetSeats() {
+        // 선택된 좌석 목록 초기화
         selectedSeats = [];
 
-        // 이전 단계로 이동 (이 부분은 페이지 이동 로직을 구현해야 합니다)
-        // 예를 들어, 이전 페이지로 이동하는 코드를 추가하면 됩니다.
-        // window.location.href = "이전 페이지 URL";
-    });
-       
+        // 선택된 좌석 수 초기화
+        ticketCount = 0;
+
+        // 초기화된 좌석 수 표시
+        $("#ticket-count-value").text(0);
+
+        // 선택된 좌석 목록 업데이트
+        $(".selected-seats-list").text("");
+
+        // 각 체크박스의 초기화 처리
+        $(".custom-checkbox-label").each(function () {
+            var currentCheckboxLabel = $(this);
+            var isDisabled = currentCheckboxLabel.find("input[type=checkbox]").prop("disabled");
+
+            if (isDisabled) {
+                // 좌석이 비활성화 상태인 경우 초기화하지 않고 넘김
+                return;
+            }
+
+            var currentCheckbox = currentCheckboxLabel.find("input[type=checkbox]");
+            currentCheckbox.prop("checked", false); // 체크박스 선택 상태 초기화
+
+            var currentIcon = currentCheckboxLabel.find("i");
+            currentIcon.css("color", "#360a01");
+        });
+
+        console.log("초기화 완료"); // 디버깅용 로그
+    }
+
+    // 페이지 초기화
+    initPage();
+
+    $(".btn-next").click(function() {
+        // 선택한 구역을 가져옴
+        var selectedArea = $("input[name=seatAreaNo]:checked").val();
+        
+        // 구역이 선택되지 않았을 때 경고 메시지를 표시
+        if (!selectedArea) {
+            alert("구역을 선택해주세요.");
+            $(".page:eq(0)").show();
+            $(".page:eq(1)").hide();
+            $(".page:eq(2)").hide();
+            return;
+        }
+
+        // 구역이 선택되었을 때 2단계로 이동
+        if (currentPage < $(".page").length - 1) {
+            currentPage++;
+            initPage(); // 페이지 업데이트
+        }
     });
 
-    </script>
+    // "이전" 버튼 클릭 시 이전 페이지로 이동
+    $(".btn-prev").click(function () {
+        if (currentPage > 0) {
+            currentPage--;
+            resetSeats();
+
+        }
+        initPage(); // 페이지 업데이트
+    });
+
+    // 좌석 구역 선택 시 이벤트 처리
+    $("[name=seatAreaNo]").on("input", function () {
+        if (!$(this).prop("checked")) {
+            // 체크박스가 해제된 경우, 모든 라디오 버튼 선택 해제
+            $("[name=seatAreaNo]").prop("checked", false);
+        }
+		
+     // 선택한 구역 정보를 가져옴
+        var selectedSeatAreaNo = $(this).val();
+        if (selectedSeatAreaNo.length == 0) return; // 비어있으면 리턴
+      
+        var params = new URLSearchParams(location.search);
+        // url에 있는 matchNo를 저장
+        var matchNo = params.get("matchNo");
+
+        // AJAX 요청을 통해 좌석 정보를 가져와 처리
+        $.ajax({
+            url: "http://localhost:8080/reservation/selectSeatAreaZone",
+            method: "post",
+            data: {
+                seatAreaNo: selectedSeatAreaNo,
+                matchNo: matchNo
+            },
+            // 성공시
+            success: function (response) {
+                console.log(response);
+                // 마지막 번호 정보
+                var lastSeat = response[response.length - 1];
+                // 마지막 컬럼 값
+                var numCols = lastSeat.seatCol;
+                // 마지막 로우 값
+                var numRows = lastSeat.seatRow;
+          
+                // 이름을 checkboxcontainer로 저장
+                var checkboxContainer = $("#seat-checkbox");
+                // 체크박스의 내용을 초기화
+                checkboxContainer.empty();
+
+                // 티켓의 요소를 엘리멘트로 저장
+                var ticketCountElement = $("#ticket-count-value");
+
+
+             // 이미지 업데이트를 수행하는 함수
+             function updateImage(selectedSeatAreaNo) {
+                 var imageUrl = ""; // 선택한 구역에 따른 이미지 URL을 설정
+
+                 // 선택한 구역에 따라 이미지 URL을 설정합니다.
+                 switch (selectedSeatAreaNo) {
+                     case "41":
+                     case "32":
+                     case "61":
+                     case "62":
+                     case "81":
+                         imageUrl = "/images/1루네이비석.jpg";
+                         break;
+                     case "43":
+                     case "33":
+                     case "82":
+                         imageUrl = "/images/1루레드석.jpg";
+                         break;
+                     case "42":
+                     case "45":
+                     case "83":
+                         imageUrl = "/images/1루블루석.jpg";
+                         break;
+                     default:
+                         // 선택한 구역이 없거나 잘못된 경우, 기본 이미지를 사용합니다.
+                         imageUrl = "/images/seatimage.png";
+                         break;
+                 }
+
+                 // 이미지 엘리먼트를 선택합니다.
+                 var imageElement = $("#seat-image");
+
+                 // 이미지 URL을 설정하여 이미지를 변경합니다.
+                 imageElement.attr("src", imageUrl);
+
+                 // 개발자 도구 콘솔에 디버그 정보 출력
+                 console.log("이미지 업데이트 - 선택한 구역: " + selectedSeatAreaNo);
+                 console.log("이미지 경로: " + imageUrl);
+   
+             }
+             
+             // 이미지 업데이트 함수를 호출하여 이미지를 초기화
+             updateImage(selectedSeatAreaNo);
+                
+                // for 문을 사용하여 checkbox를 자동으로 생성
+                for (var i = 0; i < numRows; i++) {
+                    for (var j = 0; j < numCols; j++) {
+                        // 배열에 있는 요소를 가져오기 위한 index
+                        var index = i * numCols + j;
+                        // 응답에서 status값 저장
+                        var seatStatus = response[index].seatStatus;
+                        var seatArea = response[index].seatAreaZone;
+
+                        var seatPrice = response[index].seatAreaPrice;
+
+                        console.log(seatArea);
+                        var checkbox = $("<input>")
+                            .attr("type", "checkbox")
+                            .attr("value", response[index].seatNo)
+                            .attr("name", "seatNo")
+                            .addClass("custom-checkbox");
+
+                        var icon = $("<i>")
+                            .addClass("fa-solid fa-couch");
+
+                        var iconLabel = $("<label>")
+                            .addClass("custom-checkbox-label")
+                            .append(checkbox) // 체크박스를 라벨에 추가
+                            .append(icon);
+
+                        // 빈칸 생성
+                        if (j % 4 == 0) {
+                            var blank = $("<span>")
+                                .addClass("blank")
+                                .text("　");
+                            checkboxContainer.append(blank);
+                        }
+
+                        // seatcolrow 정보를 출력
+                        var label = $("<label>")
+                            .addClass("seat-label");
+                        // 라벨 아래에 좌석 번호와 상태 표시
+                        label.append((i + 1) + "-" + (j + 1));
+
+                        // 만약에 seatStatus가 N이라면 선택이 되어있고 disable로 처리
+                        if (seatStatus == "N") {
+                            checkbox
+                                .prop("checked", true)
+                                // attr 대신 prop를 사용하여 checked 속성을 설정
+                                .attr("disabled", true);
+                            icon.css("color", "#CCCCCC");
+                        }
+
+                        checkboxContainer.append(iconLabel);
+                        checkboxContainer.append(label);
+
+                        // 클로저를 사용하여 고유한 index, seatCol, seatRow 값을 갖도록 처리
+                        (function (currentIndex, currentSeatCol, currentSeatRow) {
+                            checkbox.on("change", function () {
+                                var currentCheckbox = $(this);
+                                var currentIcon = currentCheckbox.parent().find("i");
+
+                                var seatName = currentCheckbox.val();
+
+                                if (currentCheckbox.is(":checked")) {
+                                    if (ticketCount >= maxSeats) {
+                                        alert("최대 " + maxSeats + "개 구매 가능합니다!");
+                                        currentCheckbox.prop("checked", false);
+                                        return;
+                                    } else {
+                                        ticketCount++;
+                                        totalSeatPrice += seatPrice;
+
+                                        selectedSeats.push({
+                                            row: currentSeatRow,
+                                            col: currentSeatCol
+                                        });
+                                        console.log("좌석 선택됨: Row " + currentSeatRow + ", Col " + currentSeatCol);
+                                        console.log("선택된 좌석 목록: " + JSON.stringify(selectedSeats));
+                                    }
+
+                                    // 체크된 상태일 때 아이콘 색상 변경
+                                    currentIcon.css("color", "#952323");
+                                } else {
+                                    ticketCount--;
+                                    totalSeatPrice -= seatPrice;
+
+                                    // 체크 해제된 상태일 때 아이콘 색상 원래 색상으로 변경
+                                    var indexToRemove = selectedSeats.findIndex(function (seat) {
+                                        return seat.row === currentSeatRow && seat.col === currentSeatCol;
+                                    });
+
+                                    if (indexToRemove !== -1) {
+                                        selectedSeats.splice(indexToRemove, 1);
+                                    }
+
+                                    currentIcon.css("color", "#360a01");
+                                    console.log("좌석 선택 해제됨: Row " + currentSeatRow + ", Col " + currentSeatCol);
+                                    console.log("선택된 좌석 목록: " + JSON.stringify(selectedSeats));
+                                }
+
+                                // 티켓 카운트 요소가 있는 곳에 text로 티켓의 수를 출력
+                                ticketCountElement.text(ticketCount);
+                                $("#totalPrice").text(totalSeatPrice + " 원");
+                                $("#seat-area-zone").text(seatArea);
+
+                                $("#reservationTicket").attr("value", ticketCount);
+                                $(".selected-seats-list").text(selectedSeats.map(function (seat) {
+                                    return "　" + seatArea + "구역 " + seat.row + "열 " + seat.col + "번";
+                                }).join("\n"));
+                            });
+                        })(index, response[index].seatCol, response[index].seatRow);
+                    }
+                    checkboxContainer.append("<br><br>");
+                }
+            },
+        });
+    });
+		// "초기화" 버튼 클릭 이벤트 처리
+		$(".refresh-button").click(function() {
+			console.log("새로고침 버튼 클릭"); // 디버깅용 로그
+
+			// 좌석 초기화 함수 호출
+			resetSeats();
+
+			// 선택된 좌석 배열 초기화
+			selectedSeats = [];
+
+			// 선택된 좌석 수 초기화
+			ticketCount = 0;
+			
+			totalSeatPrice = 0;
+		});
+
+		// "다음" 버튼 클릭 시 2단계에서 3단계로 이동 
+		// 또는 좌석을 선택하지 않았을 때 2단계에 남아있도록 함
+		$(".show-reservation-info-button").click(function() {
+			// 선택한 구역과 좌석 정보 가져오기
+			var selectedArea = $("input[name=seatAreaNo]:checked").val();
+			var selectedSeats = $(".selected-seats-list").text();
+
+			// 예매 정보를 표시할 엘리먼트에 정보를 채워 넣음
+			$(".seatAreaNo").text(selectedArea);
+			$(".seatNo").text(selectedSeats);
+			$(".seatPrice").text(totalSeatPrice)
+
+			if (selectedSeats.trim() === "") {
+				alert("좌석을 선택해주세요!"); // 좌석을 선택하지 않았을 때 경고 메시지 표시
+				$(".page:eq(1)").show();
+				$(".page:eq(2)").hide();
+
+				// "다음" 버튼 다시 표시
+				$(".show-reservation-info-button").show();
+			} else {
+				// 3단계 페이지 표시
+				$(".page:eq(2)").show();
+
+				// "다음" 버튼 숨김
+				$(".show-reservation-info-button").hide();
+			}
+		});
+		$(".btn-primary").click(function() {
+			// 사용자가 확인 버튼을 클릭한 경우에만 확인 대화상자를 표시
+			if (confirm("예매를 진행 하시겠습니까?")) {
+				// 확인 버튼을 클릭한 경우의 동작을 여기에 추가
+				// 예를 들어 예매를 진행하는 코드를 추가할 수 있습니다.
+				alert("예매가 완료되었습니다."); // 예매가 성공적으로 진행되었음을 알림
+			} else {
+				// "아니요"를 클릭한 경우
+				alert("예매가 취소되었습니다."); // 예매가 취소되었음을 알림
+			}
+		});
+
+	});
+</script>
+
+
 </head>
 
 <body>
-    <form class="" action="" method="post" autocomplete="off">
+	<form id="reservationForm" action="insert" method="post"
+		enctype="multipart/form-data">
 
-        <div class="container w-600">
+		<div class="container w-1000">
+		
+			<div class="row page">
+				<div class="row seatreservation">
+					<h2 class="left ms-10">예매하기</h2>
+				</div>
 
-            <!-- 1단계 : 예매하기 -->
-            <div class="row page">
-                <div class="row seatreservation">
-                    <h2 class="left ms-10">예매하기</h2>
-                </div>
+				<!-- 왼쪽에 이미지를 추가하는 부분 (col 사용) -->
+				<div class="float-container" >
+			    <div class="float-left boxborder">
+			        <div class="image-container">
+			            <img src="/images/seatimage.png" id="seat-image">
+			        </div>
+			    </div>
+			
+					
+					<div class="float-right seatArea-box">
+			
+					<input type="hidden" id="homeTeam" name="homeTeam"
+						value="${matchNo}"><br> <input type="hidden"
+						id="awayTeam" name="awayTeam" value="${matchNo}"><br>
+					<input type="hidden" id="matchNo" name="matchNo" value="${matchNo}"><br>
+					<label class="seat">좌석 구역 선택</label><br><br>
+					<c:forEach var="reservationVo" items="${list}">
+					
+						<div class="row">
+							<input type="radio" name="seatAreaNo"
+								id="selectedSeatArea" value="${reservationVo.seatAreaNo}">
+							${reservationVo.seatAreaZone}구역
+							<br>
+							${reservationVo.seatAreaPrice} 원
+						</div>
+						
+					</c:forEach>
+					</div>
+				</div>
+			
+				<!-- "다음" 버튼 클릭 시 2단계로 이동 -->
+				<div class="row right">
+					<button type="button" class="btn btn-next">다음단계</button>
+				</div>
+		</div>
+</div>
+		
+		<!-- 2단계 : 좌석선택 -->
+		<div class="container w-1000">
+		
+			<div class="row page">
+				<div class="row seatreservation">
+					<h2 class="left ms-10">좌석선택</h2>
+				</div>
+				
+				<div class="float-container" style="margin: 0.8em;">
+			    <div class="float-left boxborder">
+						<div class="row">${reservationVo.seatAreaNo}</div>
+						좌석구역: <span id="seat-area-zone">0</span>
+						<div class="mt-20" id="seat-checkbox"></div>
+					</div>
+				
+					<div class="float-right clickseat">
+						
+						<div class="seatimage">
+						<div style="height: 70%;">
+							<img src="/images/seatimage.png" style="max-block-size: 100%;"
+								class="mt-10 ms-20">
+						</div>
+						</div>
+						
+						<button type="button" class="refresh-button btn btn-origin">새로고침</button>
+						<div class="choice-box">
+						<div class="row">
+							<div id="ticket-count" class="check">
+								선택된 좌석(<span id="ticket-count-value">0</span>)석
+								<div id="totalPrice" > 원</div>
+							</div>
+						</div>
+							<div class="row left">
+								<label class="selected-seats-list"></label>
+							</div>
+							<input type="hidden" id="reservationTicket"
+								name="reservationTicket">
+						</div>
+				</div>
+</div>
 
-                <!-- 왼쪽에 이미지를 추가하는 부분 (col 사용) -->
-                <div class="float-container">
-                    <div class="float-left">
-                        <div class="image-container boxborder">
-                            <img src="./image/seatimage.png">
-                        </div>
-                    </div>
-
-
-                    <!-- 체크박스를 사용하여 구역 선택 -->
-                    <div class="boxborder">
-                    <label for="seatAreaZone">구역 선택:</label>
-                    <div class="checkbox">
-                        <input type="checkbox" name="seatAreaZone" id="zoneA" data-zone="A">
-                        <label for="zoneA">A</label>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="seatAreaZone" id="zoneB" data-zone="B">
-                        <label for="zoneB">B</label>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="seatAreaZone" id="zoneC" data-zone="C">
-                        <label for="zoneC">C</label>
-                    </div>
-                    
-                </div>
-            </div>
-                <div class="row right">
-                    <button type="button" class="btn btn-prev">
-                        이전단계
-                    </button>
-                    <button type="button" class="btn btn-next">
-                        다음단계
-                    </button>
-                </div>
-            </div>
-
-                <!-- 2단계 : 좌석선택 -->
-                <div class="row page">
-                    <div class="row seatreservation">
-                        <h2 class="left ms-10">좌석선택</h2>
-                    </div>
-                    <div class="row float-container boxborder">
-
-                        <div class="float-left clickseat boxborder">
-                            <div class="row"
-                                style="height: 30%; background-color: green; color: white; font-weight: bold; display: flex; justify-content: center;align-items: center;">
-                                GROUND
-                            </div>
-
-                            <div class="row">
-                                A zone
-                            </div>
-                            <div class="inputzone">
-                            
-                            </div>
-                            
-                        </div>
-
-                        <div class="float-right clickseat">
-                            <div style="height: 50%;">
-                                <img src="./image/seatimage.png" style="max-block-size: 45%;" class="mt-10 ms-20">
-                            </div>
-                            <button type="button" class="refresh-button">새로고침</button>
-                            <div class="boxborder ms-10">                           
-                                선택된 좌석<label class="selected-seats"></label>
-                            </div>
-                            <div class="row left">
-                            <label class="selected-seats-list"></label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row right">
-                        <button type="button" class="btn btn-prev">
-                            이전단계
-                        </button>
-                        <button type="button" class="btn btn-next">
-                            다음단계
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 3단계 : 예매완료 -->
-                <div class="row page page3">
-                    <div class="row">
-                        <h2>3단계 : 예매완료</h2>
-                    </div>
-
-                    <h3>예매 정보</h3>
-                    구역 : <label class="seatAreaNo"></label><br>
-                    좌석번호 : <label class="seatNo"></label>
- 
-
-                    <div class="row right">
-                        <button type="button" class="btn btn-prev">
-                            이전단계
-                        </button>
-                        <button type="button" class="btn btn-next">
-                            다음단계
-                        </button>
-                    </div>
-                </div>
-
-
-            </div>
-
-    </form>
+				<div class="row right">
+					<button type="button" class="btn btn-prev">이전단계</button>
+					<button type="button" class="btn btn-next show-reservation-info-button">다음단계</button>
+				</div>
+	</div>
+</div>
+		<!-- 3단계 : 예매완료 -->
+		
+		<div class="container w-1000">
+		
+			<div class="row page">
+				<div class="row seatreservation">
+					<h2 class="left ms-10">예매 정보 확인</h2>
+				</div>
+				
+			<div class="reservation-choice">			
+			<table class="table table-hover table-border">
+				<thead>
+					<tr>
+						<th>좌석번호</th>
+						<th>총가격</th>
+					</tr>
+				</thead>
+				<tbody align="center">
+					<tr>
+						<td><p>
+								<span class="seatNo"></span>
+							</p></td>
+						<td><p>
+								<span class="seatPrice"></span>
+							</p></td>
+					</tr>
+				</tbody>
+			</table>
+</div>	
+			<div class="row right">
+				<button type="button" class="btn btn-prev">이전단계</button>
+				<button type="submit" class="btn btn-primary">예매 완료</button>
+			</div>
+		</div>
+		</div>
+	</form>
 </body>
-
 </html>
+
+<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
