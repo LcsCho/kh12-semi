@@ -3,11 +3,10 @@ package com.kh.baseball.dao;
 import java.util.List;
 
 import com.kh.baseball.dto.DeleteReservationDto;
-import com.kh.baseball.dto.ReservationCancelDto;
-import com.kh.baseball.dto.SeatListDto;
 import com.kh.baseball.dto.TrueReservationDto;
 import com.kh.baseball.vo.PaginationVO;
 import com.kh.baseball.vo.ReservationVO;
+import com.kh.baseball.vo.SeatListVO;
 
 public interface TrueReservationDao {
 	
@@ -18,7 +17,7 @@ public interface TrueReservationDao {
 	
 	
 	
-	List<SeatListDto> findSeatForReservation( int matchNo ,int seatAreaNo);
+	List<SeatListVO> findSeatForReservation( int matchNo ,int seatAreaNo);
 	//void insert(String[] seatNoArray, TrueReservationDto trueReservationDto);
 	
 	boolean seatStatusUpdate(TrueReservationDto trueReservationDto);

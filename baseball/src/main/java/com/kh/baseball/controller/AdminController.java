@@ -157,4 +157,6 @@ public class AdminController {
       trueReservationDao.reservationDeleteByTicket(deleteReservationDto);
             return "redirect:list";
     }
+ 
+   
 }

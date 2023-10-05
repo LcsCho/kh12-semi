@@ -25,6 +25,7 @@ import com.kh.baseball.dto.SeatListDto;
 import com.kh.baseball.dto.TrueReservationDto;
 import com.kh.baseball.vo.PaginationVO;
 import com.kh.baseball.vo.ReservationVO;
+import com.kh.baseball.vo.SeatListVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -115,8 +116,8 @@ public class ReservationController {
 
    @RequestMapping("/selectSeatAreaZone")
    @ResponseBody
-   public List<SeatListDto> selectSeatAreaZone(@RequestParam int seatAreaNo, @RequestParam int matchNo) {
-      List<SeatListDto> seatList = trueReservationDao.findSeatForReservation(matchNo, seatAreaNo);
+   public List<SeatListVO> selectSeatAreaZone(@RequestParam int seatAreaNo, @RequestParam int matchNo) {
+      List<SeatListVO> seatList = trueReservationDao.findSeatForReservation(matchNo, seatAreaNo);
       return seatList;
       
    }
