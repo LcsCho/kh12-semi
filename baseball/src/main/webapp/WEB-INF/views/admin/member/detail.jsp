@@ -43,6 +43,15 @@ table td {
 td:nth-last-child(1), th:nth-last-child(1) {
 	border-right: none;
 }
+
+.btn.btn-positive {
+	width: 100px;
+	height: 40px;
+	font-size: 14px;
+	border-radius: 0px;
+	padding-right: 1.6em;
+	padding-top: 0.8em;
+}
 </style>
 
 <div class="container w-700">
@@ -113,6 +122,10 @@ td:nth-last-child(1), th:nth-last-child(1) {
                     pattern="y년 M월 d일 E a h시 m분 s초"/></td>
             </tr>
     </table>
+    
+    <div class="row right">
+      	<a href="list" class="btn btn-positive">목록으로</a>
+      </div>
 		</div>
 
 

@@ -58,10 +58,10 @@
 
                     <div class="float-container">
                     <div class="row col-2 right">
-                        <a href="/member/findPw">비밀번호 찾기&nbsp;|</a>
+                        <a href="/member/findPw" class="link">비밀번호 찾기&nbsp;|</a>
                     </div>
                     <div class="row col-2 left">
-                        <a href="/member/join">&nbsp;회원가입 하기</a>
+                        <a href="/member/join" class="link">&nbsp;회원가입 하기</a>
                     </div>
                 </div>
 

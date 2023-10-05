@@ -46,7 +46,7 @@ td:nth-last-child(1), th:nth-last-child(1) {
 /* 레이아웃 */
 
 .page3{
-	height: 638px;
+	height: 639px;
 	border-bottom: #2d3436 1px solid;
 	border-right: #2d3436 1px solid;
 	border-left: #2d3436 1px solid;
@@ -66,7 +66,7 @@ td:nth-last-child(1), th:nth-last-child(1) {
 	margin-top:20px;
     margin-left: 50px;
     margin-right: 50px;
-     height: 244px;
+     height: 251px;
     border-top: #2d3436 1px solid;
 	border-bottom: #2d3436 1px solid;
 	border-right: #2d3436 1px solid;
@@ -119,7 +119,7 @@ td:nth-last-child(1), th:nth-last-child(1) {
 
 .page3-btn{
  	margin-right: 0.7em;
- 	margin-top: 18.4em;
+ 	margin-top: 17.9em;
 
 }
 
@@ -239,14 +239,13 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
     display: inline-block;
     cursor: pointer;
     border: 1px solid #ccc;
-    border-radius: 5px;
    	width: 220px;
-   	height: 40px;
+   	height: 25px;
    	font-size: 14px;
-   	padding-top: 0.1em;
+   	padding-top: 0.2em;
     background-color: transparent; /* 배경 색상 투명하게 설정 */
-    color: #333; /* 선택되지 않은 상태에서의 텍스트 색상 */
-    transition: background-color 0.3s, color 0.3s; /* 전환 효과 추가 */
+    color: #333; /* 선택되지 않은 상태에서의 텍스트 색상 */ 
+    margin: -1em;
 }
 
 /* 각 라디오 버튼을 다른 클래스로 구분 */
@@ -729,8 +728,7 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
 									       style="display: none;">
 									<label for="selectedSeatArea${status.index + 1}" class="seatAreaLabel">
 									    ${reservationVo.seatAreaZone}구역
-									    <br>
-									    ${reservationVo.seatAreaPrice} 원
+									    / ${reservationVo.seatAreaPrice} 원
 									</label>
 				        </div>					
 				</c:forEach>

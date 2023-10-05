@@ -7,7 +7,14 @@
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="/css/list.css">
 
-
+<style>
+.btn, .btn.btn-positive {
+	width: 100px;
+	height: 40px;
+	font-size: 14px;
+	border-radius: 0px;
+}
+</style>
 <div class="row">
     <form action="delete" method="post">
         <table width="1000">
@@ -42,7 +49,7 @@
             </tbody>
         </table>
        	<div class="row right">
-        <button id="confirm" class="btn btn-origin">예매 취소하기</button>
+        <button id="confirm" class="btn btn-origin btn-negative">예매 취소</button>
         </div>
     </form>
 </div>
