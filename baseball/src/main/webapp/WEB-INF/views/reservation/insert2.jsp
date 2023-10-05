@@ -39,6 +39,7 @@ height: 600px;
 .seatArea-box{
 	box-shadow: 0px 0px 0px 1px #2d3436;
 	height: 600px;
+	
 }
 
 .seatimage{
