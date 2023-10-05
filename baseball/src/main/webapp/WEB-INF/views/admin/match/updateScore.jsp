@@ -48,11 +48,11 @@
 			</table>
 			<button class="btn btn-positive">경기점수수정</button>
 		</div>
-		<div class="row">
+<!-- 		<div class="row">
 			<a href="list">목록으로</a>  
 			<br> 
 			<a href="/admin/home">홈으로</a>
-		</div>
+		</div> -->
 	</div>
 </form>
 <jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>
