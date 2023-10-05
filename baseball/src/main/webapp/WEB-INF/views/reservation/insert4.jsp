@@ -331,6 +331,7 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
 
   $(function () {
     var selectedSeats = []; // 선택된 좌석을 저장하는 배열
+    var selectedSeatArea = ""; // 선택한 좌석 구역 정보를 저장할 변수
     var maxSeats = 4; // 최대 선택 가능한 좌석 수
     var ticketCount = 0;
     var currentPage = 0; // 현재 페이지 번호
@@ -508,7 +509,6 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
                         // 응답에서 status값 저장
                         var seatReservation = response[index].reservationNo;
                         var seatArea = response[index].seatAreaZone;
-
                         var seatPrice = response[index].seatAreaPrice;
 
                         console.log(seatArea);
@@ -604,7 +604,7 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
 
                                 $("#reservationTicket").attr("value", ticketCount);
                                 $(".selected-seats-list").text(selectedSeats.map(function (seat) {
-                                    return "　" + seatArea + "구역 " + seat.row + "열 " + seat.col + "번";
+                                    return "　" + seatArea +  " " + seat.row + "열 " + seat.col + "번";
                                 }).join("\n"));
                             });
                         })(index, response[index].seatCol, response[index].seatRow);
