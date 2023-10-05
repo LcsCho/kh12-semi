@@ -188,15 +188,10 @@ public class MemberController {
 	
 	//회원 탈퇴
 	@GetMapping("/exit")
-	public String exit(HttpSession session, Model model) {
-		//[1] 세션에서 사용자의 아이디를 꺼낸다
-		String memberId = (String) session.getAttribute("name");
-		//[2] 가져온 아이디로 회원정보를 조회한다
-		MemberDto memberDto = memberDao.selectOne(memberId);
-		//[3] 조회한 정보를 모델에 첨부한다
-		model.addAttribute("memberDto",memberDto);
+	public String exit() {
 		return "/WEB-INF/views/member/exit.jsp";
 	}
+	
 	
 	@PostMapping("/exit")
 	public String exit(HttpSession session, @RequestParam String memberPw) {		
