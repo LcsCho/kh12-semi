@@ -45,7 +45,7 @@ td:nth-last-child(1), th:nth-last-child(1) {
 /* 레이아웃 */
 
 .page3{
-	height: 640px;
+	height: 638px;
 	border-bottom: #2d3436 1px solid;
 	border-right: #2d3436 1px solid;
 	border-left: #2d3436 1px solid;
@@ -121,7 +121,7 @@ td:nth-last-child(1), th:nth-last-child(1) {
 
 .page3-btn{
  	margin-right: 0.7em;
- 	margin-top: 8.7em;
+ 	margin-top: 8.5em;
 }
 
 .seatreservation {
