@@ -89,7 +89,7 @@ td:nth-child(2) {
 .btn, .btn.btn-positive {
 	width: 100px;
 	height: 40px;
-	font-size: 15px;
+	font-size: 14px;
 	border-radius: 0px;
 }
 
@@ -111,7 +111,7 @@ td:nth-child(2) {
 <div class="row">
 	<form action="delete" method="post">
 			<div class="row right ">
-			<button type="submit" class="btn btn-negative delete-btn ">예매 취소하기</button>
+			<button type="submit" class="btn btn-negative delete-btn ">예매 취소</button>
 		</div>
 		<table class="table table-hover table-border">
 
