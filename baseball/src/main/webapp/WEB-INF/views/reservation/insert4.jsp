@@ -66,7 +66,7 @@ td:nth-last-child(1), th:nth-last-child(1) {
 	margin-top:20px;
     margin-left: 50px;
     margin-right: 50px;
-     height: 244px;
+     height: 251px;
     border-top: #2d3436 1px solid;
 	border-bottom: #2d3436 1px solid;
 	border-right: #2d3436 1px solid;
@@ -119,7 +119,7 @@ td:nth-last-child(1), th:nth-last-child(1) {
 
 .page3-btn{
  	margin-right: 0.7em;
- 	margin-top: 18.3em;
+ 	margin-top: 17.9em;
 
 }
 
