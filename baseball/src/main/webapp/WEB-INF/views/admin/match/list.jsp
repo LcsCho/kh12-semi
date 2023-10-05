@@ -71,7 +71,7 @@
 					<td><c:choose>
 							<c:when
 								test="${now.time >= matchDto.matchDate.time - (3 * 60 * 60 * 1000) && now.time < matchDto.matchDate.time}">
-								<a href="insertResult?matchNo=${matchDto.matchNo}" class="link">수정</a>
+								<a href="updateDate?matchNo=${matchDto.matchNo}" class="link">수정</a>
 
 							</c:when>
 							<c:otherwise>
