@@ -96,5 +96,6 @@ public class ReservationCancelListDaoImpl implements ReservationCancelListDao{
 	        jdbcTemplate.update(sql, data);
 	    }
 	}
+	
 
 }
