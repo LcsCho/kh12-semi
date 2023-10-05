@@ -53,11 +53,15 @@ td:nth-last-child(1), th:nth-last-child(1) {
 
 .col-2.col-logo{
     width: 20%;
-    height: 400px;
+    height: 282px;
+    padding-top: 4em;
+	border-top: #62676C 3px solid;
+	border-bottom: #62676C 2px solid;
 }
+
 .col-2.col-reservation{
     width: 80%;
-    height: 400px;
+    height: 380px;
 }
 
 .reservation-finish{
@@ -235,351 +239,351 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script>
-  $(function () {
-    var selectedSeats = []; // 선택된 좌석을 저장하는 배열
-    var maxSeats = 4; // 최대 선택 가능한 좌석 수
-    var ticketCount = 0;
-    var currentPage = 0; // 현재 페이지 번호
-    var totalSeatPrice = 0; 
+//   $(function () {
+//     var selectedSeats = []; // 선택된 좌석을 저장하는 배열
+//     var maxSeats = 4; // 최대 선택 가능한 좌석 수
+//     var ticketCount = 0;
+//     var currentPage = 0; // 현재 페이지 번호
+//     var totalSeatPrice = 0; 
 
 
-    // 페이지 초기화 함수
-    function initPage() {
-        $(".page").hide(); // 모든 페이지 숨김
-        $(".page:eq(" + currentPage + ")").show(); // 현재 페이지 표시
+//     // 페이지 초기화 함수
+//     function initPage() {
+//         $(".page").hide(); // 모든 페이지 숨김
+//         $(".page:eq(" + currentPage + ")").show(); // 현재 페이지 표시
 
-        // 이전 버튼 숨기기
-        if (currentPage === 0) {
-            $(".btn-prev").hide();
-        } else {
-            $(".btn-prev").show();
-        }
+//         // 이전 버튼 숨기기
+//         if (currentPage === 0) {
+//             $(".btn-prev").hide();
+//         } else {
+//             $(".btn-prev").show();
+//         }
 
-        // 다음 버튼 숨기기 (마지막 페이지에서만 표시)
-        if (currentPage === $(".page").length - 1) {
-            $(".btn-next").hide();
-        } else {
-            $(".btn-next").show();
-        }
-    }
+//         // 다음 버튼 숨기기 (마지막 페이지에서만 표시)
+//         if (currentPage === $(".page").length - 1) {
+//             $(".btn-next").hide();
+//         } else {
+//             $(".btn-next").show();
+//         }
+//     }
 
 
-    // 초기화 함수
-    function resetSeats() {
-        // 선택된 좌석 목록 초기화
-        selectedSeats = [];
+//     // 초기화 함수
+//     function resetSeats() {
+//         // 선택된 좌석 목록 초기화
+//         selectedSeats = [];
 
-        // 선택된 좌석 수 초기화
-        ticketCount = 0;
+//         // 선택된 좌석 수 초기화
+//         ticketCount = 0;
 
-        // 초기화된 좌석 수 표시
-        $("#ticket-count-value").text(0);
+//         // 초기화된 좌석 수 표시
+//         $("#ticket-count-value").text(0);
 
-        // 선택된 좌석 목록 업데이트
-        $(".selected-seats-list").text("");
+//         // 선택된 좌석 목록 업데이트
+//         $(".selected-seats-list").text("");
 
-        // 각 체크박스의 초기화 처리
-        $(".custom-checkbox-label").each(function () {
-            var currentCheckboxLabel = $(this);
-            var isDisabled = currentCheckboxLabel.find("input[type=checkbox]").prop("disabled");
+//         // 각 체크박스의 초기화 처리
+//         $(".custom-checkbox-label").each(function () {
+//             var currentCheckboxLabel = $(this);
+//             var isDisabled = currentCheckboxLabel.find("input[type=checkbox]").prop("disabled");
 
-            if (isDisabled) {
-                // 좌석이 비활성화 상태인 경우 초기화하지 않고 넘김
-                return;
-            }
+//             if (isDisabled) {
+//                 // 좌석이 비활성화 상태인 경우 초기화하지 않고 넘김
+//                 return;
+//             }
 
-            var currentCheckbox = currentCheckboxLabel.find("input[type=checkbox]");
-            currentCheckbox.prop("checked", false); // 체크박스 선택 상태 초기화
+//             var currentCheckbox = currentCheckboxLabel.find("input[type=checkbox]");
+//             currentCheckbox.prop("checked", false); // 체크박스 선택 상태 초기화
 
-            var currentIcon = currentCheckboxLabel.find("i");
-            currentIcon.css("color", "#360a01");
-        });
+//             var currentIcon = currentCheckboxLabel.find("i");
+//             currentIcon.css("color", "#360a01");
+//         });
 
-        console.log("초기화 완료"); // 디버깅용 로그
-    }
+//         console.log("초기화 완료"); // 디버깅용 로그
+//     }
 
-    // 페이지 초기화
-    initPage();
+//     // 페이지 초기화
+//     initPage();
 
-    $(".btn-next").click(function() {
-        // 선택한 구역을 가져옴
-        var selectedArea = $("input[name=seatAreaNo]:checked").val();
+//     $(".btn-next").click(function() {
+//         // 선택한 구역을 가져옴
+//         var selectedArea = $("input[name=seatAreaNo]:checked").val();
         
-        // 구역이 선택되지 않았을 때 경고 메시지를 표시
-        if (!selectedArea) {
-            alert("구역을 선택해주세요.");
-            $(".page:eq(0)").show();
-            $(".page:eq(1)").hide();
-            $(".page:eq(2)").hide();
-            return;
-        }
+//         // 구역이 선택되지 않았을 때 경고 메시지를 표시
+//         if (!selectedArea) {
+//             alert("구역을 선택해주세요.");
+//             $(".page:eq(0)").show();
+//             $(".page:eq(1)").hide();
+//             $(".page:eq(2)").hide();
+//             return;
+//         }
 
-        // 구역이 선택되었을 때 2단계로 이동
-        if (currentPage < $(".page").length - 1) {
-            currentPage++;
-            initPage(); // 페이지 업데이트
-        }
-    });
+//         // 구역이 선택되었을 때 2단계로 이동
+//         if (currentPage < $(".page").length - 1) {
+//             currentPage++;
+//             initPage(); // 페이지 업데이트
+//         }
+//     });
 
-    // "이전" 버튼 클릭 시 이전 페이지로 이동
-    $(".btn-prev").click(function () {
-        if (currentPage > 0) {
-            currentPage--;
-            resetSeats();
+//     // "이전" 버튼 클릭 시 이전 페이지로 이동
+//     $(".btn-prev").click(function () {
+//         if (currentPage > 0) {
+//             currentPage--;
+//             resetSeats();
             
-            // 가격 초기화
-            totalSeatPrice = 0;
-            $("#totalPrice").text(totalSeatPrice + " 원");
+//             // 가격 초기화
+//             totalSeatPrice = 0;
+//             $("#totalPrice").text(totalSeatPrice + " 원");
 
-        }
-        initPage(); // 페이지 업데이트
-    });
+//         }
+//         initPage(); // 페이지 업데이트
+//     });
 
-    // 좌석 구역 선택 시 이벤트 처리
-    $("[name=seatAreaNo]").on("input", function () {
-        if (!$(this).prop("checked")) {
-            // 체크박스가 해제된 경우, 모든 라디오 버튼 선택 해제
-            $("[name=seatAreaNo]").prop("checked", false);
-        }
+//     // 좌석 구역 선택 시 이벤트 처리
+//     $("[name=seatAreaNo]").on("input", function () {
+//         if (!$(this).prop("checked")) {
+//             // 체크박스가 해제된 경우, 모든 라디오 버튼 선택 해제
+//             $("[name=seatAreaNo]").prop("checked", false);
+//         }
 		
-     // 선택한 구역 정보를 가져옴
-        var selectedSeatAreaNo = $(this).val();
-        if (selectedSeatAreaNo.length == 0) return; // 비어있으면 리턴
+//      // 선택한 구역 정보를 가져옴
+//         var selectedSeatAreaNo = $(this).val();
+//         if (selectedSeatAreaNo.length == 0) return; // 비어있으면 리턴
       
-        var params = new URLSearchParams(location.search);
-        // url에 있는 matchNo를 저장
-        var matchNo = params.get("matchNo");
+//         var params = new URLSearchParams(location.search);
+//         // url에 있는 matchNo를 저장
+//         var matchNo = params.get("matchNo");
 
-        // AJAX 요청을 통해 좌석 정보를 가져와 처리
-        $.ajax({
-            url: "http://localhost:8080/reservation/selectSeatAreaZone",
-            method: "post",
-            data: {
-                seatAreaNo: selectedSeatAreaNo,
-                matchNo: matchNo
-            },
-            // 성공시
-            success: function (response) {
-                console.log(response[0].seatAreaZone);
-                // 마지막 번호 정보
-                var lastSeat = response[response.length - 1];
-                // 마지막 컬럼 값
-                var numCols = lastSeat.seatCol;
-                // 마지막 로우 값
-                var numRows = lastSeat.seatRow;
+//         // AJAX 요청을 통해 좌석 정보를 가져와 처리
+//         $.ajax({
+//             url: "http://localhost:8080/reservation/selectSeatAreaZone",
+//             method: "post",
+//             data: {
+//                 seatAreaNo: selectedSeatAreaNo,
+//                 matchNo: matchNo
+//             },
+//             // 성공시
+//             success: function (response) {
+//                 console.log(response[0].seatAreaZone);
+//                 // 마지막 번호 정보
+//                 var lastSeat = response[response.length - 1];
+//                 // 마지막 컬럼 값
+//                 var numCols = lastSeat.seatCol;
+//                 // 마지막 로우 값
+//                 var numRows = lastSeat.seatRow;
           
-                // 이름을 checkboxcontainer로 저장
-                var checkboxContainer = $("#seat-checkbox");
-                // 체크박스의 내용을 초기화
-                checkboxContainer.empty();
+//                 // 이름을 checkboxcontainer로 저장
+//                 var checkboxContainer = $("#seat-checkbox");
+//                 // 체크박스의 내용을 초기화
+//                 checkboxContainer.empty();
 
-                // 티켓의 요소를 엘리멘트로 저장
-                var ticketCountElement = $("#ticket-count-value");
+//                 // 티켓의 요소를 엘리멘트로 저장
+//                 var ticketCountElement = $("#ticket-count-value");
 
 
-             // 이미지 업데이트를 수행하는 함수
-             function updateImage(selectedSeatAreaNo, seatAreaZone) {
-                 var imageUrl = ""; // 선택한 구역에 따른 이미지 URL을 설정
+//              // 이미지 업데이트를 수행하는 함수
+//              function updateImage(selectedSeatAreaNo, seatAreaZone) {
+//                  var imageUrl = ""; // 선택한 구역에 따른 이미지 URL을 설정
 
-                 // 선택한 구역에 따라 이미지 URL을 설정
-                 imageUrl = "/images/"+seatAreaZone+".jpg";
+//                  // 선택한 구역에 따라 이미지 URL을 설정
+//                  imageUrl = "/images/"+seatAreaZone+".jpg";
 
-                 // 이미지 엘리먼트를 선택합니다.
-                 var imageElement = $("#seat-image");
+//                  // 이미지 엘리먼트를 선택합니다.
+//                  var imageElement = $("#seat-image");
 
-                 // 이미지 URL을 설정하여 이미지를 변경
-                 imageElement.attr("src", imageUrl);
+//                  // 이미지 URL을 설정하여 이미지를 변경
+//                  imageElement.attr("src", imageUrl);
 
-                 // 2단계 페이지에서도 이미지를 변경합니다.
-                 var imageElement2 = $(".col-right.page2-2 #seat-image");
+//                  // 2단계 페이지에서도 이미지를 변경합니다.
+//                  var imageElement2 = $(".col-right.page2-2 #seat-image");
 
-                 if (imageElement2.length > 0) {
-                     imageElement2.attr("src", imageUrl);
-                 }
+//                  if (imageElement2.length > 0) {
+//                      imageElement2.attr("src", imageUrl);
+//                  }
 
-                 // 개발자 도구 콘솔에 디버그 정보 출력
-                 console.log("이미지 업데이트 - 선택한 구역: " + selectedSeatAreaNo);
-                 console.log("이미지 경로: " + imageUrl);
-             }
+//                  // 개발자 도구 콘솔에 디버그 정보 출력
+//                  console.log("이미지 업데이트 - 선택한 구역: " + selectedSeatAreaNo);
+//                  console.log("이미지 경로: " + imageUrl);
+//              }
              
-             // 이미지 업데이트 함수를 호출하여 이미지를 초기화
-             updateImage(selectedSeatAreaNo, response[0].seatAreaZone);
+//              // 이미지 업데이트 함수를 호출하여 이미지를 초기화
+//              updateImage(selectedSeatAreaNo, response[0].seatAreaZone);
                 
-                // for 문을 사용하여 checkbox를 자동으로 생성
-                for (var i = 0; i < numRows; i++) {
-                    for (var j = 0; j < numCols; j++) {
-                        // 배열에 있는 요소를 가져오기 위한 index
-                        var index = i * numCols + j;
-                        // 응답에서 status값 저장
-                        var seatStatus = response[index].seatStatus;
-                        var seatArea = response[index].seatAreaZone;
+//                 // for 문을 사용하여 checkbox를 자동으로 생성
+//                 for (var i = 0; i < numRows; i++) {
+//                     for (var j = 0; j < numCols; j++) {
+//                         // 배열에 있는 요소를 가져오기 위한 index
+//                         var index = i * numCols + j;
+//                         // 응답에서 status값 저장
+//                         var seatStatus = response[index].seatStatus;
+//                         var seatArea = response[index].seatAreaZone;
 
-                        var seatPrice = response[index].seatAreaPrice;
+//                         var seatPrice = response[index].seatAreaPrice;
 
-                        console.log(seatArea);
-                        var checkbox = $("<input>")
-                            .attr("type", "checkbox")
-                            .attr("value", response[index].seatNo)
-                            .attr("name", "seatNo")
-                            .addClass("custom-checkbox");
+//                         console.log(seatArea);
+//                         var checkbox = $("<input>")
+//                             .attr("type", "checkbox")
+//                             .attr("value", response[index].seatNo)
+//                             .attr("name", "seatNo")
+//                             .addClass("custom-checkbox");
 
-                        var icon = $("<i>")
-                            .addClass("fa-solid fa-couch");
+//                         var icon = $("<i>")
+//                             .addClass("fa-solid fa-couch");
 
-                        var iconLabel = $("<label>")
-                            .addClass("custom-checkbox-label")
-                            .append(checkbox) // 체크박스를 라벨에 추가
-                            .append(icon);
+//                         var iconLabel = $("<label>")
+//                             .addClass("custom-checkbox-label")
+//                             .append(checkbox) // 체크박스를 라벨에 추가
+//                             .append(icon);
 
-                        // 빈칸 생성
-                        if (j % 4 == 0) {
-                            var blank = $("<span>")
-                                .addClass("blank")
-                                .text("　");
-                            checkboxContainer.append(blank);
-                        }
+//                         // 빈칸 생성
+//                         if (j % 4 == 0) {
+//                             var blank = $("<span>")
+//                                 .addClass("blank")
+//                                 .text("　");
+//                             checkboxContainer.append(blank);
+//                         }
 
-                        // seatcolrow 정보를 출력
-                        var label = $("<label>")
-                            .addClass("seat-label");
-                        // 라벨 아래에 좌석 번호와 상태 표시
-                        label.append((i + 1) + "-" + (j + 1));
+//                         // seatcolrow 정보를 출력
+//                         var label = $("<label>")
+//                             .addClass("seat-label");
+//                         // 라벨 아래에 좌석 번호와 상태 표시
+//                         label.append((i + 1) + "-" + (j + 1));
 
-                        // 만약에 seatStatus가 N이라면 선택이 되어있고 disable로 처리
-                        if (seatStatus == "N") {
-                            checkbox
-                                .prop("checked", true)
-                                // attr 대신 prop를 사용하여 checked 속성을 설정
-                                .attr("disabled", true);
-                            icon.css("color", "#CCCCCC");
-                        }
+//                         // 만약에 seatStatus가 N이라면 선택이 되어있고 disable로 처리
+//                         if (seatStatus == "N") {
+//                             checkbox
+//                                 .prop("checked", true)
+//                                 // attr 대신 prop를 사용하여 checked 속성을 설정
+//                                 .attr("disabled", true);
+//                             icon.css("color", "#CCCCCC");
+//                         }
 
-                        checkboxContainer.append(iconLabel);
-                        checkboxContainer.append(label);
+//                         checkboxContainer.append(iconLabel);
+//                         checkboxContainer.append(label);
 
-                        // 클로저를 사용하여 고유한 index, seatCol, seatRow 값을 갖도록 처리
-                        (function (currentIndex, currentSeatCol, currentSeatRow) {
-                            checkbox.on("change", function () {
-                                var currentCheckbox = $(this);
-                                var currentIcon = currentCheckbox.parent().find("i");
+//                         // 클로저를 사용하여 고유한 index, seatCol, seatRow 값을 갖도록 처리
+//                         (function (currentIndex, currentSeatCol, currentSeatRow) {
+//                             checkbox.on("change", function () {
+//                                 var currentCheckbox = $(this);
+//                                 var currentIcon = currentCheckbox.parent().find("i");
 
-                                var seatName = currentCheckbox.val();
+//                                 var seatName = currentCheckbox.val();
 
-                                if (currentCheckbox.is(":checked")) {
-                                    if (ticketCount >= maxSeats) {
-                                        alert("최대 " + maxSeats + "개 구매 가능합니다!");
-                                        currentCheckbox.prop("checked", false);
-                                        return;
-                                    } else {
-                                        ticketCount++;
-                                        totalSeatPrice += seatPrice;
+//                                 if (currentCheckbox.is(":checked")) {
+//                                     if (ticketCount >= maxSeats) {
+//                                         alert("최대 " + maxSeats + "개 구매 가능합니다!");
+//                                         currentCheckbox.prop("checked", false);
+//                                         return;
+//                                     } else {
+//                                         ticketCount++;
+//                                         totalSeatPrice += seatPrice;
 
-                                        selectedSeats.push({
-                                            row: currentSeatRow,
-                                            col: currentSeatCol
-                                        });
-                                        console.log("좌석 선택됨: Row " + currentSeatRow + ", Col " + currentSeatCol);
-                                        console.log("선택된 좌석 목록: " + JSON.stringify(selectedSeats));
-                                    }
+//                                         selectedSeats.push({
+//                                             row: currentSeatRow,
+//                                             col: currentSeatCol
+//                                         });
+//                                         console.log("좌석 선택됨: Row " + currentSeatRow + ", Col " + currentSeatCol);
+//                                         console.log("선택된 좌석 목록: " + JSON.stringify(selectedSeats));
+//                                     }
 
-                                    // 체크된 상태일 때 아이콘 색상 변경
-                                    currentIcon.css("color", "#952323");
-                                } else {
-                                    ticketCount--;
-                                    totalSeatPrice -= seatPrice;
+//                                     // 체크된 상태일 때 아이콘 색상 변경
+//                                     currentIcon.css("color", "#952323");
+//                                 } else {
+//                                     ticketCount--;
+//                                     totalSeatPrice -= seatPrice;
 
-                                    // 체크 해제된 상태일 때 아이콘 색상 원래 색상으로 변경
-                                    var indexToRemove = selectedSeats.findIndex(function (seat) {
-                                        return seat.row === currentSeatRow && seat.col === currentSeatCol;
-                                    });
+//                                     // 체크 해제된 상태일 때 아이콘 색상 원래 색상으로 변경
+//                                     var indexToRemove = selectedSeats.findIndex(function (seat) {
+//                                         return seat.row === currentSeatRow && seat.col === currentSeatCol;
+//                                     });
 
-                                    if (indexToRemove !== -1) {
-                                        selectedSeats.splice(indexToRemove, 1);
-                                    }
+//                                     if (indexToRemove !== -1) {
+//                                         selectedSeats.splice(indexToRemove, 1);
+//                                     }
 
-                                    currentIcon.css("color", "#360a01");
-                                    console.log("좌석 선택 해제됨: Row " + currentSeatRow + ", Col " + currentSeatCol);
-                                    console.log("선택된 좌석 목록: " + JSON.stringify(selectedSeats));
-                                }
+//                                     currentIcon.css("color", "#360a01");
+//                                     console.log("좌석 선택 해제됨: Row " + currentSeatRow + ", Col " + currentSeatCol);
+//                                     console.log("선택된 좌석 목록: " + JSON.stringify(selectedSeats));
+//                                 }
 
-                                // 티켓 카운트 요소가 있는 곳에 text로 티켓의 수를 출력
-                                ticketCountElement.text(ticketCount);
-                                $("#totalPrice").text(totalSeatPrice + " 원");
-                                $("#seat-area-zone").text(seatArea);
+//                                 // 티켓 카운트 요소가 있는 곳에 text로 티켓의 수를 출력
+//                                 ticketCountElement.text(ticketCount);
+//                                 $("#totalPrice").text(totalSeatPrice + " 원");
+//                                 $("#seat-area-zone").text(seatArea);
 
-                                $("#reservationTicket").attr("value", ticketCount);
-                                $(".selected-seats-list").text(selectedSeats.map(function (seat) {
-                                    return "　" + seatArea + "구역 " + seat.row + "열 " + seat.col + "번";
-                                }).join("\n"));
-                            });
-                        })(index, response[index].seatCol, response[index].seatRow);
-                    }
-                    checkboxContainer.append("<br><br>");
-                }
-            },
-        });
-    });
-		// "초기화" 버튼 클릭 이벤트 처리
-		$(".refresh-button").click(function() {
-			console.log("새로고침 버튼 클릭"); // 디버깅용 로그
+//                                 $("#reservationTicket").attr("value", ticketCount);
+//                                 $(".selected-seats-list").text(selectedSeats.map(function (seat) {
+//                                     return "　" + seatArea + "구역 " + seat.row + "열 " + seat.col + "번";
+//                                 }).join("\n"));
+//                             });
+//                         })(index, response[index].seatCol, response[index].seatRow);
+//                     }
+//                     checkboxContainer.append("<br><br>");
+//                 }
+//             },
+//         });
+//     });
+// 		// "초기화" 버튼 클릭 이벤트 처리
+// 		$(".refresh-button").click(function() {
+// 			console.log("새로고침 버튼 클릭"); // 디버깅용 로그
 
-			// 좌석 초기화 함수 호출
-			resetSeats();
+// 			// 좌석 초기화 함수 호출
+// 			resetSeats();
 
-			// 선택된 좌석 배열 초기화
-			selectedSeats = [];
+// 			// 선택된 좌석 배열 초기화
+// 			selectedSeats = [];
 
-			// 선택된 좌석 수 초기화
-			ticketCount = 0;
+// 			// 선택된 좌석 수 초기화
+// 			ticketCount = 0;
 			
-			// 선택된 가격 초기화
-			totalSeatPrice = 0;
+// 			// 선택된 가격 초기화
+// 			totalSeatPrice = 0;
 			
-			// 가격을 화면에 업데이트
-		    $("#totalPrice").text(totalSeatPrice + " 원");
+// 			// 가격을 화면에 업데이트
+// 		    $("#totalPrice").text(totalSeatPrice + " 원");
 			
-		});
+// 		});
 
-		// "다음" 버튼 클릭 시 2단계에서 3단계로 이동 
-		// 또는 좌석을 선택하지 않았을 때 2단계에 남아있도록 함
-		$(".show-reservation-info-button").click(function() {
-			// 선택한 구역과 좌석 정보 가져오기
-			var selectedArea = $("input[name=seatAreaNo]:checked").val();
-			var selectedSeats = $(".selected-seats-list").text();
+// 		// "다음" 버튼 클릭 시 2단계에서 3단계로 이동 
+// 		// 또는 좌석을 선택하지 않았을 때 2단계에 남아있도록 함
+// 		$(".show-reservation-info-button").click(function() {
+// 			// 선택한 구역과 좌석 정보 가져오기
+// 			var selectedArea = $("input[name=seatAreaNo]:checked").val();
+// 			var selectedSeats = $(".selected-seats-list").text();
 
-			// 예매 정보를 표시할 엘리먼트에 정보를 채워 넣음
-			$(".seatAreaNo").text(selectedArea);
-			$(".seatNo").text(selectedSeats);
-			$(".seatPrice").text(totalSeatPrice)
+// 			// 예매 정보를 표시할 엘리먼트에 정보를 채워 넣음
+// 			$(".seatAreaNo").text(selectedArea);
+// 			$(".seatNo").text(selectedSeats);
+// 			$(".seatPrice").text(totalSeatPrice)
 
-			if (selectedSeats.trim() === "") {
-				alert("좌석을 선택해주세요!"); // 좌석을 선택하지 않았을 때 경고 메시지 표시
-				$(".page:eq(1)").show();
-				$(".page:eq(2)").hide();
+// 			if (selectedSeats.trim() === "") {
+// 				alert("좌석을 선택해주세요!"); // 좌석을 선택하지 않았을 때 경고 메시지 표시
+// 				$(".page:eq(1)").show();
+// 				$(".page:eq(2)").hide();
 
-				// "다음" 버튼 다시 표시
-				$(".show-reservation-info-button").show();
-			} else {
-				// 3단계 페이지 표시
-				$(".page:eq(2)").show();
+// 				// "다음" 버튼 다시 표시
+// 				$(".show-reservation-info-button").show();
+// 			} else {
+// 				// 3단계 페이지 표시
+// 				$(".page:eq(2)").show();
 
-				// "다음" 버튼 숨김
-				$(".show-reservation-info-button").hide();
-			}
-		});
-		$(".btn-primary").click(function() {
-			// 사용자가 확인 버튼을 클릭한 경우에만 확인 대화상자를 표시
-			if (confirm("예매를 진행 하시겠습니까?")) {
-				// 확인 버튼을 클릭한 경우의 동작을 여기에 추가
-				// 예를 들어 예매를 진행하는 코드를 추가할 수 있습니다.
-				alert("예매가 완료되었습니다."); // 예매가 성공적으로 진행되었음을 알림
-			} else {
-				// "아니요"를 클릭한 경우
-				alert("예매가 취소되었습니다."); // 예매가 취소되었음을 알림
-			}
-		});
+// 				// "다음" 버튼 숨김
+// 				$(".show-reservation-info-button").hide();
+// 			}
+// 		});
+// 		$(".btn-primary").click(function() {
+// 			// 사용자가 확인 버튼을 클릭한 경우에만 확인 대화상자를 표시
+// 			if (confirm("예매를 진행 하시겠습니까?")) {
+// 				// 확인 버튼을 클릭한 경우의 동작을 여기에 추가
+// 				// 예를 들어 예매를 진행하는 코드를 추가할 수 있습니다.
+// 				alert("예매가 완료되었습니다."); // 예매가 성공적으로 진행되었음을 알림
+// 			} else {
+// 				// "아니요"를 클릭한 경우
+// 				alert("예매가 취소되었습니다."); // 예매가 취소되었음을 알림
+// 			}
+// 		});
 
-	});  
+// 	});  
 </script>
 
 
@@ -640,7 +644,7 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
         
         <div class="col-2 col-right page2-2">            
             <div class="seat-image">
-            <img src="/images/seatimage.jpg" id="seat-image" style="max-block-size: 100%;">    
+            <img src="/images/seatimage.jpg" id="seat-image" style="max-block-size: 95%;">    
                 
             </div>
             <div class="reset-btn">
