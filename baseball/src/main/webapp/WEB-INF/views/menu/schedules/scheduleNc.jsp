@@ -22,12 +22,18 @@
         var prevMonthButton = document.getElementById("prevMonthButton");
         var nextMonthButton = document.getElementById("nextMonthButton");
 
-        // 이전 달 버튼 클릭 이벤트 처리
+     // 이전 달 버튼 클릭 이벤트 처리
         prevMonthButton.addEventListener("click", function () {
             currentMonth--;
             if (currentMonth < 0) {
                 currentMonth = 11;
                 currentYear--;
+            }
+            if (currentYear < today.getFullYear() - 1 || (currentYear == today.getFullYear() - 1 && currentMonth < today.getMonth())) {
+                // 작년 현재 달 이전으로는 이동할 수 없음
+                currentYear = today.getFullYear() - 1;
+                currentMonth = today.getMonth();
+                alert("최근 1년까지만 조회 가능합니다");
             }
             refreshCalendar();
             displayCurrentMonth();
@@ -39,6 +45,12 @@
             if (currentMonth > 11) {
                 currentMonth = 0;
                 currentYear++;
+            }
+            if (currentYear > today.getFullYear() + 1 || (currentYear == today.getFullYear() + 1 && currentMonth > today.getMonth())) {
+                // 내년 현재 달 이후로는 이동할 수 없음
+                currentYear = today.getFullYear() + 1;
+                currentMonth = today.getMonth();
+                alert("최근 1년까지만 조회 가능합니다");
             }
             refreshCalendar();
             displayCurrentMonth();
@@ -57,21 +69,7 @@
             var displayText = currentYear + "년 " + currentMonthName;
             currentMonthDisplay.textContent = displayText;
         }
-        // 예매 버튼 클릭 시 처리
-        function handleReservationClick(event) {
-            event.preventDefault(); // 기본 동작 중단
 
-            // 여기에서 세션 값 확인
-            var sessionNameIsNull = <%= (session.getAttribute("name") == null) ? true : false %>;
-
-            if (sessionNameIsNull) {
-                // 세션 값이 없을 때 알림 표시
-                alert('로그인 후 이용 가능합니다.');
-            } else {
-                // 사용자가 로그인한 경우, 해당 페이지로 이동
-                window.location.href = event.target.href;
-            }
-        }
         // 날짜 채우기 함수
         function fillCalendar(year, month, calendarId) {
             var calendar = document.getElementById(calendarId);
@@ -109,7 +107,7 @@
             // 필요한 열의 수 계산
             var neededCols = totalCols - (remainingCols % totalCols);
 
-         // 날짜 채우기
+            // 날짜 채우기
             var date = 1;
             for (var i = 0; i < Math.ceil((daysInMonth + firstDay - 1) / totalCols); i++) {
                 var row = tbody.insertRow();
@@ -186,8 +184,6 @@
                                     reservationLink.classList.add("div-ing");
                                     cell.appendChild(reservationLink);
                                 } else {
-                               	 // 예매 버튼에 클릭 이벤트 핸들러 연결
-                                    reservationLink.addEventListener("click", handleReservationClick);
                                     var beforeReservationDiv = document.createElement("div");
                                     beforeReservationDiv.innerHTML = "오픈예정";
                                     beforeReservationDiv.className = "btn";
@@ -206,11 +202,12 @@
             }
         }
 
-        // 달력 새로고침 함수
+     // 달력 새로고침 함수
         function refreshCalendar() {
             eventData = []; // 이벤트 데이터 초기화
-            fillCalendar(currentYear, currentMonth, "currentMonthCalendar");
-
+            var currentMonthStartDate = new Date(currentYear, currentMonth, 1);
+            var nextYearStartDate = new Date(currentYear + 1, currentMonth, 1);
+            
             // AJAX 요청을 수행하여 서버에서 match 테이블 데이터를 가져옵니다.
             $.ajax({
                 url: "http://localhost:8080/match", // 백엔드 API 엔드포인트를 지정
@@ -219,28 +216,32 @@
                 success: function (data) {
                     // 서버에서 데이터를 가져온 후, eventData 배열에 추가
                     data.forEach(function (match) {
-                        var homeTeam = match.homeTeam;
-                        if (homeTeam === "NC") { // "LG인 팀만 추가"
-                            var matchNo = match.matchNo;
-                            var awayTeam = match.awayTeam;
-                            var homeTeamNo = match.homeTeamNo;
-                            var awayTeamNo = match.awayTeamNo;
-                            var stadiumName = match.stadiumName;
-                            var matchDate = new Date(match.matchDate);
+                        var matchDate = new Date(match.matchDate);
 
-                            eventData.push({
-                                matchNo: matchNo,
-                                homeTeam: homeTeam,
-                                awayTeam: awayTeam,
-                                homeTeamNo: homeTeamNo,
-                                awayTeamNo: awayTeamNo,
-                                stadiumName: stadiumName,
-                                matchDate: matchDate
-                            });
+                        // 현재 월과 내년 월 데이터만 추가
+                        if (matchDate >= currentMonthStartDate && matchDate < nextYearStartDate) {
+                            var homeTeam = match.homeTeam;
+                            if (homeTeam === "NC") { 
+                                var matchNo = match.matchNo;
+                                var awayTeam = match.awayTeam;
+                                var homeTeamNo = match.homeTeamNo;
+                                var awayTeamNo = match.awayTeamNo;
+                                var stadiumName = match.stadiumName;
+
+                                eventData.push({
+                                    matchNo: matchNo,
+                                    homeTeam: homeTeam,
+                                    awayTeam: awayTeam,
+                                    homeTeamNo: homeTeamNo,
+                                    awayTeamNo: awayTeamNo,
+                                    stadiumName: stadiumName,
+                                    matchDate: matchDate
+                                });
+                            }
                         }
                     });
 
-                    // 캘린더를 채우는 함수를 호출합니다.
+                    // 캘린더를 채우는 함수를 호출
                     fillCalendar(currentYear, currentMonth, "currentMonthCalendar");
                 },
                 error: function (error) {
