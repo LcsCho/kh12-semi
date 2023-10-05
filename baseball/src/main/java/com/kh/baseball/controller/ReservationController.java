@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kh.baseball.dao.ReservationCancelListDao;
 import com.kh.baseball.dao.ReservationDao;
 import com.kh.baseball.dao.TrueReservationDao;
+import com.kh.baseball.dto.DeleteReservationDto;
 import com.kh.baseball.dto.ReservationCancelDto;
 import com.kh.baseball.dto.ReservationDto;
 import com.kh.baseball.dto.SeatListDto;
@@ -148,14 +149,18 @@ public class ReservationController {
    public String delete() {
       return "/WEB-INF/views/reservation/delete.jsp";
    }
+   
+   
    @PostMapping("/delete")
-    public String deleteReservations(@ModelAttribute TrueReservationDto trueReservationDto,@ModelAttribute ReservationCancelDto reservationCancelDto,HttpSession session) {
+    public String deleteReservations(@ModelAttribute DeleteReservationDto deleteReservationDto,@ModelAttribute ReservationCancelDto reservationCancelDto,HttpSession session) {
       //memberId를 세션에있는 id로 저장해서 dto에 보냄
       String memberId = (String) session.getAttribute("name");
       reservationCancelDto.setMemberId(memberId);
+      //reservationNo받아옴
+
       
-      trueReservationDao.reservationCancelInsertBySeatNo(reservationCancelDto);
-      trueReservationDao.reservationDeleteByTicket(trueReservationDto);
+      reservationCancelListDao.reservationCancelInsertBySeatNo(reservationCancelDto);
+      trueReservationDao.reservationDeleteByTicket(deleteReservationDto);
             return "redirect:list";
     }
    @Autowired

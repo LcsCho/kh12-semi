@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.kh.baseball.dto.ReservationCancelDto;
+import com.kh.baseball.dto.DeleteReservationDto;
 import com.kh.baseball.dto.SeatListDto;
 import com.kh.baseball.dto.TrueReservationDto;
 import com.kh.baseball.mapper.MatchInfoMapper;
@@ -173,10 +173,10 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 	}
 
 	@Override
-	public boolean reservationDeleteByTicket(TrueReservationDto trueReservationDto) {
-		String sql = "delete from reservation where seat_no = ?";
+	public boolean reservationDeleteByTicket(DeleteReservationDto deleteReservationDto) {
+		String sql = "delete from reservation where reservation_no = ?";
 		
-	    int[] seatNos = trueReservationDto.getSeatNo(); // seatNo를 int 배열로 받아옴
+	    int[] seatNos = deleteReservationDto.getReservationNo(); // seatNo를 int 배열로 받아옴
 	    int reservationTicket = seatNos.length; // 예약 티켓 수를 가져옴
 
 	    int updatedCount = 0; // 업데이트된 행의 수를 카운트
@@ -191,23 +191,25 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 	    return updatedCount == reservationTicket;
 	}
 
-	@Override
-	public void reservationCancelInsertBySeatNo(ReservationCancelDto reservationCancelDto) {
-		String sql = "INSERT INTO reservation_cancel (reservation_cancel_no, reservation_no, match_no, reservation_cancel_time, seat_no, member_id) " +
-	             "VALUES (reservation_cancel_seq.nextval, " +
-	             "(SELECT reservation_no FROM reservation WHERE seat_no = ?), " +
-	             "(SELECT match_no FROM reservation WHERE seat_no = ?), " +
-	             "SYSDATE, ?, ?)";
-	    
-	    int[] seatNos = reservationCancelDto.getSeatNo(); 
-	    int reservationTicket = seatNos.length; 
+//	@Override
+//	public void reservationCancelInsertBySeatNo(ReservationCancelDto reservationCancelDto) {
+//		String sql = "INSERT INTO reservation_cancel (reservation_cancel_no, reservation_no, match_no, reservation_cancel_time, seat_no, member_id) " +
+//	             "VALUES (reservation_cancel_seq.nextval, " +
+//	             "(SELECT reservation_no FROM reservation WHERE seat_no = ? and match_no =(SELECT match_no FROM reservation WHERE seat_no = ?)), " +
+//	             "(SELECT match_no FROM reservation WHERE seat_no = ? and match_no =(SELECT match_no FROM reservation WHERE seat_no = ?)), " +
+//	             "SYSDATE, ?, ?)";
+//	    
+//	    int[] seatNos = reservationCancelDto.getSeatNo(); 
+//	    int reservationTicket = seatNos.length; 
+//
+//	    for (int i = 0; i < reservationTicket; i++) {
+//	        Object[] data = {seatNos[i], seatNos[i],seatNos[i], reservationCancelDto.getMemberId()};
+//
+//	        jdbcTemplate.update(sql, data);
+//	    }
+//	}
+	
 
-	    for (int i = 0; i < reservationTicket; i++) {
-	        Object[] data = {seatNos[i], seatNos[i],seatNos[i], reservationCancelDto.getMemberId()};
-
-	        jdbcTemplate.update(sql, data);
-	    }
-	}
 
 	@Override
 	public int countList(PaginationVO vo, String memberId) {
