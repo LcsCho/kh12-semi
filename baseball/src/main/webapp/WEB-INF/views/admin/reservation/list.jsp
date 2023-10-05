@@ -28,7 +28,7 @@
 
      <c:forEach var="adminReservationListVO" items="${list}">
             <tr>
-                <td><input type="checkbox" class="check-item" name="seatNo" value="${adminReservationListVO.seatNo}"></td>
+                <td><input type="checkbox" class="check-item" name="reservationNo" value="${adminReservationListVO.reservationNo}"></td>
                 <td>${adminReservationListVO.reservationNo}</td>
                 <td>${adminReservationListVO.seatAreaZone}-${adminReservationListVO.seatCol}-${adminReservationListVO.seatRow}</td>
                 <td>${adminReservationListVO.homeTeam}</td>	
