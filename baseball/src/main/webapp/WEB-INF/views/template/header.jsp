@@ -87,6 +87,14 @@ ul.menu li {
                 <div class="row">
 						<a href="/member/mypage" class="link">마이페이지</a>
 					</div>
+					<c:if test="${sessionScope.level == '관리자'}">
+					  &nbsp;
+                <div class="row">|</div>
+                 &nbsp;
+                 <div class="row">
+							<a href="/admin/home" class="link">관리자페이지</a>
+						</div>
+					</c:if>
 				</c:when>
 				<c:otherwise>
 					<div class="row">

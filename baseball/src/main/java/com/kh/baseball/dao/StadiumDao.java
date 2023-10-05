@@ -10,5 +10,6 @@ public interface StadiumDao {
 	int sequenceStadium();
 	StadiumDto selectOne(int stadiumNo);
 	List<StadiumDto> selectList();
+	boolean delete(int stadiumNo);
 
 }

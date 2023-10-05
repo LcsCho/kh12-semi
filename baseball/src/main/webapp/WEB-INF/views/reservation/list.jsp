@@ -89,7 +89,7 @@ td:nth-child(2) {
 .btn, .btn.btn-positive {
 	width: 100px;
 	height: 40px;
-	font-size: 15px;
+	font-size: 14px;
 	border-radius: 0px;
 }
 
@@ -111,7 +111,7 @@ td:nth-child(2) {
 <div class="row">
 	<form action="delete" method="post">
 			<div class="row right ">
-			<button type="submit" class="btn btn-negative delete-btn ">예매 취소하기</button>
+			<button type="submit" class="btn btn-negative delete-btn ">예매 취소</button>
 		</div>
 		<table class="table table-hover table-border">
 
@@ -124,6 +124,7 @@ td:nth-child(2) {
 					<th>홈팀</th>
 					<th>어웨이팀</th>
 					<th>예매날짜</th>
+					<th>경기날짜</th>
 					<th>상세</th>
 				</tr>
 			</thead>
@@ -138,9 +139,9 @@ td:nth-child(2) {
 						<c:when
 							test="${reservationVo.matchDate.time - currentDate.time <= twoHoursThirtyMinutes}">
 							<tr>
-								<td><input type="checkbox" class="check-item" name="seatNo"
+								<td><input type="checkbox" class="check-item" name="reservationNo"
 									data-match-date="${reservationVo.matchDate}"
-									value="${reservationVo.seatNo}" disabled="disabled"></td>
+									value="${reservationVo.reservationNo}" disabled="disabled"></td>
 								<td>${reservationVo.reservationNo}</td>
 								<td>${reservationVo.seatAreaZone}-${reservationVo.seatRow}-${reservationVo.seatCol}</td>
 								<td>${reservationVo.stadiumName}</td>
@@ -148,7 +149,10 @@ td:nth-child(2) {
 								<td>${reservationVo.awayTeam}</td> 
 								<td><fmt:formatDate
 										value="${reservationVo.reservationDate}"
-										pattern="y년 M월 d일 E HH시 mm분 ss초" /></td>
+										pattern="y년 M월 d일 E HH : mm" /></td>
+										<td><fmt:formatDate
+										value="${reservationVo.matchDate}"
+										pattern=" M월 d일 E HH : mm" /></td>
 								
 								<td><a
 									href="/reservation/detail?reservationNo=${reservationVo.reservationNo}">상세</a></td>
@@ -156,9 +160,9 @@ td:nth-child(2) {
 						</c:when>
 						<c:otherwise>
 							<tr>
-								<td><input type="checkbox" class="check-item" name="seatNo"
+								<td><input type="checkbox" class="check-item" name="reservationNo"
 									data-match-date="${reservationVo.matchDate}"
-									value="${reservationVo.seatNo}"></td>
+									value="${reservationVo.reservationNo}"></td>
 								<td>${reservationVo.reservationNo}</td>
 								<td>${reservationVo.seatAreaZone}-${reservationVo.seatRow}-${reservationVo.seatCol}</td>
 								<td>${reservationVo.stadiumName}</td>
@@ -166,7 +170,10 @@ td:nth-child(2) {
 								<td>${reservationVo.awayTeam}</td>
 								<td><fmt:formatDate
 										value="${reservationVo.reservationDate}"
-										pattern="y년 M월 d일 E HH시 mm분 ss초" /></td>
+										pattern="y년 M월 d일 E HH : mm" /></td>
+										<td><fmt:formatDate
+										value="${reservationVo.matchDate}"
+										pattern=" M월 d일 E HH : mm" /></td>
 								
 								<td><a
 									href="/reservation/detail?reservationNo=${reservationVo.reservationNo}">상세</a></td>

@@ -77,6 +77,13 @@ public class MatchDaoImpl implements MatchDao{
 		return list.isEmpty() ? null : list.get(0);
 	}
 	
+	@Override
+	public MatchVO selectOneReservation(int matchNo) {
+		String sql = "select * from match where match_no = ?";
+		Object[] data = {matchNo} ; 
+		List<MatchVO> list = jdbcTemplate.query(sql, matchVoMapper, data);
+		return list.isEmpty() ? null : list.get(0);
+	}
 
 	@Override
 	public List<MatchDto> selectList(PaginationVO vo) {

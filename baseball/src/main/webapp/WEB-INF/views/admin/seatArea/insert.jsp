@@ -24,16 +24,22 @@
 		<tr>
 			<th>구역</th>
 				<td><select name="seatAreaZone" class="form-input w-100">
-				<option value="A">A</option>
-				<option value="B">B</option>
-				<option value="C">C</option>
-				<option value="D">D</option>
-				<option value="E">E</option>
-				<option value="F">F</option>
-				<option value="G">G</option>
-				<option value="H">H</option>
-				<option value="I">I</option>
-				<option value="J">J</option>
+				<option value="1루네이비석">1루네이비석</option>
+				<option value="1루레드석">1루레드석</option>
+				<option value="1루블루석">1루블루석</option>
+				<option value="1루오렌지석">1루오렌지석</option>
+				<option value="1루익사이팅석">1루익사이팅석</option>
+				<option value="1루테이블석">1루테이블석</option>
+				<option value="3루네이비석">3루네이비석</option>
+				<option value="3루레드석">3루레드석</option>
+				<option value="3루블루석">3루블루석</option>
+				<option value="3루오렌지석">3루오렌지석</option>
+				<option value="3루익사이팅석">3루익사이팅석</option>
+				<option value="3루테이블석">3루테이블석</option>
+				<option value="야외그린석">야외그린석</option>
+				<option value="켈리존">켈리존</option>
+				
+				
 			</select> 
 			</td>
 		</tr>	

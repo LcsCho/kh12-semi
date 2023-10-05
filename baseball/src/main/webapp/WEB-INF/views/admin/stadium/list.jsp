@@ -8,16 +8,13 @@
 <table width="800">
 	<thead>
 		<tr>
-			<th>경기장 번호</th>
 			<th>경기장 이름</th>
 		</tr>
 	</thead>
 	<tbody align="center">
 		<!--<c:forEach var="stadiumDto" items="${list}">-->
 		<tr>
-			<td><a href="detail?stadiumNo=${stadiumDto.stadiumNo}" class="link">${stadiumDto.stadiumNo}</a></td>
-			<td>${stadiumDto.stadiumName}</td>
-
+			<td><a href="detail?stadiumNo=${stadiumDto.stadiumNo}" class="link">${stadiumDto.stadiumName}</a></td>
 		</tr>
 		<!--</c:forEach>-->
 	</tbody>

@@ -15,6 +15,7 @@ public interface MatchDao {
 	boolean updateDate(MatchDto matchDto);
 	MatchDto selectOne(int matchNo);
 	List<MatchDto> selectList(PaginationVO vo);
+	MatchVO selectOneReservation(int matchNo);
 	List<MatchVO> selectNoList();
 	
 	// 해당 날짜 경기 조회

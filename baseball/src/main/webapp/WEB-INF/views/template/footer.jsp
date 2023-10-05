@@ -7,13 +7,13 @@
         <div class="left">
             <a href="#" class="link">이용약관</a> |
             <a href="#" class="link">개인정보취급방침</a> |
-            <a href="#" class="link">대표번호 : 010-7775-1618</a> |
+            <a href="#" class="link">대표번호 : 010-7775-1618</a>
         </div>
         <div class="right">
-            <i class="fa-brands fa-google me-10"></i>
-            <i class="fa-brands fa-facebook me-10"></i>
-            <i class="fa-brands fa-twitter me-10"></i>
-            <i class="fa-brands fa-instagram"></i>
+            <a href="https://www.google.com/" class="link"><i class="fa-brands fa-google me-10"></i></a>
+                    <a href="https://www.facebook.com/" class="link"><i class="fa-brands fa-facebook me-10"></i></a>
+                    <a href="https://twitter.com/" class="link"><i class="fa-brands fa-twitter me-10"></i></a>
+                    <a href="https://www.instagram.com/" class="link"><i class="fa-brands fa-instagram me-10"></i></a>
         </div>
     </div>
     <div class="row left mv-30">

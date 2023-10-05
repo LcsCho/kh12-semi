@@ -14,7 +14,7 @@
 		<div class="row">
 			<table class="table table-border table-stripe">
 				<tr>
-					<th>매치번호</th>
+					<th class="w-200">매치번호</th>
 					<td>${matchDto.matchNo}
 					<input type="hidden" name="matchNo"
 						value="${matchDto.matchNo}">
@@ -23,7 +23,7 @@
 				<tr>
 					<th>경기일</th>
 					<td>
-					<input class="w-600" type="datetime-local" name="matchDto.matchDateStr" value="${matchDto.matchDate}"></td>
+					<input class="w-300" type="datetime-local" name="matchDto.matchDateStr" value="${matchDto.matchDate}"></td>
 				</tr>
 				<tr>
 					<th>경기장</th>
@@ -43,7 +43,7 @@
 		<div class="row">
 			<a href="list">목록으로</a>  
 			<br> 
-			<a href="/">홈으로</a>
+			<a href="/admin/home">관리자 홈으로</a>
 		</div>
 	</div>
 </form>
