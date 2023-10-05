@@ -8,9 +8,9 @@
 <div class="container w-400">
 
 
-      <c:forEach var="seatSeletDto" items="${list}">
+      <c:forEach var="seatSelectDto" items="${list}">
       <div class="row">
-           <a href="/admin/seat/listByStadium?stadiumName=${seatSeletDto.stadiumName}" class="btn btn-origin w-25">${seatSeletDto.stadiumName}</a>
+           <a href="/admin/seat/listByStadium?stadiumName=${seatSelectDto.stadiumName}" class="btn btn-origin w-25">${seatSelectDto.stadiumName}</a>
       </div>
       </c:forEach>
       
