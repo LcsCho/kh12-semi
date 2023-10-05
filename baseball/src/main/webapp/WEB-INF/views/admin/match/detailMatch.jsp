@@ -79,7 +79,7 @@
 			href="updateDate?matchNo=${matchDto.matchNo}">경기날짜수정</a> <br> <a
 			href="updateScore?matchNo=${matchDto.matchNo}">경기점수수정</a> <br> <a
 			href="insertResult?matchNo=${matchDto.matchNo}">경기결과입력</a> <br>
-		<a href="/"> 홈으로</a>
+		<a href="/admin/home">관리자 홈으로</a>
 	</div>
 </div>
 
