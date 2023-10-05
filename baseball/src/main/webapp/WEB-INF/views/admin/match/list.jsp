@@ -90,7 +90,8 @@
                                 경기 전
                             </c:otherwise>
 						</c:choose></td>
-					<td><c:choose>
+					<td>
+					<c:choose>
 							<c:when
 								test="${now.time >= matchDto.matchDate.time && now.time <= matchDto.matchDate.time + (3 * 60 * 60 * 1000)}">
 								<a href="insertResult?matchNo=${matchDto.matchNo}" class="link">점수 입력</a>
@@ -101,7 +102,8 @@
 							<c:otherwise>
                                 경기 전
                             </c:otherwise>
-						</c:choose></td>
+						</c:choose>
+						</td>
 				</tr>
 			</c:forEach>
 		</tbody>
