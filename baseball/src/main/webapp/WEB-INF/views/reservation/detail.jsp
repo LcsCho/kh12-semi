@@ -2,13 +2,26 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link rel="stylesheet" type="text/css" href="/css/list.css">
     
+ <style>
+ 
+.btn.btn-positive {
+	width: 100px;
+	height: 40px;
+	font-size: 14px;
+	border-radius: 0px;
+	padding-right: 1.6em;
+	padding-top: 0.8em;
+}
+
+ </style>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
    <div class="row">
    <div class="row bold-font">
    	<h1>예매 상세 내역</h1>
    	</div>
-      <table class="table table-border table-stripe ">
+      <table class="table">
          <tr>
             <th width="25%">예매번호</th>
             <td>${reservationVO.reservationNo}</td>
@@ -44,9 +57,11 @@
                            pattern="y년 M월 d일 E a h시 m분"/>
             </td>
          </tr>
-         
-         
+                 
       </table>
+      <div class="row right">
+      	<a href="list" class="btn btn-positive">목록으로</a>
+      </div>
    </div>
    
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
@@ -53,22 +54,19 @@ td:nth-last-child(1), th:nth-last-child(1) {
 
 .col-2.col-logo{
     width: 20%;
-    height: 282px;
     padding-top: 4em;
-	border-top: #62676C 3px solid;
-	border-bottom: #62676C 2px solid;
 }
 
 .col-2.col-reservation{
     width: 80%;
-    height: 380px;
+    height: 300px;
 }
 
 .reservation-finish{
 	margin-top:20px;
     margin-left: 50px;
     margin-right: 50px;
-     height: 400px;
+     height: 244px;
     border-top: #2d3436 1px solid;
 	border-bottom: #2d3436 1px solid;
 	border-right: #2d3436 1px solid;
@@ -121,7 +119,7 @@ td:nth-last-child(1), th:nth-last-child(1) {
 
 .page3-btn{
  	margin-right: 0.7em;
- 	margin-top: 8.7em;
+ 	margin-top: 18.4em;
 }
 
 .seatreservation {
@@ -323,7 +321,7 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
 
 /* 선택된 라디오 버튼에 대한 스타일 */
 .seatAreaRadio.selected + label {
-    filter: brightness(80%);
+    filter: brightness(75%);
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -684,6 +682,12 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
 	        if ($(this).prop("checked")) {
 	            $(this).addClass("selected");
 	        }
+	        
+	        $("label[for='radioButton']").click(function () {
+	            // 라디오 버튼을 클릭하면 상응하는 라디오 버튼을 선택합니다.
+	            $("#radioButton").prop("checked", true);
+	        });
+	        
 	    });		
 		
 	});  
@@ -717,13 +721,16 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
 					
 					<c:forEach var="reservationVo" items="${list}" varStatus="status">					
 						<div class="row">
-							<input type="radio" name="seatAreaNo" 
-								id="selectedSeatArea" class="seatAreaRadio seatArea${status.index + 1}" value="${reservationVo.seatAreaNo}">
-							<label for="selectedSeatArea${status.index + 1}" class="seatAreaLabel">
-				            ${reservationVo.seatAreaZone}구역
-				            <br>
-				            ${reservationVo.seatAreaPrice} 원
-				        </label>
+							                     <input type="radio" name="seatAreaNo" 
+									       id="selectedSeatArea${status.index + 1}" 
+									       class="seatAreaRadio seatArea${status.index + 1}" 
+									       value="${reservationVo.seatAreaNo}" 
+									       style="display: none;">
+									<label for="selectedSeatArea${status.index + 1}" class="seatAreaLabel">
+									    ${reservationVo.seatAreaZone}구역
+									    <br>
+									    ${reservationVo.seatAreaPrice} 원
+									</label>
 				        </div>					
 				</c:forEach>
             </div>
@@ -792,22 +799,22 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
     
     <div class="flex-container reservation-finish">
         <div class="col-2 col-logo">
-        <img src="/images/7.jpg" width="70%">
+        <img src="/images/${vo.homeTeam}.jpg" width="70%">
         </div>
         <div class="col-2 col-reservation">
             <table>
                 <tbody>
                     <tr>
                         <th>상품</th>
-                        <td>두산 vs LG</td>
+                        <td>${vo.homeTeam} vs ${vo.awayTeam}</td>
                     </tr>
                     <tr>
                         <th>장소</th>
-                        <td>두산 vs LG</td>
+                        <td>${vo.stadiumName}</td>
                     </tr>
                     <tr>
                         <th>일시</th>
-                        <td>두산 vs LG</td>
+                        <td><fmt:formatDate value="${vo.matchDate}" pattern="HH:mm" /></td>
                     </tr>
                     <tr>
                         <th>좌석</th>
@@ -818,12 +825,8 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
                         <td><span class="seatPrice"></span></td>
                     </tr>
                     <tr>
-                        <th>닉네임</th>
-                        <td>두산 vs LG</td>
-                    </tr>
-                    <tr>
-                        <th>연락처</th>
-                        <td>두산 vs LG</td>
+                        <th>아이디</th>
+                        <td>${sessionScope.name}</td>
                     </tr>
                    
                 </tbody>
