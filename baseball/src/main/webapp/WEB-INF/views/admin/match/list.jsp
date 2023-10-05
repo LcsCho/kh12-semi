@@ -38,7 +38,7 @@
 		<tbody align="center">
 			<c:forEach var="matchDto" items="${list}" varStatus="status">
 				<tr>
-					<td>${matchDto.matchNo}</a></td>
+					<td>${matchDto.matchNo}</td>
 					<td><fmt:formatDate value="${matchDto.matchDate}"
 							pattern="yyyy-MM-dd HH:mm" /></td>
 					<td>${matchDto.stadiumName}</td>
