@@ -95,6 +95,7 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 				+ "INNER JOIN " + "seat_area sa ON st.stadium_no = sa.stadium_no " + "WHERE " + "ma.match_no = ?";
 		Object[] data = { matchNo };
 		return jdbcTemplate.query(sql, matchInfoMapper, data);
+		
 	}
 
 	@Autowired
@@ -212,6 +213,18 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 	public int countList(PaginationVO vo, String memberId) {
 		String sql = "select count(*) from reservation where member_id = ?";
 		return jdbcTemplate.queryForObject(sql, int.class,memberId);
+	}
+
+	@Override
+	public ReservationVO selectOneTeam(int matchNo) {
+		String sql = "SELECT " + "ma.match_no, " + "ma.home_team, " + "ma.away_team, " + "st.stadium_name, "
+				+ "seat_area_no, " + "seat_area_price, " + "st.stadium_no, " + "seat_area_zone, " + "match_date "
+				+ "FROM " + "match ma " + "INNER JOIN " + "stadium st ON ma.stadium_name = st.stadium_name "
+				+ "INNER JOIN " + "seat_area sa ON st.stadium_no = sa.stadium_no " + "WHERE " + "ma.match_no = ?";
+		Object[] data = { matchNo };
+		
+		List<ReservationVO> list =jdbcTemplate.query(sql, matchInfoMapper, data);
+		return list.isEmpty()? null:list.get(0);
 	}
 	}
 	
