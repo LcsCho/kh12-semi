@@ -23,7 +23,6 @@
 		</a>
 		<br>
 		<a href="delete?stadiumNo=${stadiumDto.stadiumNo}">
-			<i class="fa-solid fa-trash"></i>
 			삭제
 		</a>
 	</div>
