@@ -8,7 +8,7 @@
         <div class="left">
             <a href="#" class="link">이용약관</a> |
             <a href="#" class="link">개인정보취급방침</a> |
-            <a href="#" class="link">대표번호 : 010</a> |
+            <a href="#" class="link">대표번호 : 010-7775-1618</a>
         </div>
         <div class="right">
             <i class="fa-brands fa-google me-10"></i>
