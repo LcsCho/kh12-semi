@@ -601,12 +601,16 @@ $(function () {
 			<table class="table table-hover table-border">
 				<thead>
 					<tr>
+						<th>경기장이름</th>
 						<th>좌석번호</th>
 						<th>총가격</th>
 					</tr>
 				</thead>
 				<tbody align="center">
 					<tr>
+					<td>
+						${reservationVo.stadiumName}
+					</td>
 						<td><p>
 								<span class="seatNo"></span>
 							</p></td>
