@@ -6,7 +6,8 @@
         display: flex;
     }
     section > aside {
-        width: 200px;
+        width: 150px;
+        /* font-size: 0.9em;*/
     }
     section > article {
         flex-grow: 1;

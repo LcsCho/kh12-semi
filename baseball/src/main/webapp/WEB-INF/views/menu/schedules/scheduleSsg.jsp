@@ -183,6 +183,10 @@
                                     reservationLink.innerHTML = "예매하기";
                                     reservationLink.classList.add("div-ing");
                                     cell.appendChild(reservationLink);
+
+                               	 // 예매 버튼에 클릭 이벤트 핸들러 연결
+                                    reservationLink.addEventListener("click", handleReservationClick);
+
                                 } else {
                                     var beforeReservationDiv = document.createElement("div");
                                     beforeReservationDiv.innerHTML = "오픈예정";
