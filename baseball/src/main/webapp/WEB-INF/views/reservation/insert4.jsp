@@ -815,7 +815,7 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
                     </tr>
                     <tr>
                         <th>일시</th>
-                        <td><fmt:formatDate value="${vo.matchDate}" pattern="HH:mm" /></td>
+                        <td><fmt:formatDate value="${vo.matchDate}" pattern="yyyy년 MM월 dd일 HH:mm" /></td>
                     </tr>
                     <tr>
                         <th>좌석</th>

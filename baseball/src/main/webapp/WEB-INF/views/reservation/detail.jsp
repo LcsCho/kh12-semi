@@ -34,10 +34,10 @@
             <th>행</th>
             <td>${reservationVO.seatRow}</td>
          </tr>
-         <tr>
-            <th>좌석번호</th>
+          <%--  <tr>
+          <th>좌석번호</th>
             <td>${reservationVO.seatNo}</td>
-         </tr>
+         </tr> --%>
          <tr>
             <th>홈팀</th>
             <td>
