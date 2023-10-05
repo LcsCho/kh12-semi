@@ -1,5 +1,7 @@
 package com.kh.baseball.controller;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,11 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.baseball.dao.MatchDao;
 import com.kh.baseball.dao.ReservationCancelListDao;
 import com.kh.baseball.dao.ReservationDao;
 import com.kh.baseball.dao.TrueReservationDao;
@@ -22,6 +24,7 @@ import com.kh.baseball.dto.ReservationCancelDto;
 import com.kh.baseball.dto.ReservationDto;
 import com.kh.baseball.dto.SeatListDto;
 import com.kh.baseball.dto.TrueReservationDto;
+import com.kh.baseball.vo.MatchVO;
 import com.kh.baseball.vo.PaginationVO;
 import com.kh.baseball.vo.ReservationVO;
 
@@ -38,6 +41,8 @@ public class ReservationController {
 	@Autowired
 	private TrueReservationDao trueReservationDao;
 
+	@Autowired
+	private MatchDao matchDao;
 	// 등록
 //	@GetMapping("/insert")
 //	public String insert(@ModelAttriubute ReservationDto reservationDto) {
@@ -85,11 +90,10 @@ public class ReservationController {
 		List<ReservationVO> list = trueReservationDao.selectList(matchNo);
 		model.addAttribute("list", list);
 		model.addAttribute("matchNo",matchNo);
-		
-		
-		
+				
 		//아이디 저장
 		trueReservationDto.setMatchNo(matchNo);
+		
 		
 		return "/WEB-INF/views/reservation/insert2.jsp";
 	}
