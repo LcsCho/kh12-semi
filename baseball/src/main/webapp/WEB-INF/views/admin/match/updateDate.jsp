@@ -43,7 +43,7 @@
 		<div class="row">
 			<a href="list">목록으로</a>  
 			<br> 
-			<a href="/">홈으로</a>
+			<a href="/admin/home">관리자 홈으로</a>
 		</div>
 	</div>
 </form>
