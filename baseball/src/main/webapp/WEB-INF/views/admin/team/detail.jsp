@@ -5,9 +5,11 @@
 <jsp:include page="/WEB-INF/views/template/teamSidebar.jsp"></jsp:include>
 <div class="container w-100">
 	<div class="row">
-		<img src="image?teamNo=${teamDto.teamNo}" width="200" height="200">
+		<img src="/images/${teamDto.teamName}.jpg" width="200" height="200">
+		${attachDto.attachNo}
 	</div>
 	<div class="row mb-50">
+
 		${teamDto.teamName}
 		${teamDto.teamRegion}
 	</div>
