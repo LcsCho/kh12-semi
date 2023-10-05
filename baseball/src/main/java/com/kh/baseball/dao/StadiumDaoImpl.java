@@ -44,5 +44,12 @@ public class StadiumDaoImpl implements StadiumDao {
 		List<StadiumDto> list = jdbcTemplate.query(sql, stadiumMapper,data);
 		return list.isEmpty() ? null : list.get(0);
 	}
+	
+	@Override
+	public boolean delete(int stadiumNo) {
+		String sql = "delete from stadium where stadium_no = ?";
+		Object[] data = {stadiumNo};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
 
 }

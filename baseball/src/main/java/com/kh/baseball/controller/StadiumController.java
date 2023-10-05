@@ -63,4 +63,11 @@ public class StadiumController {
 		   model.addAttribute("stadiumDto", stadiumDto);
 		   return "/WEB-INF/views/admin/stadium/detail.jsp";
 	   }
+	   
+	   @RequestMapping("/delete")
+	   public String delete(@RequestParam int stadiumNo) {
+		   stadiumDao.delete(stadiumNo);
+		   return "redirect:list";
+	   }
+	   
 }

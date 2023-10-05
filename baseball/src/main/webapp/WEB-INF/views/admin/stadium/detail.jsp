@@ -14,12 +14,8 @@
 			목록으로
 		</a>
 		<br>
-		<a href="update?stadiumNo=${stadiumDto.stadiumNo}">
-			수정
-		</a>
-		<br>
-		<a href="/">
-			홈으로
+		<a href="/admin/home">
+			관리자 홈으로
 		</a>
 		<br>
 		<a href="delete?stadiumNo=${stadiumDto.stadiumNo}">
