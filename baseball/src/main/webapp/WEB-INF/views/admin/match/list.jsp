@@ -6,21 +6,33 @@
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/template/matchSidebar.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="/css/list.css">
+	<style>
+	.header-vertical {
+	padding-top : 1.2em;
+	}
+	.header-vertical2 {
+	vertical-align : middle;
+	}
+	.header-vertical3 {
+	padding-top: 0.3em;
+	padding-bottom: 0.3em;
+	}
+	</style>
 
 <div class="row">
-	<table width="800">
+	<table width="820">
 		<thead>
 			<tr>
-				<th>매치번호</th>
-				<th>경기일</th>
-				<th>경기장</th>
-				<th>홈팀</th>
-				<th>어웨이팀</th>
-				<th>홈팀스코어</th>
-				<th>어웨이스코어</th>
-				<th>경기 시각 수정</th>
-				<th>경기 스코어 수정</th>
-				<th>경기 결과 입력</th>
+				<th class="header-vertical">매치번호</th>
+				<th class="header-vertical">경기일</th>
+				<th class="header-vertical">경기장</th>
+				<th class="header-vertical">홈팀</th>
+				<th class="header-vertical">어웨이 팀</th>
+				<th class="header-vertical">홈 스코어</th>
+				<th class="header-vertical2">어웨이<pre class="header-vertical3">스코어</pre></th>
+				<th class="header-vertical2">경기 시각 <pre class="header-vertical3">수정</pre></th>
+				<th class="header-vertical2">경기 스코어 <pre class="header-vertical3">수정</pre></th>
+				<th class="header-vertical2">경기 결과 <pre class="header-vertical3">입력</pre></th>
 			</tr>
 		</thead>
 		<tbody align="center">
