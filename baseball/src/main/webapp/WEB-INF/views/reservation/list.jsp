@@ -124,6 +124,7 @@ td:nth-child(2) {
 					<th>홈팀</th>
 					<th>어웨이팀</th>
 					<th>예매날짜</th>
+					<th>경기날짜</th>
 					<th>상세</th>
 				</tr>
 			</thead>
@@ -148,7 +149,10 @@ td:nth-child(2) {
 								<td>${reservationVo.awayTeam}</td> 
 								<td><fmt:formatDate
 										value="${reservationVo.reservationDate}"
-										pattern="y년 M월 d일 E HH시 mm분 ss초" /></td>
+										pattern="y년 M월 d일 E HH : mm" /></td>
+										<td><fmt:formatDate
+										value="${reservationVo.matchDate}"
+										pattern=" M월 d일 E HH : mm" /></td>
 								
 								<td><a
 									href="/reservation/detail?reservationNo=${reservationVo.reservationNo}">상세</a></td>
@@ -166,7 +170,10 @@ td:nth-child(2) {
 								<td>${reservationVo.awayTeam}</td>
 								<td><fmt:formatDate
 										value="${reservationVo.reservationDate}"
-										pattern="y년 M월 d일 E HH시 mm분 ss초" /></td>
+										pattern="y년 M월 d일 E HH : mm" /></td>
+										<td><fmt:formatDate
+										value="${reservationVo.matchDate}"
+										pattern=" M월 d일 E HH : mm" /></td>
 								
 								<td><a
 									href="/reservation/detail?reservationNo=${reservationVo.reservationNo}">상세</a></td>
