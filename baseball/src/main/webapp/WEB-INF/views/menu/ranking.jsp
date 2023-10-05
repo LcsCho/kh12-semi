@@ -51,7 +51,7 @@
 			<th>승률</th>
 			<th>게임차</th>
 			<!-- 			<th>연속</th> -->
-			<th>최근 10경기</th>
+<!-- 			<th>최근 10경기</th> -->
 		</tr>
 	</thead>
 	<tbody align="center">
@@ -106,7 +106,7 @@
 				<!-- 						<td>0</td> -->
 				<%-- 					</c:otherwise> --%>
 				<%-- 				</c:choose> --%>
-				<td>${teamVo.recentWin}승-${teamVo.recentLose}패-${teamVo.recentDraw}무</td>
+<%-- 				<td>${teamVo.recentWin}승-${teamVo.recentLose}패-${teamVo.recentDraw}무</td> --%>
 			</tr>
 		</c:forEach>
 	</tbody>
