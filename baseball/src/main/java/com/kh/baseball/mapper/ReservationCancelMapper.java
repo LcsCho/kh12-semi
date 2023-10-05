@@ -17,17 +17,18 @@ public class ReservationCancelMapper implements RowMapper<ReservationCancelDto>{
 		ReservationCancelDto reservationCancelDto = new ReservationCancelDto();
 		reservationCancelDto.setReservationCancelNo(rs.getInt("reservation_cancel_no"));
 		reservationCancelDto.setReservationCancelDate(rs.getDate("reservation_cancel_time"));
-		reservationCancelDto.setReservationNo(rs.getInt("reservation_no"));
-		 String seatNoString = rs.getString("seat_no");
-	        if (seatNoString != null) {
-	            String[] seatNoArray = seatNoString.split(",");
-	            int[] seatNoInts = Arrays.stream(seatNoArray)
+		reservationCancelDto.setSeatNo(rs.getInt("seat_no"));
+		 String reservationNoString = rs.getString("reservation_no");
+	        if (reservationNoString != null) {
+	            String[] reservationNoArray = reservationNoString.split(",");
+	            int[] reservationNos = Arrays.stream(reservationNoArray)
 	                    .mapToInt(Integer::parseInt)
 	                    .toArray();
-	            reservationCancelDto.setSeatNo(seatNoInts);
+	            reservationCancelDto.setReservationNo(reservationNos);
 	        } else {
-	        	reservationCancelDto.setSeatNo(null); // 예외 처리: seat_no가 null인 경우
+	        	reservationCancelDto.setReservationNo(null); // 예외 처리: seat_no가 null인 경우
 	        }
+	     reservationCancelDto.setMatchNo(rs.getInt("match_no"));
 		return reservationCancelDto;
 	}
 }

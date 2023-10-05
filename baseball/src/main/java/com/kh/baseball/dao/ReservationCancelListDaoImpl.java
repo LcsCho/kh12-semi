@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.batch.BatchProperties.Jdbc;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.baseball.dto.ReservationCancelDto;
 import com.kh.baseball.mapper.ReservationCancleListMapper;
 import com.kh.baseball.vo.PaginationVO;
 import com.kh.baseball.vo.ReservationVO;
@@ -73,6 +74,27 @@ public class ReservationCancelListDaoImpl implements ReservationCancelListDao{
 	public int countList(PaginationVO vo, String memberId) {
 		String sql = "select count(*) from reservation_cancel where member_id=?";
 		return jdbcTemplate.queryForObject(sql, int.class,memberId);
+	}
+	
+	@Override
+	public void reservationCancelInsertBySeatNo(ReservationCancelDto reservationCancelDto) {
+		String sql = "INSERT INTO reservation_cancel " +
+	             "(reservation_cancel_no, reservation_no, match_no, reservation_cancel_time, seat_no, member_id) " +
+	             "VALUES " +
+	             "(reservation_cancel_seq.nextval, " +
+	             "?, " +
+	             "(SELECT match_no FROM reservation WHERE reservation_no = ?), " +
+	             "SYSDATE, " +
+	             "(SELECT seat_no FROM reservation WHERE reservation_no = ?), " +
+	             "?)";
+
+	    int[] reservationNos = reservationCancelDto.getReservationNo();
+	    String memberId = reservationCancelDto.getMemberId();
+	    
+	    for (int i = 0; i < reservationNos.length; i++) {
+	        Object[] data = {reservationNos[i],reservationNos[i],reservationNos[i],memberId};
+	        jdbcTemplate.update(sql, data);
+	    }
 	}
 
 }

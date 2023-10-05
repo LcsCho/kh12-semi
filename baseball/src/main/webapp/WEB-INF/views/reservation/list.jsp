@@ -138,9 +138,9 @@ td:nth-child(2) {
 						<c:when
 							test="${reservationVo.matchDate.time - currentDate.time <= twoHoursThirtyMinutes}">
 							<tr>
-								<td><input type="checkbox" class="check-item" name="seatNo"
+								<td><input type="checkbox" class="check-item" name="reservationNo"
 									data-match-date="${reservationVo.matchDate}"
-									value="${reservationVo.seatNo}" disabled="disabled"></td>
+									value="${reservationVo.reservationNo}" disabled="disabled"></td>
 								<td>${reservationVo.reservationNo}</td>
 								<td>${reservationVo.seatAreaZone}-${reservationVo.seatRow}-${reservationVo.seatCol}</td>
 								<td>${reservationVo.stadiumName}</td>
@@ -156,9 +156,9 @@ td:nth-child(2) {
 						</c:when>
 						<c:otherwise>
 							<tr>
-								<td><input type="checkbox" class="check-item" name="seatNo"
+								<td><input type="checkbox" class="check-item" name="reservationNo"
 									data-match-date="${reservationVo.matchDate}"
-									value="${reservationVo.seatNo}"></td>
+									value="${reservationVo.reservationNo}"></td>
 								<td>${reservationVo.reservationNo}</td>
 								<td>${reservationVo.seatAreaZone}-${reservationVo.seatRow}-${reservationVo.seatCol}</td>
 								<td>${reservationVo.stadiumName}</td>
