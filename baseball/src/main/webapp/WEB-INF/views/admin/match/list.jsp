@@ -81,7 +81,7 @@
 						<td><c:choose>
 							<c:when
 								test="${now.time >= matchDto.matchDate.time && now.time <= matchDto.matchDate.time + (3 * 60 * 60 * 1000)}">
-								<a href="updateScore?matchNo=${matchDto.matchNo}">점수 입력</a>
+								<a href="updateScore?matchNo=${matchDto.matchNo}" class="link">점수 입력</a>
 							</c:when>
 							<c:when test="${matchDto.matchDate.time < now.time}">
                                 경기종료
