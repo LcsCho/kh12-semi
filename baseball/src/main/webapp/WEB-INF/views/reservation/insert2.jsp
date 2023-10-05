@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
@@ -11,126 +11,126 @@
 <title>매치 예약</title>
 <style>
 * {
-	font-family: 'KBO-Dia-Gothic_light';
+   font-family: 'KBO-Dia-Gothic_light';
 }
 
 
 .custom-checkbox {
-	padding: 0; /* 여기에서 0으로 변경 */
-	margin: 20; /* 오타 수정: margine -> margin */
-	background-color: yellow; /* 배경색을 노란색으로 지정 */
+   padding: 0; /* 여기에서 0으로 변경 */
+   margin: 20; /* 오타 수정: margine -> margin */
+   background-color: yellow; /* 배경색을 노란색으로 지정 */
 }
 
 .seat-label {
-	position: relative;
-	top: -13px;
-	left: -22px
+   position: relative;
+   top: -13px;
+   left: -22px
 }
 
 .boxborder {
-	box-shadow: 0px 0px 0px 1px #2d3436;
-	height: 600px;
-	margin-right: -1em;
+   box-shadow: 0px 0px 0px 1px #2d3436;
+   height: 600px;
+   margin-right: -1em;
 }
 
 .reservation-choice{
 height: 600px;
 }
 .seatArea-box{
-	box-shadow: 0px 0px 0px 1px #2d3436;
-	height: 600px;
+   box-shadow: 0px 0px 0px 1px #2d3436;
+   height: 600px;
 }
 
 .seatimage{
-	box-shadow: 0px 0px 0px 1px #2d3436;
-	width: 283px;
-	height: 250px;
-	margin: 1em;
-	margin-top: 0.1em;
+   box-shadow: 0px 0px 0px 1px #2d3436;
+   width: 283px;
+   height: 250px;
+   margin: 1em;
+   margin-top: 0.1em;
 }
 
 .choice-box{
-	box-shadow: 0px 0px 0px 1px #2d3436;
-	width: 283px;
-	height: 274px;
-	margin: 1em;
-	margin-top: 0.1em;
+   box-shadow: 0px 0px 0px 1px #2d3436;
+   width: 283px;
+   height: 274px;
+   margin: 1em;
+   margin-top: 0.1em;
 }
 
 .seatreservation {
-	padding: 5px;
-	font-weight: bold;
-	font-size: 16px;
-	background-color: #360a01;
-	color: white;
+   padding: 5px;
+   font-weight: bold;
+   font-size: 16px;
+   background-color: #360a01;
+   color: white;
 }
 
 .float-container>.float-left {
-	float: left;
-	width: 70%;
-	/* 왼쪽 영역이 70%로 설정 */
+   float: left;
+   width: 70%;
+   /* 왼쪽 영역이 70%로 설정 */
 }
 
 .float-container>.float-right {
-	float: right;
-	width: 30%;
-	/* 오른쪽 영역이 30%로 설정 */
+   float: right;
+   width: 30%;
+   /* 오른쪽 영역이 30%로 설정 */
 }
 
 .image-container img {
-	max-width: 100%;
-	height: auto;
+   max-width: 100%;
+   height: auto;
 }
 
 .checkbox {
-	display: flex;
-	align-items: center;
-	/* 세로 중앙 정렬 */
-	margin-bottom: 2.27%;
+   display: flex;
+   align-items: center;
+   /* 세로 중앙 정렬 */
+   margin-bottom: 2.27%;
 }
 
 .btn {
-	background-color: #360a01;
-	color: white;
-	width: 120px;
+   background-color: #360a01;
+   color: white;
+   width: 120px;
 }
 
 .seatrow {
-	margin: 0.1em;
+   margin: 0.1em;
 }
 
 input[type="checkbox"].custom-checkbox {
-	display: none;
-	margin-left: 5px;
+   display: none;
+   margin-left: 5px;
 }
 
 .custom-checkbox-label {
-	cursor: pointer;
-	display: inline-block;
-	margin: -5px;
+   cursor: pointer;
+   display: inline-block;
+   margin: -5px;
 }
 
 .custom-checkbox-label i {
-	font-size: 20px; /* 아이콘 크기 조절 */
-	color: #360a01; /* 아이콘 색상 설정 */
+   font-size: 20px; /* 아이콘 크기 조절 */
+   color: #360a01; /* 아이콘 색상 설정 */
 }
 
 /* 체크된 상태일 때 아이콘 변경 */
 input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
-	{
-	color: #952323; /* 체크된 상태의 아이콘 색상 설정 */
+   {
+   color: #952323; /* 체크된 상태의 아이콘 색상 설정 */
 }
 /* 체크된 상태일 때 이미지 변경 */
 .selected-seats-list {
-	white-space: pre-line;
+   white-space: pre-line;
 }
 .seat{
 font-size: 20px;
 }
 
 .check{
-	font-size: 17px;
-	padding-top: 1em;
+   font-size: 17px;
+   padding-top: 1em;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -238,7 +238,7 @@ $(function () {
             // 체크박스가 해제된 경우, 모든 라디오 버튼 선택 해제
             $("[name=seatAreaNo]").prop("checked", false);
         }
-		
+      
      // 선택한 구역 정보를 가져옴
         var selectedSeatAreaNo = $(this).val();
         if (selectedSeatAreaNo.length == 0) return; // 비어있으면 리턴
@@ -432,198 +432,197 @@ $(function () {
             },
         });
     });
-		// "초기화" 버튼 클릭 이벤트 처리
-		$(".refresh-button").click(function() {
-			console.log("새로고침 버튼 클릭"); // 디버깅용 로그
+      // "초기화" 버튼 클릭 이벤트 처리
+      $(".refresh-button").click(function() {
+         console.log("새로고침 버튼 클릭"); // 디버깅용 로그
 
-			// 좌석 초기화 함수 호출
-			resetSeats();
+         // 좌석 초기화 함수 호출
+         resetSeats();
 
-			// 선택된 좌석 배열 초기화
-			selectedSeats = [];
+         // 선택된 좌석 배열 초기화
+         selectedSeats = [];
 
-			// 선택된 좌석 수 초기화
-			ticketCount = 0;
-			
-			totalSeatPrice = 0;
-		});
+         // 선택된 좌석 수 초기화
+         ticketCount = 0;
+         
+         totalSeatPrice = 0;
+      });
 
-		// "다음" 버튼 클릭 시 2단계에서 3단계로 이동 
-		// 또는 좌석을 선택하지 않았을 때 2단계에 남아있도록 함
-		$(".show-reservation-info-button").click(function() {
-			// 선택한 구역과 좌석 정보 가져오기
-			var selectedArea = $("input[name=seatAreaNo]:checked").val();
-			var selectedSeats = $(".selected-seats-list").text();
+      // "다음" 버튼 클릭 시 2단계에서 3단계로 이동 
+      // 또는 좌석을 선택하지 않았을 때 2단계에 남아있도록 함
+      $(".show-reservation-info-button").click(function() {
+         // 선택한 구역과 좌석 정보 가져오기
+         var selectedArea = $("input[name=seatAreaNo]:checked").val();
+         var selectedSeats = $(".selected-seats-list").text();
 
-			// 예매 정보를 표시할 엘리먼트에 정보를 채워 넣음
-			$(".seatAreaNo").text(selectedArea);
-			$(".seatNo").text(selectedSeats);
-			$(".seatPrice").text(totalSeatPrice)
+         // 예매 정보를 표시할 엘리먼트에 정보를 채워 넣음.stadiu".seatAreaNo").text(selectedArea);
+         $(".seatNo").text(selectedSeats);
+         $(".seatPrice").text(totalSeatPrice)
 
-			if (selectedSeats.trim() === "") {
-				alert("좌석을 선택해주세요!"); // 좌석을 선택하지 않았을 때 경고 메시지 표시
-				$(".page:eq(1)").show();
-				$(".page:eq(2)").hide();
+         if (selectedSeats.trim() === "") {
+            alert("좌석을 선택해주세요!"); // 좌석을 선택하지 않았을 때 경고 메시지 표시
+            $(".page:eq(1)").show();
+            $(".page:eq(2)").hide();
 
-				// "다음" 버튼 다시 표시
-				$(".show-reservation-info-button").show();
-			} else {
-				// 3단계 페이지 표시
-				$(".page:eq(2)").show();
+            // "다음" 버튼 다시 표시
+            $(".show-reservation-info-button").show();
+         } else {
+            // 3단계 페이지 표시
+            $(".page:eq(2)").show();
 
-				// "다음" 버튼 숨김
-				$(".show-reservation-info-button").hide();
-			}
-		});
-		$(".btn-primary").click(function() {
-			// 사용자가 확인 버튼을 클릭한 경우에만 확인 대화상자를 표시
-			if (confirm("예매를 진행 하시겠습니까?")) {
-				// 확인 버튼을 클릭한 경우의 동작을 여기에 추가
-				// 예를 들어 예매를 진행하는 코드를 추가할 수 있습니다.
-				alert("예매가 완료되었습니다."); // 예매가 성공적으로 진행되었음을 알림
-			} else {
-				// "아니요"를 클릭한 경우
-				alert("예매가 취소되었습니다."); // 예매가 취소되었음을 알림
-			}
-		});
+            // "다음" 버튼 숨김
+            $(".show-reservation-info-button").hide();
+         }
+      });
+      $(".btn-primary").click(function() {
+         // 사용자가 확인 버튼을 클릭한 경우에만 확인 대화상자를 표시
+         if (confirm("예매를 진행 하시겠습니까?")) {
+            // 확인 버튼을 클릭한 경우의 동작을 여기에 추가
+            // 예를 들어 예매를 진행하는 코드를 추가할 수 있습니다.
+            alert("예매가 완료되었습니다."); // 예매가 성공적으로 진행되었음을 알림
+         } else {
+            // "아니요"를 클릭한 경우
+            alert("예매가 취소되었습니다."); // 예매가 취소되었음을 알림
+         }
+      });
 
-	});
+   });
 </script>
 
 
 </head>
 
 <body>
-	<form id="reservationForm" action="insert" method="post"
-		enctype="multipart/form-data">
+   <form id="reservationForm" action="insert" method="post"
+      enctype="multipart/form-data">
 
-		<div class="container w-1000">
-		
-			<div class="row page">
-				<div class="row seatreservation">
-					<h2 class="left ms-10">예매하기</h2>
-				</div>
+      <div class="container w-1000">
+      
+         <div class="row page">
+            <div class="row seatreservation">
+               <h2 class="left ms-10">예매하기</h2>
+            </div>
 
-				<!-- 왼쪽에 이미지를 추가하는 부분 (col 사용) -->
-				<div class="float-container" >
-			    <div class="float-left boxborder">
-			        <div class="image-container">
-			            <img src="/images/seatimage.png" id="seat-image">
-			        </div>
-			    </div>
-			
-					
-					<div class="float-right seatArea-box">
-			
-					<input type="hidden" id="homeTeam" name="homeTeam"
-						value="${matchNo}"><br> <input type="hidden"
-						id="awayTeam" name="awayTeam" value="${matchNo}"><br>
-					<input type="hidden" id="matchNo" name="matchNo" value="${matchNo}"><br>
-					<label class="seat">좌석 구역 선택</label><br><br>
-					<c:forEach var="reservationVo" items="${list}">
-					
-						<div class="row">
-							<input type="radio" name="seatAreaNo"
-								id="selectedSeatArea" value="${reservationVo.seatAreaNo}">
-							${reservationVo.seatAreaZone}구역
-							<br>
-							${reservationVo.seatAreaPrice} 원
-						</div>
-						
-					</c:forEach>
-					</div>
-				</div>
-			
-				<!-- "다음" 버튼 클릭 시 2단계로 이동 -->
-				<div class="row right">
-					<button type="button" class="btn btn-next">다음단계</button>
-				</div>
-		</div>
+            <!-- 왼쪽에 이미지를 추가하는 부분 (col 사용) -->
+            <div class="float-container" >
+             <div class="float-left boxborder">
+                 <div class="image-container">
+                     <img src="/images/seatimage.png" id="seat-image">
+                 </div>
+             </div>
+         
+               
+               <div class="float-right seatArea-box">
+         
+               <input type="hidden" id="homeTeam" name="homeTeam"
+                  value="${matchNo}"><br> <input type="hidden"
+                  id="awayTeam" name="awayTeam" value="${matchNo}"><br>
+               <input type="hidden" id="matchNo" name="matchNo" value="${matchNo}"><br>
+               <label class="seat">좌석 구역 선택</label><br><br>
+               <c:forEach var="reservationVo" items="${list}">
+               
+                  <div class="row">
+                     <input type="radio" name="seatAreaNo"
+                        id="selectedSeatArea" value="${reservationVo.seatAreaNo}">
+                     ${reservationVo.seatAreaZone}구역
+                     <br>
+                     ${reservationVo.seatAreaPrice} 원
+                  </div>
+                  
+               </c:forEach>
+               </div>
+            </div>
+         
+            <!-- "다음" 버튼 클릭 시 2단계로 이동 -->
+            <div class="row right">
+               <button type="button" class="btn btn-next">다음단계</button>
+            </div>
+      </div>
 </div>
-		
-		<!-- 2단계 : 좌석선택 -->
-		<div class="container w-1000">
-		
-			<div class="row page">
-				<div class="row seatreservation">
-					<h2 class="left ms-10">좌석선택</h2>
-				</div>
-				
-				<div class="float-container" style="margin: 0.8em;">
-			    <div class="float-left boxborder">
-						<div class="row">${reservationVo.seatAreaNo}</div>
-						좌석구역: <span id="seat-area-zone">0</span>
-						<div class="mt-20" id="seat-checkbox"></div>
-					</div>
-				
-					<div class="float-right clickseat">
-						
-						<div class="seatimage">
-						<div style="height: 70%;">
-							<img src="/images/seatimage.png" style="max-block-size: 100%;"
-								class="mt-10 ms-20">
-						</div>
-						</div>
-						
-						<button type="button" class="refresh-button btn btn-origin">새로고침</button>
-						<div class="choice-box">
-						<div class="row">
-							<div id="ticket-count" class="check">
-								선택된 좌석(<span id="ticket-count-value">0</span>)석
-								<div id="totalPrice" > 원</div>
-							</div>
-						</div>
-							<div class="row left">
-								<label class="selected-seats-list"></label>
-							</div>
-							<input type="hidden" id="reservationTicket"
-								name="reservationTicket">
-						</div>
-				</div>
+      
+      <!-- 2단계 : 좌석선택 -->
+      <div class="container w-1000">
+      
+         <div class="row page">
+            <div class="row seatreservation">
+               <h2 class="left ms-10">좌석선택</h2>
+            </div>
+            
+            <div class="float-container" style="margin: 0.8em;">
+             <div class="float-left boxborder">
+                  <div class="row">${reservationVo.seatAreaNo}</div>
+                  좌석구역: <span id="seat-area-zone">0</span>
+                  <div class="mt-20" id="seat-checkbox"></div>
+               </div>
+            
+               <div class="float-right clickseat">
+                  
+                  <div class="seatimage">
+                  <div style="height: 70%;">
+                     <img src="/images/seatimage.png" style="max-block-size: 100%;"
+                        class="mt-10 ms-20">
+                  </div>
+                  </div>
+                  
+                  <button type="button" class="refresh-button btn btn-origin">새로고침</button>
+                  <div class="choice-box">
+                  <div class="row">
+                     <div id="ticket-count" class="check">
+                        선택된 좌석(<span id="ticket-count-value">0</span>)석
+                        <div id="totalPrice" > 원</div>
+                     </div>
+                  </div>
+                     <div class="row left">
+                        <label class="selected-seats-list"></label>
+                     </div>
+                     <input type="hidden" id="reservationTicket"
+                        name="reservationTicket">
+                  </div>
+            </div>
 </div>
 
-				<div class="row right">
-					<button type="button" class="btn btn-prev">이전단계</button>
-					<button type="button" class="btn btn-next show-reservation-info-button">다음단계</button>
-				</div>
-	</div>
+            <div class="row right">
+               <button type="button" class="btn btn-prev">이전단계</button>
+               <button type="button" class="btn btn-next show-reservation-info-button">다음단계</button>
+            </div>
+   </div>
 </div>
-		<!-- 3단계 : 예매완료 -->
-		
-		<div class="container w-1000">
-		
-			<div class="row page">
-				<div class="row seatreservation">
-					<h2 class="left ms-10">예매 정보 확인</h2>
-				</div>
-				
-			<div class="reservation-choice">			
-			<table class="table table-hover table-border">
-				<thead>
-					<tr>
-						<th>좌석번호</th>
-						<th>총가격</th>
-					</tr>
-				</thead>
-				<tbody align="center">
-					<tr>
-						<td><p>
-								<span class="seatNo"></span>
-							</p></td>
-						<td><p>
-								<span class="seatPrice"></span>
-							</p></td>
-					</tr>
-				</tbody>
-			</table>
-</div>	
-			<div class="row right">
-				<button type="button" class="btn btn-prev">이전단계</button>
-				<button type="submit" class="btn btn-primary">예매 완료</button>
-			</div>
-		</div>
-		</div>
-	</form>
+      <!-- 3단계 : 예매완료 -->
+      
+      <div class="container w-1000">
+      
+         <div class="row page">
+            <div class="row seatreservation">
+               <h2 class="left ms-10">예매 정보 확인</h2>
+            </div>
+            
+         <div class="reservation-choice">         
+         <table class="table table-hover table-border">
+            <thead>
+               <tr>
+                  <th>좌석번호</th>
+                  <th>총가격</th>
+               </tr>
+            </thead>
+            <tbody align="center">
+               <tr>
+                  <td><p>
+                        <span class="seatNo"></span>
+                     </p></td>
+                  <td><p>
+                        <span class="seatPrice"></span>
+                     </p></td>
+               </tr>
+            </tbody>
+         </table>
+</div>   
+         <div class="row right">
+            <button type="button" class="btn btn-prev">이전단계</button>
+            <button type="submit" class="btn btn-primary">예매 완료</button>
+         </div>
+      </div>
+      </div>
+   </form>
 </body>
 </html>
 
