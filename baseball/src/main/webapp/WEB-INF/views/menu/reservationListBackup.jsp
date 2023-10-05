@@ -138,6 +138,7 @@ function checkLogin(button) {
     if (sessionNameIsNull) {
         // 세션 값이 없을 때 알림 표시
         alert('로그인 후에 이용 가능합니다.');
+        window.location.href = '/member/login';
     } else {
         // 사용자가 로그인한 경우, 예매 페이지로 이동
         window.location.href = '/reservation/insert?matchNo=' + matchNo;
