@@ -207,7 +207,7 @@ table {
 						<th>번호</th>
 						<th width="50%">제목</th>
 						<th>작성일</th>
-						<th>조회수</th>
+				<!-- 		<th>조회수</th> -->
 					</tr>
 				</thead>
 				
@@ -230,7 +230,7 @@ table {
 									${boardDto.boardTitle} </a>
 							</td>
 							<td>${boardDto.boardCtime}</td>
-							<td>${boardDto.boardReadcount}</td>
+						<%-- 	<td>${boardDto.boardReadcount}</td> --%>
 						</tr>
 					</c:forEach>
 				</tbody>
