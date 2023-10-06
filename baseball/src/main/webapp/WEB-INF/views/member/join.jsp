@@ -162,7 +162,7 @@
                 </div>
 
                 <div class="row left">
-                        <input type="text" name="memberNick" placeholder="한글 또는 숫자 2~10자"
+                        <input type="text" name="memberNick" placeholder="한글 또는 숫자 2~10자 *"
                          class="form-input w-100">
                          <div class="success-feedback">멋진 닉네임입니다</div>
                          <div class="fail-feedback">닉네임 형식이 올바르지 않습니다</div>
@@ -174,7 +174,7 @@
                      <div class="fail-feedback">이메일 형식이 잘못되었습니다</div>
                 </div>
                 <div class="row left">
-                    <input type="tel" name="memberTel" placeholder="010XXXXXXXX (-빼고)"
+                    <input type="tel" name="memberTel" placeholder="010XXXXXXXX (-빼고) *"
                      class="form-input w-100">
                      <div class="fail-feedback">전화번호 형식이 올바르지 않습니다</div>
                 </div>
@@ -185,18 +185,18 @@
 
                 <div class="row left">
                     <div class="post-container">
-                        <input type="text" name="memberPost" placeholder="우편번호"
+                        <input type="text" name="memberPost" placeholder="우편번호 *"
                             class="form-input post-search post" size="6" maxlength="6" readonly>
                         <button type="button" class="form-input btn post-search btn-post">우편번호 찾기</button>
                     </div>
                 </div>
 
                 <div class="row left">
-                    <input type="text" name="memberAddr1" placeholder="기본주소" class="form-input w-100 post-search" readonly>
+                    <input type="text" name="memberAddr1" placeholder="기본주소 *" class="form-input w-100 post-search" readonly>
                 </div>
 
                 <div class="row left">
-                    <input type="text" name="memberAddr2" placeholder="상세주소" class="form-input w-100">
+                    <input type="text" name="memberAddr2" placeholder="상세주소 *" class="form-input w-100">
                     <div class="fail-feedback">모든 주소를 작성해주세요</div>
                 </div>
 

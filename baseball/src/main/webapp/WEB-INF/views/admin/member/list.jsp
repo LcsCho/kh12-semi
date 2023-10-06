@@ -106,7 +106,7 @@ td:nth-last-child(1), th:nth-last-child(1) {
 			
 			
 			<input type="search" name="keyword" placeholder="검색어" 
-				value="${vo.keyword}" required class="form-input w-65">
+				value="${vo.keyword}" required class="form-input w-65" autocomplete="off">
 			<button type="submit" class="btn btn-positive">검색</button>
 			</div>
 			

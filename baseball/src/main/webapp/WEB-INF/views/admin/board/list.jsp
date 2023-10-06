@@ -162,7 +162,7 @@ table {
             <select name="type" required class="form-input tite">
                 <option value="board_title">제목</option>
             </select> <input type="search" name="keyword" required class="form-input w-65" placeholder="검색어 입력"
-                value="${param.keyword}">
+                value="${param.keyword}" autocomplete="off">
             <button type="submit" class="btn btn-positive">
                 검색
             </button>
