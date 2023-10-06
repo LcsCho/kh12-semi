@@ -100,6 +100,7 @@ $(function () {
         if (sessionNameIsNull) {
             // 경고 메시지 출력
             alert("로그인 후에 이용 가능합니다.");
+            window.location.href = '/member/login';
             // 이벤트 기본 동작 중단 (링크 이동 취소)
             e.preventDefault();
         }
