@@ -512,7 +512,7 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
                         var seatReservation = response[index].reservationNo;
                         var seatArea = response[index].seatAreaZone;
                         var seatPrice = response[index].seatAreaPrice;
-
+						var seatstatus = response[index].seatStatus;
                         console.log(seatArea);
                         var checkbox = $("<input>")
                             .attr("type", "checkbox")
@@ -543,7 +543,7 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
                         label.append((i + 1) + "-" + (j + 1));
 
                         // 만약에 seatStatus가 N이라면 선택이 되어있고 disable로 처리
-                        if (seatReservation != 0) {
+                        if (seatReservation != 0 || seatstatus =='N') {
                             checkbox
                                 .prop("checked", true)
                                 // attr 대신 prop를 사용하여 checked 속성을 설정

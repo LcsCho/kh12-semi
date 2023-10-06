@@ -114,7 +114,7 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 	             "sa.seat_area_zone, " +
 	             "st.STADIUM_NAME, " +
 	             "st.STADIUM_NO, " +
-	             "sa.seat_area_price, " +
+	             "sa.seat_area_price, s.seat_status, " +
 	             "rs.reservation_no " +
 	             "FROM seat s " +
 	             "LEFT OUTER JOIN seat_area sa ON s.SEAT_AREA_NO = sa.SEAT_AREA_NO " +
