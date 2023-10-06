@@ -57,10 +57,10 @@ public class SeatAreaDaoImpl implements SeatAreaDao{
 	public boolean update(SeatAreaDto seatAreaDto) {
 		String sql = "update seat_area set "
 				+ "stadium_no = ?, seat_area_zone = ?, seat_area_price = ? "
-				+ "where seat_area_no = ?";
+				+ "where seat_area_Zone = ?";
 		Object[] data = {
 				seatAreaDto.getStadiumNo(), seatAreaDto.getSeatAreaZone(),
-				seatAreaDto.getSeatAreaPrice(), seatAreaDto.getSeatAreaNo()
+				seatAreaDto.getSeatAreaPrice(),seatAreaDto.getSeatAreaZone()
 		};
 		return jdbcTemplate.update(sql, data) > 0;
 	}
