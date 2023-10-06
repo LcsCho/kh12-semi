@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
-<jsp:include page="/WEB-INF/views/template/matchSidebar.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/seatSidebar.jsp"></jsp:include>
 
 <div class="container">
     <h1>좌석 상태 변경 페이지</h1>
