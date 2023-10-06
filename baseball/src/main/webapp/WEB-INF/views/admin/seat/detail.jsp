@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
-<jsp:include page="/WEB-INF/views/template/matchSidebar.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/seatSidebar.jsp"></jsp:include>
 
 <div class="container w-500">
    <div class="row">
@@ -40,18 +40,7 @@
 
       </table>   
    </div>
-      <div class="row">
-      <a href="list">
-         목록으로
-      </a>
-      <a href="change?matchNo=${matchDto.matchNo}">
-         수정
-      </a>
-      <br>
-      <a href="/">
-         홈으로
-      </a>
-   </div>
+   
 </div>
 
 
