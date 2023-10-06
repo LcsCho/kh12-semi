@@ -9,6 +9,9 @@
 <head>
 <title>매치 예약</title>
 <style>
+*{
+font-family: 'KBO-Dia-Gothic_medium';
+}
 table {
 	border-collapse: collapse;
 }
@@ -181,7 +184,7 @@ td:nth-last-child(1), th:nth-last-child(1) {
 
 .seat-label {
 	position: relative;
-	top: -13px;
+	top: -15px;
 	left: -22px
 }
 
@@ -546,6 +549,7 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
                                 // attr 대신 prop를 사용하여 checked 속성을 설정
                                 .attr("disabled", true);
                             icon.css("color", "#CCCCCC");
+                            console.log(seatReservation);
                         }
 
                         checkboxContainer.append(iconLabel);
@@ -752,7 +756,7 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
 
             <div class="row">${reservationVo.seatAreaNo}</div>
 						좌석구역: <span id="seat-area-zone">0</span>
-						<div class="mt-20" id="seat-checkbox"></div>
+						<div class="mt-20" id="seat-checkbox" style="color:#009900"></div>
 
         </div>
         

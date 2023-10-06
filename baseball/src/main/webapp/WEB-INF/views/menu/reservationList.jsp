@@ -6,6 +6,7 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <style>
+
 .teamlogo {
 	width: 30%;
 	margin-right: -2em;

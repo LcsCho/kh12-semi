@@ -7,14 +7,15 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.baseball.dto.DeleteReservationDto;
-import com.kh.baseball.dto.SeatListDto;
 import com.kh.baseball.dto.TrueReservationDto;
 import com.kh.baseball.mapper.MatchInfoMapper;
 import com.kh.baseball.mapper.ReservationVoMapper;
 import com.kh.baseball.mapper.SeatListMapper;
+import com.kh.baseball.mapper.SeatListVoMapper;
 import com.kh.baseball.mapper.TrueReservationMapper;
 import com.kh.baseball.vo.PaginationVO;
 import com.kh.baseball.vo.ReservationVO;
+import com.kh.baseball.vo.SeatListVO;
 
 @Repository
 public class TrueReservationDaoImpl implements TrueReservationDao {
@@ -99,11 +100,11 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 	}
 
 	@Autowired
-	private SeatListMapper seatListMapper;
+	private SeatListVoMapper seatListVoMapper;
 
 
 		
-	public List<SeatListDto> findSeatForReservation(int matchNo, int seatAreaNo) {
+	public List<SeatListVO> findSeatForReservation(int matchNo, int seatAreaNo) {
 		String sql = "SELECT " +
 	             "ma.MATCH_NO, " +
 	             "s.seat_no, " +
@@ -123,7 +124,7 @@ public class TrueReservationDaoImpl implements TrueReservationDao {
 	             "WHERE ma.match_no = ? AND sa.seat_area_no = ?" +
 	             "order by s.seat_no asc";
 		Object[] data = { matchNo, seatAreaNo };
-		return jdbcTemplate.query(sql, seatListMapper, data);
+		return jdbcTemplate.query(sql, seatListVoMapper, data);
 	}
 
 	@Override

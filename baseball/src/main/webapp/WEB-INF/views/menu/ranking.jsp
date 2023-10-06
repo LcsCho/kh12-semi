@@ -5,6 +5,9 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <style>
+*{
+font-family: 'KBO-Dia-Gothic_medium';
+}
 	table {
 		border-collapse: collapse;
 	}
