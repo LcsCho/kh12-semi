@@ -23,6 +23,8 @@ public class SeatListVoMapper implements RowMapper<SeatListVO>{
 		seatListVO.setSeatAreaZone(rs.getString("seat_area_zone"));
 		seatListVO.setStadiumName(rs.getString("stadium_name"));
 		seatListVO.setReservationNo(rs.getInt("reservation_no"));
+		seatListVO.setSeatStatus(rs.getString("seat_status"));
+
 		return seatListVO;
 	}
 
