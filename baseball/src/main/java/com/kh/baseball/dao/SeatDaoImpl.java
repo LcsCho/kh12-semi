@@ -182,7 +182,8 @@ public class SeatDaoImpl implements SeatDao {
 	public List<SeatGroupDto> seatGroupStadiumList(String stadiumName) {
 		String sql = "SELECT "
 	             + "sa.seat_area_zone, "
-	             + "st.stadium_name,"
+	             + "st.stadium_name, "
+	             + "sa.seat_area_no, "  // 콤마 추가
 	             + "COUNT(*) AS seat_count "
 	             + "FROM "
 	             + "seat s "
@@ -193,8 +194,9 @@ public class SeatDaoImpl implements SeatDao {
 	             + "WHERE "
 	             + "st.stadium_name = ? "
 	             + "GROUP BY "
-	             + "sa.seat_area_zone,"
-	             + "st.stadium_name";
+	             + "sa.seat_area_zone, "
+	             + "st.stadium_name,"
+	             + "sa.seat_area_no";
 		return jdbcTemplate.query(sql,seatGourpMapper,stadiumName);	
 		}
 
