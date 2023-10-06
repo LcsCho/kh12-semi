@@ -28,6 +28,7 @@
 					<td>${SeatGroupDto.seatAreaZone}</td>
 					<td>${SeatGroupDto.seatCount}</td>
 					<td><a href="/admin/seat/listByZone?seatAreaZone=${SeatGroupDto.seatAreaZone}&stadiumName=${SeatGroupDto.stadiumName}">상세</a></td>
+					<td><a href="/admin/seatArea/update?seatAreaNo=${SeatGroupDto.seatAreaNo}">수정</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
