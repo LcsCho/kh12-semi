@@ -207,7 +207,7 @@ table {
 						<th>번호</th>
 						<th width="50%">제목</th>
 						<th>작성일</th>
-						<th>조회수</th>
+	<!-- 					<th>조회수</th> -->
 					</tr>
 				</thead>
 				
@@ -223,14 +223,14 @@ table {
 								</label>
 								</td>
 							</c:if>
-							<td>${boardDto.boardNo}</td>
+							<td style="color: black;">${boardDto.boardNo}</td>
 							<td align="left">
 								<!-- 제목을 누르면 상세페이지로 이동 --> <a class="link"
 								href="detail?boardNo=${boardDto.boardNo}">
 									${boardDto.boardTitle} </a>
 							</td>
 							<td>${boardDto.boardCtime}</td>
-							<td>${boardDto.boardReadcount}</td>
+				<%-- 			<td>${boardDto.boardReadcount}</td> --%>
 						</tr>
 					</c:forEach>
 				</tbody>
