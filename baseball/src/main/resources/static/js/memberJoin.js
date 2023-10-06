@@ -107,7 +107,7 @@ $(function(){
     $("[name=memberEmail]").blur(function(){
         var regex = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
         var email = $(this).val();
-        var isValid = email.length == 0 || regex.test(email);
+        var isValid = regex.test(email);
         $(this).removeClass("success fail");
         $(this).addClass(isValid ? "success" : "fail");
         status.memberEmail = isValid;
@@ -115,7 +115,7 @@ $(function(){
     $("[name=memberTel]").blur(function(){
         var regex = /^010[1-9][0-9]{7}$/;
         var contact = $(this).val();
-        var isValid = contact.length == 0 || regex.test(contact);
+        var isValid = regex.test(contact);
         $(this).removeClass("success fail");
         $(this).addClass(isValid ? "success" : "fail");
         status.memberTel = isValid;
@@ -123,7 +123,7 @@ $(function(){
     $("[name=memberBirth]").blur(function(){
         var regex = /^(19[0-9]{2}|20[0-9]{2})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
         var birth = $(this).val();
-        var isValid = birth.length == 0 || regex.test(birth);
+        var isValid = regex.test(birth);
         $(this).removeClass("success fail");
         $(this).addClass(isValid ? "success" : "fail");
         status.memberBirth = isValid;
@@ -133,10 +133,10 @@ $(function(){
         var addr1 = $("[name=memberAddr1]").val();
         var addr2 = $("[name=memberAddr2]").val();
 
-        var isBlank = post.length == 0 && addr1.length == 0 && addr2.length == 0;
+        
         var isFill = post.length > 0 && addr1.length > 0 && addr2.length > 0;
 
-        var isValid = isBlank || isFill;
+        var isValid = isFill;
         $("[name=memberPost],[name=memberAddr1],[name=memberAddr2]").removeClass("success fail");
         $("[name=memberPost],[name=memberAddr1],[name=memberAddr2]").addClass(isValid ? "success" : "fail");
 

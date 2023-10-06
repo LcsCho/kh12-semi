@@ -110,6 +110,9 @@ td:nth-child(2) {
 
 <div class="row">
 	<form action="delete" method="post">
+	
+	
+	<h4>예매취소는 경기시작 2시간 30분 전까지 가능합니다</h4>
 			<div class="row right ">
 			<button type="submit" class="btn btn-negative delete-btn ">예매 취소</button>
 		</div>
