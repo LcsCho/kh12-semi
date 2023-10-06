@@ -673,6 +673,7 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
 				alert("예매가 완료되었습니다."); // 예매가 성공적으로 진행되었음을 알림
 			} else {
 				// "아니요"를 클릭한 경우
+				event.preventDefault();
 				alert("예매가 취소되었습니다."); // 예매가 취소되었음을 알림
 			}
 		});
