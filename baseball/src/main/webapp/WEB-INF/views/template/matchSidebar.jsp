@@ -44,6 +44,7 @@
                         <div class="row">
                             <h2><a href="/admin/match/list" class="link">경기 목록</a></h2>
                         </div>
+                        
                         <!-- <div class="row">
                             <h2><a href="#" class="link">메뉴3</a></h2>
                         </div>

@@ -33,6 +33,7 @@
 				<th class="header-vertical2">경기 시각 <pre class="header-vertical3">수정</pre></th>
 				<th class="header-vertical2">경기 스코어 <pre class="header-vertical3">수정</pre></th>
 				<th class="header-vertical2">경기 결과 <pre class="header-vertical3">입력</pre></th>
+				<th class="header-vertical">경기 삭제</th>
 			</tr>
 		</thead>
 		<tbody align="center">
@@ -103,7 +104,18 @@
                                 경기 전
                             </c:otherwise>
 						</c:choose>
+						
 						</td>
+						<td>
+						<c:choose>
+							<c:when test="${now.time < matchDto.matchDate.time}">
+							<a href="delete?matchNo=${matchDto.matchNo}" class="link">삭제</a>
+							</c:when>
+							<c:otherwise>
+							삭제 불가
+							</c:otherwise>
+							</c:choose>
+							</td>
 				</tr>
 			</c:forEach>
 		</tbody>

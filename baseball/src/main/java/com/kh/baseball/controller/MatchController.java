@@ -206,7 +206,17 @@ public class MatchController {
 		model.addAttribute("matchDto", matchDto);
 		return "/WEB-INF/views/admin/match/detailMatch.jsp";
 	}
-	
+	// 삭제
+		@RequestMapping("/delete")
+		public String delete(@RequestParam int matchNo) {
+			boolean result = matchDao.delete(matchNo);
+			if (result) {
+				return "redirect:list";
+			} else {
+				return "redirect:에러페이지";
+
+			}
+		}
 //	@RequestMapping("/detailMatchResult")
 //	public String detailMatchResult(@RequestParam int matchNo, Model model) {
 //		MatchDto matchDto = matchDao.selectOne(matchNo);
