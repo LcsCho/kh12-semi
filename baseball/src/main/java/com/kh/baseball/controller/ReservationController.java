@@ -76,14 +76,13 @@ public class ReservationController {
    public String cancelFinish() {
       return "/WEB-INF/views/member/reservation/cancelFinish.jsp";
    }
-
    
 
    @GetMapping("/insert")
    public String insert(@ModelAttribute TrueReservationDto trueReservationDto,   Model model, @RequestParam int matchNo ,
          @RequestParam(required = false) Integer seatAreaNo) {
       //경기정보 리스트
-	   ReservationVO vo = trueReservationDao.selectOneTeam(matchNo);
+	  ReservationVO vo = trueReservationDao.selectOneTeam(matchNo);
       List<ReservationVO> list = trueReservationDao.selectList(matchNo);
       model.addAttribute("list", list);
       model.addAttribute("matchNo",matchNo);
