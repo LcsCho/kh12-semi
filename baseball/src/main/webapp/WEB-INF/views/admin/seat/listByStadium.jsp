@@ -18,6 +18,7 @@
             <th>구역</th>
             <th>좌석수</th>
             <th>상세</th>
+            <th>수정</th>
 
          </tr>
       </thead>
@@ -28,6 +29,7 @@
                <td>${SeatGroupDto.seatAreaZone}</td>
                <td>${SeatGroupDto.seatCount}</td>
                <td><a href="/admin/seat/listByZone?seatAreaZone=${SeatGroupDto.seatAreaZone}&stadiumName=${SeatGroupDto.stadiumName}">상세</a></td>
+               <td><a href="/admin/reservation/update?seatAreaZone=${SeatGroupDto.seatAreaZone}&stadiumName=${SeatGroupDto.stadiumName}">수정</a></td>
             </tr>
          </c:forEach>
       </tbody>

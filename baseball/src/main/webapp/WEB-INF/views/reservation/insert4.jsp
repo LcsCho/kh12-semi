@@ -512,6 +512,7 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
                         var seatReservation = response[index].reservationNo;
                         var seatArea = response[index].seatAreaZone;
                         var seatPrice = response[index].seatAreaPrice;
+                        var seatStatus = response[index].seatStatus;
 
                         console.log(seatArea);
                         var checkbox = $("<input>")
@@ -543,7 +544,7 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
                         label.append((i + 1) + "-" + (j + 1));
 
                         // 만약에 seatStatus가 N이라면 선택이 되어있고 disable로 처리
-                        if (seatReservation != 0) {
+						if (seatReservation !== 0 || seatStatus == 'N') {
                             checkbox
                                 .prop("checked", true)
                                 // attr 대신 prop를 사용하여 checked 속성을 설정
@@ -607,7 +608,7 @@ input[type="checkbox"].custom-checkbox:checked+.custom-checkbox-label i
 
                                 $("#reservationTicket").attr("value", ticketCount);
                                 $(".selected-seats-list").text(selectedSeats.map(function (seat) {
-                                    return "　" + seatArea +  " " + seat.row + "열 " + seat.col + "번";
+                                    return "　" + seatArea +  " " + seat.row + "열 " + seat.col + "번" + seatStatus;
                                 }).join("\n"));
                             });
                         })(index, response[index].seatCol, response[index].seatRow);

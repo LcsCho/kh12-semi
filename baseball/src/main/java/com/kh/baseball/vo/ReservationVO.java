@@ -9,6 +9,7 @@ public class ReservationVO {
 	private int reservationNo;
 	private int matchNo;
 	private int seatNo;
+	private String seatStatus;
 	private String homeTeam;//사용
 	private String awayTeam;//사용
 	private String memberId;
